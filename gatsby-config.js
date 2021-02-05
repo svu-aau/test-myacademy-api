@@ -6,6 +6,7 @@ require('dotenv').config({
 const clientConfig = require('./client-config');
 const token = process.env.SANITY_READ_TOKEN;
 const isProd = process.env.NODE_ENV === 'production';
+// const isGatsbyCloud = process.env.GATSBY_CLOUD || false;
 
 console.info(`[sanity] project: \x1b[35m${clientConfig.sanity.projectId}\x1b[39m`);
 console.info(`[sanity] dataset: \x1b[35m${clientConfig.sanity.dataset}\x1b[39m`);
@@ -50,7 +51,7 @@ module.exports = {
         ...clientConfig.sanity,
         token,
         watchMode: !isProd,
-        overlayDrafts: false, // !isProd && token,
+        overlayDrafts: !isProd && token,
       },
     },
     {
