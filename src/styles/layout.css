@@ -1,0 +1,28 @@
+@import './custom-properties.css';
+
+html {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background: var(--color-dark-black-bg);
+  color: var(--color-white);
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+a {
+  color: var(--color-black);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

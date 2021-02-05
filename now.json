@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "env": {
+    "MAILGUN_API_KEY": "@mailgun-api-key",
+    "MAILGUN_DOMAIN": "@mailgun-domain",
+    "VIMEO_CLIENT_ID": "@vimeo-client-id",
+    "VIMEO_CLIENT_SECRET": "@vimeo-client-secret",
+    "VIMEO_APP_API_KEY": "@vimeo-app-api-key"
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config":  { "distDir": "public" }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/schools", "status": 301, "dest": "/" },
+    { "src": "/schools/fashion/students/seonwon-lee", "status": 301, "dest": "/schools/fashion/students/seokwon-lee" },
+    { "src": "/schools/landscape-architecture/students/jake-walters", "status": 301, "dest": "/schools/landscape-architecture/students/jake-walter" },
+    { "src": "/.*", "status": 404, "dest": "/404" }
+  ]
+}

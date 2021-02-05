@@ -1,0 +1,23 @@
+@import '../../styles/custom-media.css';
+
+.industryGrid {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.industryGridItem {
+  margin: 1rem;
+  width: 100%;
+  max-width: 165px;
+
+  @media (--media-max-medium) {
+    max-width: 125px;
+  }
+}
+
+.industryGrid img {
+  width: 100%;
+  max-width: 165px;
+}

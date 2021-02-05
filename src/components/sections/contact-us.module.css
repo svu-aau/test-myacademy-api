@@ -1,0 +1,11 @@
+.root {}
+
+.button {
+  composes: button from '../../styles/buttons.css';
+}
+
+.buttonWrapper {
+  margin-top: 2em;
+  display: flex;
+  text-align: center;
+}
