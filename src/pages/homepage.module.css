@@ -1,0 +1,64 @@
+/* 
+@import '../styles/custom-properties.css'; 
+*/
+@import '../styles/custom-media.css';
+
+.root {
+  margin: 2rem 1rem;
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @nest & figcaption {
+    font-size: var(--font-small-size);
+    line-height: var(--font-small-line-height);
+    margin: 0.5rem 0 0;
+  }
+
+  @media (--media-max-medium) {
+    display: block;
+    max-width: initial;
+    margin: 0 10px;
+  }
+}
+
+.left {
+  flex: 1;
+  width: 48%;
+  @media (--media-max-medium) {
+    width: 100%;
+  }
+}
+.right {
+  flex: 1;
+  width: 45%;
+  margin-left: 20px;
+  @media (--media-max-medium) {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.callout {
+  display: block;
+  width: 93%;
+  background: #f2f2f2;
+  margin: 10px 0px;
+  border: solid 1px #f4f3e8;
+  padding: 14px;
+  box-shadow: 4px 4px 4px #ccc;
+  @nest & h2 {
+    margin: 0;
+  }
+}
+
+.calloutImage {
+  width: 100%;
+  max-width: 120px;
+  float: left;
+  margin: 0 8px 0px 0;
+}
+
+.calloutRight {
+  flex: 1;
+}
