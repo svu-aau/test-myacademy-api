@@ -1,0 +1,25 @@
+@import '../../styles/custom-media.css';
+
+.root {
+  box-sizing: border-box;
+  max-width: 1170px;
+  padding: .5em;
+  margin: 0 auto;
+
+  @media (--media-min-small) {
+    padding: 1em;
+  }
+}
+
+.dark {
+  background-color: var(--color-dark-black-bg);
+  color: var(--color-white);
+}
+
+.narrow {
+  max-width: 800px;
+}
+
+.narrower {
+  max-width: 640px;
+}

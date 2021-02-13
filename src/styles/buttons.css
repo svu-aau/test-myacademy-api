@@ -1,0 +1,40 @@
+@import './custom-properties.css';
+@import './typography.module.css';
+
+.button {
+  display: inline-block;
+  width: auto;
+  padding: 1em;
+  min-width: 120px;
+  margin: 1.3em auto;
+  color: var(--color-white);
+  background-color: transparent;
+  border: 3px solid var(--color-white);
+  cursor: pointer;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: var(--font-medium-size)
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.darkButton {
+  color: var(--color-black);
+  border: 2px solid var(--color-black);
+  background-color: #f2f5f9;
+}
+
+.calloutButton {
+  color: var(--color-black);
+  border: 2px solid var(--color-red-primary-bg);
+  background-color: transparent;
+}
+
+.calloutButton:hover {
+  color: var(--color-white);
+  border: 2px solid var(--color-red-primary-bg);
+  background-color: var(--color-red-primary-bg);
+}

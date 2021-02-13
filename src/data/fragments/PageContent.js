@@ -1,0 +1,157 @@
+import { graphql } from 'gatsby';
+export const queryFigure = graphql`
+  fragment PageContent on SanityDocument {
+    _id
+
+    ... on Node {
+      __typename
+    }
+
+    ... on SanitySectionHero {
+      _key
+      heroTitle
+      heroHeading
+      backgroundImage {
+        asset {
+          fluid(maxWidth: 1440) {
+            ...GatsbySanityImageFluid_noBase64
+          }
+        }
+      }
+    }
+
+    ... on SanitySectionText {
+      _key
+      narrowWidth
+      _rawBody(resolveReferences: { maxDepth: 10 })
+    }
+
+    ... on SanitySectionCard {
+      _key
+      narrowWidth
+      _rawBody(resolveReferences: { maxDepth: 10 })
+      backgroundColor
+    }
+
+    ... on SanitySectionSchoolsGrid {
+      _key
+      narrowWidth
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      _rawOutro(resolveReferences: { maxDepth: 10 })
+      backgroundColor
+      schools {
+        ...SchoolPreview
+      }
+    }
+
+    ... on SanitySectionImageGrid {
+      _key
+      narrowWidth
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      _rawOutro(resolveReferences: { maxDepth: 10 })
+      backgroundColor
+      showPagination
+      linkOverride
+      limitResults
+      media {
+        ... on SanityFigure {
+          ...FigureThumb
+        }
+      }
+      gridStyle
+    }
+
+    ... on SanitySectionMediaGrid {
+      _key
+      narrowWidth
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      _rawOutro(resolveReferences: { maxDepth: 10 })
+      backgroundColor
+      showPagination
+      linkOverride
+      limitResults
+      media {
+        ... on SanityFigure {
+          ...FigureThumb
+        }
+        ... on SanityVideo {
+          ...Video
+        }
+      }
+      gridStyle
+    }
+
+    ... on SanitySectionProjectsGrid {
+      _key
+      narrowWidth
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      _rawOutro(resolveReferences: { maxDepth: 10 })
+      backgroundColor
+      showFilters
+      showPagination
+      linkOverride
+      limitResults
+      gridStyle
+      projects {
+        ...ProjectPreview
+        ...StudentPreview
+      }
+      school {
+        __typename
+        id
+        title
+        slug {
+          current
+        }
+        featuredProjects {
+          ...ProjectPreview
+        }
+      }
+    }
+
+    ... on SanitySectionProjectGrid {
+      _key
+      narrowWidth
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      _rawOutro(resolveReferences: { maxDepth: 10 })
+      backgroundColor
+      showFilters
+      showPagination
+      linkOverride
+      limitResults
+      gridStyle
+      projects {
+        ...ProjectPreview
+      }
+      school {
+        __typename
+        id
+        title
+        slug {
+          current
+        }
+        featuredProjects {
+          ...ProjectPreview
+        }
+      }
+    }
+
+    ... on SanitySectionIndustryGrid {
+      _key
+      _rawIntro(resolveReferences: { maxDepth: 10 })
+      companies {
+        ...HiringCompanies
+      }
+      limitResults
+      school {
+        hiringCompanies {
+          ...HiringCompanies
+        }
+      }
+    }
+
+    ... on SanityGlobalSection {
+      ...GlobalSection
+    }
+  }
+`;

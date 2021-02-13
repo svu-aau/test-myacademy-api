@@ -1,0 +1,31 @@
+@import '../../styles/custom-media.css';
+.root {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1em;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  color: var(--color-white);
+}
+
+.wrapperDouble {
+  @media (--media-max-medium) {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.filterText {
+  font-weight: 900;
+  margin-right: 0.5em;
+}
+
+.filterTextDouble {
+  @media (--media-max-medium) {
+    margin-bottom: 0.5em;
+  }
+}

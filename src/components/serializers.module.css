@@ -1,0 +1,16 @@
+@import '../styles/custom-media.css';
+@import '../styles/custom-properties.css';
+
+.link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.button {
+  composes: button from '../styles/buttons.css';
+}
+
+.darkButton {
+  composes: button from '../styles/buttons.css';
+  composes: darkButton from '../styles/buttons.css';
+}

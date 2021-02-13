@@ -1,0 +1,109 @@
+@import '../../styles/custom-media.css';
+
+.root {
+  box-sizing: border-box;
+  padding: 2em 1em;
+  margin: 0 auto;
+
+  @media (--media-min-small) {
+    padding: 3em 1em;
+  }
+
+  @media (--media-min-large) {
+    padding: 7.22em 1em;
+  }
+
+  @nest & h1, & h2, & h3, & h4, & h5, & h6 {
+    text-align: center;
+  }
+
+  @nest &.flush {
+    padding: 0 !important;
+  }
+}
+
+.flushSides {
+  padding: 2em 0;
+  @media (--media-min-small) {
+    padding: 3em 0;
+  }
+  @media (--media-min-large) {
+    padding: 7.22em 0;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.black {
+  background-color: var(--color-black-bg);
+  color: var(--color-white);
+
+  @nest & a {
+    color: var(--color-white);
+  }
+}
+
+.dark {
+  background-color: var(--color-dark-black-bg);
+  color: var(--color-white);
+
+  @nest & a {
+    color: var(--color-white);
+  }
+}
+
+.green {
+  background-color: var(--color-neon-green);
+  color: var(--color-black);
+
+  @nest & a {
+    color: var(--color-black);
+  }
+}
+
+.darkGreen {
+  background-color: var(--color-dark-green);
+  color: var(--color-white);
+
+  @nest & a {
+    color: var(--color-white);
+  }
+}
+
+.violet {
+  background-color: var(--color-violet);
+  color: var(--color-white);
+
+  @nest & a {
+    color: var(--color-white);
+  }
+}
+
+.white {
+  background-color: var(--color-white);
+  color: var(--color-black);
+
+  @nest & a {
+    color: var(--color-black);
+  }
+}
+
+.peach {
+  background-color: var(--color-peach);
+  color: var(--color-black);
+
+  @nest & a {
+    color: var(--color-black);
+  }
+}
+
+.lime {
+  background-color: var(--color-lime);
+  color: var(--color-black);
+
+  @nest & a {
+    color: var(--color-black);
+  }
+}

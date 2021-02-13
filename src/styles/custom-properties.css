@@ -1,0 +1,25 @@
+:root {
+  --font-family-primary: Raleway, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-secondary: Vollkorn, serif;
+
+  /* AA bg colors */
+  --color-black-bg: #0f131a;
+  --color-dark-black-bg: #292931;
+  --color-dark-gray-bg: #32323c;
+  --color-red-primary-bg: #ee3224;
+  --color-red-secondary-bg: #dd271a;
+  --color-light-gray-bg: #f2f6f5;
+
+  /* AA text colors */
+  --color-black: #252525;
+  --color-dark-gray: #676e79;
+  --color-white: #ffffff;
+
+  --color-accent: var(--color-red-secondary-bg);
+
+  --color-neon-green: #82fde0;
+  --color-dark-green: #2d373f;
+  --color-violet: #3c51b0;
+  --color-peach: #ffb5b6;
+  --color-lime: #f3ff6b;
+}
