@@ -40,7 +40,6 @@
 }
 
 .caption {
-  font-style: italic;
   font-size: 12px;
   font-family: serif;
   margin: 1rem;
@@ -69,7 +68,6 @@
   @media (--media-max-medium) {
     display: block;
   }
-
 }
 
 .leftColumn {
@@ -92,13 +90,14 @@
   width: 100%;
   text-transform: uppercase;
   margin-top: 1em;
-  color: #a2a3a2;
+  color: #757575;
   font-size: 12px;
   font-weight: bold;
 
   @nest & a {
     font-weight: bold;
-    color: #a2a3a2;
+    color: #757575;
+    text-decoration: underline;
   }
 }
 

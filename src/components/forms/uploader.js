@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     top: '-1em',
     flex: '1',
     height: '100%',
-    padding: '0 150px',
+    padding: '0 120px',
     lineHeight: '1.5em',
     fontFamily: "'Helvetica', sans-serif",
     fontSize: '20px',
@@ -69,6 +69,9 @@ const useStyles = makeStyles((theme) => ({
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+  },
+  subText: {
+    fontSize: '0.9rem',
   },
 }));
 
@@ -169,10 +172,8 @@ export default React.memo(
         fileTypes = 'pdf';
       }
       const text =
-        files.length > 0
-          ? `${label} (${fileTypes})`
-          : `Drag or Click to upload your ${label}${required === true ? '*' : ''}`;
-      const subText = fileTypes;
+        files.length > 0 ? `${label} (${fileTypes})` : `Click or drag your ${label} ${required === true ? '*' : ''}`;
+      const subText = `Allowed file type(s): ${fileTypes}`;
       if (files.length > 0) {
         return (
           <FormControl fullWidth {...dropzoneProps}>
@@ -195,8 +196,7 @@ export default React.memo(
           <FormControl fullWidth {...dropzoneProps}>
             <InputLabel shrink={false} className={classes.labelEmpty}>
               {text}
-              <br />
-              {subText}
+              <p className={classes.subText}>{subText}</p>
               {files.length < maxFiles && input}
             </InputLabel>
 

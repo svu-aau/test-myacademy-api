@@ -5,7 +5,6 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import StudentProfile from '../components/students/student-profile';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
-import { sortByName } from '../lib/helpers';
 
 export const query = graphql`
   query StudentTemplateQuery($id: String!) {
@@ -44,6 +43,7 @@ const StudentTemplate = ({ data: { studentProfile, collabProjects }, errors, loc
           title={studentProfile.name || 'Untitled'}
           path={location.pathname}
           seoImage={studentProfile.seoImage[0]?.image?.asset.img.src}
+          description={`Explore the work of ${studentProfile.school.title} student, ${studentProfile.name}`}
         />
       )}
 

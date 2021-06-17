@@ -1,7 +1,7 @@
 module.exports = {
   sanity: {
     projectId: process.env.GATSBY_SANITY_PROJECT_ID || 'uvdp4b76',
-    dataset: process.env.GATSBY_SANITY_DATASET || 'development',
+    dataset: process.env.GATSBY_SANITY_DATASET || '2021-gradshowcase',
   },
   gatsby: {
     siteTitle: 'AAU Midpoint & Final Review Showcase',

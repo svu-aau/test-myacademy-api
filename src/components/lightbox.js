@@ -1,19 +1,22 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Modal from 'react-modal';
+import Swiper from 'react-id-swiper';
+import { Link } from 'gatsby';
+
+import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import IconButton from '@material-ui/core/IconButton';
+
 import VideoPlayer from './video-player';
 import styles from './lightbox.module.css';
 import layoutStyles from './layout/layout.module.css';
 import FilePreview from './projects/file-preview';
-import CloseIcon from '@material-ui/icons/Close';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Swiper from 'react-id-swiper';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj, cn, CaptionAndDescription } from '../lib/helpers';
-import { ConditionalWrapper } from '../utils/tools';
-import IconButton from '@material-ui/core/IconButton';
 import '../styles/swiper.css';
+import useWindowSize from '../lib/useWindowSize';
 
 Modal.setAppElement('#___gatsby');
 
@@ -36,15 +39,22 @@ const useStyles = makeStyles({
     top: 'calc(50% - 0.75em)',
     right: 0,
   },
+  profileLink: {
+    textAlign: 'center',
+    textDecoration: 'underline',
+    display: 'block',
+  },
 });
 
 // Modal Lightbox - contains carousel of media items
-export default forwardRef(function Lightbox({ media }, ref) {
+const Lightbox = ({ featured, media }, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   const [scrollPos, setScrollPos] = useState(0);
   const [swiper, updateSwiper] = useState(null);
   const classes = useStyles();
+  const size = useWindowSize();
+  const autoPlay = size.width >= 1200;
 
   // close the modal
   const closeModal = () => setIsModalOpen(false);
@@ -74,11 +84,34 @@ export default forwardRef(function Lightbox({ media }, ref) {
       if (swiper.slideTo && swiper.params) {
         swiper.slideTo(selectedMediaIndex, 300);
       }
+      swiper.on('realIndexChange', () => {
+        if (autoPlay) {
+          const { activeIndex } = swiper;
+          setSelectedMediaIndex(activeIndex);
+        }
+      });
     }
     return () => {
       clearTimeout(timeout);
     };
   }, [swiper]);
+
+  const featuredCaption = (student, video = false) => {
+    return (
+      <>
+        <figcaption className={cn(layoutStyles.caption, video ? layoutStyles.lightboxVideoCaption : '')}>
+          {student?.name} / {student?.major?.title}
+        </figcaption>
+
+        <Link
+          className={classes.profileLink}
+          to={`/schools/${student.school.slug.current}/students/${student.slug.current}`}
+        >
+          Go To Student Profile
+        </Link>
+      </>
+    );
+  };
 
   return (
     <Modal
@@ -126,54 +159,65 @@ export default forwardRef(function Lightbox({ media }, ref) {
                 ) : null
               }
             >
-              {media.map((item, idx) => (
-                <div key={item._key}>
-                  {/* Figure */}
-                  {item && item._type === 'figure' && item.image && (
-                    <ConditionalWrapper
-                      condition={item.link}
-                      wrapper={(children) => (
-                        <a href={item.link} target="_blank" rel="noopener">
-                          {children}
-                        </a>
-                      )}
-                    >
+              {media.map((item, idx) => {
+                if (item.__typename === 'SanityStudent') {
+                  return (
+                    <div key={item._key}>
+                      <figure className={styles.figure}>
+                        <img
+                          src={imageUrlFor(buildImageObj(item.heroImage[0].image)).url()}
+                          alt={item.heroImage[0].alt}
+                        />
+                        {featured ? featuredCaption(item) : <CaptionAndDescription media={item} />}
+                      </figure>
+                    </div>
+                  );
+                }
+                return (
+                  <div key={item._key}>
+                    {/* Figure */}
+                    {item && item._type === 'figure' && item.image && (
                       <figure className={styles.figure}>
                         <img src={imageUrlFor(buildImageObj(item.image)).url()} alt={item.image.alt} />
                         <CaptionAndDescription media={item} />
                       </figure>
-                    </ConditionalWrapper>
-                  )}
+                    )}
 
-                  {/* Video */}
-                  {item && item._type === 'video' && (
-                    <>
-                      <VideoPlayer url={item.url} lightbox playing={selectedMediaIndex === idx} />
-                      <CaptionAndDescription media={item} video />
-                    </>
-                  )}
+                    {/* Video */}
+                    {item && item._type === 'video' && (
+                      <>
+                        <VideoPlayer url={item.url} lightbox playing={selectedMediaIndex === idx} />
+                        <CaptionAndDescription media={item} video />
+                      </>
+                    )}
 
-                  {/* GIF */}
-                  {item?._type === 'fileUpload' && item.file?.asset?.extension === 'gif' && (
-                    <figure className={styles.figure}>
-                      <img
-                        src={item.file.asset.url}
-                        alt={item.file.asset.originalFilename}
-                        style={{ objectFit: 'contain', width: '100%' }}
-                      />
-                      <CaptionAndDescription media={item} className={layoutStyles.lightboxCaption} />
-                    </figure>
-                  )}
+                    {/* GIF */}
+                    {item?._type === 'fileUpload' && item.file?.asset?.extension === 'gif' && (
+                      <figure className={styles.figure}>
+                        <img
+                          src={item.file.asset.url}
+                          alt={item.file.asset.originalFilename}
+                          style={{ objectFit: 'contain', width: '100%' }}
+                        />
+                        <CaptionAndDescription media={item} className={layoutStyles.lightboxCaption} />
+                      </figure>
+                    )}
 
-                  {/* PDF or other file */}
-                  {item && item._type === 'fileUpload' && (
-                    <>
-                      <FilePreview file={item.file} caption={item.caption} title={item.title} />
-                      <CaptionAndDescription media={item} className={layoutStyles.lightboxCaption} />
-                    </>
-                  )}
-                </div>
-              ))}
+                    {/* PDF or other file */}
+                    {item && item._type === 'fileUpload' && (
+                      <>
+                        <FilePreview file={item.file} caption={item.caption} title={item.title} />
+                        <CaptionAndDescription media={item} className={layoutStyles.lightboxCaption} />
+                      </>
+                    )}
+
+                    {/* Game */}
+                    {item && item._type === 'game' && (
+                      <div className={styles.embedCode} dangerouslySetInnerHTML={{ __html: item.embedCode }} />
+                    )}
+                  </div>
+                );
+              })}
             </Swiper>
           )}
         </div>
@@ -183,4 +227,6 @@ export default forwardRef(function Lightbox({ media }, ref) {
       </div>
     </Modal>
   );
-});
+};
+
+export default forwardRef(Lightbox);

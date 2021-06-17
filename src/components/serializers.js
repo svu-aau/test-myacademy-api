@@ -119,6 +119,10 @@ const serializers = {
     },
   },
 
+  textCenter: ({ children }) => {
+    return <span style={{ display: 'block', textAlign: 'center' }}>{children}</span>;
+  },
+
   // block: BlockRenderer
 };
 

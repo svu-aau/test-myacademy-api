@@ -11,6 +11,7 @@ export const queryFigure = graphql`
     height
     width
     depth
+    isHeadShot
     image {
       ...Image
     }

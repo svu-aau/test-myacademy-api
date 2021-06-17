@@ -68,6 +68,7 @@ module.exports = {
         disableMinification: false,
       },
     },
+    `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -75,6 +76,14 @@ module.exports = {
       options: {
         path: `${__dirname}/src/images/`,
       },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `datasets`,
+        path: `${__dirname}/src/data/datasets/`,
+      },
+      plugins: [`gatsby-transformer-json`],
     },
     {
       resolve: 'gatsby-plugin-eslint',

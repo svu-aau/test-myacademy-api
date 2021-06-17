@@ -9,7 +9,7 @@ import ProjectPreview from '../projects/project-preview';
 import styles from './column-grid.module.css';
 import VideoPlayer from '../video-player';
 
-function ColumnGrid({ media, items, linkOverride, type = 'projects' }) {
+function ColumnGrid({ media, items, linkOverride, type = 'projects', isMasonry = true }) {
   let children = null;
   let mediaItems = [];
   const lightbox = useRef();
@@ -61,7 +61,7 @@ function ColumnGrid({ media, items, linkOverride, type = 'projects' }) {
     });
   } else if (type === 'projects') {
     children = items.map(
-      (props) => props && <ProjectPreview linkOverride={linkOverride} key={props.id} masonry {...props} />
+      (props) => props && <ProjectPreview linkOverride={linkOverride} key={props.id} masonry={isMasonry} {...props} />
     );
   } else {
     children = mediaItems.map((item, idx) =>
@@ -78,23 +78,31 @@ function ColumnGrid({ media, items, linkOverride, type = 'projects' }) {
     );
   }
 
-  return (
-    <>
-      <Masonry
-        breakpointCols={{
-          default: 4,
-          900: 2,
-          675: 1,
-        }}
-        className={styles.myMasonryGrid}
-        columnClassName={styles.myMasonryGridColumn}
-      >
-        {children}
-      </Masonry>
+  if (isMasonry) {
+    return (
+      <>
+        <Masonry
+          breakpointCols={{
+            default: 4,
+            900: 2,
+            675: 1,
+          }}
+          className={styles.myMasonryGrid}
+          columnClassName={
+            type === 'projects' && children.length < 4
+              ? styles.myCollabrateMasonryGridColumn
+              : styles.myMasonryGridColumn
+          }
+        >
+          {children}
+        </Masonry>
 
-      {mediaItems && <Lightbox ref={lightbox} media={mediaItems} />}
-    </>
-  );
+        {mediaItems && <Lightbox ref={lightbox} media={mediaItems} />}
+      </>
+    );
+  }
+
+  return <div className={styles.grid}>{children}</div>;
 }
 
 ColumnGrid.defaultProps = {

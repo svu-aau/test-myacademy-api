@@ -79,7 +79,7 @@ const ProjectTemplate = (props) => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      {content && <ContentSections content={content} />}
+      {content && <ContentSections isPageContent content={content} />}
     </Layout>
   );
 };

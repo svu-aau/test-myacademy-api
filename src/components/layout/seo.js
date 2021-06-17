@@ -24,7 +24,17 @@ import mstile144x144 from '../../images/favicons/mstile-144x144.png';
 import mstile150x150 from '../../images/favicons/mstile-150x150.png';
 import mstile310x150 from '../../images/favicons/mstile-310x150.png';
 
-function SEO({ description, lang, keywords, path = '/', title, seoImage, seoTitle = title, contentType = 'website' }) {
+function SEO({
+  description,
+  lang,
+  keywords,
+  path = '/',
+  title,
+  seoImage,
+  seoTitle = title,
+  contentType = 'website',
+  noindex = false,
+}) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -41,6 +51,7 @@ function SEO({ description, lang, keywords, path = '/', title, seoImage, seoTitl
             title={title}
             titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
           >
+            {noindex && <meta name="robots" content="noindex" />}
             {url && <meta property="og:url" content={url} />}
             {url && <link rel="canonical" href={url} />}
 

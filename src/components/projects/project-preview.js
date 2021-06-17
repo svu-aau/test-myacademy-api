@@ -10,7 +10,7 @@ import { ConditionalWrapper } from '../../utils/tools';
 
 function ProjectPreview(props) {
   // console.log('ProjectPreview props: ', props);
-  const { school, slug, title, _rawExcerpt, linkOverride, masonry, media, small, heroImage } = props;
+  const { school, slug, title, _rawExcerpt, linkOverride, masonry, media, small, heroImage, onClick } = props;
   let displayFeaturedMedia = {};
   if (heroImage && heroImage[0] && heroImage[0].image) {
     displayFeaturedMedia = heroImage[0];
@@ -18,13 +18,23 @@ function ProjectPreview(props) {
     displayFeaturedMedia = media[0];
   }
 
+  const preventDefault = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <ConditionalWrapper
       condition={school && slug && !(linkOverride && linkOverride !== '')}
       wrapper={(children) => (
         <Link
-          className={cn(styles.root, small && styles.small)}
+          className={cn(styles.root, small && styles.small, !masonry && styles.stdGrid)}
           to={`/schools/${school.slug.current}/projects/${slug.current}`}
+          onClick={(e) => {
+            if (onClick) {
+              preventDefault(e);
+              onClick();
+            }
+          }}
         >
           {children}
         </Link>
@@ -33,7 +43,16 @@ function ProjectPreview(props) {
       <ConditionalWrapper
         condition={linkOverride && linkOverride !== ''}
         wrapper={(children) => (
-          <Link className={cn(styles.root, small && styles.small)} to={linkOverride}>
+          <Link
+            className={cn(styles.root, small && styles.small, !masonry && styles.stdGrid)}
+            to={linkOverride}
+            onClick={(e) => {
+              if (onClick) {
+                preventDefault(e);
+                onClick();
+              }
+            }}
+          >
             {children}
           </Link>
         )}

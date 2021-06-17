@@ -47,6 +47,30 @@ export const query = graphql`
   }
 `;
 
+// check if window object exists (to avoid vercel deploy error)
+// https://dev.to/vvo/how-to-solve-window-is-not-defined-errors-in-react-and-next-js-5f97
+const isWindowExists = () => {
+  return typeof window !== 'undefined';
+};
+
+// get query string param if it exists
+// https://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+const getQueryVariable = (variable) => {
+  if (isWindowExists()) {
+    const query = window.location.search.substring(1);
+    const vars = query.split('&');
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return false;
+  } else {
+    return false;
+  }
+};
+
 const IndexPage = (props) => {
   const { data, errors } = props;
 
@@ -56,6 +80,18 @@ const IndexPage = (props) => {
         <GraphQLErrorList errors={errors} />
       </Layout>
     );
+  } else if (isWindowExists() && window.location.search) {
+    // - handle redirects with query string since vercel redirect mechanism (vercel.json) can't handle query string
+    // - implemented in conjuction with /vercel.json: https://vercel.com/docs/configuration?query=redirects#project/redirects
+    // - vercel reidrects can't handle query string and thus query strings must be handled in code here
+    const department = getQueryVariable('department');
+    if (department) {
+      if (department.match(/Animation/)) {
+        window.location.replace('/schools/animation-and-visual-effects/');
+      } else if (department.match(/Industrial/)) {
+        window.location.replace('/schools/industrial-design');
+      }
+    }
   }
 
   const {
@@ -75,13 +111,13 @@ const IndexPage = (props) => {
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
     >
       <SEO
-        title={site.title || config.title}
+        title={page.seo.seo_title || site.title || config.title}
         description={page.seo.meta_description}
         keywords={page.seoKeywords || site.keywords}
         seoImage={page.seoImage?.asset?.img?.src}
         path={props.location.pathname}
       />
-      {page && <ContentSections content={page.content} />}
+      {page && <ContentSections content={page.content} slug={'home'} />}
     </Layout>
   );
 };

@@ -17,7 +17,9 @@ export const query = graphql`
       description
       keywords
     }
-    headerBackgroundImage: file(relativePath: { eq: "future-tank-scene.jpg" }) {
+    headerBackgroundImage: file(
+      relativePath: { eq: "001-ARH-M-Arch-Thesis-3840px--Yi-Hsien-Rachel-Wang---Model-Top-View.jpeg" }
+    ) {
       childImageSharp {
         fluid(maxHeight: 815, maxWidth: 1169, quality: 100) {
           ...GatsbyImageSharpFluid_noBase64
@@ -52,9 +54,14 @@ const ProjectTemplate = (props) => {
     <Layout
       siteSubtitle="Collaborative Projects"
       siteTitle="Academy of Art University"
+      heroImageCaption="Yi Hsien Rachel Wang / Architecture"
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
     >
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
+      <SEO
+        title="Collaborative Projects"
+        description="Explore interdisciplinary design projects bring students from diverse programs at the Academy together to work on real-world projects."
+        keywords={site.keywords}
+      />
       {errors && <SEO title="GraphQL Error" path={props.location.pathname} />}
       {data.projects && (
         <Section color="black" flush>

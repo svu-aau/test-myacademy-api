@@ -20,6 +20,11 @@ export const queryStudent = graphql`
       slug {
         current
       }
+      title
+    }
+    country {
+      code
+      title
     }
     major {
       id

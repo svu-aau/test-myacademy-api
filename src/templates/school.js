@@ -91,6 +91,7 @@ const SchoolTemplate = (props) => {
           students={data.students.nodes}
           projects={data.projects.nodes}
           hiringCompanies={data.school.hiringCompanies}
+          gameDemos={data.school.gameDemos}
         />
       )}
     </Layout>

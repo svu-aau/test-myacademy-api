@@ -6,78 +6,101 @@ import styles from './students-grid.module.css';
 import FilterBar from '../grids/filter-bar';
 
 function StudentsGrid({ filters, students, masonry, school }) {
-  const categoryPlaceholder = 'Categories';
-  const programPlaceholder = school;
+  // append 'ShowAll' to avoid placeholders having same value as category or major
+  // (e.g., `Illustration` school has `Illustration` major)
+  const categoryPlaceholder = 'CategoriesShowAll';
+  const programPlaceholder = `${school}ShowAll`;
   let assetCategories = [];
   let populatedFilters = [];
   let [programFilter, setProgramFilter] = useState(programPlaceholder);
   let [categoryFilter, setCategoryFilter] = useState(categoryPlaceholder);
   let [filteredStudents, setFilteredStudents] = useState(students);
   let [allFilteredStudents, setAllFilteredStudents] = useState(students);
+  let [filterSelected, setFilterSelected] = useState(null); // the filter the user selected
   let showFilters = filters && filters.length > 1;
   let showAssetCategories = false;
   let showFilterBar = showFilters;
 
+  /*
+   * Handle user's filter selection
+   */
   function handleFilter(filter, categories = false) {
+    // handle Categories filter selection
     if (categories) {
+      setFilterSelected(categoryPlaceholder);
       let preFilterStudents = [];
 
       if (programFilter === programPlaceholder) {
+        // - show students for all Programs
         preFilterStudents = students;
       } else {
+        // - pre filter students by selected Major first if there are two filters
         const filtered = students.filter(({ major }) => major.title === programFilter);
 
         preFilterStudents = filtered;
       }
 
       if (filter === categoryPlaceholder) {
+        // - show students for all Categories
         setAllFilteredStudents(preFilterStudents);
       } else {
-        const filtered = preFilterStudents.filter(({ assetCategory }) => assetCategory === filter);
-
+        // - filter students by selected Category
+        const filtered = preFilterStudents.filter(({ assetCategories }, index) => {
+          return assetCategories.includes(filter);
+        });
         setAllFilteredStudents(filtered);
       }
 
       setCategoryFilter(filter);
     } else {
+      // handle Majors (Programs) filter selection
+      setFilterSelected(programPlaceholder);
       if (filter === programPlaceholder) {
+        // - show students for all Programs
         setFilteredStudents(students);
       } else {
-        const filtered = students.filter(({ major }) => major.title === filter);
-
+        // - filter students by selected Major
+        const filtered = students.filter(({ major }, idx) => {
+          return major.title === filter;
+        });
         setFilteredStudents(filtered);
       }
-
       setProgramFilter(filter);
+      // reset the Categories filter when the Majors filter is selected
       setCategoryFilter(categoryPlaceholder);
     }
   }
 
+  /*
+   * Determine filter options to display
+   */
   function findPopulatedFilters(type = 'major') {
+    // Categories filter options
     if (type === 'categories') {
+      let filterValues = [];
       if (showFilters && categoryFilter === categoryPlaceholder) {
-        return filteredStudents.reduce((acc, { assetCategory }) => {
-          if (assetCategory && !acc.includes(assetCategory)) {
-            acc.push(assetCategory);
-          }
-          return acc;
-        }, []);
+        // - School has 2 filters: 1. Majors 2. Categories; use students already filtered by Major (`filteredStudents`)
+        filteredStudents.forEach(({ assetCategories }) => {
+          filterValues = [...new Set(filterValues.concat(assetCategories))];
+        });
+        return filterValues;
       }
-      return students.reduce((acc, { assetCategory }) => {
-        if (assetCategory && !acc.includes(assetCategory)) {
-          acc.push(assetCategory);
-        }
-        return acc;
-      }, []);
+
+      // - School only has one filter: Categories; use original student list (ie, `students`)
+      students.forEach(({ assetCategories }) => {
+        filterValues = [...new Set(filterValues.concat(assetCategories))];
+      });
+      return filterValues;
     }
 
+    // - School Majors filter options
     return students.reduce((acc, { major }) => {
-      if (major && major.title !== school) {
+      if (major) {
         const title = major.title;
         const index = acc.findIndex((val) => val.title === title);
 
         if (index >= 0) {
-          acc[index] += 1;
+          acc[index].count += 1;
         } else {
           acc.push({ title, count: 1 });
         }
@@ -116,35 +139,34 @@ function StudentsGrid({ filters, students, masonry, school }) {
   }
 
   assetCategories = findPopulatedFilters('categories');
-
-  if (assetCategories.length >= 1) {
-    showAssetCategories = true;
-  }
-
+  showAssetCategories = assetCategories.length > 1 ? true : false;
+  showFilters = populatedFilters.length > 1 ? true : false;
   showFilterBar = showFilters || showAssetCategories;
 
   return (
     <div className={styles.root}>
       {showFilterBar && (
         <FilterBar
-          assetCategories={showAssetCategories ? assetCategories : null}
+          secondaryItems={showAssetCategories ? assetCategories : null}
           handleClick={handleFilter}
           items={populatedFilters}
           placeholder={programPlaceholder}
-          categoryPlaceholder={categoryPlaceholder}
+          secondaryPlaceholder={categoryPlaceholder}
           showFilters={showFilters}
+          primaryOptionLabel="All Programs"
+          secondaryOptionLabel="All Categories"
         />
       )}
 
       <ul className={styles.grid}>
-        {!showAssetCategories &&
+        {(filterSelected === programPlaceholder || !filterSelected) &&
           filteredStudents &&
           filteredStudents.map((student) => (
             <li className={styles.gridCell} key={student.id}>
               <StudentPreview {...student} />
             </li>
           ))}
-        {showAssetCategories &&
+        {filterSelected === categoryPlaceholder &&
           allFilteredStudents &&
           allFilteredStudents.map((student) => (
             <li className={styles.gridCell} key={student.id}>

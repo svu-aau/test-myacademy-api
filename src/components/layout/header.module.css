@@ -94,7 +94,7 @@
   align-items: center;
 
   @media (--media-max-small) {
-   display: none;
+    display: none;
   }
 }
 
@@ -103,7 +103,7 @@
   align-items: center;
 
   @media (--media-min-medium) {
-   display: none;
+    display: none;
   }
 }
 
@@ -179,6 +179,20 @@
   text-align: center;
 }
 
+.heroImageCaption {
+  background-color: white;
+  color: var(--color-black);
+  z-index: 1;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 8px;
+  font-size: 14px;
+  @media (--media-max-small) {
+    font-size: 12px;
+  }
+}
+
 .heroTitle {
   composes: macro from '../../styles/typography.module.css';
   color: var(--color-white);
@@ -198,7 +212,6 @@
     left: 0;
     bottom: 0;
     width: 18.75em;
-    height: calc(18.75em * 0.0925);
     text-decoration: none;
 
     @media (hover: hover) {
@@ -213,20 +226,17 @@
   .branding {
     @nest & a {
       width: 25em;
-      height: calc(25em * 0.0925);
     }
   }
 }
 
 .brandingImage {
   width: 18.75em;
-  height: calc(18.75em * 0.0925);
 }
 
 @media screen and (min-width: 50em) {
   .brandingImage {
     width: 25em;
-    height: calc(25em * 0.0925);
   }
 }
 
@@ -301,6 +311,24 @@
     flex-direction: column;
   }
 }
+.noFlex {
+  flex: unset;
+}
+.flexThree {
+  flex: 3;
+}
+.flexCenter {
+  justify-content: center;
+}
+.justifyNormal {
+  justify-content: normal;
+}
+.flexColumn {
+  flex-direction: column;
+}
+.marginRight {
+  margin-right: 2.5em;
+}
 
 .headerMenuColumns {
   display: flex;
@@ -349,6 +377,7 @@
 .pastShowsMenus {
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
 
   @nest & ul {
     margin: 0;

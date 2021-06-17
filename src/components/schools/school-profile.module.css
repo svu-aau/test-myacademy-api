@@ -11,6 +11,20 @@
   text-align: center;
 }
 
+.heroImageCaption {
+  background-color: white;
+  color: var(--color-black);
+  z-index: 1;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 8px;
+  font-size: 14px;
+  @media (--media-max-small) {
+    font-size: 12px;
+  }
+}
+
 .heroTitle {
   composes: macro from '../../styles/typography.module.css';
   color: var(--color-white);
@@ -133,4 +147,28 @@
 .relatedProjectsHeadline {
   composes: base from '../../styles/typography.module.css';
   margin: 0.5rem 0 0;
+}
+
+.demosCTA {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  padding: 1em;
+  min-width: 120px;
+  margin: 1.3em auto 3em;
+  background-color: transparent;
+  border: 3px solid var(--color-white);
+  cursor: pointer;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: calc(16 / 16 * 1rem);
+  font-size: var(--font-medium-size);
+
+  @nest &:hover {
+    background-color: white;
+    color: var(--color-black);
+    border: 3px solid var(--color-black);
+    text-decoration: none;
+  }
 }

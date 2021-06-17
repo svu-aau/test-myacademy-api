@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import SEO from '../components/layout/seo';
 import Container from '../components/layout/container';
-import LogRocket from 'logrocket';
+// import LogRocket from 'logrocket';
 import { graphql } from 'gatsby';
 import PQueue from 'p-queue';
 import slugify from 'slugify';
-import sanityClient from '../utils/sanity_client';
+import sanityClient from '../utils/sanity_2021_client';
 import { Vimeo } from 'vimeo';
 import Layout from '../containers/layout';
 import Uploader from '../components/forms/uploader';
@@ -78,6 +78,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  smallTopSpacing: {
+    marginTop: '0',
+  },
+  h3: {
+    fontSize: '9px',
+  },
 }));
 
 // todo: for some reason these aren't pulled in zeit in env vars or secrets?
@@ -105,8 +111,9 @@ const StudentProfileForm = (props) => {
   }
 
   const classes = useStyles();
-  // // console.log('StudentProfileForm props: ', props);
-  const { schools, headerBackgroundImage, assetCategories } = props.data;
+  // console.log('StudentProfileForm props: ', props);
+
+  const { schools, headerBackgroundImage, assetCategories, countries, usStates } = props.data;
   const [submitting, setSubmitting] = useState(false);
   const [hasBeenSubmit, setHasBeenSubmit] = useState(false);
   const [uploadMessage, setUploadMessage] = useState('Uploading files');
@@ -123,6 +130,8 @@ const StudentProfileForm = (props) => {
   const [major, setMajor] = useState(null);
   const [degrees, setDegrees] = useState([]);
   const [degree, setDegree] = useState(null);
+  const [country, setCountry] = useState(null);
+  const [usState, setUsState] = useState(null);
   const [categories, setCategories] = useState([]);
   const [modalStyle] = useState(getModalStyle);
   const [modalOpen, setModalOpen] = useState(false);
@@ -130,6 +139,7 @@ const StudentProfileForm = (props) => {
   const [idError, setIdError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [heroError, setHeroError] = useState(null);
+  const [isUSCountrySelected, setIsUSCountrySelected] = useState(false);
 
   const nameRef = useRef(null);
   const idRef = useRef(null);
@@ -171,6 +181,24 @@ const StudentProfileForm = (props) => {
 
       setCategories(matchingCategory);
     }
+  }
+
+  function chooseCountry(e) {
+    const { value } = e.target;
+    const country = countries.nodes.find((country) => country._id == value);
+    setCountry(country);
+    if (country && country.code === 'US') {
+      setIsUSCountrySelected(true);
+    } else {
+      setIsUSCountrySelected(false);
+      setUsState(null);
+    }
+  }
+
+  function chooseUSState(e) {
+    const { value } = e.target;
+    const usState = usStates.nodes.find((usState) => usState._id == value);
+    setUsState(usState);
   }
 
   function getModalStyle() {
@@ -346,9 +374,9 @@ const StudentProfileForm = (props) => {
                   }
                 })
                 .catch((e) => {
-                  LogRocket.track('Form Error');
-                  LogRocket.captureException(e);
-                  console.error(e);
+                  // LogRocket.track('Form Error');
+                  // LogRocket.captureException(e);
+                  console.error('ERROR uploading video:', e);
                   localFormErrors.push(
                     `There was an error uploading your video ${f.meta.name} please try a smaller file or a faster internet connection`
                   );
@@ -370,9 +398,9 @@ const StudentProfileForm = (props) => {
                   }
                 })
                 .catch((e) => {
-                  LogRocket.track('Form Error');
-                  LogRocket.captureException(e);
-                  console.error(e);
+                  // LogRocket.track('Form Error');
+                  // LogRocket.captureException(e);
+                  console.error('ERROR uploading pdf:', e);
                   localFormErrors.push(
                     `There was an error uploading your file ${f.meta.name} please try a smaller file or a faster internet connection`
                   );
@@ -398,9 +426,9 @@ const StudentProfileForm = (props) => {
                   }
                 })
                 .catch((e) => {
-                  LogRocket.track('Form Error');
-                  LogRocket.captureException(e);
-                  console.error(e);
+                  // LogRocket.track('Form Error');
+                  // LogRocket.captureException(e);
+                  console.error('ERROR uploading image:', e);
                   localFormErrors.push(
                     `There was an error uploading your image ${f.meta.name} please try a smaller file or a faster internet connection`
                   );
@@ -458,6 +486,8 @@ const StudentProfileForm = (props) => {
       school: FD.get('schoolId') ? { _type: 'reference', _weak: true, _ref: FD.get('schoolId') } : undefined,
       major: FD.get('majorId') ? { _type: 'reference', _weak: true, _ref: FD.get('majorId') } : undefined,
       degree: FD.get('degreeId') ? { _type: 'reference', _weak: true, _ref: FD.get('degreeId') } : undefined,
+      country: FD.get('countryId') ? { _type: 'reference', _weak: true, _ref: FD.get('countryId') } : undefined,
+      usState: FD.get('usStateId') ? { _type: 'reference', _weak: true, _ref: FD.get('usStateId') } : undefined,
       slug: {
         _type: 'slug',
         current: slugify(FD.get('name').toLowerCase()),
@@ -520,8 +550,8 @@ const StudentProfileForm = (props) => {
         });
       })
       .catch((e) => {
-        LogRocket.track('Form Error');
-        LogRocket.captureException(e);
+        // LogRocket.track('Form Error');
+        // LogRocket.captureException(e);
         console.error(e);
         setFormErrors([
           ...localFormErrors,
@@ -555,18 +585,18 @@ const StudentProfileForm = (props) => {
             },
             function (error) {
               if (error) {
-                LogRocket.track('Form Error');
+                // LogRocket.track('Form Error');
                 console.error(error);
-                LogRocket.captureException(error);
+                // LogRocket.captureException(error);
               }
             }
           );
           // returns the link
           vimeoClient.request({ path: uri + '?fields=link' }, function (error, body, statusCode, headers) {
             if (error) {
-              LogRocket.track('Form Error');
+              // LogRocket.track('Form Error');
               console.error(error);
-              LogRocket.captureException(error);
+              // LogRocket.captureException(error);
               return;
             }
             // console.log("Your video link is: " + body.link);
@@ -738,10 +768,13 @@ const StudentProfileForm = (props) => {
 
   return (
     <Layout headerBackgroundImage={headerBackgroundImage} smallHeader>
-      <SEO title="2020 Spring Show Student Profile Form" />
+      <SEO title="2021 Spring Show Student Profile Form" noindex={true} />
       <Container narrower>
         <ThemeProvider theme={theme}>
-          <h1>2020 Spring Show Student Upload Page</h1>
+          {/*--------------------
+            Step 1: Profile info
+            ------------------------*/}
+          <h1>2021 Spring Show Student Upload Page</h1>
           {submitStep === 3 ? (
             <div style={{ textAlign: 'center', marginTop: '3em' }}>
               <h3>Your profile was submitted successfully.</h3>
@@ -754,35 +787,27 @@ const StudentProfileForm = (props) => {
           ) : (
             <div>
               <iframe
-                src="https://player.vimeo.com/video/414066015"
+                src="https://player.vimeo.com/video/543853431"
                 width="100%"
                 height="360"
                 frameBorder="0"
                 allow="autoplay; fullscreen"
                 allowFullScreen
               />
-              <p>Welcome to Spring Show 2020! We are excited to showcase your work.</p>
-              <p>
-                Please fill out the following information to send your student profile upload with related assets.
-                Please make sure all information is correctly entered. You can use this form again to replace a previous
-                submission if you make a mistake.{' '}
-                <a href="/spring-show-student-uploader-instructions.pdf" target="_blank" rel="noopener">
-                  Get text instructions here
-                </a>
-                .
-              </p>
-              <p>
-                Note: If you have portfolio videos hosted on YouTube or Vimeo, you don&apos;t need to upload them here.
-                Once you select your school, you will be able to add links to each of your videos which will embed them
-                in your profile.
-              </p>
+              <p>Welcome to Spring Show 2021! We are excited to showcase your work.</p>
               <form id="profileForm" onSubmit={handleSubmit} className={classes.form}>
+                <h2>Step One: Student Profile</h2>
+                <ul>
+                  <li>Please complete the submission form below.</li>
+                  <li>Items marked with an * are reqired.</li>
+                  <li>Please make sure all information is entered correctly before submitting.</li>
+                </ul>
                 <TextField
                   required
                   ref={nameRef}
                   id="name"
                   name="name"
-                  label="Name"
+                  label="Preferred Name (will be displayed on the Spring Show site)"
                   variant="filled"
                   fullWidth
                   error={!!nameError}
@@ -817,60 +842,6 @@ const StudentProfileForm = (props) => {
                   helperText={emailError}
                   onBlur={(val) => updateTextField(val, 'email')}
                   onChange={(val) => updateTextField(val, 'email', true)}
-                />
-                <TextField
-                  multiline
-                  rows={6}
-                  id="bio"
-                  name="bio"
-                  label="Bio"
-                  variant="filled"
-                  fullWidth
-                  placeholder="Enter a description of your work. Please use content that has been edited and grammar-checked."
-                />
-
-                <Uploader
-                  name="resume"
-                  label="R&eacute;sum&eacute;"
-                  acceptedFileTypes={['pdf']}
-                  formState={submitStep}
-                  limit={1}
-                  callback={updateResumeFileUploadsCallback}
-                  fileUploadStatus={fileUploadStatus}
-                  multiple={false}
-                />
-
-                <p>
-                  Add your External Portfolio and Video CHANNELS below. If you have a channel on YouTube or Vimeo, put
-                  it here so we can link to it. Don&apos;t put individual videos here.
-                </p>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  name="externalSiteUrls"
-                  multiline
-                  rows={4}
-                  label="External Portfolio and Video CHANNELS here"
-                  size="small"
-                />
-
-                <p ref={heroRef}>
-                  To Submit your <strong>PROFILE IMAGE</strong>, click or drag the image to the box below. For Acting,
-                  use a headshot. For all other schools, use your best original work. Your image needs to be at least
-                  1600px wide, but we recommend wider and high-resolution.
-                </p>
-                <Uploader
-                  acceptedFileTypes={HERO_FILE_TYPES}
-                  callback={updateHeroFileUploadsCallback}
-                  error={heroError}
-                  errorText="Submit a Hero Image"
-                  fileUploadStatus={fileUploadStatus}
-                  formState={submitStep}
-                  label="Profile hero image"
-                  limit={1}
-                  multiple={false}
-                  name="heroImage"
-                  required
                 />
 
                 <FormControl required fullWidth className={classes.formControl}>
@@ -950,7 +921,117 @@ const StudentProfileForm = (props) => {
                     </Select>
                   </FormControl>
                 )}
+                <h3>Where are you from?</h3>
+                <FormControl required fullWidth className={`${classes.formControl} ${classes.smallTopSpacing}`}>
+                  <InputLabel htmlFor="country" className={classes.label}>
+                    Country
+                  </InputLabel>
+                  <Select
+                    required
+                    native
+                    variant="filled"
+                    fullWidth
+                    onChange={chooseCountry}
+                    inputProps={{
+                      name: 'countryId',
+                      id: 'country',
+                    }}
+                  >
+                    <option aria-label="None" value="" />
+                    {countries.nodes.map((country) => (
+                      <option key={country._id} value={country._id}>
+                        {country.title}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
 
+                {isUSCountrySelected && (
+                  <FormControl required fullWidth className={classes.formControl}>
+                    <InputLabel htmlFor="state" className={classes.label}>
+                      State
+                    </InputLabel>
+                    <Select
+                      required
+                      native
+                      variant="filled"
+                      fullWidth
+                      onChange={chooseUSState}
+                      inputProps={{
+                        name: 'usStateId',
+                        id: 'usState',
+                      }}
+                    >
+                      <option aria-label="None" value="" />
+                      {usStates.nodes.map((usState) => (
+                        <option key={usState._id} value={usState._id}>
+                          {usState.title}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
+
+                <TextField
+                  multiline
+                  rows={6}
+                  id="bio"
+                  name="bio"
+                  label="Brief Artist’s Statement"
+                  variant="filled"
+                  fullWidth
+                  placeholder="Briefly describe your Spring Show submission. You may also include a short bio here."
+                />
+
+                <Uploader
+                  name="resume"
+                  label="resume here"
+                  acceptedFileTypes={['pdf']}
+                  formState={submitStep}
+                  limit={1}
+                  callback={updateResumeFileUploadsCallback}
+                  fileUploadStatus={fileUploadStatus}
+                  multiple={false}
+                />
+
+                {/*--------------------
+                   Step 2: Upload work
+                ------------------------*/}
+                {schoolMajorChosen(school, major, degree) && (
+                  <>
+                    <h2>Step Two: Upload Your Work</h2>
+                    <h3>Your Spring Show Hero Image</h3>
+                    <ul ref={heroRef}>
+                      <li>
+                        Please submit a single image that represents your Spring Show submission
+                        <ul>
+                          <li>Acting students: please submit a headshot</li>
+                        </ul>
+                      </li>
+                      <li>
+                        Your Spring Show Hero Image must be at least <b>1600 pixels wide</b>
+                      </li>
+                      <li>
+                        This image should be unique to you. It will be displayed at the top of your profile page and on
+                        your school page
+                      </li>
+                    </ul>
+                    <Uploader
+                      acceptedFileTypes={HERO_FILE_TYPES}
+                      callback={updateHeroFileUploadsCallback}
+                      error={heroError}
+                      errorText="Submit a Hero Image"
+                      fileUploadStatus={fileUploadStatus}
+                      formState={submitStep}
+                      label=" Spring Show Hero Image (at least 1600px wide) here"
+                      limit={1}
+                      multiple={false}
+                      name="heroImage"
+                      required
+                      school={school}
+                    />
+                  </>
+                )}
                 {schoolMajorChosen(school, major, degree) && isSchoolWithoutMajor(school) && (
                   <>
                     <TextField
@@ -978,14 +1059,13 @@ const StudentProfileForm = (props) => {
 
                 {schoolMajorChosen(school, major, degree) && (
                   <>
-                    <p>
-                      To <strong>SUBMIT YOUR WORK</strong>, click or drag all images, PDFs, and MP4 files here.
-                    </p>
+                    <h3>Submit Additional Work</h3>
                     <ul>
-                      <li>Files accepted: .JPG, .PNG, .GIF, .PDF, .MP4, .MOV</li>
-                      <li>Images need to be at least 1600px wide, and high resolution.</li>
-                      <li>Upload images in the order you want them displayed—first image will be on top.</li>
-                      <li>You may add as many items as you’d like.</li>
+                      <li>You may add as many items as you&apos;d like.</li>
+                      <li>Click or drag to upload additional files</li>
+                      <li>Upload in the order you want displayed—first image will be on top.</li>
+                      <li>Files accepted: pdf, png, jpg, mp4, mov</li>
+                      <li>Images need to be at least 1600px wide</li>
                     </ul>
                     <Uploader
                       categories={categories}
@@ -993,7 +1073,7 @@ const StudentProfileForm = (props) => {
                       formState={submitStep}
                       callback={updateFileUploadsCallback}
                       fileUploadStatus={fileUploadStatus}
-                      label="Portfolio files. Upload in the order you want displayed."
+                      label="Portfolio files here. Upload in the order you want displayed."
                       multiple={true}
                       acceptedFileTypes={PORTFOLIO_FILE_TYPES}
                       school={school}
@@ -1004,18 +1084,46 @@ const StudentProfileForm = (props) => {
                 )}
 
                 {schoolMajorChosen(school, major, degree) && (
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    name="additionalPortfolioUrls"
-                    multiline
-                    rows={4}
-                    label="(Optional) Add URLs for your INDIVIDUAL videos on YouTube, Vimeo, etc. These videos will display with your media."
-                    size="small"
-                  />
+                  <>
+                    <h2>Step 3: Links to Your Work</h2>
+
+                    <h3>Links to Your Individual Videos</h3>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      name="additionalPortfolioUrls"
+                      multiline
+                      rows={4}
+                      label="Add URLs to your INDIVIDUAL videos on YouTube, Vimeo, etc. These videos will be embedded into your profile. (Optional)"
+                      size="small"
+                      className={classes.smallTopSpacing}
+                    />
+
+                    <h3>Links to External Sites</h3>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      name="externalSiteUrls"
+                      multiline
+                      rows={4}
+                      label="Please provide URLs to any external portfolio sites, video channels, or other sites that showcase your work. (Optional)"
+                      size="small"
+                      className={classes.smallTopSpacing}
+                    />
+                  </>
                 )}
 
-                <p>Need help? Contact us 24/7 at online@academyart.edu, or by phone at 1-415-618-3545.</p>
+                <p>
+                  Need help? Contact us 24/7 at
+                  <a href="mailto:online@academyart.edu" title="email online@academyart.edu">
+                    online@academyart.edu
+                  </a>
+                  , or by phone at&nbsp;
+                  <a href="tel:1-415-618-3545" title="call 1-415-618-3545">
+                    1-415-618-3545
+                  </a>
+                  .
+                </p>
                 <Button fullWidth type="submit" disabled={submitting} size="large" variant="contained" color="primary">
                   {submitting ? (
                     <>
@@ -1065,6 +1173,8 @@ const StudentProfileForm = (props) => {
   );
 };
 
+// To get sort syntax, use the iGraphQL tool (eg, localhost/__graphql); the tool doesn't allow multiple sort fields.
+// Sanity's graphQL sort doc doesn't Work (https://www.sanity.io/docs/graphql#97427ca5bfbe)
 export const query = graphql`
   query DegreesMajorSchoolsQuery {
     schools: allSanitySchool {
@@ -1095,6 +1205,20 @@ export const query = graphql`
           _id
           title
         }
+      }
+    }
+    countries: allSanityCountry(sort: { fields: title, order: ASC }) {
+      nodes {
+        _id
+        code
+        title
+      }
+    }
+    usStates: allSanityUsState(sort: { fields: title, order: ASC }) {
+      nodes {
+        _id
+        code
+        title
       }
     }
     headerBackgroundImage: file(relativePath: { eq: "1555130824.9183_Proxima_Image_03.jpg" }) {

@@ -56,16 +56,16 @@ function FeaturedProjectsGrid({ projects, type }) {
                       <AssetPreview hasLightbox {...project} featured image={project} />
                     </div>
                   ) : __typename === 'SanityStudent' ? (
-                    <StudentPreview featured {...project} />
+                    <StudentPreview featured onClick={() => lightbox.current.openItem(idx)} {...project} />
                   ) : (
-                    <ProjectPreview small {...project} />
+                    <ProjectPreview small onClick={() => lightbox.current.openItem(idx)} {...project} />
                   )}
                 </li>
               );
             })}
         </ul>
       </div>
-      {type === 'assets' && <Lightbox ref={lightbox} media={projects} />}
+      {projects && <Lightbox ref={lightbox} media={projects} featured />}
     </>
   );
 }

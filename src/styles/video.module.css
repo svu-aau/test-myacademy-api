@@ -27,12 +27,23 @@
 }
 
 .videoWrapperLightbox {
-  top: calc(50vh - 1.5em);
-  left: calc(50vw + 5em);
-  transform: translateX(-50%) translateY(-50%);
-  max-height: 80vh;
+  position: unset !important;
+  height: 100% !important;
+  padding-bottom: unset !important;
+
+  @nest & div {
+    position: unset !important;
+  }
+
+  @nest & > div > div {
+    display: flex;
+  }
+
   @nest & iframe {
-    max-width: calc(100vw - 10em);
+    position: unset !important;
+    margin: auto;
+    width: calc(100% - 10em) !important;
+    height: calc(100% - 5rem) !important;
   }
 }
 

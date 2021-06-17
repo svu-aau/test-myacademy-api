@@ -7,21 +7,38 @@ import { imageUrlFor } from '../../lib/image-url';
 import styles from './student-preview.module.css';
 
 function StudentPreview(props) {
-  const { portfolio, slug, school, name, heroImage, masonry, featured } = props;
-  // console.log('StudentPreview props: ', props);
+  const { portfolio, slug, school, name, heroImage, masonry, featured, onClick } = props;
 
   let displayFeaturedMedia = {};
-  if (heroImage && heroImage[0] && heroImage[0].image) {
-    displayFeaturedMedia = heroImage[0];
+  if (heroImage && heroImage.length > 0) {
+    heroImage.map((img) => {
+      if (!img.isHeadShot) {
+        displayFeaturedMedia = img;
+        return;
+      }
+    });
   } else if (portfolio) {
     displayFeaturedMedia = portfolio[0];
   }
+
+  const preventDefault = (event) => {
+    event.preventDefault();
+  };
 
   return (
     school.slug &&
     slug &&
     slug.current && (
-      <Link className={styles.root} to={`/schools/${school.slug.current}/students/${slug.current}`}>
+      <Link
+        className={styles.root}
+        to={`/schools/${school.slug.current}/students/${slug.current}`}
+        onClick={(e) => {
+          if (onClick) {
+            preventDefault(e);
+            onClick();
+          }
+        }}
+      >
         <div
           className={
             masonry
