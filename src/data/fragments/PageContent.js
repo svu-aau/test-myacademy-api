@@ -172,5 +172,13 @@ export const queryFigure = graphql`
     ... on SanityGlobalSection {
       ...GlobalSection
     }
+
+    ... on SanitySectionLibraryFeatured {
+      ...LibraryFeatured
+    }
+
+    ... on SanitySectionLibraryHero {
+      ...LibraryHero
+    }
   }
 `;
