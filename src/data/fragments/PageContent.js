@@ -180,5 +180,9 @@ export const queryFigure = graphql`
     ... on SanitySectionLibraryHero {
       ...LibraryHero
     }
+
+    ... on SanitySectionColumn {
+      ...Column
+    }
   }
 `;

@@ -10,6 +10,7 @@ import SectionProjectGrid from './section-project-grid';
 import SectionProjectsGrid from './section-projects-grid';
 import SectionSchoolsGrid from './section-schools-grid';
 import SectionLibraryFeatured from './section-library-featured';
+import SectionColumn from './section-column';
 //import SectionLibraryHero from './section-library-hero';
 
 const sectionComponents = {
@@ -24,6 +25,7 @@ const sectionComponents = {
   SectionProjectsGrid,
   SectionSchoolsGrid,
   SectionLibraryFeatured,
+  SectionColumn,
   //SectionLibraryHero,
 };
 
