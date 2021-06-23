@@ -11,7 +11,7 @@ import SectionProjectsGrid from './section-projects-grid';
 import SectionSchoolsGrid from './section-schools-grid';
 import SectionLibraryFeatured from './section-library-featured';
 import SectionColumn from './section-column';
-//import SectionLibraryHero from './section-library-hero';
+import SectionLibraryHero from './section-library-hero';
 
 const sectionComponents = {
   SectionCard,
@@ -26,7 +26,7 @@ const sectionComponents = {
   SectionSchoolsGrid,
   SectionLibraryFeatured,
   SectionColumn,
-  //SectionLibraryHero,
+  SectionLibraryHero,
 };
 
 const ContentSections = ({ content, slug = null, isPageContent = false }) =>
