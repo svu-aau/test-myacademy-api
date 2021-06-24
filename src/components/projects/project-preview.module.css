@@ -5,6 +5,10 @@
   width: 420px;
 }
 
+.stdGrid {
+  width: auto !important;
+}
+
 .small {
   width: 220px;
 }

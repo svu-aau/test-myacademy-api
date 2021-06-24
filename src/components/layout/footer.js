@@ -47,7 +47,7 @@ const Footer = () => {
               }
             }
           }
-          wIcon: file(relativePath: { eq: "icon-social-weheartit.png" }) {
+          tikTokIcon: file(relativePath: { eq: "icon-social-tiktok.png" }) {
             childImageSharp {
               fixed(width: 24) {
                 ...GatsbyImageSharpFixed_noBase64
@@ -61,7 +61,7 @@ const Footer = () => {
               }
             }
           }
-          pinterestIcon: file(relativePath: { eq: "icon-social-pinterest.png" }) {
+          spotifyIcon: file(relativePath: { eq: "icon-social-spotify.png" }) {
             childImageSharp {
               fixed(width: 24) {
                 ...GatsbyImageSharpFixed_noBase64
@@ -92,8 +92,8 @@ const Footer = () => {
         twitterIcon,
         youtubeIcon,
         instagramIcon,
-        pinterestIcon,
-        wIcon,
+        spotifyIcon,
+        tikTokIcon,
         footer: { links: footerLinks },
       }) => {
         // split into 4 groups
@@ -117,21 +117,18 @@ const Footer = () => {
                       'https://twitter.com/academy_of_art',
                       'http://www.youtube.com/user/academyofartu',
                       'https://www.instagram.com/academy_of_art',
-                      'http://www.pinterest.com/academyofartuni',
-                      'http://weheartit.com/academyofartu',
+                      'https://open.spotify.com/show/2z1VI3JJJy4SCUSuMi6D3o?si=2mnl3fmSRAisKEvmBdgQfQ',
+                      'https://www.tiktok.com/@academyofartuniversity',
                     ],
                     {
                       facebook: facebookIcon,
                       twitter: twitterIcon,
                       youtube: youtubeIcon,
                       instagram: instagramIcon,
-                      pinterest: pinterestIcon,
-                      weheartit: wIcon,
+                      spotify: spotifyIcon,
+                      tiktok: tikTokIcon,
                     }
                   )}
-                  <a target="_blank" href="http://apple.co/1I6ySIP">
-                    <Img fixed={appStoreButton.childImageSharp.fixed} alt="Academy of Art on Apple App Store" />
-                  </a>
                 </div>
               </div>
               <div className={styles.footerBottom}>
@@ -204,16 +201,16 @@ const Footer = () => {
                       'https://twitter.com/academy_of_art',
                       'http://www.youtube.com/user/academyofartu',
                       'https://www.instagram.com/academy_of_art',
-                      'http://www.pinterest.com/academyofartuni',
-                      'http://weheartit.com/academyofartu',
+                      'http://www.spotify.com/academyofartuni',
+                      'http://tiktok.com/academyofartu',
                     ],
                     {
                       facebook: facebookIcon,
                       twitter: twitterIcon,
                       youtube: youtubeIcon,
                       instagram: instagramIcon,
-                      pinterest: pinterestIcon,
-                      weheartit: wIcon,
+                      spotify: spotifyIcon,
+                      tiktok: tikTokIcon,
                     }
                   )}
                   <a target="_blank" href="http://apple.co/1I6ySIP">

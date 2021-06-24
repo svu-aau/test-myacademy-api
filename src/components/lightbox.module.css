@@ -31,6 +31,7 @@
 .lightboxBodyOpen,
 .lightboxHtmlOpen {
   overflow: hidden;
+  position: relative;
 }
 
 .lightboxBullet {
@@ -136,5 +137,12 @@
     max-width: 80vw;
     width: 100%;
     margin: 5vh auto;
+  }
+}
+
+.embedCode {
+  @nest & > iframe {
+    width: 100vw !important;
+    height: 100vh !important;
   }
 }

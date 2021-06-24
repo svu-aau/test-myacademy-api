@@ -10,6 +10,7 @@ import Lightbox from '../lightbox';
 import PortfolioGrid from '../grids/portfolio-grid';
 import VideoPlayer from '../video-player';
 import ContactUs from '../sections/contact-us';
+import ContactForm from '../forms/contact-form';
 import StudentNav from './student-nav';
 import { imageUrlFor } from '../../lib/image-url';
 import Section from '../sections/section';
@@ -19,6 +20,7 @@ function StudentProfile(props) {
   // console.log('student profile props: ', props);
   const {
     id: studentId,
+    _id,
     _rawBio,
     _rawDescription,
     name,
@@ -52,13 +54,22 @@ function StudentProfile(props) {
 
   const media = [...portfolio, ...extraVideos];
 
-  const hero = heroImage && heroImage[0];
+  const filteredHeroImages = [];
+
+  heroImage?.length > 0 &&
+    heroImage.forEach((hero, idx) => {
+      if (hero?.isHeadShot) {
+        filteredHeroImages[idx] = heroImage[0];
+        filteredHeroImages[0] = hero;
+      } else {
+        filteredHeroImages[idx] = hero;
+      }
+    });
+
   let collabHeroes = [];
   if (isArchitecture && collabProjects && collabProjects.length > 0) {
     collabHeroes = sortByTitle(collabProjects).map((project) => project.heroImage && project.heroImage[0]);
   }
-
-  const mailtoLink = `mailto:industryoncampus@academyart.edu?subject=Spring Show Contact Request: ${name}, ${school.title}`;
 
   return (
     <StaticQuery
@@ -144,36 +155,40 @@ function StudentProfile(props) {
           <div>
             <article className={layoutStyles.columnWrapper}>
               <div className={layoutStyles.leftColumn}>
-                {hero && (
-                  <button
-                    type="button"
-                    className={cn(layoutStyles.mediaInteractWrapper, layoutStyles.mediaInteractWrapperHero)}
-                    onClick={() => lightbox.current.openItem(0)}
-                  >
-                    {hero.image && hero.image.asset && (
-                      <>
-                        <Img
-                          className={styles.mainImage}
-                          fluid={hero.image.asset.fluid}
-                          alt={hero.alt || 'hero image'}
-                          imgStyle={{ objectFit: 'contain' }}
-                        />
-                        <div className={layoutStyles.preloadHidden}>
-                          <img
-                            src={imageUrlFor(buildImageObj(hero.image)).url()}
-                            width="1"
-                            height="1"
-                            alt="Hidden preload image"
-                          />
-                        </div>
-                        {hero.caption && hero.caption.trim() !== '' && (
-                          <div className={layoutStyles.caption}>{hero.caption}</div>
+                {filteredHeroImages?.length > 0 &&
+                  filteredHeroImages.map((hero, idx) => {
+                    return (
+                      <button
+                        type="button"
+                        key={idx}
+                        className={cn(layoutStyles.mediaInteractWrapper, layoutStyles.mediaInteractWrapperHero)}
+                        onClick={() => lightbox.current.openItem(0)}
+                      >
+                        {hero.image && hero.image.asset && (
+                          <>
+                            <Img
+                              className={styles.mainImage}
+                              fluid={hero.image.asset.fluid}
+                              alt={hero.alt || 'hero image'}
+                              imgStyle={{ objectFit: 'contain' }}
+                            />
+                            <div className={layoutStyles.preloadHidden}>
+                              <img
+                                src={imageUrlFor(buildImageObj(hero.image)).url()}
+                                width="1"
+                                height="1"
+                                alt="Hidden preload image"
+                              />
+                            </div>
+                            {hero.caption && hero.caption.trim() !== '' && (
+                              <div className={layoutStyles.caption}>{hero.caption}</div>
+                            )}
+                          </>
                         )}
-                      </>
-                    )}
-                    {hero._type === 'video' && hero.url && <VideoPlayer url={hero.url} thumbnail />}
-                  </button>
-                )}
+                        {hero._type === 'video' && hero.url && <VideoPlayer url={hero.url} thumbnail />}
+                      </button>
+                    );
+                  })}
 
                 {isArchitecture && collabProjects && collabProjects.length > 0 && (
                   <div>
@@ -231,9 +246,9 @@ function StudentProfile(props) {
               <div className={layoutStyles.rightColumn}>
                 <div className={layoutStyles.breadcrumb}>
                   <Link to={'/'}>HOME</Link>
-                  <span className={layoutStyles.breadcrumbLinkSeperator}>/</span>
+                  <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
                   <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
-                  <span className={layoutStyles.breadcrumbLinkSeperator}>/</span>
+                  <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
                   <div className={layoutStyles.breadcrumbLink}>{name}</div>
                 </div>
                 <h1 className={layoutStyles.title}>{name}</h1>
@@ -256,11 +271,7 @@ function StudentProfile(props) {
                   </div>
                 )}
 
-                <div className={layoutStyles.columnSection}>
-                  <a className={layoutStyles.calloutButton} href={mailtoLink}>
-                    Contact Me
-                  </a>
-                </div>
+                <ContactForm studentName={name} studentId={_id} />
 
                 {externalSiteUrls && (
                   <div className={cn(styles.externalUrls, layoutStyles.columnSection)}>
@@ -285,7 +296,7 @@ function StudentProfile(props) {
                       style={{ textDecoration: 'underline' }}
                       target="_blank"
                       rel="noopener"
-                      href={`${resume.asset.url}?dl=${name}-resume.pdf`}
+                      href={`${resume.asset.url}`}
                     >
                       Download R&eacute;sum&eacute;
                     </a>
@@ -306,6 +317,8 @@ function StudentProfile(props) {
                     <BlockContent blocks={_rawDescription || []} />
                   </div>
                 )}
+
+                <StudentNav schoolSlug={school.slug.current} studentId={studentId} />
 
                 {!isArchitecture && collabProjects && collabProjects.length > 0 && (
                   <div className={layoutStyles.columnSection}>
@@ -347,7 +360,6 @@ function StudentProfile(props) {
                     )}
                   </div>
                 )}
-                <StudentNav schoolSlug={school.slug.current} studentId={studentId} />
               </div>
             </article>
             <Section>

@@ -18,6 +18,15 @@ export const queryFigure = graphql`
           }
         }
       }
+      heroImageCaption
+    }
+
+    ... on SanitySectionGlobe {
+      _key
+      title
+      body
+      infoOne
+      infoTwo
     }
 
     ... on SanitySectionText {
@@ -142,12 +151,21 @@ export const queryFigure = graphql`
       companies {
         ...HiringCompanies
       }
+      backgroundColor
       limitResults
       school {
         hiringCompanies {
           ...HiringCompanies
         }
       }
+    }
+
+    ... on SanitySectionGlobe {
+      _key
+      title
+      body
+      infoOne
+      infoTwo
     }
 
     ... on SanityGlobalSection {

@@ -6,7 +6,21 @@ const { isFuture } = require('date-fns');
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /react-globe.gl/,
+            use: loaders.null(),
+          },
+        ],
+      },
+      node: { fs: 'empty' },
+    });
+  }
+
   actions.setWebpackConfig({
     node: { fs: 'empty' },
   });
@@ -162,6 +176,22 @@ async function createStudentProfilePages(graphql, actions, reporter) {
   });
 }
 
+async function createGlobalWorksPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  createPage({
+    path: '/global',
+    component: require.resolve('./src/templates/global.js'),
+  });
+}
+
+async function createStudentIndexPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  createPage({
+    path: '/students',
+    component: require.resolve('./src/templates/all-students.js'),
+  });
+}
+
 async function createPageBuilderPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -202,6 +232,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createSchoolPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
   await createAllProjectPages(graphql, actions, reporter);
+  await createStudentIndexPage(graphql, actions, reporter);
   await createStudentProfilePages(graphql, actions, reporter);
+  await createGlobalWorksPage(graphql, actions, reporter);
   await createPageBuilderPages(graphql, actions, reporter);
 };

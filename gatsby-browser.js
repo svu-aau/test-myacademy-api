@@ -1,11 +1,11 @@
-const LogRocket = require('logrocket');
+// const LogRocket = require('logrocket');
 require('cookieconsent');
 require('cookieconsent/build/cookieconsent.min.css');
 
 exports.onInitialClientRender = (_, { publicId }) => {
-  if (process.env.NODE_ENV !== 'development') {
-    LogRocket.init('46bi0w/academy-of-art-u-spring-show');
-  }
+  // if (process.env.NODE_ENV !== 'development') {
+  //    LogRocket.init('46bi0w/academy-of-art-u-2021-spring-show');
+  // }
 
   const swiftypeSearch = document.createElement('script');
   swiftypeSearch.innerHTML = `

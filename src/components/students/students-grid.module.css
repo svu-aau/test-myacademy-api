@@ -27,26 +27,8 @@
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  /*grid-template-columns: 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 0;
-
-  @media (--media-min-small) {
-    /*grid-template-columns: 1fr 1fr;*/
-  }
-
-  @media (--media-min-medium) {
-    /*grid-template-columns: 1fr 1fr 1fr;*/
-  }
-}
-
-.gridCell {
-  /*
-    @nest &:first-child {
-      grid-area: 1/1/span 2/span 2;
-    }
-
-   */
 }
 
 .browseMoreNav {

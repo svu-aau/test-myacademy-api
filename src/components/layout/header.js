@@ -44,7 +44,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle, backgroundImage }) => {
+const Header = ({
+  fixedNav = false,
+  smallHeader = false,
+  siteTitle,
+  siteSubtitle,
+  heroImageCaption,
+  backgroundImage,
+}) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [searchBarVisible, setSearchBarVisible] = React.useState(false);
   const [isEditing, setEditing] = React.useState(false);
@@ -95,6 +102,24 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
               hidden
             }
           }
+          about: sanityMenu(slug: { current: { eq: "about" } }) {
+            title
+            links {
+              _key
+              title
+              href
+              hidden
+            }
+          }
+          galleries: sanityMenu(slug: { current: { eq: "galleries" } }) {
+            title
+            links {
+              _key
+              title
+              href
+              hidden
+            }
+          }
           pastShows: sanityMenu(slug: { current: { eq: "past-shows" } }) {
             title
             links {
@@ -106,7 +131,14 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
           }
         }
       `}
-      render={({ logo, schools, mainMenu: { links: mainMenuLinks }, pastShows: { links: pastShowLinks } }) => {
+      render={({
+        logo,
+        schools,
+        about: { links: aboutLinks },
+        galleries: { links: galleryLinks },
+        mainMenu: { links: mainMenuLinks },
+        pastShows: { links: pastShowLinks },
+      }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
         // split past show links into two columns (but hide the hidden ones first)
         const pastShowLinks2 = [...pastShowLinks.filter(({ hidden }) => hidden !== true)];
@@ -170,14 +202,16 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
                         <input type="text" onKeyDown={escFunction} ref={inputRef} className="st-default-search-input" />
                       </div>
                       <div className={styles.headerMenuContent}>
-                        <div className={styles.headerMenuSchools}>
+                        <div className={cn(styles.headerMenuSchools, styles.flexThree)}>
                           <div className={styles.headerMenuColumn}>
                             <div className={styles.headerMenuTitle}>Schools</div>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(0, 7).map((school) => (
                                   <li className={styles.columnLink} key={school.id}>
-                                    <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
+                                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
+                                      {school.title}
+                                    </Link>
                                   </li>
                                 ))}
                             </ul>
@@ -187,7 +221,9 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
                               {displaySchools &&
                                 displaySchools.slice(7, 14).map((school) => (
                                   <li className={styles.columnLink} key={school.id}>
-                                    <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
+                                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
+                                      {school.title}
+                                    </Link>
                                   </li>
                                 ))}
                             </ul>
@@ -197,13 +233,56 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
                               {displaySchools &&
                                 displaySchools.slice(14).map((school) => (
                                   <li className={styles.columnLink} key={school.id}>
-                                    <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
+                                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
+                                      {school.title}
+                                    </Link>
                                   </li>
                                 ))}
                             </ul>
                           </div>
                         </div>
-                        <div className={styles.headerMenuShows}>
+
+                        <div className={cn(styles.headerMenuSchools, styles.flexCenter)}>
+                          <div>
+                            <div className={styles.headerMenuTitle}>Galleries</div>
+                            <ul>
+                              {galleryLinks &&
+                                galleryLinks.map(({ _key, title, href, hidden }) => (
+                                  <li className={styles.columnLink} key={_key}>
+                                    <Link to={href} onClick={() => setDrawerOpen(false)}>
+                                      {title}
+                                    </Link>
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={cn(styles.headerMenuContent, styles.justifyNormal)}>
+                        <div className={cn(styles.headerMenuSchools, styles.noFlex, styles.marginRight)}>
+                          <div className={styles.headerMenuColumn}>
+                            <div className={styles.headerMenuTitle}>About</div>
+                            <ul>
+                              {aboutLinks &&
+                                aboutLinks.map(({ _key, title, href, hidden }) => (
+                                  <li className={styles.columnLink} key={_key}>
+                                    <Link to={href} onClick={() => setDrawerOpen(false)}>
+                                      {title}
+                                    </Link>
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
+                        </div>
+                        <div
+                          className={cn(
+                            styles.headerMenuSchools,
+                            styles.noFlex,
+                            styles.justifyNormal,
+                            styles.flexColumn
+                          )}
+                        >
                           <div className={cn(styles.headerMenuTitle, styles.pastShowsMenuTitle)}>Past Spring Shows</div>
                           <div className={styles.pastShowsMenus}>
                             <ul>
@@ -225,24 +304,6 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
                           </div>
                         </div>
                       </div>
-                      {mainMenuLinks && (
-                        <div className={styles.headerMenuCustomLinks}>
-                          <div className={styles.headerMenuCustomLinksColumn}>
-                            {mainMenuLinks.slice(0, 5).map(({ _key, title, href, hidden }) => (
-                              <div className={styles.headerMenuTitleBottom} key={_key}>
-                                <MenuLink href={href} title={title} hidden={hidden} />
-                              </div>
-                            ))}
-                          </div>
-                          <div className={styles.headerMenuCustomLinksColumn}>
-                            {mainMenuLinks.slice(5, 10).map(({ _key, title, href, hidden }) => (
-                              <div className={styles.headerMenuTitleBottom} key={_key}>
-                                <MenuLink href={href} title={title} hidden={hidden} />
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
                     </nav>
                   </div>
                 </Drawer>
@@ -258,6 +319,7 @@ const Header = ({ fixedNav = false, smallHeader = false, siteTitle, siteSubtitle
                 />
                 {siteTitle && <h3 className={styles.heroTitle}>{siteTitle}</h3>}
                 {siteSubtitle && <h1 className={styles.title}>{siteSubtitle}</h1>}
+                {heroImageCaption && <figcaption className={styles.heroImageCaption}>{heroImageCaption}</figcaption>}
               </div>
             )}
           </div>

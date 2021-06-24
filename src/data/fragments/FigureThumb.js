@@ -5,9 +5,11 @@ export const queryFigure = graphql`
     _type
     alt
     caption
+    isHeadShot
     image {
       ...ImageThumb
     }
+    link
     _rawDescription
     assetCategory {
       title

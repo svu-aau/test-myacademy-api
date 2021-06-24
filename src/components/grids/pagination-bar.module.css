@@ -9,31 +9,3 @@
   display: flex;
   height: 58px;
 }
-
-.paginationItem {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 900;
-  width: 58px;
-  height: 100%;
-  margin-right: 35px;
-  border: 3px solid var(--color-white);
-  color: var(--color-white);
-  cursor: pointer;
-
-  @nest &:hover {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-white);
-    color: var(--color-black-bg);
-  }
-}
-
-.paginationItemActive {
-  background-color: var(--color-white);
-  border: 1px solid var(--color-white);
-  color: var(--color-black-bg);
-}
-
-

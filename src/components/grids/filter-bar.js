@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 import styles from './filter-bar.module.css';
@@ -9,8 +9,10 @@ const FilterStyles = {
     ...provided,
     backgroundColor: 'transparent',
     color: 'white',
-    border: 'none',
+    border: 'white 1px solid',
     width: '10em',
+    borderRadius: '0',
+    marginRight: '1em',
   }),
   indicatorSeparator: () => ({}),
   dropdownIndicator: (provided) => ({
@@ -33,6 +35,7 @@ const FilterStyles = {
     borderRadius: '0',
     width: '15em',
     padding: '1em 0',
+    zIndex: 10,
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
@@ -41,43 +44,71 @@ const FilterStyles = {
   }),
 };
 
-function FilterBar({ handleClick, items, placeholder, assetCategories, categoryPlaceholder, showFilters }) {
+function FilterBar({
+  handleClick,
+  items,
+  placeholder,
+  secondaryItems,
+  secondaryPlaceholder,
+  showFilters,
+  changeFilterCount, // used for Globe page filter
+  changeSecondaryFilter, // used for Globe page filter
+  primaryOptionLabel = 'All',
+  secondaryOptionLabel = 'All',
+}) {
   let [filter, setFilter] = useState(placeholder || items[0].title);
-  let [categoryFilter, setCategoryFilter] = useState(categoryPlaceholder);
-  let assetCategoryOptions = [];
-  const showCategories = assetCategories && assetCategories.length > 1;
+  let [secondaryFilter, setSecondaryFilter] = useState(secondaryPlaceholder);
+  let secondaryOptions = [];
+  const showPrimaryFilter = items && items.length > 1;
+  const showSecondaryFilters = secondaryItems && secondaryItems.length > 1; // only show assetCategories if more than 1 category
   const options = items.map(({ title }) => ({ value: title, label: title }));
+
+  items && items.sort();
+  secondaryItems && secondaryItems.sort();
+
+  useEffect(() => {
+    if (changeSecondaryFilter && secondaryFilter !== changeSecondaryFilter) {
+      onChangeCategories({ value: changeSecondaryFilter });
+    }
+  }, [changeFilterCount, changeSecondaryFilter]);
 
   function onChange({ value }) {
     setFilter(value);
     handleClick(value);
-    if (showCategories) {
-      setCategoryFilter(categoryPlaceholder);
+    if (showSecondaryFilters) {
+      setSecondaryFilter(secondaryPlaceholder);
     }
   }
   function onChangeCategories({ value }) {
-    setCategoryFilter(value);
+    setSecondaryFilter(value);
     handleClick(value, true);
   }
 
   if (placeholder) {
-    options.unshift({ value: placeholder, label: 'All' });
+    options.unshift({ value: placeholder, label: primaryOptionLabel });
   }
 
-  if (assetCategories) {
-    assetCategoryOptions = assetCategories.map((val) => {
-      return { value: val, label: val };
-    });
-    assetCategoryOptions.unshift({ value: categoryPlaceholder, label: categoryPlaceholder });
+  if (secondaryItems) {
+    if (!secondaryItems[0].title) {
+      secondaryOptions = secondaryItems.map((val) => {
+        return { value: val, label: val };
+      });
+    } else if (secondaryItems[0].code) {
+      secondaryOptions = secondaryItems.map(({ code, title }) => ({ value: code, label: title }));
+    } else {
+      secondaryOptions = secondaryItems.map(({ title }) => ({ value: title, label: title }));
+    }
+
+    secondaryOptions.unshift({ value: secondaryPlaceholder, label: secondaryOptionLabel });
   }
 
-  const showBoth = showFilters && showCategories;
+  const showBoth = showFilters && showSecondaryFilters;
 
   return (
     <div className={styles.root}>
       <div className={showBoth ? cn(styles.wrapper, styles.wrapperDouble) : styles.wrapper}>
         <div className={showBoth ? cn(styles.filterText, styles.filterTextDouble) : styles.filterText}>Filter by:</div>
-        {showFilters && (
+        {showPrimaryFilter && (
           <Select
             styles={FilterStyles}
             value={options.find(({ value }) => value === filter)}
@@ -86,11 +117,11 @@ function FilterBar({ handleClick, items, placeholder, assetCategories, categoryP
           />
         )}
 
-        {showCategories && (
+        {showSecondaryFilters && (
           <Select
             styles={FilterStyles}
-            value={assetCategoryOptions.find(({ value }) => value === categoryFilter)}
-            options={assetCategoryOptions}
+            value={secondaryOptions.find(({ value }) => value === secondaryFilter)}
+            options={secondaryOptions}
             onChange={onChangeCategories}
           />
         )}

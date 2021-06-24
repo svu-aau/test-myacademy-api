@@ -139,6 +139,7 @@ export default ({ status, meta, fileWithMeta, name, school, categories }) => {
   const isIllustration = checkSchool(school, 'illustration');
   const isJewelry = checkSchool(school, 'jewelry');
   const isArchitecture = school && school.title && school.title.trim().toLowerCase() === 'architecture';
+  const isActing = school && school.title && school.title.trim().toLowerCase() === 'acting';
 
   if (!simpleState[meta.id]) {
     simpleState[meta.id] = {};
@@ -158,12 +159,10 @@ export default ({ status, meta, fileWithMeta, name, school, categories }) => {
                   fullWidth
                   metaId={meta.id}
                   name="title"
-                  label={isHero ? 'Your Name' : 'Title'}
+                  label={(isActing && isHero ? 'Your Name' : 'Title') + ' (image alt text)'}
                   size="small"
                 />
-                {!isHero && (
-                  <WiredTextInput required fullWidth metaId={meta.id} name="caption" label="Caption" size="small" />
-                )}
+                <WiredTextInput required fullWidth metaId={meta.id} name="caption" label="Caption" size="small" />
               </>
             )}
             {!isVideo && isPhysicalMedia && (

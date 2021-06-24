@@ -1,5 +1,6 @@
 import SectionCard from './section-card';
 import SectionDebug from './section-debug';
+import SectionGlobe from './section-globe';
 import SectionHero from './section-hero';
 import SectionText from './section-text';
 import SectionImageGrid from './section-image-grid';
@@ -11,6 +12,7 @@ import SectionSchoolsGrid from './section-schools-grid';
 
 const sectionComponents = {
   SectionCard,
+  SectionGlobe,
   SectionHero,
   SectionText,
   SectionImageGrid,
@@ -21,15 +23,17 @@ const sectionComponents = {
   SectionSchoolsGrid,
 };
 
-const ContentSections = ({ content }) =>
+const ContentSections = ({ content, slug = null, isPageContent = false }) =>
   content.map((section) => {
     const component = section.__typename.replace('Sanity', '');
     if (component === 'GlobalSection') {
       return (sectionComponents[section.content[0].__typename.replace('Sanity', '')] || SectionDebug)({
         section: section.content[0],
+        isPageContent,
+        slug: slug,
       });
     }
-    return (sectionComponents[component] || SectionDebug)({ section });
+    return (sectionComponents[component] || SectionDebug)({ section, isPageContent, slug });
   });
 
 export default ContentSections;

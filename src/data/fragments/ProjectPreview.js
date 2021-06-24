@@ -33,6 +33,11 @@ export const queryProject = graphql`
         ...FileUpload
       }
     }
+    members {
+      person {
+        ...Student
+      }
+    }
     _rawIntro
     publishedAt
   }

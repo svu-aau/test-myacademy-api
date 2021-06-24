@@ -2,7 +2,6 @@ import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import AppsIcon from '@material-ui/icons/Apps';
 import { sortByName } from '../../lib/helpers';
 import styles from './student-profile.module.css';
 
@@ -26,7 +25,9 @@ export default function StudentNav({ schoolSlug = null, studentId = null }) {
     }
   `);
 
-  const students = sortByName(allStudents.nodes.filter((n) => !schoolSlug || n.school.slug.current === schoolSlug));
+  const students = sortByName(
+    allStudents.nodes.filter(({ school }) => school).filter((n) => !schoolSlug || n.school.slug.current === schoolSlug)
+  );
   const currIndex = students.findIndex((s) => s.id === studentId);
   const prevStudent = students[currIndex - 1] ? students[currIndex - 1] : null;
   const nextStudent = students[currIndex + 1] ? students[currIndex + 1] : null;
@@ -45,9 +46,6 @@ export default function StudentNav({ schoolSlug = null, studentId = null }) {
         ) : (
           <div style={{ width: '122.1px' }} />
         )}
-        <Link to={`/schools/${schoolSlug}`}>
-          <AppsIcon />
-        </Link>
         {nextStudent && nextStudent.slug ? (
           <Link
             className={styles.studentNavigationLink}

@@ -1,17 +1,22 @@
 import { graphql } from 'gatsby';
 export const querySchool = graphql`
   fragment School on SanitySchool {
-    id
+    _id
     title
     _rawIntro
+    _rawGameDemoIntro
     slug {
       current
     }
     heroImage {
       ...Image
     }
+    heroImageCaption
     hiringCompanies {
       ...HiringCompanies
+    }
+    gameDemos {
+      ...GameDemos
     }
   }
 `;

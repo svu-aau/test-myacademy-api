@@ -39,26 +39,28 @@ export const login = () => {
   auth.authorize();
 };
 
-const setSession = (cb = () => {}) => (err, authResult) => {
-  if (err) {
-    console.log('setSession err: ', err);
-    navigate('/');
-    cb();
-    return;
-  }
+const setSession =
+  (cb = () => {}) =>
+  (err, authResult) => {
+    if (err) {
+      console.log('setSession err: ', err);
+      navigate('/');
+      cb();
+      return;
+    }
 
-  if (authResult && authResult.accessToken && authResult.idToken) {
-    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
-    tokens.accessToken = authResult.accessToken;
-    tokens.idToken = authResult.idToken;
-    tokens.expiresAt = expiresAt;
-    user = authResult.idTokenPayload;
-    // eslint-disable-next-line no-undef
-    localStorage.setItem('isLoggedIn', true);
-    navigate('/student-profile-form');
-    cb();
-  }
-};
+    if (authResult && authResult.accessToken && authResult.idToken) {
+      let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+      tokens.accessToken = authResult.accessToken;
+      tokens.idToken = authResult.idToken;
+      tokens.expiresAt = expiresAt;
+      user = authResult.idTokenPayload;
+      // eslint-disable-next-line no-undef
+      localStorage.setItem('isLoggedIn', true);
+      navigate('/student-profile-form');
+      cb();
+    }
+  };
 
 export const handleAuthentication = () => {
   if (!isBrowser) {

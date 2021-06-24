@@ -2,11 +2,12 @@
 @import './typography.module.css';
 
 .button {
-  display: inline-block;
-  width: auto;
+  display: flex;
+  width: fit-content;
+  justify-content: center;
   padding: 1em;
   min-width: 120px;
-  margin: 1.3em auto;
+  margin: 1.3em auto 3em;
   color: var(--color-white);
   background-color: transparent;
   border: 3px solid var(--color-white);
@@ -22,7 +23,7 @@
 }
 
 .darkButton {
-  color: var(--color-black);
+  color: var(--color-red-secondary-bg) !important;
   border: 2px solid var(--color-black);
   background-color: #f2f5f9;
 }

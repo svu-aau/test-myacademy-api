@@ -7,6 +7,7 @@ const SectionHero = ({ section }) => (
     backgroundImage={section.backgroundImage && section.backgroundImage.asset && section.backgroundImage.asset.fluid}
     siteSubtitle={section.heroTitle}
     siteTitle={section.heroHeading}
+    heroImageCaption={section.heroImageCaption}
   />
 );
 
