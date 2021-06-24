@@ -39,6 +39,7 @@ export const queryFigure = graphql`
       _key
       narrowWidth
       _rawBody(resolveReferences: { maxDepth: 10 })
+      _rawBodyRight(resolveReferences: { maxDepth: 10 })
       backgroundColor
     }
 
@@ -170,6 +171,18 @@ export const queryFigure = graphql`
 
     ... on SanityGlobalSection {
       ...GlobalSection
+    }
+
+    ... on SanitySectionLibraryFeatured {
+      ...LibraryFeatured
+    }
+
+    ... on SanitySectionLibraryHero {
+      ...LibraryHero
+    }
+
+    ... on SanitySectionColumn {
+      ...Column
     }
   }
 `;

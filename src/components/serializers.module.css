@@ -2,8 +2,8 @@
 @import '../styles/custom-properties.css';
 
 .link {
-  color: inherit;
-  text-decoration: underline;
+  color: var(--color-red-primary-bg) !important;
+  /* text-decoration: underline; */
 }
 
 .button {
