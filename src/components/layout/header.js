@@ -1,7 +1,6 @@
+import React from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import { cn } from '../../lib/helpers';
-import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,10 +8,10 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { Button } from '@aauweb/design-library';
+
+import { cn } from '../../lib/helpers';
 import styles from './header.module.css';
-import MenuLink from './menu-link';
-import SearchIcon from '@material-ui/icons/Search';
-import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,13 +24,42 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: '100%',
     },
-    backgroundColor: 'transparent',
+    backgroundColor: 'var(--color-dark-black-bg)',
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: 'none',
   },
-  appBarBackground: {
-    backgroundColor: 'var(--color-dark-black-bg)',
-    transition: 'background-color 200ms linear',
+  left: {
+    display: 'flex',
+    flex: 1,
+    '& > a': {
+      display: 'inline-block',
+      fontSize: '14px',
+      padding: '1rem',
+      paddingBottom: 0,
+      marginLeft: '-0.3125rem',
+      fontWeight: 500,
+      cursor: 'pointer',
+      color: '#292931',
+      height: '100%',
+      textDecoration: 'none',
+    },
+    '& span': {
+      borderBottom: '3px solid transparent',
+      paddingBottom: '1rem',
+      display: 'block',
+      height: 'calc( 100% + 1px)',
+    },
+    '& > a:hover span': {
+      borderColor: '#ee3224',
+    },
+  },
+  right: {
+    '& > button': {
+      marginLeft: '0.25em',
+    },
+  },
+  contactLink: {
+    color: 'white',
   },
   drawer: {
     '& > div': {
@@ -93,63 +121,17 @@ const Header = ({
               ...School
             }
           }
-          mainMenu: sanityMenu(slug: { current: { eq: "main-menu" } }) {
-            title
-            links {
-              _key
-              title
-              href
-              hidden
-            }
-          }
-          about: sanityMenu(slug: { current: { eq: "about" } }) {
-            title
-            links {
-              _key
-              title
-              href
-              hidden
-            }
-          }
-          galleries: sanityMenu(slug: { current: { eq: "galleries" } }) {
-            title
-            links {
-              _key
-              title
-              href
-              hidden
-            }
-          }
-          pastShows: sanityMenu(slug: { current: { eq: "past-shows" } }) {
-            title
-            links {
-              _key
-              title
-              href
-              hidden
-            }
-          }
         }
       `}
-      render={({
-        logo,
-        schools,
-        about: { links: aboutLinks },
-        galleries: { links: galleryLinks },
-        mainMenu: { links: mainMenuLinks },
-        pastShows: { links: pastShowLinks },
-      }) => {
+      render={({ logo, schools }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
-        // split past show links into two columns (but hide the hidden ones first)
-        const pastShowLinks2 = [...pastShowLinks.filter(({ hidden }) => hidden !== true)];
-        const pastShowLinks1 = pastShowLinks2.splice(0, Math.ceil(pastShowLinks2.length / 2));
 
         return (
           <div className={styles.root}>
             <div className="st-search-container" />
             <ClickAwayListener onClickAway={() => (drawerOpen ? setDrawerOpen(!drawerOpen) : null)}>
               <div>
-                <AppBar className={cn(classes.appBar, (fixedNav || trigger || drawerOpen) && classes.appBarBackground)}>
+                <AppBar className={classes.appBar}>
                   <Toolbar className={styles.toolbar} disableGutters>
                     <div className={styles.branding}>
                       <Img
@@ -162,28 +144,23 @@ const Header = ({
                         <span className={styles.srOnly}>Go to home page</span>
                       </Link>
                     </div>
-                    <form className={styles.searchWrapper}>
-                      <IconButton
-                        color="inherit"
-                        style={{ display: searchBarVisible ? 'none' : 'block' }}
-                        aria-label="search"
-                        onClick={toggleEditing}
-                      >
-                        <SearchIcon style={{ fontSize: 35 }} />
-                      </IconButton>
-                      <IconButton
-                        color="inherit"
-                        aria-label="search"
-                        style={{ display: searchBarVisible ? 'block' : 'none' }}
-                        onClick={toggleEditing}
-                      >
-                        <CancelIcon style={{ fontSize: 35 }} />
-                      </IconButton>
-                      <div className={cn(styles.searchBar, searchBarVisible && styles.searchBarVisible)}>
-                        <input type="text" onKeyDown={escFunction} ref={inputRef} className="st-default-search-input" />
-                      </div>
-                    </form>
-                    <IconButton color="inherit" aria-label="menu" onClick={() => setDrawerOpen(!drawerOpen)}>
+                    <div className={styles.contactContent}>
+                      <p>
+                        <a href="tel:+18005442787" target="_blank" className={classes.contactLink}>
+                          1-800-544-2787
+                        </a>
+                        <span> / </span>
+                        <a href="#" className={classes.contactLink}>
+                          Contact
+                        </a>
+                      </p>
+                    </div>
+                    <IconButton
+                      className={styles.hamburger}
+                      color="inherit"
+                      aria-label="menu"
+                      onClick={() => setDrawerOpen(!drawerOpen)}
+                    >
                       <div className={cn(styles.navBurgerIcon, drawerOpen && styles.navBurgerIconOpen)}>
                         <span></span>
                         <span></span>
@@ -191,6 +168,26 @@ const Header = ({
                         <span></span>
                       </div>
                     </IconButton>
+                  </Toolbar>
+                  <Toolbar className={styles.bottomBar} disableGutters>
+                    <div className={classes.left}>
+                      <a href="#">
+                        <span>Midpoint & Final Review Showcase</span>
+                      </a>
+                      <a href="#">
+                        <span>Schools</span>
+                      </a>
+                      <a href="#">
+                        <span>Thesis Projects</span>
+                      </a>
+                      <a href="#">
+                        <span>Resources</span>
+                      </a>
+                    </div>
+                    <div className={classes.right}>
+                      <Button variant="contained" color="primary" label="Request Info" />
+                      <Button variant="outlined" color="primary" label="Apply" />
+                    </div>
                   </Toolbar>
                 </AppBar>
                 {/* leave this SHIM to push down content when fixedNav at top */}
@@ -236,68 +233,6 @@ const Header = ({
                                     <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
                                       {school.title}
                                     </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                        </div>
-
-                        <div className={cn(styles.headerMenuSchools, styles.flexCenter)}>
-                          <div>
-                            <div className={styles.headerMenuTitle}>Galleries</div>
-                            <ul>
-                              {galleryLinks &&
-                                galleryLinks.map(({ _key, title, href, hidden }) => (
-                                  <li className={styles.columnLink} key={_key}>
-                                    <Link to={href} onClick={() => setDrawerOpen(false)}>
-                                      {title}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className={cn(styles.headerMenuContent, styles.justifyNormal)}>
-                        <div className={cn(styles.headerMenuSchools, styles.noFlex, styles.marginRight)}>
-                          <div className={styles.headerMenuColumn}>
-                            <div className={styles.headerMenuTitle}>About</div>
-                            <ul>
-                              {aboutLinks &&
-                                aboutLinks.map(({ _key, title, href, hidden }) => (
-                                  <li className={styles.columnLink} key={_key}>
-                                    <Link to={href} onClick={() => setDrawerOpen(false)}>
-                                      {title}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                        </div>
-                        <div
-                          className={cn(
-                            styles.headerMenuSchools,
-                            styles.noFlex,
-                            styles.justifyNormal,
-                            styles.flexColumn
-                          )}
-                        >
-                          <div className={cn(styles.headerMenuTitle, styles.pastShowsMenuTitle)}>Past Spring Shows</div>
-                          <div className={styles.pastShowsMenus}>
-                            <ul>
-                              {pastShowLinks1 &&
-                                pastShowLinks1.map(({ _key, title, href, hidden }) => (
-                                  <li key={_key}>
-                                    <MenuLink href={href} title={title} hidden={hidden} />
-                                  </li>
-                                ))}
-                            </ul>
-                            <ul>
-                              {pastShowLinks2 &&
-                                pastShowLinks2.map(({ _key, title, href, hidden }) => (
-                                  <li key={_key}>
-                                    <MenuLink href={href} title={title} hidden={hidden} />
                                   </li>
                                 ))}
                             </ul>

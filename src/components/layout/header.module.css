@@ -15,6 +15,37 @@
   }
 }
 
+.bottomBar {
+  background-color: white;
+  padding: 0 1.5em;
+  min-height: unset !important;
+  color: #252525;
+  border-bottom: 1px solid #ddd;
+  height: 3.25rem;
+
+  @media (--media-max-medium) {
+    padding: 0 0.5em;
+  }
+}
+
+.contactContent {
+  color: white;
+  display: block;
+
+  @media (--media-max-medium) {
+    display: none;
+  }
+}
+.hamburger {
+  @media (--media-min-medium) {
+    display: none !important;
+  }
+
+  @media (--media-max-medium) {
+    display: block;
+  }
+}
+
 .wrapper {
   position: absolute;
   top: 0;
