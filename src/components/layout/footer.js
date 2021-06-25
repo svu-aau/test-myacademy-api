@@ -133,14 +133,30 @@ const Footer = () => {
               </div>
               <div className={styles.footerBottom}>
                 <div className={styles.footerContact}>
-                  <div className={styles.footerHeading}>Get in touch</div>
+                  <div className={styles.footerHeading}>About</div>
                   <div className={styles.contactInfo}>
+                    <div>
+                      The Graduate School is here to support our students in any way we can. If you have any questions,
+                      issues, or suggestions please do not hesitate to contact us. The Graduate Schhol offices are open
+                      from 9:00am to 6:00pm (Pacific time) Monday through Friday. If you reach us after office hours we
+                      will respond as quickly as possible.
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.footerContact}>
+                  <div className={styles.footerHeading}>Get in touch</div>
+                  <div className={styles.addressInfo}>
+                    <div>
+                      <a type="tel" href="tel:1-800-544-2787">
+                        1-800-544-2787
+                      </a>
+                      <span> or </span>
+                      <a type="tel" href="tel:1-415-274-8617">
+                        415-274-8617
+                      </a>
+                    </div>
+                    <br />
                     <address>
-                      <div>
-                        <a type="tel" href="tel:1-800-544-2787">
-                          1-800-544-2787
-                        </a>
-                      </div>
                       <div>79 New Montgomery St.</div>
                       <div>San Francisco, CA 94105</div>
                     </address>
@@ -156,8 +172,27 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.footerSchools}>
-                  <div className={styles.footerHeading}>Schools</div>
+                <div className={styles.footerContact}>
+                  <div className={styles.footerHeading}>Links & Resources</div>
+                  <div className={styles.contactInfo}>
+                    <a type="tel" href="#">
+                      Contact
+                    </a>
+                    <a type="tel" href="#">
+                      Site Map
+                    </a>
+                    <a type="tel" href="#">
+                      My Academy
+                    </a>
+                    <a type="tel" href="#">
+                      Industry & Recruiters
+                    </a>
+                    <a type="tel" href="#">
+                      Job Seekers
+                    </a>
+                  </div>
+
+                  {/*
                   <ul className={styles.footerColumns}>
                     {schools.nodes &&
                       schools.nodes
@@ -168,6 +203,7 @@ const Footer = () => {
                           </li>
                         ))}
                   </ul>
+                  */}
                 </div>
               </div>
               <div className={styles.footerCopyright}>
@@ -178,21 +214,6 @@ const Footer = () => {
                       <MenuLink title={title} href={href} hidden={hidden} />
                     </li>
                   ))}
-                  {/* <a href="https://www.academyart.edu/disclosures" target="_blank">
-                    Disclosures
-                  </a>{' '}
-                  /{' '}
-                  <a href="https://www.academyart.edu/terms-of-use" target="_blank">
-                    Terms of Use
-                  </a>{' '}
-                  /{' '}
-                  <a href="https://www.academyart.edu/cookie-policy" target="_blank">
-                    Cookie Policy
-                  </a>{' '}
-                  /{' '}
-                  <a href="https://academyart.wirewheel.io/privacy-page/5e05613596dd1b001347fd24" target="_blank">
-                    Privacy Policy
-                  </a> */}
                 </ul>
                 <div className={styles.socialIcons}>
                   {generateSocialLinks(

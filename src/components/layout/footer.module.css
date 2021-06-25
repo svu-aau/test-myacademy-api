@@ -52,12 +52,12 @@
 
 .footerContact {
   margin: 0 1em 2em 0;
-  width: 100%;
   font-size: 12px;
+  min-width: 200px;
+  max-width: 375px;
 
   @media (--media-min-medium) {
     display: flex;
-    flex: 1;
     flex-direction: column;
     margin: 0;
   }
@@ -87,9 +87,19 @@
   }
 }
 
+.addressInfo {
+  display: flex;
+  flex-direction: column;
+
+  @nest & div {
+    margin-bottom: 0.5em;
+  }
+}
+
 .contactInfo {
   display: flex;
   flex-direction: column;
+  line-height: 1.75em;
 
   @nest & div {
     margin-bottom: 1em;
@@ -124,6 +134,7 @@
   margin-top: 2.5em;
   margin-bottom: 2rem;
   padding: 0 1.5rem;
+  justify-content: space-between;
 }
 
 .footerCopyright {
@@ -143,7 +154,7 @@
 
 .footerCopyright > * {
   font-size: 14px;
-  color: #cccccc;
+  color: #fff;
   font-weight: 500;
 }
 
@@ -189,6 +200,11 @@ address div {
 .footerCopyrightLinks li:last-of-type::after {
   content: none;
 }
+
+.footerCopyrightLinks li a {
+  color: white;
+}
+
 /*
 div {
   font-size: 14px;
