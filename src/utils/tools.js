@@ -45,6 +45,9 @@ function getProvider(string) {
     if (string.includes('instagram')) {
       return 'instagram';
     }
+    if (string.includes('pinterest')) {
+      return 'pinterest';
+    }
     if (string.includes('spotify')) {
       return 'spotify';
     }

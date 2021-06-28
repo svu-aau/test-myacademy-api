@@ -19,13 +19,6 @@ const Footer = () => {
               }
             }
           }
-          appStoreButton: file(relativePath: { eq: "icon-social-download-app.png" }) {
-            childImageSharp {
-              fixed(width: 72) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
-            }
-          }
           facebookIcon: file(relativePath: { eq: "icon-social-facebook.png" }) {
             childImageSharp {
               fixed(width: 24) {
@@ -47,13 +40,6 @@ const Footer = () => {
               }
             }
           }
-          tikTokIcon: file(relativePath: { eq: "icon-social-tiktok.png" }) {
-            childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
-            }
-          }
           youtubeIcon: file(relativePath: { eq: "icon-social-youtube.png" }) {
             childImageSharp {
               fixed(width: 24) {
@@ -61,19 +47,23 @@ const Footer = () => {
               }
             }
           }
-          spotifyIcon: file(relativePath: { eq: "icon-social-spotify.png" }) {
+          pinterestIcon: file(relativePath: { eq: "icon-social-pinterest.png" }) {
             childImageSharp {
               fixed(width: 24) {
                 ...GatsbyImageSharpFixed_noBase64
               }
             }
           }
-          schools: allSanitySchool {
-            nodes {
-              ...School
+          footerLegalLinks: sanityMenu(slug: { current: { eq: "footer-legal-links" } }) {
+            title
+            links {
+              _key
+              title
+              href
+              hidden
             }
           }
-          footer: sanityMenu(slug: { current: { eq: "footer-links" } }) {
+          footerLinks: sanityMenu(slug: { current: { eq: "footer-links" } }) {
             title
             links {
               _key
@@ -85,16 +75,14 @@ const Footer = () => {
         }
       `}
       render={({
-        schools,
         logo,
-        appStoreButton,
         facebookIcon,
         twitterIcon,
         youtubeIcon,
         instagramIcon,
-        spotifyIcon,
-        tikTokIcon,
-        footer: { links: footerLinks },
+        pinterestIcon,
+        footerLinks: { links: footerLinksArray },
+        footerLegalLinks: { links: footerLegalLinksArray },
       }) => {
         // split into 4 groups
         return (
@@ -117,16 +105,14 @@ const Footer = () => {
                       'https://twitter.com/academy_of_art',
                       'http://www.youtube.com/user/academyofartu',
                       'https://www.instagram.com/academy_of_art',
-                      'https://open.spotify.com/show/2z1VI3JJJy4SCUSuMi6D3o?si=2mnl3fmSRAisKEvmBdgQfQ',
-                      'https://www.tiktok.com/@academyofartuniversity',
+                      'https://www.pinterest.com/academyofartuni',
                     ],
                     {
                       facebook: facebookIcon,
                       twitter: twitterIcon,
                       youtube: youtubeIcon,
                       instagram: instagramIcon,
-                      spotify: spotifyIcon,
-                      tiktok: tikTokIcon,
+                      pinterest: pinterestIcon,
                     }
                   )}
                 </div>
@@ -175,21 +161,11 @@ const Footer = () => {
                 <div className={styles.footerContact}>
                   <div className={styles.footerHeading}>Links & Resources</div>
                   <div className={styles.contactInfo}>
-                    <a type="tel" href="#">
-                      Contact
-                    </a>
-                    <a type="tel" href="#">
-                      Site Map
-                    </a>
-                    <a type="tel" href="#">
-                      My Academy
-                    </a>
-                    <a type="tel" href="#">
-                      Industry & Recruiters
-                    </a>
-                    <a type="tel" href="#">
-                      Job Seekers
-                    </a>
+                    {footerLinksArray.map(({ _key, title, href, hidden }) => (
+                      <a href={href} key={_key}>
+                        {title}
+                      </a>
+                    ))}
                   </div>
 
                   {/*
@@ -209,7 +185,7 @@ const Footer = () => {
               <div className={styles.footerCopyright}>
                 <div>© {new Date().getFullYear()} Academy of Art University&nbsp;</div>
                 <ul className={styles.footerCopyrightLinks}>
-                  {footerLinks.map(({ _key, title, href, hidden }) => (
+                  {footerLegalLinksArray.map(({ _key, title, href, hidden }) => (
                     <li key={_key}>
                       <MenuLink title={title} href={href} hidden={hidden} />
                     </li>
@@ -222,21 +198,16 @@ const Footer = () => {
                       'https://twitter.com/academy_of_art',
                       'http://www.youtube.com/user/academyofartu',
                       'https://www.instagram.com/academy_of_art',
-                      'http://www.spotify.com/academyofartuni',
-                      'http://tiktok.com/academyofartu',
+                      'https://www.pinterest.com/academyofartuni',
                     ],
                     {
                       facebook: facebookIcon,
                       twitter: twitterIcon,
                       youtube: youtubeIcon,
                       instagram: instagramIcon,
-                      spotify: spotifyIcon,
-                      tiktok: tikTokIcon,
+                      pinterest: pinterestIcon,
                     }
                   )}
-                  <a target="_blank" href="http://apple.co/1I6ySIP">
-                    <Img fixed={appStoreButton.childImageSharp.fixed} alt="Academy of Art on Apple App Store" />
-                  </a>
                 </div>
               </div>
             </div>
