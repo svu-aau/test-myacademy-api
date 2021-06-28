@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: '100%',
     },
-    backgroundColor: 'var(--color-dark-black-bg)',
+    backgroundColor: 'var(--color-dark-black-bg) !important',
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: 'none',
   },
@@ -109,6 +109,15 @@ const Header = ({
     <StaticQuery
       query={graphql`
         query {
+          mainMenu: sanityMenu(slug: { current: { eq: "main-menu" } }) {
+            title
+            links {
+              _key
+              title
+              href
+              hidden
+            }
+          }
           logo: file(relativePath: { eq: "icon-logo.png" }) {
             childImageSharp {
               fluid(maxWidth: 400, quality: 100) {
@@ -123,7 +132,7 @@ const Header = ({
           }
         }
       `}
-      render={({ logo, schools }) => {
+      render={({ mainMenu: { links: linksArray }, logo, schools }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
 
         return (
@@ -171,18 +180,11 @@ const Header = ({
                   </Toolbar>
                   <Toolbar className={styles.bottomBar} disableGutters>
                     <div className={classes.left}>
-                      <a href="#">
-                        <span>Midpoint & Final Review Showcase</span>
-                      </a>
-                      <a href="#">
-                        <span>Schools</span>
-                      </a>
-                      <a href="#">
-                        <span>Thesis Projects</span>
-                      </a>
-                      <a href="#">
-                        <span>Resources</span>
-                      </a>
+                      {linksArray.map(({ _key, title, href, hidden }) => (
+                        <a href={href} key={_key}>
+                          <span>{title}</span>
+                        </a>
+                      ))}
                     </div>
                     <div className={classes.right}>
                       <Button variant="contained" color="primary" label="Request Info" />

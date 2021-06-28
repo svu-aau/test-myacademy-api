@@ -9,10 +9,6 @@
 
 .toolbar {
   padding: 0.25em 1.5em;
-
-  @media (--media-max-medium) {
-    padding: 0.25em 0.5em;
-  }
 }
 
 .bottomBar {
@@ -23,8 +19,8 @@
   border-bottom: 1px solid #ddd;
   height: 3.25rem;
 
-  @media (--media-max-medium) {
-    padding: 0 0.5em;
+  @media (--media-max-large) {
+    display: none !important;
   }
 }
 
@@ -32,16 +28,16 @@
   color: white;
   display: block;
 
-  @media (--media-max-medium) {
+  @media (--media-max-large) {
     display: none;
   }
 }
 .hamburger {
-  @media (--media-min-medium) {
+  @media (--media-min-large) {
     display: none !important;
   }
 
-  @media (--media-max-medium) {
+  @media (--media-max-large) {
     display: block;
   }
 }
