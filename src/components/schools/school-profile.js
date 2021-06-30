@@ -9,26 +9,13 @@ import Container from '../layout/container';
 import IndustryGrid from '../sections/industry-grid';
 import Section from '../sections/section';
 import StudentsGrid from '../students/students-grid';
-import GameDemoGrid from './game-demo-grid';
 import styles from './school-profile.module.css';
 import typographyStyles from '../../styles/typography.module.css';
 import serializerStyles from '../../components/serializers.module.css';
 import { Link } from 'gatsby';
 
 function SchoolProfile(props) {
-  const {
-    _rawIntro,
-    _rawGameDemoIntro,
-    heroImageCaption,
-    heroImage,
-    title,
-    students,
-    projects,
-    hiringCompanies,
-    gallery,
-    majors,
-    gameDemos,
-  } = props;
+  const { _rawIntro, heroImageCaption, heroImage, title, students, projects, hiringCompanies, gallery, majors } = props;
 
   const schoolTitle = title.toLowerCase();
   const isArchitecture = schoolTitle === 'architecture';
@@ -111,15 +98,6 @@ function SchoolProfile(props) {
         </Container>
       </Section>
       {students && <StudentsGrid students={finalStudents} masonry={isMasonryType} filters={majors} school={title} />}
-      {gameDemos?.length > 0 && (
-        <Section color="dark" alignment="center" id="demos">
-          <Container narrower>
-            <h1 className={typographyStyles.responsiveTitle1}>Game Demos</h1>
-            {_rawGameDemoIntro && <BlockContent blocks={_rawGameDemoIntro || []} />}
-          </Container>
-          <GameDemoGrid gameDemos={gameDemos} />
-        </Section>
-      )}
       {projects && projects.length > 0 && (
         <Section color="green" flushSides>
           <Container>

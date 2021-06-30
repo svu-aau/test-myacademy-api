@@ -33,6 +33,8 @@ const Section = ({
   globe,
   isPageContent = false,
   id = null,
+  noPaddingTop,
+  alignReset,
 }) => {
   // prefer classes if they exist
   const colorClass = colorsToClasses[color] || color;
@@ -56,7 +58,9 @@ const Section = ({
         flush && styles.flush,
         flushSides && styles.flushSides,
         alignment === 'center' && styles.center,
-        globe && styles.globe
+        globe && styles.globe,
+        alignReset && styles.alignReset,
+        noPaddingTop && styles.noPaddingTop
       )}
       id={id}
     >
