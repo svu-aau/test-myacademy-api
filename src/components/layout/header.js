@@ -68,7 +68,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'var(--color-dark-black-bg)',
   },
   drawerInner: {
-    backgroundColor: 'var(--color-dark-black-bg)',
+    backgroundColor: 'var(--color-white)',
+    color: 'var(--color-dark-black-bg)',
+    '& a': {
+      color: 'var(--color-dark-black-bg)',
+    },
   },
 }));
 
@@ -201,6 +205,12 @@ const Header = ({
                         <input type="text" onKeyDown={escFunction} ref={inputRef} className="st-default-search-input" />
                       </div>
                       <div className={styles.headerMenuContent}>
+                        {linksArray.map(({ _key, title, href, hidden }) => (
+                          <a href={href} key={_key}>
+                            <div className={styles.headerMenuTitle}>{title}</div>
+                          </a>
+                        ))}
+
                         <div className={cn(styles.headerMenuSchools, styles.flexThree)}>
                           <div className={styles.headerMenuColumn}>
                             <div className={styles.headerMenuTitle}>Schools</div>
