@@ -35,6 +35,7 @@ const Section = ({
   id = null,
   noPaddingTop,
   alignReset,
+  noPadding,
 }) => {
   // prefer classes if they exist
   const colorClass = colorsToClasses[color] || color;
@@ -60,7 +61,8 @@ const Section = ({
         alignment === 'center' && styles.center,
         globe && styles.globe,
         alignReset && styles.alignReset,
-        noPaddingTop && styles.noPaddingTop
+        noPaddingTop && styles.noPaddingTop,
+        noPadding && styles.noPadding
       )}
       id={id}
     >

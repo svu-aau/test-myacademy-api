@@ -5,14 +5,18 @@ import Section from '../sections/section';
 import ContentSections from './content-sections';
 
 // see data/fragments/PageContent
-const SectionColumn = ({ section }) => {
+const SectionColumn = ({ section, noPadding }) => {
   console.log('section', section);
 
   return (
-    <Section key={section._key} color={section.backgroundColor}>
+    <Section key={section._key} color={section.backgroundColor} noPadding={noPadding}>
       <Container narrow={section.narrowWidth} split>
-        <ContentSections content={section.sectionLeft} isPageContent />
-        <ContentSections content={section.sectionRight} isPageContent />
+        <div>
+          <ContentSections content={section.sectionLeft} isPageContent noPaddingTop />
+        </div>
+        <div>
+          <ContentSections content={section.sectionRight} isPageContent noPaddingTop />
+        </div>
       </Container>
     </Section>
   );

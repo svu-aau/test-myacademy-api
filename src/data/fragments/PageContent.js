@@ -173,6 +173,10 @@ export const queryFigure = graphql`
       ...GlobalSection
     }
 
+    ... on SanitySectionLibraryCard {
+      ...LibraryCard
+    }
+
     ... on SanitySectionLibraryFeatured {
       ...LibraryFeatured
     }

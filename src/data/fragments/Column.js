@@ -12,6 +12,10 @@ export const queryFigure = graphql`
         _rawBody(resolveReferences: { maxDepth: 10 })
       }
 
+      ... on SanitySectionLibraryCard {
+        ...LibraryCard
+      }
+
       ... on SanitySectionLibraryFeatured {
         ...LibraryFeatured
       }
@@ -21,6 +25,10 @@ export const queryFigure = graphql`
         _key
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })
+      }
+
+      ... on SanitySectionLibraryCard {
+        ...LibraryCard
       }
 
       ... on SanitySectionLibraryFeatured {
