@@ -36,7 +36,7 @@ const ProjectTemplate = (props) => {
 
   if (schools) {
     schoolDataArray = schools.nodes.map(({ heroImage, title, slug }) => [
-      heroImage.asset.fluid.src,
+      heroImage ? heroImage.asset?.fluid?.src : null,
       [title, `/schools/${slug.current}`],
     ]);
   }
