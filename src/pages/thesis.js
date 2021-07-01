@@ -12,7 +12,6 @@ import Container from '../components/layout/container';
 
 import { cn } from '../lib/helpers';
 import styles from '../templates/thesis.module.css';
-import ProjectsGrid from '../components/projects/projects-grid';
 
 export const query = graphql`
   query ThesisOldPageQuery {

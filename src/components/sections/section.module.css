@@ -61,6 +61,10 @@
   padding: 0;
 }
 
+.noPaddingBottom {
+  padding-bottom: 0;
+}
+
 .black {
   background-color: var(--color-black-bg);
   color: var(--color-white);
