@@ -1,0 +1,40 @@
+@import '../styles/custom-media.css';
+@import '../styles/custom-properties.css';
+
+.headerMenuSchools {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  max-width: 1600px;
+
+  @media (--media-max-medium) {
+    flex-direction: column;
+  }
+}
+
+.flexThree {
+  flex: 3;
+}
+.headerMenuTitle {
+  color: var(--color-white);
+  font-weight: bold;
+  margin: 1em 0;
+
+  @nest & a {
+    color: var(--color-white);
+  }
+
+  @nest & a:hover {
+    text-decoration: none;
+  }
+}
+.column {
+  padding: 0;
+  list-style-type: none;
+}
+
+.columnLink {
+  @nest & a {
+    color: #ee3224;
+  }
+}

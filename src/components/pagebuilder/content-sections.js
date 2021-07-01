@@ -9,6 +9,7 @@ import SectionMediaGrid from './section-media-grid';
 import SectionProjectGrid from './section-project-grid';
 import SectionProjectsGrid from './section-projects-grid';
 import SectionSchoolsGrid from './section-schools-grid';
+import SectionLibraryCard from './section-library-card';
 import SectionLibraryFeatured from './section-library-featured';
 import SectionColumn from './section-column';
 import SectionLibraryHero from './section-library-hero';
@@ -24,12 +25,20 @@ const sectionComponents = {
   SectionProjectGrid,
   SectionProjectsGrid,
   SectionSchoolsGrid,
+  SectionLibraryCard,
   SectionLibraryFeatured,
   SectionColumn,
   SectionLibraryHero,
 };
 
-const ContentSections = ({ content, slug = null, isPageContent = false, color, textOnly = false }) =>
+const ContentSections = ({
+  content,
+  slug = null,
+  isPageContent = false,
+  noPaddingTop = false,
+  color,
+  textOnly = false,
+}) =>
   content.map((section) => {
     const component = section.__typename.replace('Sanity', '');
 
@@ -40,7 +49,16 @@ const ContentSections = ({ content, slug = null, isPageContent = false, color, t
         slug,
       });
     }
-    return (sectionComponents[component] || SectionDebug)({ section, isPageContent, slug, textOnly, color });
+
+    return (sectionComponents[component] || SectionDebug)({
+      section,
+      isPageContent,
+      slug,
+      noPaddingTop,
+      noPadding: component === 'SectionColumn',
+      textOnly,
+      color,
+    });
   });
 
 export default ContentSections;

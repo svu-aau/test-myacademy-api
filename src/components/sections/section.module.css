@@ -57,6 +57,10 @@
   text-align: center;
 }
 
+.noPadding {
+  padding: 0;
+}
+
 .black {
   background-color: var(--color-black-bg);
   color: var(--color-white);
