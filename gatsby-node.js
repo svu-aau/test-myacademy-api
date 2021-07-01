@@ -1,30 +1,26 @@
-const { isFuture } = require('date-fns');
-
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
-  if (stage === 'build-html') {
-    actions.setWebpackConfig({
-      module: {
-        rules: [
-          {
-            test: /react-globe.gl/,
-            use: loaders.null(),
-          },
-        ],
-      },
-      node: { fs: 'empty' },
-    });
-  }
-
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: { fs: 'empty' },
   });
 };
+
+async function createAllSchoolsPage(actions, reporter) {
+  const { createPage } = actions;
+  const path = `/schools/`;
+
+  reporter.info(`Creating school page: ${path}`);
+
+  createPage({
+    path,
+    component: require.resolve('./src/templates/all-schools.js'),
+  });
+}
 
 async function createSchoolPages(graphql, actions, reporter) {
   const { createPage } = actions;
@@ -205,6 +201,7 @@ async function createPageBuilderPages(graphql, actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  await createAllSchoolsPage(actions, reporter);
   await createSchoolPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
   await createStudentProfilePages(graphql, actions, reporter);

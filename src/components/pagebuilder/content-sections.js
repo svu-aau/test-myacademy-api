@@ -50,6 +50,8 @@ const ContentSections = ({
       });
     }
 
+    console.log('component', component);
+
     return (sectionComponents[component] || SectionDebug)({
       section,
       isPageContent,

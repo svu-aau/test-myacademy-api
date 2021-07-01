@@ -113,9 +113,6 @@ export const queryFigure = graphql`
         slug {
           current
         }
-        featuredProjects {
-          ...ProjectPreview
-        }
       }
     }
 
@@ -140,9 +137,6 @@ export const queryFigure = graphql`
         slug {
           current
         }
-        featuredProjects {
-          ...ProjectPreview
-        }
       }
     }
 
@@ -154,11 +148,6 @@ export const queryFigure = graphql`
       }
       backgroundColor
       limitResults
-      school {
-        hiringCompanies {
-          ...HiringCompanies
-        }
-      }
     }
 
     ... on SanitySectionGlobe {

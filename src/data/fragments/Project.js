@@ -10,9 +10,6 @@ export const queryProject = graphql`
         current
       }
       title
-      hiringCompanies {
-        ...HiringCompanies
-      }
     }
     slug {
       current

@@ -1,10 +1,15 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
+
+import SectionLibraryHero from '../components/pagebuilder/section-library-hero';
+import SectionCard from '../components/pagebuilder/section-card';
 import Container from '../components/layout/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SchoolProfile from '../components/schools/school-profile';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
+import Section from '../components/sections/section';
+import layoutStyles from '../components/layout/layout.module.css';
 
 export const query = graphql`
   query SchoolTemplateQuery($id: String!) {
@@ -27,31 +32,6 @@ export const query = graphql`
         meta_description
         seo_title
       }
-      gallery {
-        ...GlobalSection
-      }
-      majors {
-        title
-      }
-    }
-    students: allSanityStudent(
-      filter: {
-        school: { id: { eq: $id } }
-        slug: { current: { ne: null } }
-        hiddenProfile: { ne: true }
-        publishedAt: { ne: null }
-      }
-    ) {
-      nodes {
-        ...StudentPreview
-      }
-    }
-    projects: allSanityProject(
-      filter: { school: { id: { eq: $id } }, slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
-      nodes {
-        ...ProjectPreview
-      }
     }
   }
 `;
@@ -61,10 +41,12 @@ const SchoolTemplate = (props) => {
   // console.log('school data: ', data);
   const school = data && data.school;
 
-  const { seo, seoImage } = school;
+  const { title, heroImage, heroTitle, columnData, slug, seo, seoImage } = school;
   const seoDescription = (seo && seo.meta_description) || '';
   const pageTitle = school.title || 'Untitled';
   const seoTitle = (seo && seo.seo_title) || pageTitle;
+
+  console.log('school', school);
 
   return (
     <Layout>
@@ -85,15 +67,20 @@ const SchoolTemplate = (props) => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      {school && (
-        <SchoolProfile
-          {...school}
-          students={data.students.nodes}
-          projects={data.projects.nodes}
-          hiringCompanies={data.school.hiringCompanies}
-          gameDemos={data.school.gameDemos}
-        />
-      )}
+
+      <SectionLibraryHero section={{ backgroundImage: heroImage, heroTitle: `School of ${title}` }} />
+
+      <Section alignReset noPadding>
+        <Container>
+          <div className={layoutStyles.breadcrumb}>
+            <Link to={'/'}>HOME</Link>
+            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <Link to="/thesis-projects">THESIS PROJECTS</Link>
+          </div>
+        </Container>
+      </Section>
+
+      {columnData && <SectionCard section={columnData} noPadding />}
     </Layout>
   );
 };
