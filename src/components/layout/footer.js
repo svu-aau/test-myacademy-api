@@ -4,6 +4,8 @@ import React from 'react';
 import { generateSocialLinks } from '../../utils/tools';
 import MenuLink from './menu-link';
 
+import ContentSections from '../pagebuilder/content-sections';
+
 import styles from './footer.module.css';
 
 const Footer = () => {
@@ -72,9 +74,13 @@ const Footer = () => {
               hidden
             }
           }
+          contactInfoSection: sanityGlobalSection(slug: { current: { eq: "footer-contact-info" } }) {
+            ...GlobalSection
+          }
         }
       `}
       render={({
+        contactInfoSection,
         logo,
         facebookIcon,
         twitterIcon,
@@ -120,14 +126,15 @@ const Footer = () => {
               <div className={styles.footerBottom}>
                 <div className={styles.footerContact}>
                   <div className={styles.footerHeading}>About</div>
-                  <div className={styles.contactInfo}>
-                    <div>
-                      The Graduate School is here to support our students in any way we can. If you have any questions,
-                      issues, or suggestions please do not hesitate to contact us. The Graduate Schhol offices are open
-                      from 9:00am to 6:00pm (Pacific time) Monday through Friday. If you reach us after office hours we
-                      will respond as quickly as possible.
+                  {contactInfoSection && (
+                    <div className={styles.contactInfo}>
+                      <ContentSections
+                        textOnly
+                        content={contactInfoSection.content}
+                        slug={contactInfoSection.slug.current}
+                      />
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className={styles.footerContact}>
                   <div className={styles.footerHeading}>Get in touch</div>

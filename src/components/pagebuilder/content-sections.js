@@ -31,22 +31,33 @@ const sectionComponents = {
   SectionLibraryHero,
 };
 
-const ContentSections = ({ content, slug = null, isPageContent = false, noPaddingTop = false }) =>
+const ContentSections = ({
+  content,
+  slug = null,
+  isPageContent = false,
+  noPaddingTop = false,
+  color,
+  textOnly = false,
+}) =>
   content.map((section) => {
     const component = section.__typename.replace('Sanity', '');
+
     if (component === 'GlobalSection') {
       return (sectionComponents[section.content[0].__typename.replace('Sanity', '')] || SectionDebug)({
         section: section.content[0],
         isPageContent,
-        slug: slug,
+        slug,
       });
     }
+
     return (sectionComponents[component] || SectionDebug)({
       section,
       isPageContent,
       slug,
       noPaddingTop,
       noPadding: component === 'SectionColumn',
+      textOnly,
+      color,
     });
   });
 
