@@ -4,6 +4,8 @@ import React from 'react';
 import { generateSocialLinks } from '../../utils/tools';
 import MenuLink from './menu-link';
 
+import ContentSections from '../pagebuilder/content-sections';
+
 import styles from './footer.module.css';
 
 const Footer = () => {
@@ -16,13 +18,6 @@ const Footer = () => {
             childImageSharp {
               fluid(maxWidth: 400, quality: 100) {
                 ...GatsbyImageSharpFluid_noBase64
-              }
-            }
-          }
-          appStoreButton: file(relativePath: { eq: "icon-social-download-app.png" }) {
-            childImageSharp {
-              fixed(width: 72) {
-                ...GatsbyImageSharpFixed_noBase64
               }
             }
           }
@@ -47,13 +42,6 @@ const Footer = () => {
               }
             }
           }
-          tikTokIcon: file(relativePath: { eq: "icon-social-tiktok.png" }) {
-            childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
-            }
-          }
           youtubeIcon: file(relativePath: { eq: "icon-social-youtube.png" }) {
             childImageSharp {
               fixed(width: 24) {
@@ -61,19 +49,14 @@ const Footer = () => {
               }
             }
           }
-          spotifyIcon: file(relativePath: { eq: "icon-social-spotify.png" }) {
+          pinterestIcon: file(relativePath: { eq: "icon-social-pinterest.png" }) {
             childImageSharp {
               fixed(width: 24) {
                 ...GatsbyImageSharpFixed_noBase64
               }
             }
           }
-          schools: allSanitySchool {
-            nodes {
-              ...School
-            }
-          }
-          footer: sanityMenu(slug: { current: { eq: "footer-links" } }) {
+          footerLegalLinks: sanityMenu(slug: { current: { eq: "footer-legal-links" } }) {
             title
             links {
               _key
@@ -82,19 +65,30 @@ const Footer = () => {
               hidden
             }
           }
+          footerLinks: sanityMenu(slug: { current: { eq: "footer-links" } }) {
+            title
+            links {
+              _key
+              title
+              href
+              hidden
+            }
+          }
+          contactInfoSection: sanityGlobalSection(slug: { current: { eq: "footer-contact-info" } }) {
+            ...GlobalSection
+          }
         }
       `}
       render={({
-        schools,
+        contactInfoSection,
         logo,
-        appStoreButton,
         facebookIcon,
         twitterIcon,
         youtubeIcon,
         instagramIcon,
-        spotifyIcon,
-        tikTokIcon,
-        footer: { links: footerLinks },
+        pinterestIcon,
+        footerLinks: { links: footerLinksArray },
+        footerLegalLinks: { links: footerLegalLinksArray },
       }) => {
         // split into 4 groups
         return (
@@ -117,30 +111,45 @@ const Footer = () => {
                       'https://twitter.com/academy_of_art',
                       'http://www.youtube.com/user/academyofartu',
                       'https://www.instagram.com/academy_of_art',
-                      'https://open.spotify.com/show/2z1VI3JJJy4SCUSuMi6D3o?si=2mnl3fmSRAisKEvmBdgQfQ',
-                      'https://www.tiktok.com/@academyofartuniversity',
+                      'https://www.pinterest.com/academyofartuni',
                     ],
                     {
                       facebook: facebookIcon,
                       twitter: twitterIcon,
                       youtube: youtubeIcon,
                       instagram: instagramIcon,
-                      spotify: spotifyIcon,
-                      tiktok: tikTokIcon,
+                      pinterest: pinterestIcon,
                     }
                   )}
                 </div>
               </div>
               <div className={styles.footerBottom}>
                 <div className={styles.footerContact}>
+                  <div className={styles.footerHeading}>About</div>
+                  {contactInfoSection && (
+                    <div className={styles.contactInfo}>
+                      <ContentSections
+                        textOnly
+                        content={contactInfoSection.content}
+                        slug={contactInfoSection.slug.current}
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className={styles.footerContact}>
                   <div className={styles.footerHeading}>Get in touch</div>
-                  <div className={styles.contactInfo}>
+                  <div className={styles.addressInfo}>
+                    <div>
+                      <a type="tel" href="tel:1-800-544-2787">
+                        1-800-544-2787
+                      </a>
+                      <span> or </span>
+                      <a type="tel" href="tel:1-415-274-8617">
+                        415-274-8617
+                      </a>
+                    </div>
+                    <br />
                     <address>
-                      <div>
-                        <a type="tel" href="tel:1-800-544-2787">
-                          1-800-544-2787
-                        </a>
-                      </div>
                       <div>79 New Montgomery St.</div>
                       <div>San Francisco, CA 94105</div>
                     </address>
@@ -156,8 +165,17 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.footerSchools}>
-                  <div className={styles.footerHeading}>Schools</div>
+                <div className={styles.footerContact}>
+                  <div className={styles.footerHeading}>Links & Resources</div>
+                  <div className={styles.contactInfo}>
+                    {footerLinksArray.map(({ _key, title, href, hidden }) => (
+                      <a href={href} key={_key}>
+                        {title}
+                      </a>
+                    ))}
+                  </div>
+
+                  {/*
                   <ul className={styles.footerColumns}>
                     {schools.nodes &&
                       schools.nodes
@@ -168,31 +186,17 @@ const Footer = () => {
                           </li>
                         ))}
                   </ul>
+                  */}
                 </div>
               </div>
               <div className={styles.footerCopyright}>
                 <div>© {new Date().getFullYear()} Academy of Art University&nbsp;</div>
                 <ul className={styles.footerCopyrightLinks}>
-                  {footerLinks.map(({ _key, title, href, hidden }) => (
+                  {footerLegalLinksArray.map(({ _key, title, href, hidden }) => (
                     <li key={_key}>
                       <MenuLink title={title} href={href} hidden={hidden} />
                     </li>
                   ))}
-                  {/* <a href="https://www.academyart.edu/disclosures" target="_blank">
-                    Disclosures
-                  </a>{' '}
-                  /{' '}
-                  <a href="https://www.academyart.edu/terms-of-use" target="_blank">
-                    Terms of Use
-                  </a>{' '}
-                  /{' '}
-                  <a href="https://www.academyart.edu/cookie-policy" target="_blank">
-                    Cookie Policy
-                  </a>{' '}
-                  /{' '}
-                  <a href="https://academyart.wirewheel.io/privacy-page/5e05613596dd1b001347fd24" target="_blank">
-                    Privacy Policy
-                  </a> */}
                 </ul>
                 <div className={styles.socialIcons}>
                   {generateSocialLinks(
@@ -201,21 +205,16 @@ const Footer = () => {
                       'https://twitter.com/academy_of_art',
                       'http://www.youtube.com/user/academyofartu',
                       'https://www.instagram.com/academy_of_art',
-                      'http://www.spotify.com/academyofartuni',
-                      'http://tiktok.com/academyofartu',
+                      'https://www.pinterest.com/academyofartuni',
                     ],
                     {
                       facebook: facebookIcon,
                       twitter: twitterIcon,
                       youtube: youtubeIcon,
                       instagram: instagramIcon,
-                      spotify: spotifyIcon,
-                      tiktok: tikTokIcon,
+                      pinterest: pinterestIcon,
                     }
                   )}
-                  <a target="_blank" href="http://apple.co/1I6ySIP">
-                    <Img fixed={appStoreButton.childImageSharp.fixed} alt="Academy of Art on Apple App Store" />
-                  </a>
                 </div>
               </div>
             </div>

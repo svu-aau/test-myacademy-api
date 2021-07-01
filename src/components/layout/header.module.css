@@ -9,9 +9,36 @@
 
 .toolbar {
   padding: 0.25em 1.5em;
+}
 
-  @media (--media-max-medium) {
-    padding: 0.25em 0.5em;
+.bottomBar {
+  background-color: white;
+  padding: 0 1.5em;
+  min-height: unset !important;
+  color: #252525;
+  border-bottom: 1px solid #ddd;
+  height: 3.25rem;
+
+  @media (--media-max-large) {
+    display: none !important;
+  }
+}
+
+.contactContent {
+  color: white;
+  display: block;
+
+  @media (--media-max-large) {
+    display: none;
+  }
+}
+.hamburger {
+  @media (--media-min-large) {
+    display: none !important;
+  }
+
+  @media (--media-max-large) {
+    display: block;
   }
 }
 
@@ -84,6 +111,8 @@
 
 .searchBarMobile {
   display: block;
+  margin-top: 1em;
+  text-align: center;
   @media (--media-min-small) {
     display: none;
   }
@@ -241,7 +270,8 @@
 }
 
 .headerMenu {
-  padding: 120px 45px 45px 45px;
+  /* padding: 120px 45px 45px 45px; */
+  padding: 120px 1.5em 45px;
 
   @media (--media-max-medium) {
     padding-top: 4em;
@@ -249,7 +279,8 @@
 }
 
 .headerMenuTitle {
-  color: var(--color-white);
+  color: var(--color-dark-gray-bg);
+  font-size: 16px;
   font-weight: bold;
   margin: 1em 0;
 
