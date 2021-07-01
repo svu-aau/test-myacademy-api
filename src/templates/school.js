@@ -68,7 +68,7 @@ const SchoolTemplate = (props) => {
         </Container>
       )}
 
-      <SectionLibraryHero section={{ backgroundImage: heroImage, heroTitle: `School of ${title}` }} />
+      {heroImage && <SectionLibraryHero section={{ backgroundImage: heroImage, heroTitle: `School of ${title}` }} />}
 
       <Section alignReset noPadding>
         <Container>
