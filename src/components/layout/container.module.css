@@ -28,4 +28,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 2em;
+
+  @media (max-width: 750px) {
+    grid-template-columns: 100%;
+  }
 }
