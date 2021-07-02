@@ -97,7 +97,7 @@ const ThesisProjectsPage = (props) => {
       data: projects.nodes
         .filter((project) => project.school.slug.current === school.slug.current)
         .map(({ gallery, student, slug, title }) => [
-          gallery[0].asset.fluid.src,
+          gallery[0] && gallery[0].asset.fluid.src,
           [student, `/schools/${school.slug.current}/${slug.current}`],
           title,
         ]),
