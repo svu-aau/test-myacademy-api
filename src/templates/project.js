@@ -11,7 +11,7 @@ export const query = graphql`
     project: sanityProject(id: { eq: $id }) {
       ...Project
     }
-    page: sanityPage(id: { eq: "home" }) {
+    page: sanityPage(slug: { current: { eq: "home" } }) {
       seoImage {
         asset {
           _id
