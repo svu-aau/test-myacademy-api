@@ -22,6 +22,18 @@ async function createAllSchoolsPage(actions, reporter) {
   });
 }
 
+async function createThesisProjectsPage(actions, reporter) {
+  const { createPage } = actions;
+  const path = `/thesis-projects`;
+
+  reporter.info(`Creating school page: ${path}`);
+
+  createPage({
+    path,
+    component: require.resolve('./src/templates/thesis.js'),
+  });
+}
+
 async function createSchoolPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -89,7 +101,7 @@ async function createProjectPages(graphql, actions, reporter) {
     const slug = edge.node.slug.current;
     if (edge.node.school && edge.node.school.slug) {
       const schoolSlug = edge.node.school.slug.current;
-      const path = `/schools/${schoolSlug}/projects/${slug}/`;
+      const path = `/schools/${schoolSlug}/${slug}/`;
       reporter.info(`Creating project page: ${path}`);
 
       createPage({
@@ -103,61 +115,6 @@ async function createProjectPages(graphql, actions, reporter) {
       createPage({
         path: `/projects/${slug}/`,
         component: require.resolve('./src/templates/project.js'),
-        context: { id },
-      });
-    }
-  });
-}
-
-async function createStudentProfilePages(graphql, actions, reporter) {
-  const { createPage } = actions;
-  const result = await graphql(`
-    {
-      studentProfiles: allSanityStudent(filter: { slug: { current: { ne: null } }, hiddenProfile: { ne: true } }) {
-        edges {
-          node {
-            id
-            slug {
-              current
-            }
-            name
-            school {
-              slug {
-                current
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (result.errors) throw result.errors;
-
-  const studentProfileEdges = (result.data.studentProfiles || {}).edges || [];
-
-  studentProfileEdges.forEach((edge) => {
-    const id = edge.node.id;
-    const slug = edge.node.slug.current;
-    if (edge.node.school) {
-      const schoolSlug = edge.node.school.slug.current;
-      const path = `/schools/${schoolSlug}/students/${slug}/`;
-
-      reporter.info(`Creating student profile page: ${path}`);
-
-      createPage({
-        path,
-        component: require.resolve('./src/templates/student.js'),
-        context: { id },
-      });
-    }
-
-    if (process.env.NODE_ENV === 'development') {
-      // Create page at short url for previews
-      reporter.info(`Creating preview student profile page: /students/${slug}/`);
-      createPage({
-        path: `/students/${slug}/`,
-        component: require.resolve('./src/templates/student.js'),
         context: { id },
       });
     }
@@ -202,8 +159,8 @@ async function createPageBuilderPages(graphql, actions, reporter) {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAllSchoolsPage(actions, reporter);
+  await createThesisProjectsPage(actions, reporter);
   await createSchoolPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
-  await createStudentProfilePages(graphql, actions, reporter);
   await createPageBuilderPages(graphql, actions, reporter);
 };

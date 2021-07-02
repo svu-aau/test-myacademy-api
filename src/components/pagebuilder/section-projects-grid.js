@@ -88,7 +88,7 @@ const allProjectsQuery = graphql`
     allProjects: allSanityProject {
       edges {
         node {
-          ...ProjectPreview
+          ...Project
         }
       }
     }

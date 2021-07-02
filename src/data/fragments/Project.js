@@ -3,8 +3,10 @@ export const queryProject = graphql`
   fragment Project on SanityProject {
     id
     title
-    subTitle
-    type
+    student
+    videoSpotlight
+    downloadLink
+    _rawGallery
     school {
       slug {
         current
@@ -14,35 +16,11 @@ export const queryProject = graphql`
     slug {
       current
     }
-    heroImage {
-      ... on SanityFigure {
-        ...Figure
-      }
-      ... on SanityVideo {
-        ...Video
+    gallery {
+      ... on SanityImage {
+        ...Image
       }
     }
-    awards
-    media {
-      ... on SanityFigure {
-        ...Figure
-      }
-      ... on SanityVideo {
-        ...Video
-      }
-      ... on SanityFileUpload {
-        ...FileUpload
-      }
-    }
-    instructors
-    members {
-      person {
-        ...Student
-      }
-    }
-    _rawAdditionalInfo
-    _rawDescription
-    _rawIntro
     publishedAt
   }
 `;

@@ -26,7 +26,7 @@ export const query = graphql`
     }
     projects: allSanityProject {
       nodes {
-        ...ProjectPreview
+        ...Project
       }
     }
     schools: allSanitySchool {
@@ -98,22 +98,22 @@ const ThesisProjectsPage = (props) => {
   // media is project.media
   // school.title or school.slug.current
   // student.school.title
-  /*
-  const formattedProjects = schools.nodes
-    .map(({ title }) =>
-      projects.nodes
-        .filter(({ school }) => school.title === title)
-        .map(({ heroImage, members, slug, subTitle, title }) => ({
-          heroImage,
-          name: members.person.name,
-          slug: slug.current,
-          subTitle,
-          title,
-        }))
-    )
-    .filter((arr) => arr.length > 0);
-    */
 
+  const formattedProjects = schools.nodes
+    .map((school) => ({
+      school,
+      data: projects.nodes
+        .filter((project) => project.school.slug.current === school.slug.current)
+        .map(({ gallery, student, slug, title }) => ({
+          image: gallery[0],
+          name: student,
+          slug: slug.current,
+          title,
+        })),
+    }))
+    .filter(({ data }) => data.length > 0);
+
+  /*
   const formattedProjects = [
     {
       school: {
@@ -196,6 +196,7 @@ const ThesisProjectsPage = (props) => {
       ],
     },
   ];
+  */
 
   console.log('formattedProjects', formattedProjects);
 
@@ -213,7 +214,7 @@ const ThesisProjectsPage = (props) => {
 
       {page && <ContentSections content={page.content} slug={'home'} />}
 
-      <Section alignReset noPaddingTop>
+      <Section alignReset noPadding>
         <Container>
           <div className={layoutStyles.breadcrumb}>
             <Link to={'/'}>HOME</Link>
@@ -223,7 +224,7 @@ const ThesisProjectsPage = (props) => {
         </Container>
       </Section>
 
-      <Section>
+      <Section noPadding>
         <Container>
           <h3>Quicklinks</h3>
           <div className={cn(styles.headerMenuSchools, styles.flexThree)}>
@@ -261,16 +262,15 @@ const ThesisProjectsPage = (props) => {
         </Container>
       </Section>
 
-      <Section>
+      <Section noPaddingTop>
         <Container>
           {formattedProjects.map(({ school, data }) => {
-            const arr = data.map(({ heroImage, name, title, slug }) => [
-              heroImage.asset.fluid.src,
+            const arr = data.map(({ image, name, title, slug }) => [
+              image.asset.fluid.src,
               [name, `/schools/${school.slug}/${slug}`],
               title,
             ]);
 
-            // TODO: Grid Black title, grey sub, align left
             return (
               <>
                 <h1>{school.title}</h1>

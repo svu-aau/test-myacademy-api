@@ -103,7 +103,7 @@ export const queryFigure = graphql`
       limitResults
       gridStyle
       projects {
-        ...ProjectPreview
+        ...Project
         ...StudentPreview
       }
       school {
@@ -128,7 +128,7 @@ export const queryFigure = graphql`
       limitResults
       gridStyle
       projects {
-        ...ProjectPreview
+        ...Project
       }
       school {
         __typename
