@@ -91,114 +91,18 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
-  console.log('schools', schools);
-  console.log('projects', projects);
-
-  // http://gradshowcase.academyart.edu/schools/acting/amanda-casarella.html
-  // media is project.media
-  // school.title or school.slug.current
-  // student.school.title
-
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
       data: projects.nodes
         .filter((project) => project.school.slug.current === school.slug.current)
-        .map(({ gallery, student, slug, title }) => ({
-          image: gallery[0],
-          name: student,
-          slug: slug.current,
+        .map(({ gallery, student, slug, title }) => [
+          gallery[0].asset.fluid.src,
+          [student, `/schools/${school.slug.current}/${slug.current}`],
           title,
-        })),
+        ]),
     }))
     .filter(({ data }) => data.length > 0);
-
-  /*
-  const formattedProjects = [
-    {
-      school: {
-        slug: 'acting',
-        title: 'Acting',
-      },
-      data: [
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-production/53c704471c740629d7b49e1029ac0e94240bc355-2200x1283.jpg?w=1440&h=840&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-      ],
-    },
-  ];
-  */
-
-  console.log('formattedProjects', formattedProjects);
 
   return (
     <Layout
@@ -264,20 +168,12 @@ const ThesisProjectsPage = (props) => {
 
       <Section noPaddingTop>
         <Container>
-          {formattedProjects.map(({ school, data }) => {
-            const arr = data.map(({ image, name, title, slug }) => [
-              image.asset.fluid.src,
-              [name, `/schools/${school.slug}/${slug}`],
-              title,
-            ]);
-
-            return (
-              <>
-                <h1>{school.title}</h1>
-                <ImageGrid data={arr} />
-              </>
-            );
-          })}
+          {formattedProjects.map(({ school, data }) => (
+            <>
+              <h1>{school.title}</h1>
+              <ImageGrid data={data} />
+            </>
+          ))}
         </Container>
       </Section>
     </Layout>
