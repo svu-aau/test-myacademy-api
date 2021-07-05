@@ -12,7 +12,6 @@ import Container from '../components/layout/container';
 
 import { cn } from '../lib/helpers';
 import styles from './thesis.module.css';
-import ProjectsGrid from '../components/projects/projects-grid';
 
 export const query = graphql`
   query ThesisPageQuery {
@@ -103,6 +102,9 @@ const ThesisProjectsPage = (props) => {
         ]),
     }))
     .filter(({ data }) => data.length > 0);
+
+  console.log('data', data);
+  console.log('formattedProjects', formattedProjects);
 
   return (
     <Layout
