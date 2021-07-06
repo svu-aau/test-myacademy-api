@@ -21,9 +21,6 @@ export default function FilePreview({ file, caption, title = caption, thumbnail 
   }
 
   if (asset.extension === 'pdf') {
-    // const onLoadSuccess = (...args) => {
-    //   console.log('PDF Loaded', [...args]);
-    // };
     const onLoadError = (...args) => {
       console.log('PDF Error', [...args]);
     };

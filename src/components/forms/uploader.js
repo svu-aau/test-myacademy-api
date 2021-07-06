@@ -92,9 +92,6 @@ export default React.memo(
     required,
     school,
   }) => {
-    // console.log('Uploader school: ', school);
-    // console.log('Uploader categories: ', categories);
-
     fileChanged = null;
     const classes = useStyles();
     const [fileStatuses, setFileStatuses] = React.useState({});
@@ -142,7 +139,6 @@ export default React.memo(
     };
 
     const handleSubmit = (_, allFiles) => {
-      // console.log('------ allFiles ------: ', allFiles);
       allFiles.forEach((f) => f.remove());
     };
 
@@ -255,8 +251,5 @@ export default React.memo(
 
 // re-render when school or files were added or s/m/d related categories changed
 function areEqual(prevProps, nextProps) {
-  // console.log('fileChanged: ', fileChanged);
-  // console.log('areEqual prevProps: ', prevProps);
-  // console.log('areEqual nextProps: ', nextProps);
   return fileChanged && prevProps.school !== nextProps.school && prevProps.categories._id !== nextProps.categories._id;
 }

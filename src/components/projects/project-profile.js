@@ -7,7 +7,7 @@ import Section from '../sections/section';
 import Container from '../layout/container';
 
 function ProjectProfile(props) {
-  const { title, student, school, gallery, videoSpotlight } = props;
+  const { downloadLink, title, student, school, gallery, videoSpotlight } = props;
 
   const carouselData = gallery.map((item) => ({
     id: item._key,
@@ -35,9 +35,11 @@ function ProjectProfile(props) {
           <h3>{title}</h3>
           <h2 className={layoutStyles.title}>{student}</h2>
 
-          <div className={layoutStyles.columnSection}>
-            <DLLink link="#" variant="cta" label="Download Thesis" />
-          </div>
+          {downloadLink && (
+            <div className={layoutStyles.columnSection}>
+              <DLLink link={downloadLink} variant="cta" label="Download Thesis" />
+            </div>
+          )}
 
           <br />
           <br />

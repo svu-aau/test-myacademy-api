@@ -4,7 +4,6 @@ import ColumnGrid from '../grids/column-grid';
 import styles from '../projects/projects-grid.module.css';
 
 function ImageGrid({ items, linkOverride, showFilters = false, showPagination = false }) {
-  // console.log('ImageGrid items: ', items);
   //todo: wire up filters and pagination
   return (
     <div className={styles.root}>

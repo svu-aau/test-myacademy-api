@@ -8,8 +8,6 @@ import styles from './featured-projects-grid.module.css';
 import StudentPreview from '../students/student-preview';
 
 function FeaturedProjectsGrid({ projects, type }) {
-  // console.log('FeaturedProjectsGrid projects', projects);
-  // console.log('type: ', type);
   const totalProjects = projects && projects.length;
   const lightbox = useRef();
 

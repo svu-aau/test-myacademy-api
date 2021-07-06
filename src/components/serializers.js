@@ -66,7 +66,7 @@ const serializers = {
     // normal links
     link: ({ mark: { href, style }, children }) => {
       const linkStyle = serializerStyles[style] || serializerStyles.link;
-      // console.log({ linkStyle })
+
       if (href && href.indexOf('http') === 0) {
         return (
           <a href={href} className={linkStyle} target="_blank" rel="noopener">

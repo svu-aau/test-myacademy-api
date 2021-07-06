@@ -11,7 +11,6 @@ import VideoPlayer from '../video-player';
 import { imageUrlFor } from '../../lib/image-url';
 
 export default function PortfolioGrid({ media, showDescription = false, onItemClick = (idx) => {} }) {
-  // console.log('media: ', media);
   return media.map((media, idx) => {
     const { _type, _key } = media;
     if (_type === 'video') {

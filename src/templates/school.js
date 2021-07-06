@@ -38,7 +38,6 @@ export const query = graphql`
 
 const SchoolTemplate = (props) => {
   const { data, errors } = props;
-  // console.log('school data: ', data);
   const school = data && data.school;
 
   const { title, heroImage, heroTitle, columnData, slug, seo, seoImage } = school;

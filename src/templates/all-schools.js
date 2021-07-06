@@ -25,7 +25,6 @@ export const query = graphql`
 `;
 
 const ProjectTemplate = (props) => {
-  // console.log('ProjectTemplate props: ', props);
   const { data, errors } = props;
   const { schools } = data;
   const site = (data || {}).site;
