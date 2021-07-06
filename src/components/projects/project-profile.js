@@ -7,13 +7,14 @@ import Section from '../sections/section';
 import Container from '../layout/container';
 
 function ProjectProfile(props) {
-  const { title, student, school, gallery } = props;
+  const { title, student, school, gallery, videoSpotlight } = props;
 
-  console.log('gallery', gallery);
   const carouselData = gallery.map((item) => ({
     id: item._key,
     image: item.asset.fluid.src,
   }));
+
+  const ENTRY_ID = videoSpotlight;
 
   return (
     <>
@@ -41,7 +42,20 @@ function ProjectProfile(props) {
           <br />
           <br />
           <br />
-          <Carousel data={carouselData} />
+          {videoSpotlight && (
+            <iframe
+              type="text/javascript"
+              src={`https://cdnapisec.kaltura.com/p/${process.env.KALTURA_PARTNER_ID}/sp/${process.env.KALTURA_PARTNER_ID}00/embedIframeJs/uiconf_id/${process.env.KALTURA_UICONF_ID}/partner_id/${process.env.KALTURA_PARTNER_ID}?iframeembed=true&playerId=kaltura_player_1625520477&entry_id=${ENTRY_ID}`}
+              style={{ width: 640, height: 360 }}
+              allowFullScreen
+              webkitallowfullscreen
+              mozAllowFullScreen
+              frameBorder="0"
+              id="kaltura_player_1625520477"
+              allow="autoplay *; fullscreen *; encrypted-media *"
+            ></iframe>
+          )}
+          {carouselData && <Carousel data={carouselData} />}
         </Container>
       </Section>
     </>
