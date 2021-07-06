@@ -38,7 +38,7 @@ export const query = graphql`
       description
       keywords
     }
-    page: sanityPage(slug: { current: { eq: "thesis-projects" } }) {
+    page: sanityPage(slug: { current: { eq: "thesis" } }) {
       content: contentArray {
         ...PageContent
       }
@@ -111,8 +111,8 @@ const ThesisProjectsPage = (props) => {
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
     >
       <SEO
-        title={page.seo.seo_title || site.title || config.title}
-        description={page.seo.meta_description}
+        title={page.seo?.seo_title || site.title || config.title}
+        description={page.seo?.meta_description}
         keywords={page.seoKeywords || site.keywords}
         seoImage={page.seoImage?.asset?.img?.src}
         path={props.location.pathname}
