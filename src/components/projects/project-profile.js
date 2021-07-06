@@ -11,7 +11,7 @@ function ProjectProfile(props) {
 
   const carouselData = gallery.map((item) => ({
     id: item._key,
-    image: item.asset.fluid.src,
+    image: item.asset?.url,
   }));
 
   const ENTRY_ID = videoSpotlight;
