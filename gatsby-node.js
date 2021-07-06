@@ -14,7 +14,7 @@ async function createAllSchoolsPage(actions, reporter) {
   const { createPage } = actions;
   const path = `/schools/`;
 
-  reporter.info(`Creating school page: ${path}`);
+  reporter.info(`Creating schools page: ${path}`);
 
   createPage({
     path,
@@ -26,7 +26,7 @@ async function createThesisProjectsPage(actions, reporter) {
   const { createPage } = actions;
   const path = `/thesis-projects`;
 
-  reporter.info(`Creating school page: ${path}`);
+  reporter.info(`Creating thesis page: ${path}`);
 
   createPage({
     path,
