@@ -5,6 +5,7 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import ContentSections from '../components/pagebuilder/content-sections';
+import SiteMap from '../components/pagebuilder/site-map';
 
 export const query = graphql`
   query PageTemplateQuery($id: String!) {
@@ -51,6 +52,7 @@ const ProjectTemplate = (props) => {
       },
       page,
     },
+    path,
     errors,
   } = props;
 
@@ -80,6 +82,7 @@ const ProjectTemplate = (props) => {
         </Container>
       )}
       {content && <ContentSections isPageContent content={content} />}
+      {path === '/site-map/' && <SiteMap />}
     </Layout>
   );
 };
