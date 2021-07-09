@@ -89,31 +89,12 @@ const SiteMap = () => {
                 </>
               ))}
           </div>
-
-          <Link to={'/projects'}>
-            <h3 className={styles.link}>Projects</h3>
+          <Link to={'/thesis-projects'}>
+            <h3 className={styles.link}>Thesis Projects</h3>
           </Link>
-          <div className={styles.link_container}>
-            {projects?.edges?.length &&
-              projects.edges.map((project) => (
-                <>
-                  <Link to={`/projects/${project.node.slug.current}`} key={project.node._id}>
-                    {project.node.title}
-                  </Link>
-                  <div className={styles.link_container}>
-                    {schools?.edges?.length &&
-                      schools.edges.map(
-                        (school) =>
-                          school.node?._id === project.node?.school?._id && (
-                            <Link to={`/schools/${school.node.slug.current}`} key={school.node._id}>
-                              {school.node.title}
-                            </Link>
-                          )
-                      )}
-                  </div>
-                </>
-              ))}
-          </div>
+          <Link to={'/resources'}>
+            <h3 className={styles.link}>Resources</h3>
+          </Link>
         </div>
       </Container>
     </Section>
