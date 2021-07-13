@@ -88,7 +88,10 @@ const SiteMap = (props) => {
                         students.edges.map(
                           (student) =>
                             student.node?.school?._id === school.node._id && (
-                              <Link to={`/students/${student.node.slug.current}`} key={student.node._id}>
+                              <Link
+                                to={`/schools/${school.node.slug.current}/${student.node.slug.current}`}
+                                key={student.node._id}
+                              >
                                 {student.node.name}
                               </Link>
                             )
