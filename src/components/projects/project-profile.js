@@ -7,7 +7,9 @@ import Section from '../sections/section';
 import Container from '../layout/container';
 
 function ProjectProfile(props) {
-  const { downloadLink, title, student, school, gallery, videoSpotlight } = props;
+  const { download, title, student, gallery, videoSpotlight } = props;
+  const { school, name } = student;
+  const downloadLink = download?.asset?.url;
 
   const carouselData = gallery.map((item) => ({
     id: item._key,
@@ -29,11 +31,11 @@ function ProjectProfile(props) {
             <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
             <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
             <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <div className={layoutStyles.breadcrumbLink}>{student}</div>
+            <div className={layoutStyles.breadcrumbLink}>{name}</div>
           </div>
 
           <h3>{title}</h3>
-          <h2 className={layoutStyles.title}>{student}</h2>
+          <h2 className={layoutStyles.title}>{name}</h2>
 
           {downloadLink && (
             <div className={layoutStyles.columnSection}>

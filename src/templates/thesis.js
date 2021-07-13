@@ -23,9 +23,9 @@ export const query = graphql`
         userTwitter
       }
     }
-    projects: allSanityProject {
+    students: allSanityStudent {
       nodes {
-        ...Project
+        ...Student
       }
     }
     schools: allSanitySchool {
@@ -78,7 +78,7 @@ const ThesisProjectsPage = (props) => {
   const {
     gatsby: { config },
     schools,
-    projects,
+    students,
     site,
     page,
   } = data;
@@ -90,15 +90,16 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
+  console.log('students Nodes', students.nodes);
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
-      data: projects.nodes
-        .filter((project) => project.school.slug.current === school.slug.current)
-        .map(({ gallery, student, slug, title }) => [
-          gallery[0] && gallery[0].asset?.url,
-          [student, `/schools/${school.slug.current}/${slug.current}`],
-          title,
+      data: students.nodes
+        .filter((student) => student.school.slug.current === school.slug.current)
+        .map(({ heroImage, name, slug, projects }) => [
+          heroImage && heroImage.fluid?.asset?.url,
+          [name, `/schools/${school.slug.current}/${slug.current}`],
+          projects.map(({ title }) => title).join(', '),
         ]),
     }))
     .filter(({ data }) => data.length > 0);
