@@ -51,9 +51,7 @@ const SiteMap = (props) => {
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
-      {!errors && (
-        <SEO title="Site Map | Academy of Art University Spring Show" keywords="site-map" path="/site-map/" />
-      )}
+      {!errors && <SEO title="Site Map" path={props.location.pathname} />}
 
       {errors && (
         <Container>
