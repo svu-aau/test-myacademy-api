@@ -74,12 +74,16 @@ async function createProjectPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      projects: allSanityProject(filter: { slug: { current: { ne: null } } }) {
+      students: allSanityStudent(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
-            id
             slug {
               current
+            }
+            projects {
+              ... on SanityProject {
+                id
+              }
             }
             school {
               slug {
@@ -94,11 +98,13 @@ async function createProjectPages(graphql, actions, reporter) {
 
   if (result.errors) throw result.errors;
 
-  const projectEdges = (result.data.projects || {}).edges || [];
+  const studentEdges = (result.data.students || {}).edges || [];
 
-  projectEdges.forEach((edge) => {
-    const id = edge.node.id;
+  studentEdges.forEach((edge) => {
+    const project = edge.node.projects[0];
     const slug = edge.node.slug.current;
+    const id = project.id;
+
     if (edge.node.school && edge.node.school.slug) {
       const schoolSlug = edge.node.school.slug.current;
       const path = `/schools/${schoolSlug}/${slug}/`;

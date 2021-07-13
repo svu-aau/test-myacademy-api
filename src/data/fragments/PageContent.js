@@ -104,7 +104,6 @@ export const queryFigure = graphql`
       gridStyle
       projects {
         ...Project
-        ...StudentPreview
       }
       school {
         __typename
