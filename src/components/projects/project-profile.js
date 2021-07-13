@@ -9,7 +9,7 @@ import Container from '../layout/container';
 function ProjectProfile(props) {
   const { download, title, student, gallery, videoSpotlight } = props;
   const { school, name } = student;
-  const downloadLink = download.asset.url;
+  const downloadLink = download?.asset?.url;
 
   const carouselData = gallery.map((item) => ({
     id: item._key,
