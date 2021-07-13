@@ -125,7 +125,7 @@ async function createPageBuilderPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      pages: allSanityPage(filter: { slug: { current: { nin: [null, "site-map"] } } }) {
+      pages: allSanityPage(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
             id
@@ -157,47 +157,10 @@ async function createPageBuilderPages(graphql, actions, reporter) {
   });
 }
 
-async function createSiteMapPage(graphql, actions, reporter) {
-  const { createPage } = actions;
-  const result = await graphql(`
-    {
-      pages: allSanityPage(filter: { title: { eq: "Site Map" }, slug: { current: { ne: null } } }) {
-        edges {
-          node {
-            id
-            slug {
-              current
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (result.errors) throw result.errors;
-
-  const edges = (result.data.pages || {}).edges || [];
-
-  edges.forEach((edge) => {
-    const id = edge.node.id;
-    const slug = edge.node.slug.current;
-    const path = `/${slug}/`;
-
-    reporter.info(`Creating site-map page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/site-map.js'),
-      context: { id },
-    });
-  });
-}
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAllSchoolsPage(actions, reporter);
   await createThesisProjectsPage(actions, reporter);
   await createSchoolPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
   await createPageBuilderPages(graphql, actions, reporter);
-  await createSiteMapPage(graphql, actions, reporter);
 };

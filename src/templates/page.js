@@ -51,7 +51,6 @@ const ProjectTemplate = (props) => {
       },
       page,
     },
-    path,
     errors,
   } = props;
 

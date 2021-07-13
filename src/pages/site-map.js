@@ -9,39 +9,7 @@ import styles from './site-map.module.css';
 import layoutStyles from '../components/layout/layout.module.css';
 
 export const query = graphql`
-  query SiteMapQuery($id: String!) {
-    site {
-      meta: siteMetadata {
-        siteUrl
-      }
-    }
-    page: sanityPage(id: { eq: $id }) {
-      id
-      slug {
-        current
-      }
-      title
-      seoImage {
-        asset {
-          _id
-          url
-          img: fixed(width: 1024) {
-            width
-            height
-            src
-          }
-        }
-      }
-      seoKeywords
-      seo {
-        focus_keyword
-        meta_description
-        seo_title
-      }
-      content: contentArray {
-        ...PageContent
-      }
-    }
+  query SiteMapQuery {
     schools: allSanitySchool(sort: { fields: title }) {
       edges {
         node {
@@ -77,41 +45,23 @@ export const query = graphql`
 const SiteMap = (props) => {
   const {
     data: {
-      site: {
-        meta: { siteUrl },
-      },
-      page,
       schools,
       students,
     },
-    path,
     errors,
   } = props;
-
-  const { title, seo, seoImage } = page;
-  const seoDescription = (seo && seo.meta_description) || '';
-  const pageTitle = title || 'Untitled';
-  const seoTitle = (seo && seo.seo_title) || pageTitle;
 
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
-      {page && (
-        <SEO
-          title={pageTitle}
-          seoImage={seoImage?.asset?.img?.src}
-          seoTitle={seoTitle}
-          description={seoDescription}
-          keywords={page.seoKeywords}
-          path={props.location.pathname}
-        />
-      )}
+      {!errors && <SEO title="Site Map | Academy of Art University Spring Show" keywords="site-map" path="/site-map/" />}
 
       {errors && (
         <Container>
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
+
       <Section>
         <Container>
           <div className={layoutStyles.breadcrumb}>
