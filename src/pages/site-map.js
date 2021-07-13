@@ -44,17 +44,16 @@ export const query = graphql`
 
 const SiteMap = (props) => {
   const {
-    data: {
-      schools,
-      students,
-    },
+    data: { schools, students },
     errors,
   } = props;
 
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
-      {!errors && <SEO title="Site Map | Academy of Art University Spring Show" keywords="site-map" path="/site-map/" />}
+      {!errors && (
+        <SEO title="Site Map | Academy of Art University Spring Show" keywords="site-map" path="/site-map/" />
+      )}
 
       {errors && (
         <Container>
