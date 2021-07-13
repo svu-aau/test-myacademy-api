@@ -3,18 +3,12 @@ export const queryProject = graphql`
   fragment Project on SanityProject {
     id
     title
-    student
-    videoSpotlight
-    downloadLink
-    _rawGallery
-    school {
-      slug {
-        current
-      }
-      title
+    student {
+      ...StudentPreview
     }
-    slug {
-      current
+    videoSpotlight
+    download {
+      ...File
     }
     gallery {
       ... on SanityImage {
