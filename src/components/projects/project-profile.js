@@ -49,7 +49,7 @@ function ProjectProfile(props) {
           {videoSpotlight && (
             <iframe
               type="text/javascript"
-              src={`https://cdnapisec.kaltura.com/p/${process.env.KALTURA_PARTNER_ID}/sp/${process.env.KALTURA_PARTNER_ID}00/embedIframeJs/uiconf_id/${process.env.KALTURA_UICONF_ID}/partner_id/${process.env.KALTURA_PARTNER_ID}?iframeembed=true&playerId=kaltura_player_1625520477&entry_id=${ENTRY_ID}`}
+              src={`https://cdnapisec.kaltura.com/p/${process.env.GATSBY_KALTURA_PARTNER_ID}/sp/${process.env.GATSBY_KALTURA_PARTNER_ID}00/embedIframeJs/uiconf_id/${process.env.GATSBY_KALTURA_UICONF_ID}/partner_id/${process.env.GATSBY_KALTURA_PARTNER_ID}?iframeembed=true&playerId=kaltura_player_1625520477&entry_id=${ENTRY_ID}`}
               style={{ width: 640, height: 360 }}
               allowFullScreen
               webkitallowfullscreen
