@@ -5,7 +5,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import typographyStyles from '../styles/typography.module.css';
 import serializerStyles from './serializers.module.css';
 import { Link } from 'gatsby';
-import { imageUrlFor } from '../lib/image-url';
+import softSearch from '../utils/linkHelper';
 
 const BlockRenderer = (props) => {
   const { style = 'normal' } = props.node;
@@ -66,6 +66,14 @@ const serializers = {
     // normal links
     link: ({ mark: { href, style }, children }) => {
       const linkStyle = serializerStyles[style] || serializerStyles.link;
+
+      let hrefSplit = href.split('/');
+      const result = softSearch('gradshowcase.academyart.edu', hrefSplit);
+
+      if (result) {
+        hrefSplit.splice(0, result[1] + 1);
+        href = `/${hrefSplit.join('/')}`;
+      }
 
       if (href && href.indexOf('http') === 0) {
         return (

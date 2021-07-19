@@ -38,7 +38,7 @@ function StudentProfile(props) {
           <h2 className={layoutStyles.title}>{name}</h2>
 
           <div className={layoutStyles.columnSection}>
-            <DLLink link="#" variant="cta" label="Download Thesis" />
+            <DLLink target="_blank" href="#" variant="cta" label="Download Thesis" />
           </div>
 
           <br />
