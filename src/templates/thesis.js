@@ -100,7 +100,21 @@ const ThesisProjectsPage = (props) => {
           heroImage && heroImage.fluid?.asset?.url,
           [name, `/schools/${school.slug.current}/${slug.current}`],
           projects.map(({ title }) => title).join(', '),
-        ]),
+        ])
+        .sort((a, b) => {
+          let nameA = a[1][0].toUpperCase();
+          let nameB = b[1][0].toUpperCase();
+
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          // names must be equal
+          return 0;
+        }),
     }))
     .filter(({ data }) => data.length > 0);
 
