@@ -10,13 +10,12 @@ function ProjectProfile(props) {
   const { download, title, student, gallery, videoSpotlight } = props;
   const { school, name } = student;
   const downloadLink = download?.asset?.url;
+  const ENTRY_ID = videoSpotlight;
 
   const carouselData = gallery.map((item) => ({
     id: item._key,
     image: item.asset?.url,
   }));
-
-  const ENTRY_ID = videoSpotlight;
 
   return (
     <>
