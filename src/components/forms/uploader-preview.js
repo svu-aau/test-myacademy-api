@@ -80,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
 
 function getTypeComponent(meta) {
   const mediaType = meta.type;
-  // console.log('meta.previewUrl', meta.previewUrl);
   const classes = useStyles();
   if (mediaType.match(/image/g)) {
     return (

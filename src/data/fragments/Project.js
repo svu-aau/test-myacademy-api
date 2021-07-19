@@ -3,46 +3,18 @@ export const queryProject = graphql`
   fragment Project on SanityProject {
     id
     title
-    subTitle
-    type
-    school {
-      slug {
-        current
-      }
-      title
+    student {
+      ...StudentPreview
     }
-    slug {
-      current
+    videoSpotlight
+    download {
+      ...File
     }
-    heroImage {
-      ... on SanityFigure {
-        ...Figure
-      }
-      ... on SanityVideo {
-        ...Video
+    gallery {
+      ... on SanityImage {
+        ...Image
       }
     }
-    awards
-    media {
-      ... on SanityFigure {
-        ...Figure
-      }
-      ... on SanityVideo {
-        ...Video
-      }
-      ... on SanityFileUpload {
-        ...FileUpload
-      }
-    }
-    instructors
-    members {
-      person {
-        ...Student
-      }
-    }
-    _rawAdditionalInfo
-    _rawDescription
-    _rawIntro
     publishedAt
   }
 `;

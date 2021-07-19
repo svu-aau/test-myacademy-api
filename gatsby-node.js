@@ -14,11 +14,23 @@ async function createAllSchoolsPage(actions, reporter) {
   const { createPage } = actions;
   const path = `/schools/`;
 
-  reporter.info(`Creating school page: ${path}`);
+  reporter.info(`Creating schools page: ${path}`);
 
   createPage({
     path,
     component: require.resolve('./src/templates/all-schools.js'),
+  });
+}
+
+async function createThesisProjectsPage(actions, reporter) {
+  const { createPage } = actions;
+  const path = `/thesis-projects`;
+
+  reporter.info(`Creating thesis page: ${path}`);
+
+  createPage({
+    path,
+    component: require.resolve('./src/templates/thesis.js'),
   });
 }
 
@@ -62,12 +74,16 @@ async function createProjectPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      projects: allSanityProject(filter: { slug: { current: { ne: null } } }) {
+      students: allSanityStudent(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
-            id
             slug {
               current
+            }
+            projects {
+              ... on SanityProject {
+                id
+              }
             }
             school {
               slug {
@@ -82,14 +98,16 @@ async function createProjectPages(graphql, actions, reporter) {
 
   if (result.errors) throw result.errors;
 
-  const projectEdges = (result.data.projects || {}).edges || [];
+  const studentEdges = (result.data.students || {}).edges || [];
 
-  projectEdges.forEach((edge) => {
-    const id = edge.node.id;
+  studentEdges.forEach((edge) => {
+    const project = edge.node.projects[0];
     const slug = edge.node.slug.current;
+    const id = project.id;
+
     if (edge.node.school && edge.node.school.slug) {
       const schoolSlug = edge.node.school.slug.current;
-      const path = `/schools/${schoolSlug}/projects/${slug}/`;
+      const path = `/schools/${schoolSlug}/${slug}/`;
       reporter.info(`Creating project page: ${path}`);
 
       createPage({
@@ -103,61 +121,6 @@ async function createProjectPages(graphql, actions, reporter) {
       createPage({
         path: `/projects/${slug}/`,
         component: require.resolve('./src/templates/project.js'),
-        context: { id },
-      });
-    }
-  });
-}
-
-async function createStudentProfilePages(graphql, actions, reporter) {
-  const { createPage } = actions;
-  const result = await graphql(`
-    {
-      studentProfiles: allSanityStudent(filter: { slug: { current: { ne: null } }, hiddenProfile: { ne: true } }) {
-        edges {
-          node {
-            id
-            slug {
-              current
-            }
-            name
-            school {
-              slug {
-                current
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (result.errors) throw result.errors;
-
-  const studentProfileEdges = (result.data.studentProfiles || {}).edges || [];
-
-  studentProfileEdges.forEach((edge) => {
-    const id = edge.node.id;
-    const slug = edge.node.slug.current;
-    if (edge.node.school) {
-      const schoolSlug = edge.node.school.slug.current;
-      const path = `/schools/${schoolSlug}/students/${slug}/`;
-
-      reporter.info(`Creating student profile page: ${path}`);
-
-      createPage({
-        path,
-        component: require.resolve('./src/templates/student.js'),
-        context: { id },
-      });
-    }
-
-    if (process.env.NODE_ENV === 'development') {
-      // Create page at short url for previews
-      reporter.info(`Creating preview student profile page: /students/${slug}/`);
-      createPage({
-        path: `/students/${slug}/`,
-        component: require.resolve('./src/templates/student.js'),
         context: { id },
       });
     }
@@ -202,8 +165,8 @@ async function createPageBuilderPages(graphql, actions, reporter) {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAllSchoolsPage(actions, reporter);
+  await createThesisProjectsPage(actions, reporter);
   await createSchoolPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
-  await createStudentProfilePages(graphql, actions, reporter);
   await createPageBuilderPages(graphql, actions, reporter);
 };

@@ -10,19 +10,16 @@ export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
     project: sanityProject(id: { eq: $id }) {
       ...Project
-
-      seoImage: heroImage {
-        ... on SanityFigure {
-          image {
-            asset {
-              _id
-              url
-              img: fixed(width: 1024) {
-                width
-                height
-                src
-              }
-            }
+    }
+    page: sanityPage(slug: { current: { eq: "home" } }) {
+      seoImage {
+        asset {
+          _id
+          url
+          img: fixed(width: 1024) {
+            width
+            height
+            src
           }
         }
       }
@@ -33,13 +30,14 @@ export const query = graphql`
 const ProjectTemplate = (props) => {
   const { data, errors } = props;
   const project = data && data.project;
+  const { page } = data;
   return (
     <Layout fixedNav>
       {errors && <SEO title="GraphQL Error" />}
       {project && (
         <SEO
           title={project.title || 'Untitled'}
-          seoImage={project.seoImage[0]?.image?.asset.img.src}
+          seoImage={page.seoImage?.image?.asset.img.src}
           path={props.location.pathname}
         />
       )}

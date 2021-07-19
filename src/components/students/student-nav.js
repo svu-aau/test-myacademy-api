@@ -8,7 +8,7 @@ import styles from './student-profile.module.css';
 export default function StudentNav({ schoolSlug = null, studentId = null }) {
   const { allStudents } = useStaticQuery(graphql`
     query StudentNavQuery {
-      allStudents: allSanityStudent(filter: { hiddenProfile: { ne: true }, publishedAt: { ne: null } }) {
+      allStudents: allSanityStudent(filter: { publishedAt: { ne: null } }) {
         nodes {
           name
           id

@@ -85,7 +85,7 @@ const allSectionProjects = graphql`
     allSectionProjects: allSanityProject {
       edges {
         node {
-          ...ProjectPreview
+          ...Project
         }
       }
     }

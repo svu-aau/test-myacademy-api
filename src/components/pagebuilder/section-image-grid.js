@@ -25,11 +25,6 @@ const SectionImageGrid = ({ section }) => {
 
   const limit = limitResults && limitResults > 0 ? limitResults : MAX_RESULTS;
 
-  // If school is select, use that featured list
-  // otherwise, use selected list of images
-  // if this imageList is empty, we will use allImages
-  // console.log('media: ', media);
-
   return (
     <div key={_key} style={{ backgroundColor }}>
       {_rawIntro && (

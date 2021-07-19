@@ -1,76 +1,54 @@
-import { Link } from 'gatsby';
-import Img from 'gatsby-image';
 import React from 'react';
-import { cn } from '../../lib/helpers';
-import BlockText from '../block-text';
+import { Link } from 'gatsby';
+import { Carousel, Hero, Link as DLLink } from '@aauweb/design-library';
 
-import styles from './project-preview.module.css';
-import { responsiveTitle3 } from '../../styles/typography.module.css';
-import { ConditionalWrapper } from '../../utils/tools';
+import layoutStyles from '../layout/layout.module.css';
+import Section from '../sections/section';
+import Container from '../layout/container';
 
-function ProjectPreview(props) {
-  // console.log('ProjectPreview props: ', props);
-  const { school, slug, title, _rawExcerpt, linkOverride, masonry, media, small, heroImage, onClick } = props;
-  let displayFeaturedMedia = {};
-  if (heroImage && heroImage[0] && heroImage[0].image) {
-    displayFeaturedMedia = heroImage[0];
-  } else if (media) {
-    displayFeaturedMedia = media[0];
-  }
+function StudentProfile(props) {
+  const { name, school, portfolio } = props;
 
-  const preventDefault = (event) => {
-    event.preventDefault();
-  };
+  const media = [...portfolio];
+
+  console.log('media', media);
+  const carouselData = media.map((item) => {
+    return {
+      id: item._key,
+      alt: item.alt,
+      image: item.image.asset.fluid.src,
+    };
+  });
 
   return (
-    <ConditionalWrapper
-      condition={school && slug && !(linkOverride && linkOverride !== '')}
-      wrapper={(children) => (
-        <Link
-          className={cn(styles.root, small && styles.small, !masonry && styles.stdGrid)}
-          to={`/schools/${school.slug.current}/projects/${slug.current}`}
-          onClick={(e) => {
-            if (onClick) {
-              preventDefault(e);
-              onClick();
-            }
-          }}
-        >
-          {children}
-        </Link>
-      )}
-    >
-      <ConditionalWrapper
-        condition={linkOverride && linkOverride !== ''}
-        wrapper={(children) => (
-          <Link
-            className={cn(styles.root, small && styles.small, !masonry && styles.stdGrid)}
-            to={linkOverride}
-            onClick={(e) => {
-              if (onClick) {
-                preventDefault(e);
-                onClick();
-              }
-            }}
-          >
-            {children}
-          </Link>
-        )}
-      >
-        <div className={masonry ? cn(styles.leadMediaThumb, styles.leadMediaThumbMasonry) : styles.leadMediaThumb}>
-          {displayFeaturedMedia && displayFeaturedMedia.image && (
-            <Img fluid={displayFeaturedMedia.image.asset.fluid} alt={displayFeaturedMedia.alt} />
-          )}
-          <h3 className={cn(responsiveTitle3, styles.title)}>{title}</h3>
-          {_rawExcerpt && (
-            <div className={styles.excerpt}>
-              <BlockText blocks={_rawExcerpt} />
-            </div>
-          )}
-        </div>
-      </ConditionalWrapper>
-    </ConditionalWrapper>
+    <>
+      <Hero backgroundImage={school.heroImage.asset.fluid.src} title={`School of ${props.school.title}`} />
+
+      <Section alignReset noPaddingTop>
+        <Container>
+          <div className={layoutStyles.breadcrumb}>
+            <Link to={'/'}>HOME</Link>
+            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
+            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <div className={layoutStyles.breadcrumbLink}>{name}</div>
+          </div>
+
+          <h3>Midpoint Review</h3>
+          <h2 className={layoutStyles.title}>{name}</h2>
+
+          <div className={layoutStyles.columnSection}>
+            <DLLink link="#" variant="cta" label="Download Thesis" />
+          </div>
+
+          <br />
+          <br />
+          <br />
+          <Carousel data={carouselData} />
+        </Container>
+      </Section>
+    </>
   );
 }
 
-export default ProjectPreview;
+export default StudentProfile;

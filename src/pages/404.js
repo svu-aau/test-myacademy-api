@@ -8,7 +8,6 @@ import styles from '../components/layout/footer.module.css';
 import Section from '../components/sections/section';
 
 const NotFoundPage = ({ data }) => {
-  // console.log('404 data: ', data);
   const { schools } = data;
 
   return (

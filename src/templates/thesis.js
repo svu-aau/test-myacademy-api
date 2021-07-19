@@ -12,7 +12,6 @@ import Container from '../components/layout/container';
 
 import { cn } from '../lib/helpers';
 import styles from './thesis.module.css';
-import ProjectsGrid from '../components/projects/projects-grid';
 
 export const query = graphql`
   query ThesisPageQuery {
@@ -24,9 +23,9 @@ export const query = graphql`
         userTwitter
       }
     }
-    projects: allSanityProject {
+    students: allSanityStudent {
       nodes {
-        ...ProjectPreview
+        ...Student
       }
     }
     schools: allSanitySchool {
@@ -39,7 +38,7 @@ export const query = graphql`
       description
       keywords
     }
-    page: sanityPage(slug: { current: { eq: "thesis-projects" } }) {
+    page: sanityPage(slug: { current: { eq: "thesis" } }) {
       content: contentArray {
         ...PageContent
       }
@@ -79,7 +78,7 @@ const ThesisProjectsPage = (props) => {
   const {
     gatsby: { config },
     schools,
-    projects,
+    students,
     site,
     page,
   } = data;
@@ -91,112 +90,21 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
-  console.log('schools', schools);
-  console.log('projects', projects);
-
-  // http://gradshowcase.academyart.edu/schools/acting/amanda-casarella.html
-  // media is project.media
-  // school.title or school.slug.current
-  // student.school.title
-  /*
+  console.log('students Nodes', students.nodes);
   const formattedProjects = schools.nodes
-    .map(({ title }) =>
-      projects.nodes
-        .filter(({ school }) => school.title === title)
-        .map(({ heroImage, members, slug, subTitle, title }) => ({
-          heroImage,
-          name: members.person.name,
-          slug: slug.current,
-          subTitle,
-          title,
-        }))
-    )
-    .filter((arr) => arr.length > 0);
-    */
+    .map((school) => ({
+      school,
+      data: students.nodes
+        .filter((student) => student.school.slug.current === school.slug.current)
+        .map(({ heroImage, name, slug, projects }) => [
+          heroImage && heroImage.fluid?.asset?.url,
+          [name, `/schools/${school.slug.current}/${slug.current}`],
+          projects.map(({ title }) => title).join(', '),
+        ]),
+    }))
+    .filter(({ data }) => data.length > 0);
 
-  const formattedProjects = [
-    {
-      school: {
-        slug: 'acting',
-        title: 'Acting',
-      },
-      data: [
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-production/53c704471c740629d7b49e1029ac0e94240bc355-2200x1283.jpg?w=1440&h=840&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-        {
-          heroImage: {
-            asset: {
-              fluid: {
-                src: 'https://cdn.sanity.io/images/uvdp4b76/2021-gradshowcase/92b638807289b1901c926a44f40ba5d8f0302a26-2194x846.png?w=1920&h=740&fit=crop',
-              },
-            },
-          },
-          name: 'Casarella, Amanda',
-          slug: 'amanda-casarella',
-          title: 'Final Review - Demo Reel (Video)',
-        },
-      ],
-    },
-  ];
-
+  console.log('data', data);
   console.log('formattedProjects', formattedProjects);
 
   return (
@@ -204,8 +112,8 @@ const ThesisProjectsPage = (props) => {
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
     >
       <SEO
-        title={page.seo.seo_title || site.title || config.title}
-        description={page.seo.meta_description}
+        title={page.seo?.seo_title || site.title || config.title}
+        description={page.seo?.meta_description}
         keywords={page.seoKeywords || site.keywords}
         seoImage={page.seoImage?.asset?.img?.src}
         path={props.location.pathname}
@@ -213,7 +121,7 @@ const ThesisProjectsPage = (props) => {
 
       {page && <ContentSections content={page.content} slug={'home'} />}
 
-      <Section alignReset noPaddingTop>
+      <Section alignReset noPadding>
         <Container>
           <div className={layoutStyles.breadcrumb}>
             <Link to={'/'}>HOME</Link>
@@ -223,7 +131,7 @@ const ThesisProjectsPage = (props) => {
         </Container>
       </Section>
 
-      <Section>
+      <Section noPadding>
         <Container>
           <h3>Quicklinks</h3>
           <div className={cn(styles.headerMenuSchools, styles.flexThree)}>
@@ -261,23 +169,14 @@ const ThesisProjectsPage = (props) => {
         </Container>
       </Section>
 
-      <Section>
+      <Section noPaddingTop>
         <Container>
-          {formattedProjects.map(({ school, data }) => {
-            const arr = data.map(({ heroImage, name, title, slug }) => [
-              heroImage.asset.fluid.src,
-              [name, `/schools/${school.slug}/${slug}`],
-              title,
-            ]);
-
-            // TODO: Grid Black title, grey sub, align left
-            return (
-              <>
-                <h1>{school.title}</h1>
-                <ImageGrid data={arr} />
-              </>
-            );
-          })}
+          {formattedProjects.map(({ school, data }) => (
+            <>
+              <h1>{school.title}</h1>
+              <ImageGrid data={data} />
+            </>
+          ))}
         </Container>
       </Section>
     </Layout>
