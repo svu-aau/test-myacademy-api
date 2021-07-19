@@ -39,7 +39,7 @@ function ProjectProfile(props) {
 
           {downloadLink && (
             <div className={layoutStyles.columnSection}>
-              <DLLink link={downloadLink} variant="cta" label="Download Thesis" />
+              <DLLink target="_blank" href={downloadLink} variant="cta" label="Download Thesis" onClick={() => {}} />
             </div>
           )}
 
