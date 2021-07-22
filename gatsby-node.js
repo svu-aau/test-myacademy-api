@@ -103,26 +103,28 @@ async function createProjectPages(graphql, actions, reporter) {
   studentEdges.forEach((edge) => {
     const project = edge.node.projects[0];
     const slug = edge.node.slug.current;
-    const id = project.id;
+    if (project) {
+      const id = project.id;
 
-    if (edge.node.school && edge.node.school.slug) {
-      const schoolSlug = edge.node.school.slug.current;
-      const path = `/schools/${schoolSlug}/${slug}/`;
-      reporter.info(`Creating project page: ${path}`);
+      if (edge.node.school && edge.node.school.slug) {
+        const schoolSlug = edge.node.school.slug.current;
+        const path = `/schools/${schoolSlug}/${slug}/`;
+        reporter.info(`Creating project page: ${path}`);
 
-      createPage({
-        path,
-        component: require.resolve('./src/templates/project.js'),
-        context: { id },
-      });
-    }
-    if (process.env.NODE_ENV === 'development') {
-      // Create page at short url for previews
-      createPage({
-        path: `/projects/${slug}/`,
-        component: require.resolve('./src/templates/project.js'),
-        context: { id },
-      });
+        createPage({
+          path,
+          component: require.resolve('./src/templates/project.js'),
+          context: { id },
+        });
+      }
+      if (process.env.NODE_ENV === 'development') {
+        // Create page at short url for previews
+        createPage({
+          path: `/projects/${slug}/`,
+          component: require.resolve('./src/templates/project.js'),
+          context: { id },
+        });
+      }
     }
   });
 }
