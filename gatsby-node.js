@@ -82,7 +82,7 @@ async function createProjectPages(graphql, actions, reporter) {
             }
             projects {
               ... on SanityProject {
-                id
+                _id
               }
             }
             school {
@@ -104,7 +104,7 @@ async function createProjectPages(graphql, actions, reporter) {
     const project = edge.node.projects[0];
     const slug = edge.node.slug.current;
     if (project) {
-      const id = project.id;
+      const id = project._id;
 
       if (edge.node.school && edge.node.school.slug) {
         const schoolSlug = edge.node.school.slug.current;
@@ -119,8 +119,10 @@ async function createProjectPages(graphql, actions, reporter) {
       }
       if (process.env.NODE_ENV === 'development') {
         // Create page at short url for previews
+        const path = `/projects/${id}/`;
+        reporter.info(`Creating project page: ${path}`);
         createPage({
-          path: `/projects/${slug}/`,
+          path,
           component: require.resolve('./src/templates/project.js'),
           context: { id },
         });
