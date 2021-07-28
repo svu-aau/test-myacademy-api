@@ -47,3 +47,8 @@
     color: #ee3224;
   }
 }
+
+.divider {
+  display: block;
+  height: 100px;
+}
