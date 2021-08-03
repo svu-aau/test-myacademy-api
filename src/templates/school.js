@@ -69,12 +69,14 @@ const SchoolTemplate = (props) => {
 
       {heroImage && <SectionLibraryHero section={{ backgroundImage: heroImage, heroTitle: `School of ${title}` }} />}
 
-      <Section alignReset noPadding>
+      <Section alignReset noPadding={heroImage} noPaddingBottom={!heroImage}>
         <Container>
           <div className={layoutStyles.breadcrumb}>
             <Link to={'/'}>HOME</Link>
             <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <Link to="/thesis-projects">THESIS PROJECTS</Link>
+            <Link to={'/schools'}>Schools</Link>
+            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span>{school.title}</span>
           </div>
         </Container>
       </Section>

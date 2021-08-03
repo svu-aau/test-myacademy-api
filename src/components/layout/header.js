@@ -52,10 +52,14 @@ const useStyles = makeStyles((theme) => ({
     '& > a:hover span': {
       borderColor: '#ee3224',
     },
+    '& > a.active span': {
+      borderColor: '#ee3224',
+    },
   },
   right: {
     '& > button': {
       marginLeft: '0.25em',
+      minWidth: 120,
     },
   },
   contactLink: {
@@ -185,9 +189,9 @@ const Header = ({
                   <Toolbar className={styles.bottomBar} disableGutters>
                     <div className={classes.left}>
                       {linksArray.map(({ _key, title, href, hidden }) => (
-                        <a href={href} key={_key}>
+                        <Link activeClassName="active" to={href} key={_key}>
                           <span>{title}</span>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                     <div className={classes.right}>

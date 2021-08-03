@@ -64,7 +64,7 @@ const SiteMap = (props) => {
           <div className={layoutStyles.breadcrumb}>
             <Link to={'/'}>HOME</Link>
             <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <Link to="/site-maps">SITE MAP</Link>
+            <span to="/site-maps">SITE MAP</span>
           </div>
 
           <Link to={'/'}>

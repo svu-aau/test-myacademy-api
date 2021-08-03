@@ -140,7 +140,7 @@ const ThesisProjectsPage = (props) => {
           <div className={layoutStyles.breadcrumb}>
             <Link to={'/'}>HOME</Link>
             <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <Link to="/thesis-projects">THESIS PROJECTS</Link>
+            <span>THESIS PROJECTS</span>
           </div>
         </Container>
       </Section>
@@ -185,10 +185,11 @@ const ThesisProjectsPage = (props) => {
 
       <Section noPaddingTop>
         <Container>
-          {formattedProjects.map(({ school, data }) => (
+          {formattedProjects.map(({ school, data }, idx) => (
             <>
               <h1>{school.title}</h1>
               <ImageGrid data={data} />
+              {idx + 1 < formattedProjects.length && <div className={styles.divider} />}
             </>
           ))}
         </Container>

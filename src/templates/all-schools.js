@@ -42,13 +42,13 @@ const ProjectTemplate = (props) => {
 
   return (
     <Layout
-      siteSubtitle="Collaborative Projects"
+      siteSubtitle="Schools"
       siteTitle="Academy of Art University"
       heroImageCaption="Yi Hsien Rachel Wang / Architecture"
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
     >
       <SEO
-        title="Collaborative Projects"
+        title="Schools"
         description="Explore interdisciplinary design projects bring students from diverse programs at the Academy together to work on real-world projects."
         keywords={site.keywords}
       />
@@ -59,7 +59,7 @@ const ProjectTemplate = (props) => {
           <div className={layoutStyles.breadcrumb}>
             <Link to={'/'}>HOME</Link>
             <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <Link to="/schools">Schools</Link>
+            <span>Schools</span>
           </div>
         </Container>
       </Section>
