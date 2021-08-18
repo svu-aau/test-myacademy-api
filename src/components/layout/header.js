@@ -165,9 +165,7 @@ const Header = ({
                       <p>
                         <a href="tel:+18005442787" target="_blank" className={classes.contactLink}>
                           1-800-544-2787
-                        </a>
-                        <span> / </span>
-                        <a href="#" className={classes.contactLink}>
+                          <span> / </span>
                           Contact
                         </a>
                       </p>
