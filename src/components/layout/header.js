@@ -167,9 +167,9 @@ const Header = ({
                           1-800-544-2787
                         </a>
                         <span> / </span>
-                        <a href="#" className={classes.contactLink}>
+                        <Link to="/contact-us" className={classes.contactLink}>
                           Contact
-                        </a>
+                        </Link>
                       </p>
                     </div>
                     <IconButton
