@@ -6,7 +6,7 @@ import ContentSections from './content-sections';
 
 // see data/fragments/PageContent
 const SectionColumn = ({ section, noPadding }) => {
-  console.log('section', section);
+  // console.log('section', section);
 
   return (
     <Section key={section._key} color={section.backgroundColor} noPadding={noPadding}>

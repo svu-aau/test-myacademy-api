@@ -94,7 +94,7 @@ const Footer = () => {
         footerLegalLinks: { links: footerLegalLinksArray },
       }) => {
         // split into 4 groups
-        console.log('contactInfoSection: ', contactInfoSection);
+        // console.log('contactInfoSection: ', contactInfoSection);
         return (
           <div className={root}>
             <div className={container}>

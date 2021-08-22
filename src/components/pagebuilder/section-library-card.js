@@ -13,7 +13,7 @@ const SectionLibraryCard = ({ section }) => {
       buttonText: 'Learn More',
       children: <BlockContent blocks={_rawCaption} />,
       href,
-      image: heroImage.asset.fluid.src,
+      image: heroImage.asset.url,
       title,
       iframe:
         kalturaID &&

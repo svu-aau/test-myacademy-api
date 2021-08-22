@@ -88,7 +88,7 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
-  console.log('students Nodes', students.nodes);
+  // console.log('students Nodes', students.nodes);
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
@@ -116,8 +116,8 @@ const ThesisProjectsPage = (props) => {
     }))
     .filter(({ data }) => data.length > 0);
 
-  console.log('data', data);
-  console.log('formattedProjects', formattedProjects);
+  // console.log('data', data);
+  // console.log('formattedProjects', formattedProjects);
 
   return (
     <Layout

@@ -42,7 +42,7 @@ const SchoolTemplate = (props) => {
   const pageTitle = school.title || 'Untitled';
   const seoTitle = (seo && seo.seo_title) || pageTitle;
 
-  console.log('school', school);
+  // console.log('school', school);
 
   return (
     <Layout>

@@ -8,7 +8,7 @@ import { root } from './section-library-featured.module.css';
 image, title, type, alt, children, buttonText, onClick
 */
 const SectionLibraryFeatured = ({ section }) => {
-  console.log(section);
+  // console.log(section);
   return (
     <div className={root} key={section._key}>
       <Card
