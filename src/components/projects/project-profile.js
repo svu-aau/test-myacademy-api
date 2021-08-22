@@ -6,6 +6,7 @@ import { projectTitle, divider } from './project-profile.module.css';
 import { breadcrumbLinkSeperator, breadcrumb, columnSection } from '../layout/layout.module.css';
 import Section from '../sections/section';
 import Container from '../layout/container';
+import { uniqBy } from 'lodash';
 
 function ProjectProfile(props) {
   const { download, title, student, gallery, videoSpotlight } = props;
@@ -13,7 +14,9 @@ function ProjectProfile(props) {
   const downloadLink = download?.asset?.url;
   const ENTRY_ID = videoSpotlight;
 
-  const carouselData = gallery.map((item) => ({
+  // console.log('gallery data: ', gallery);
+  // TODO: hack to remove duplicate first carousel image for now until data is fixed in cms
+  const carouselData = uniqBy(gallery, 'asset.url').map((item) => ({
     id: item._key,
     image: item.asset?.url,
   }));
