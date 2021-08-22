@@ -1,17 +1,21 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import styles from './school-preview.module.css';
-import Img from 'gatsby-image';
+import { root, title, leadMediaThumb } from './school-preview.module.css';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 function SchoolPreview(props) {
   const { heroImage } = props;
   return (
-    <Link className={styles.root} to={`/schools/${props.slug.current}`}>
-      <div className={styles.leadMediaThumb}>
+    <Link className={root} to={`/schools/${props.slug.current}`}>
+      <div className={leadMediaThumb}>
         {heroImage && heroImage.asset && (
-          <Img fluid={heroImage.asset.fluid} alt={heroImage.alt} style={{ position: 'static' }} />
+          <GatsbyImage
+            image={heroImage.childImageSharp.gatsbyImageData}
+            alt={heroImage.alt}
+            style={{ position: 'static' }}
+          />
         )}
-        <h3 className={styles.title}>{props.title}</h3>
+        <h3 className={title}>{props.title}</h3>
       </div>
     </Link>
   );

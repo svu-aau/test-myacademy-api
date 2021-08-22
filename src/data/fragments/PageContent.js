@@ -8,34 +8,31 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionHero {
+      __typename
       _key
       heroTitle
       heroHeading
       backgroundImage {
         asset {
-          fluid(maxWidth: 1440) {
-            ...GatsbySanityImageFluid_noBase64
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
           }
         }
       }
       heroImageCaption
     }
 
-    ... on SanitySectionGlobe {
-      _key
-      title
-      body
-      infoOne
-      infoTwo
-    }
-
     ... on SanitySectionText {
+      __typename
       _key
       narrowWidth
       _rawBody(resolveReferences: { maxDepth: 10 })
     }
 
     ... on SanitySectionCard {
+      __typename
       _key
       narrowWidth
       _rawBody(resolveReferences: { maxDepth: 10 })
@@ -44,6 +41,7 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionSchoolsGrid {
+      __typename
       _key
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
@@ -55,6 +53,7 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionImageGrid {
+      __typename
       _key
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
@@ -72,6 +71,7 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionMediaGrid {
+      __typename
       _key
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
@@ -92,6 +92,7 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionProjectsGrid {
+      __typename
       _key
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
@@ -116,6 +117,7 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionProjectGrid {
+      __typename
       _key
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
@@ -140,6 +142,7 @@ export const queryFigure = graphql`
     }
 
     ... on SanitySectionIndustryGrid {
+      __typename
       _key
       _rawIntro(resolveReferences: { maxDepth: 10 })
       companies {
@@ -147,14 +150,6 @@ export const queryFigure = graphql`
       }
       backgroundColor
       limitResults
-    }
-
-    ... on SanitySectionGlobe {
-      _key
-      title
-      body
-      infoOne
-      infoTwo
     }
 
     ... on SanityGlobalSection {

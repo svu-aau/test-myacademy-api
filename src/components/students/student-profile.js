@@ -11,7 +11,7 @@ function StudentProfile(props) {
 
   const media = [...portfolio];
 
-  console.log('media', media);
+  // console.log('media', media);
   const carouselData = media.map((item) => {
     return {
       id: item._key,

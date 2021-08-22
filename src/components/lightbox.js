@@ -10,8 +10,21 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 
 import VideoPlayer from './video-player';
-import styles from './lightbox.module.css';
-import layoutStyles from './layout/layout.module.css';
+import {
+  lightboxBase,
+  lightboxAfterOpen,
+  lightboxBeforeClose,
+  lightboxOverlay,
+  lightboxContent,
+  lightboxBodyOpen,
+  lightboxHtmlOpen,
+  lightboxBullet,
+  lightboxNextBtn,
+  lightboxPrevBtn,
+  figure,
+  embedCode,
+} from './lightbox.module.css';
+import { caption, lightboxCaption, lightboxVideoCaption } from './layout/layout.module.css';
 import FilePreview from './projects/file-preview';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj, cn, CaptionAndDescription } from '../lib/helpers';
@@ -99,7 +112,7 @@ const Lightbox = ({ featured, media }, ref) => {
   const featuredCaption = (student, video = false) => {
     return (
       <>
-        <figcaption className={cn(layoutStyles.caption, video ? layoutStyles.lightboxVideoCaption : '')}>
+        <figcaption className={cn(caption, video ? lightboxVideoCaption : '')}>
           {student?.name} / {student?.major?.title}
         </figcaption>
 
@@ -120,16 +133,16 @@ const Lightbox = ({ featured, media }, ref) => {
       onAfterClose={onAfterClose}
       contentLabel="Example Modal"
       className={{
-        base: styles.lightboxBase,
-        afterOpen: styles.lightboxAfterOpen,
-        beforeClose: styles.lightboxBeforeClose,
+        base: lightboxBase,
+        afterOpen: lightboxAfterOpen,
+        beforeClose: lightboxBeforeClose,
       }}
-      overlayClassName={styles.lightboxOverlay}
-      bodyOpenClassName={styles.lightboxBodyOpen}
-      htmlOpenClassName={styles.lightboxHtmlOpen}
+      overlayClassName={lightboxOverlay}
+      bodyOpenClassName={lightboxBodyOpen}
+      htmlOpenClassName={lightboxHtmlOpen}
     >
       <div>
-        <div className={styles.lightboxContent}>
+        <div className={lightboxContent}>
           {media && media.length > 0 && (
             <Swiper
               getSwiper={updateSwiper}
@@ -139,21 +152,21 @@ const Lightbox = ({ featured, media }, ref) => {
                 clickable: true,
                 // eslint-disable-next-line react/display-name
                 renderBullet: (index, className) => {
-                  return media.length > 1 ? `<span class="${cn(styles.lightboxBullet, className)}"></span>` : '';
+                  return media.length > 1 ? `<span class="${cn(lightboxBullet, className)}"></span>` : '';
                 },
               }}
               loop={false}
               spaceBetween={160}
               renderNextButton={() =>
                 media.length > 1 ? (
-                  <IconButton color="inherit" className={cn(styles.lightboxNextBtn, 'lightbox-next-btn')}>
+                  <IconButton color="inherit" className={cn(lightboxNextBtn, 'lightbox-next-btn')}>
                     <ChevronRightIcon />
                   </IconButton>
                 ) : null
               }
               renderPrevButton={() =>
                 media.length > 1 ? (
-                  <IconButton color="inherit" className={cn(styles.lightboxPrevBtn, 'lightbox-prev-btn')}>
+                  <IconButton color="inherit" className={cn(lightboxPrevBtn, 'lightbox-prev-btn')}>
                     <ChevronLeftIcon />
                   </IconButton>
                 ) : null
@@ -163,7 +176,7 @@ const Lightbox = ({ featured, media }, ref) => {
                 if (item.__typename === 'SanityStudent') {
                   return (
                     <div key={item._key}>
-                      <figure className={styles.figure}>
+                      <figure className={figure}>
                         <img
                           src={imageUrlFor(buildImageObj(item.heroImage[0].image)).url()}
                           alt={item.heroImage[0].alt}
@@ -177,7 +190,7 @@ const Lightbox = ({ featured, media }, ref) => {
                   <div key={item._key}>
                     {/* Figure */}
                     {item && item._type === 'figure' && item.image && (
-                      <figure className={styles.figure}>
+                      <figure className={figure}>
                         <img src={imageUrlFor(buildImageObj(item.image)).url()} alt={item.image.alt} />
                         <CaptionAndDescription media={item} />
                       </figure>
@@ -193,13 +206,13 @@ const Lightbox = ({ featured, media }, ref) => {
 
                     {/* GIF */}
                     {item?._type === 'fileUpload' && item.file?.asset?.extension === 'gif' && (
-                      <figure className={styles.figure}>
+                      <figure className={figure}>
                         <img
                           src={item.file.asset.url}
                           alt={item.file.asset.originalFilename}
                           style={{ objectFit: 'contain', width: '100%' }}
                         />
-                        <CaptionAndDescription media={item} className={layoutStyles.lightboxCaption} />
+                        <CaptionAndDescription media={item} className={lightboxCaption} />
                       </figure>
                     )}
 
@@ -207,13 +220,13 @@ const Lightbox = ({ featured, media }, ref) => {
                     {item && item._type === 'fileUpload' && (
                       <>
                         <FilePreview file={item.file} caption={item.caption} title={item.title} />
-                        <CaptionAndDescription media={item} className={layoutStyles.lightboxCaption} />
+                        <CaptionAndDescription media={item} className={lightboxCaption} />
                       </>
                     )}
 
                     {/* Game */}
                     {item && item._type === 'game' && (
-                      <div className={styles.embedCode} dangerouslySetInnerHTML={{ __html: item.embedCode }} />
+                      <div className={embedCode} dangerouslySetInnerHTML={{ __html: item.embedCode }} />
                     )}
                   </div>
                 );

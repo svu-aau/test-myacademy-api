@@ -1,4 +1,4 @@
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ function hasWhiteSpace(s) {
 
 /*
 function removeWhiteSpace(text) {
-  
+
 }
 */
 
@@ -153,25 +153,22 @@ export function generateSocialLinks(urls, providerToIcons) {
           })}
         </div>
       )}
-      {found.length > 0 && (
-        <div style={{ marginTop: '.5em' }}>
-          {found.map(({ url, providerImage, provider }, idx) => {
-            if (providerImage && providerImage.childImageSharp) {
-              return (
-                <a key={idx} target="_blank" rel="noopener" href={addHttp(url)}>
-                  <Img fixed={providerImage.childImageSharp.fixed} alt={`${provider} Icon`} />
-                </a>
-              );
-            } else if (providerImage) {
-              return (
-                <a key={idx} target="_blank" rel="noopener" href={addHttp(url)}>
-                  <FontAwesomeIcon icon={providerImage} />
-                </a>
-              );
-            }
-          })}
-        </div>
-      )}
+      {found.length > 0 &&
+        found.map(({ url, providerImage, provider }, idx) => {
+          if (providerImage && providerImage.childImageSharp) {
+            return (
+              <a key={idx} target="_blank" rel="noopener" href={addHttp(url)}>
+                <GatsbyImage image={providerImage.childImageSharp.gatsbyImageData} alt={`${provider} Icon`} />
+              </a>
+            );
+          } else if (providerImage) {
+            return (
+              <a key={idx} target="_blank" rel="noopener" href={addHttp(url)}>
+                <FontAwesomeIcon icon={providerImage} />
+              </a>
+            );
+          }
+        })}
     </>
   );
 }

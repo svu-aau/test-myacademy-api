@@ -34,7 +34,7 @@ const SectionMediaGrid = ({ section }) => {
     paginationData = paginate(num, projs.length);
     setPages(paginationData.pages.length);
     setPaginationLocation([paginationData.startIndex, paginationData.endIndex]);
-    scroll({
+    window.scroll({
       top: rootRef.current.offsetTop - 75,
       behavior: 'smooth',
     });

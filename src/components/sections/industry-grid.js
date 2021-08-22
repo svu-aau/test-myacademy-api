@@ -1,10 +1,10 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import styles from './industry-grid.module.css';
-import typographyStyles from '../../styles/typography.module.css';
+import { heading, industryGrid, industryGridItem } from './industry-grid.module.css';
+import { responsiveTitle1 } from '../../styles/typography.module.css';
 import { sortByName, cn } from '../../lib/helpers';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const responsive = {
   superLargeDesktop: {
@@ -34,9 +34,7 @@ const IndustryGrid = ({ sortAlpha, hiringCompanies, limit = 4, children, slug })
     <>
       {children || (
         <>
-          <h1 className={cn(typographyStyles.responsiveTitle1, styles.heading)}>
-            Companies That Have Hired Our Graduates
-          </h1>
+          <h1 className={cn(responsiveTitle1, heading)}>Companies That Have Hired Our Graduates</h1>
         </>
       )}
       {slug && slug === 'home' ? (
@@ -52,19 +50,27 @@ const IndustryGrid = ({ sortAlpha, hiringCompanies, limit = 4, children, slug })
           {companies.map(
             ({ _id, logo }, idx) =>
               logo && (
-                <div key={idx} className={styles.industryGridItem}>
-                  <Img fluid={logo.asset.fluid} alt={logo.alt} imgStyle={{ objectFit: 'contain' }} />
+                <div key={idx} className={industryGridItem}>
+                  <GatsbyImage
+                    image={logo.childImageSharp.gatsbyImageData}
+                    alt={logo.alt}
+                    imgStyle={{ objectFit: 'contain' }}
+                  />
                 </div>
               )
           )}
         </Carousel>
       ) : (
-        <div className={styles.industryGrid}>
+        <div className={industryGrid}>
           {companies.map(
             ({ _id, logo }, idx) =>
               logo && (
-                <div key={idx} className={styles.industryGridItem}>
-                  <Img fluid={logo.asset.fluid} alt={logo.alt} imgStyle={{ objectFit: 'contain' }} />
+                <div key={idx} className={industryGridItem}>
+                  <GatsbyImage
+                    image={logo.childImageSharp.gatsbyImageData}
+                    alt={logo.alt}
+                    imgStyle={{ objectFit: 'contain' }}
+                  />
                 </div>
               )
           )}

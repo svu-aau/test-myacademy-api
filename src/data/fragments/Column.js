@@ -1,12 +1,14 @@
 import { graphql } from 'gatsby';
 export const queryFigure = graphql`
   fragment Column on SanitySectionColumn {
+    __typename
     _key
     _type
     _id
     backgroundColor
     sectionLeft {
       ... on SanitySectionText {
+        __typename
         _key
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })
@@ -22,6 +24,7 @@ export const queryFigure = graphql`
     }
     sectionRight {
       ... on SanitySectionText {
+        __typename
         _key
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })

@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,7 +11,31 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { Button } from '@aauweb/design-library';
 
 import { cn } from '../../lib/helpers';
-import styles from './header.module.css';
+import {
+  root,
+  brandingImage,
+  branding,
+  srOnly,
+  contactContent,
+  navBurgerIcon,
+  navBurgerIconOpen,
+  bottomBar,
+  headerMenu,
+  searchBarMobile,
+  headerMenuContent,
+  headerMenuTitle,
+  headerMenuSchools,
+  flexThree,
+  headerMenuColumns,
+  headerMenuColumnNoTitle,
+  mainImage,
+  smallMainImage,
+  hero,
+  heroTitle,
+  title,
+  hamburger,
+  toolbar as toolbarCss,
+} from './header.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -116,7 +140,7 @@ const Header = ({
     // eslint-disable-next-line react/jsx-no-undef
     <StaticQuery
       query={graphql`
-        query {
+        {
           mainMenu: sanityMenu(slug: { current: { eq: "main-menu" } }) {
             title
             links {
@@ -128,9 +152,7 @@ const Header = ({
           }
           logo: file(relativePath: { eq: "icon-logo.png" }) {
             childImageSharp {
-              fluid(maxWidth: 400, quality: 100) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
+              gatsbyImageData(width: 400, quality: 100, placeholder: NONE, layout: CONSTRAINED)
             }
           }
           schools: allSanitySchool {
@@ -144,24 +166,24 @@ const Header = ({
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
 
         return (
-          <div className={styles.root}>
+          <div className={root}>
             <div className="st-search-container" />
             <ClickAwayListener onClickAway={() => (drawerOpen ? setDrawerOpen(!drawerOpen) : null)}>
               <div>
                 <AppBar className={classes.appBar}>
-                  <Toolbar className={styles.toolbar} disableGutters>
-                    <div className={styles.branding}>
-                      <Img
-                        className={styles.brandingImage}
+                  <Toolbar className={toolbarCss} disableGutters>
+                    <div className={branding}>
+                      <GatsbyImage
+                        image={logo.childImageSharp.gatsbyImageData}
+                        className={brandingImage}
                         loading="eager"
-                        fluid={logo.childImageSharp.fluid}
                         alt="Academy of Art University"
                       />
                       <Link to="/">
-                        <span className={styles.srOnly}>Go to home page</span>
+                        <span className={srOnly}>Go to home page</span>
                       </Link>
                     </div>
-                    <div className={styles.contactContent}>
+                    <div className={contactContent}>
                       <p>
                         <a href="tel:+18005442787" target="_blank" className={classes.contactLink}>
                           1-800-544-2787
@@ -173,12 +195,12 @@ const Header = ({
                       </p>
                     </div>
                     <IconButton
-                      className={styles.hamburger}
+                      className={hamburger}
                       color="inherit"
                       aria-label="menu"
                       onClick={() => setDrawerOpen(!drawerOpen)}
                     >
-                      <div className={cn(styles.navBurgerIcon, drawerOpen && styles.navBurgerIconOpen)}>
+                      <div className={cn(navBurgerIcon, drawerOpen && navBurgerIconOpen)}>
                         <span></span>
                         <span></span>
                         <span></span>
@@ -186,7 +208,7 @@ const Header = ({
                       </div>
                     </IconButton>
                   </Toolbar>
-                  <Toolbar className={styles.bottomBar} disableGutters>
+                  <Toolbar className={bottomBar} disableGutters>
                     <div className={classes.left}>
                       {linksArray.map(({ _key, title, href, hidden }) => (
                         <Link activeClassName="active" to={href} key={_key}>
@@ -204,24 +226,24 @@ const Header = ({
                 {fixedNav && <Toolbar />}
                 <Drawer classes={{ root: classes.drawer }} variant={'persistent'} anchor="top" open={drawerOpen}>
                   <div className={classes.drawerInner}>
-                    <nav className={styles.headerMenu}>
-                      <div className={cn(styles.searchBarMobile)}>
+                    <nav className={headerMenu}>
+                      <div className={cn(searchBarMobile)}>
                         <input type="text" onKeyDown={escFunction} ref={inputRef} className="st-default-search-input" />
                       </div>
-                      <div className={styles.headerMenuContent}>
+                      <div className={headerMenuContent}>
                         {linksArray.map(({ _key, title, href, hidden }) => (
                           <a href={href} key={_key}>
-                            <div className={styles.headerMenuTitle}>{title}</div>
+                            <div className={headerMenuTitle}>{title}</div>
                           </a>
                         ))}
 
-                        <div className={cn(styles.headerMenuSchools, styles.flexThree)}>
-                          <div className={styles.headerMenuColumn}>
-                            <div className={styles.headerMenuTitle}>Schools</div>
+                        <div className={cn(headerMenuSchools, flexThree)}>
+                          <div className={headerMenuColumns}>
+                            <div className={headerMenuTitle}>Schools</div>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(0, 7).map((school) => (
-                                  <li className={styles.columnLink} key={school.id}>
+                                  <li key={school.id}>
                                     <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
                                       {school.title}
                                     </Link>
@@ -229,11 +251,11 @@ const Header = ({
                                 ))}
                             </ul>
                           </div>
-                          <div className={cn(styles.headerMenuColumn, styles.headerMenuColumnNoTitle)}>
+                          <div className={cn(headerMenuColumns, headerMenuColumnNoTitle)}>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(7, 14).map((school) => (
-                                  <li className={styles.columnLink} key={school.id}>
+                                  <li key={school.id}>
                                     <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
                                       {school.title}
                                     </Link>
@@ -241,11 +263,11 @@ const Header = ({
                                 ))}
                             </ul>
                           </div>
-                          <div className={cn(styles.headerMenuColumn, styles.headerMenuColumnNoTitle)}>
+                          <div className={cn(headerMenuColumns, headerMenuColumnNoTitle)}>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(14).map((school) => (
-                                  <li className={styles.columnLink} key={school.id}>
+                                  <li key={school.id}>
                                     <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
                                       {school.title}
                                     </Link>
@@ -261,16 +283,16 @@ const Header = ({
               </div>
             </ClickAwayListener>
             {backgroundImage && (
-              <div className={cn(styles.mainImage, smallHeader && styles.smallMainImage)}>
-                <Img
-                  className={styles.hero}
+              <div className={cn(mainImage, smallHeader && smallMainImage)}>
+                <GatsbyImage
+                  image={backgroundImage.childImageSharp.gatsbyImageData}
+                  className={hero}
                   loading="eager"
-                  fluid={backgroundImage.childImageSharp.fluid}
                   alt="Academy of Art University"
                 />
-                {siteTitle && <h3 className={styles.heroTitle}>{siteTitle}</h3>}
-                {siteSubtitle && <h1 className={styles.title}>{siteSubtitle}</h1>}
-                {heroImageCaption && <figcaption className={styles.heroImageCaption}>{heroImageCaption}</figcaption>}
+                {siteTitle && <h3 className={heroTitle}>{siteTitle}</h3>}
+                {siteSubtitle && <h1 className={title}>{siteSubtitle}</h1>}
+                {heroImageCaption && <figcaption className={heroImageCaption}>{heroImageCaption}</figcaption>}
               </div>
             )}
           </div>

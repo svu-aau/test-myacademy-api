@@ -1,18 +1,12 @@
 import React from 'react';
 
-import styles from './container.module.css';
+import { root, narrower as narrowerCss, narrow as narrowCss, dark, split as splitCss } from './container.module.css';
 import { cn } from '../../lib/helpers';
 
 const Container = ({ color, children, narrow, narrower, split }) => {
   return (
     <div
-      className={cn(
-        styles.root,
-        color === 'dark' && styles.dark,
-        narrow && styles.narrow,
-        narrower && styles.narrower,
-        split && styles.split
-      )}
+      className={cn(root, color === 'dark' && dark, narrow && narrowCss, narrower && narrowerCss, split && splitCss)}
     >
       {children}
     </div>

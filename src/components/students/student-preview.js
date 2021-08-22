@@ -1,10 +1,15 @@
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
-import { cn, buildImageObj } from '../../lib/helpers';
-import { imageUrlFor } from '../../lib/image-url';
-import styles from './student-preview.module.css';
+import { cn } from '../../lib/helpers';
+import {
+  root,
+  leadMediaThumb,
+  leadMediaThumbFeatured,
+  leadMediaThumbMasonry,
+  title,
+} from './student-preview.module.css';
 
 function StudentPreview(props) {
   const { portfolio, slug, school, name, heroImage, masonry, featured, onClick } = props;
@@ -14,7 +19,6 @@ function StudentPreview(props) {
     heroImage.map((img) => {
       if (!img.isHeadShot) {
         displayFeaturedMedia = img;
-        return;
       }
     });
   } else if (portfolio) {
@@ -30,7 +34,7 @@ function StudentPreview(props) {
     slug &&
     slug.current && (
       <Link
-        className={styles.root}
+        className={root}
         to={`/schools/${school.slug.current}/students/${slug.current}`}
         onClick={(e) => {
           if (onClick) {
@@ -41,25 +45,24 @@ function StudentPreview(props) {
       >
         <div
           className={
-            masonry
-              ? cn(styles.leadMediaThumb, styles.leadMediaThumbMasonry)
-              : featured
-              ? styles.leadMediaThumbFeatured
-              : styles.leadMediaThumb
+            masonry ? cn(leadMediaThumb, leadMediaThumbMasonry) : featured ? leadMediaThumbFeatured : leadMediaThumb
           }
         >
           {displayFeaturedMedia && displayFeaturedMedia.image && masonry && (
-            <Img fluid={displayFeaturedMedia.image.asset.fluid} alt={displayFeaturedMedia.alt} />
+            <GatsbyImage
+              image={displayFeaturedMedia.image.childImageSharp.gatsbyImageData}
+              alt={displayFeaturedMedia.alt}
+            />
           )}
 
           {displayFeaturedMedia && displayFeaturedMedia.image && !masonry && (
-            <Img
-              fluid={displayFeaturedMedia.image.asset.fluid}
+            <GatsbyImage
+              image={displayFeaturedMedia.image.childImageSharp.gatsbyImageData}
               alt={displayFeaturedMedia.alt}
               style={{ position: 'static' }}
             />
           )}
-          <h3 className={styles.title}>{name}</h3>
+          <h3 className={title}>{name}</h3>
         </div>
       </Link>
     )

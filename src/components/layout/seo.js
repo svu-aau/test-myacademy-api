@@ -43,7 +43,7 @@ function SEO({
         const siteTitle = (site && site.title) || config.title || '';
         const twitterUsername = config.userTwitter;
         const url = config.siteUrl + path;
-        const shareImage = seoImage || config.siteUrl + defaultShareImage.childImageSharp.fixed.src;
+        const shareImage = seoImage || config.siteUrl + defaultShareImage.childImageSharp.gatsbyImageData.src;
 
         return (
           <Helmet
@@ -123,20 +123,14 @@ const detailsQuery = graphql`
         userTwitter
       }
     }
-
     site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
       title
       description
       keywords
     }
-
     defaultShareImage: file(relativePath: { eq: "share-image.jpg" }) {
       childImageSharp {
-        fixed(width: 1200) {
-          src
-          width
-          height
-        }
+        gatsbyImageData(width: 1200, placeholder: BLURRED, layout: FIXED)
       }
     }
   }

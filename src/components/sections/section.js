@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './section.module.css';
+import * as styles from './section.module.css';
 import { cn } from '../../lib/helpers';
 
 // cms saves only the hex values so we gotta map back to our css var color names
@@ -30,7 +30,6 @@ const Section = ({
   alignment,
   flush,
   flushSides,
-  globe,
   isPageContent = false,
   id = null,
   noPaddingTop,
@@ -60,7 +59,6 @@ const Section = ({
         flush && styles.flush,
         flushSides && styles.flushSides,
         alignment === 'center' && styles.center,
-        globe && styles.globe,
         alignReset && styles.alignReset,
         noPaddingTop && styles.noPaddingTop,
         noPadding && styles.noPadding,

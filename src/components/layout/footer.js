@@ -1,59 +1,62 @@
 import { graphql, Link, StaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { generateSocialLinks } from '../../utils/tools';
 import MenuLink from './menu-link';
 
 import ContentSections from '../pagebuilder/content-sections';
 
-import styles from './footer.module.css';
+import {
+  root,
+  wrapper,
+  addressInfo,
+  branding,
+  brandingImage,
+  socialIcons,
+  container,
+  footerContact,
+  footerBottom,
+  footerHeading,
+  contactInfo,
+  footerCta,
+  footerCopyright,
+  footerCopyrightLinks,
+} from './footer.module.css';
 
 const Footer = () => {
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <StaticQuery
       query={graphql`
-        query {
+        {
           logo: file(relativePath: { eq: "icon-logo.png" }) {
             childImageSharp {
-              fluid(maxWidth: 400, quality: 100) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
+              gatsbyImageData(width: 400, quality: 100, placeholder: NONE, layout: CONSTRAINED)
             }
           }
           facebookIcon: file(relativePath: { eq: "icon-social-facebook.png" }) {
             childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
+              gatsbyImageData(width: 24, placeholder: NONE, layout: FIXED)
             }
           }
           instagramIcon: file(relativePath: { eq: "icon-social-instagram.png" }) {
             childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
+              gatsbyImageData(width: 24, placeholder: NONE, layout: FIXED)
             }
           }
           twitterIcon: file(relativePath: { eq: "icon-social-twitter.png" }) {
             childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
+              gatsbyImageData(width: 24, placeholder: NONE, layout: FIXED)
             }
           }
           youtubeIcon: file(relativePath: { eq: "icon-social-youtube.png" }) {
             childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
+              gatsbyImageData(width: 24, placeholder: NONE, layout: FIXED)
             }
           }
           pinterestIcon: file(relativePath: { eq: "icon-social-pinterest.png" }) {
             childImageSharp {
-              fixed(width: 24) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
+              gatsbyImageData(width: 24, placeholder: NONE, layout: FIXED)
             }
           }
           footerLegalLinks: sanityMenu(slug: { current: { eq: "footer-legal-links" } }) {
@@ -91,20 +94,21 @@ const Footer = () => {
         footerLegalLinks: { links: footerLegalLinksArray },
       }) => {
         // split into 4 groups
+        // console.log('contactInfoSection: ', contactInfoSection);
         return (
-          <div className={styles.root}>
-            <div className={styles.container}>
-              <div className={styles.wrapper}>
-                <div className={styles.branding}>
+          <div className={root}>
+            <div className={container}>
+              <div className={wrapper}>
+                <div className={branding}>
                   <Link to="/">
-                    <Img
-                      className={styles.brandingImage}
-                      fluid={logo.childImageSharp.fluid}
+                    <GatsbyImage
+                      image={logo.childImageSharp.gatsbyImageData}
+                      className={brandingImage}
                       alt="Academy of Art University"
                     />
                   </Link>
                 </div>
-                <div className={styles.socialIcons}>
+                <div className={socialIcons}>
                   {generateSocialLinks(
                     [
                       'https://www.facebook.com/AcademyofArtUniversity',
@@ -123,11 +127,11 @@ const Footer = () => {
                   )}
                 </div>
               </div>
-              <div className={styles.footerBottom}>
-                <div className={styles.footerContact}>
-                  <div className={styles.footerHeading}>About</div>
+              <div className={footerBottom}>
+                <div className={footerContact}>
+                  <div className={footerHeading}>About</div>
                   {contactInfoSection && (
-                    <div className={styles.contactInfo}>
+                    <div className={contactInfo}>
                       <ContentSections
                         textOnly
                         content={contactInfoSection.content}
@@ -136,9 +140,9 @@ const Footer = () => {
                     </div>
                   )}
                 </div>
-                <div className={styles.footerContact}>
-                  <div className={styles.footerHeading}>Get in touch</div>
-                  <div className={styles.addressInfo}>
+                <div className={footerContact}>
+                  <div className={footerHeading}>Get in touch</div>
+                  <div className={addressInfo}>
                     <div>
                       <a type="tel" href="tel:1-800-544-2787">
                         1-800-544-2787
@@ -155,7 +159,7 @@ const Footer = () => {
                     </address>
                     <div>
                       <a
-                        className={styles.footerCta}
+                        className={footerCta}
                         target="_blank"
                         rel="noopener"
                         href="https://www.google.com/maps/dir//Academy+of+Art+94105"
@@ -165,9 +169,9 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.footerContact}>
-                  <div className={styles.footerHeading}>Links & Resources</div>
-                  <div className={styles.contactInfo}>
+                <div className={footerContact}>
+                  <div className={footerHeading}>Links & Resources</div>
+                  <div className={contactInfo}>
                     {footerLinksArray.map(({ _key, title, href, hidden }) => (
                       <a href={href} key={_key}>
                         {title}
@@ -176,12 +180,12 @@ const Footer = () => {
                   </div>
 
                   {/*
-                  <ul className={styles.footerColumns}>
+                  <ul className={footerColumns}>
                     {schools.nodes &&
                       schools.nodes
                         .sort((a, b) => a.title.localeCompare(b.title))
                         .map((node) => (
-                          <li className={styles.columnLink} key={node.id}>
+                          <li className={columnLink} key={node.id}>
                             <Link to={`/schools/${node.slug.current}`}>{node.title}</Link>
                           </li>
                         ))}
@@ -189,16 +193,16 @@ const Footer = () => {
                   */}
                 </div>
               </div>
-              <div className={styles.footerCopyright}>
+              <div className={footerCopyright}>
                 <div>© {new Date().getFullYear()} Academy of Art University&nbsp;</div>
-                <ul className={styles.footerCopyrightLinks}>
+                <ul className={footerCopyrightLinks}>
                   {footerLegalLinksArray.map(({ _key, title, href, hidden }) => (
                     <li key={_key}>
                       <MenuLink title={title} href={href} hidden={hidden} />
                     </li>
                   ))}
                 </ul>
-                <div className={styles.socialIcons}>
+                <div className={socialIcons}>
                   {generateSocialLinks(
                     [
                       'https://www.facebook.com/AcademyofArtUniversity',

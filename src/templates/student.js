@@ -14,12 +14,10 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "home" } }) {
       seoImage {
         asset {
-          _id
-          url
-          img: fixed(width: 1024) {
-            width
-            height
-            src
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FIXED, width: 1024)
           }
         }
       }
@@ -39,7 +37,7 @@ const StudentTemplate = (props) => {
       {student && (
         <SEO
           title={student.name || 'Untitled'}
-          seoImage={page.seoImage?.image?.asset.img.src}
+          seoImage={seoImage?.asset?.gatsbyImageData}
           path={props.location.pathname}
         />
       )}

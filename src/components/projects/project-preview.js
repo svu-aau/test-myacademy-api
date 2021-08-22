@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { Carousel, Hero, Link as DLLink } from '@aauweb/design-library';
 
-import layoutStyles from '../layout/layout.module.css';
+import { breadcrumb, breadcrumbLinkSeperator, columnSection, title } from '../layout/layout.module.css';
 import Section from '../sections/section';
 import Container from '../layout/container';
 
@@ -11,7 +11,7 @@ function StudentProfile(props) {
 
   const media = [...portfolio];
 
-  console.log('media', media);
+  // console.log('media', media);
   const carouselData = media.map((item) => {
     return {
       id: item._key,
@@ -26,18 +26,18 @@ function StudentProfile(props) {
 
       <Section alignReset noPaddingTop>
         <Container>
-          <div className={layoutStyles.breadcrumb}>
+          <div className={breadcrumb}>
             <Link to={'/'}>HOME</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
             <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <div className={layoutStyles.breadcrumbLink}>{name}</div>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
+            <div>{name}</div>
           </div>
 
           <h3>Midpoint Review</h3>
-          <h2 className={layoutStyles.title}>{name}</h2>
+          <h2 className={title}>{name}</h2>
 
-          <div className={layoutStyles.columnSection}>
+          <div className={columnSection}>
             <DLLink target="_blank" href="#" variant="cta" label="Download Thesis" />
           </div>
 

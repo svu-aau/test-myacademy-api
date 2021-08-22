@@ -1,6 +1,6 @@
 import React from 'react';
-import Img from 'gatsby-image';
-import styles from './header.module.css';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { mainImage, hero, heroTitle, title } from './header.module.css';
 
 // backgroundImage should be a fluid image asset
 const Hero = ({
@@ -12,20 +12,20 @@ const Hero = ({
 }) => {
   return (
     <div className="hero">
-      <div className={styles.mainImage}>
+      <div className={mainImage}>
         {/* --color-dark-black-bg: #292931; */}
         {backgroundImage && (
-          <Img
+          <GatsbyImage
+            image={backgroundImage}
             backgroundColor="#292931"
-            className={styles.hero}
+            className={hero}
             loading="eager"
-            fluid={backgroundImage}
             alt={imageAlt ? imageAlt : 'hero image'}
           />
         )}
-        {siteTitle && <h3 className={styles.heroTitle}>{siteTitle}</h3>}
-        {siteSubtitle && <h1 className={styles.title}>{siteSubtitle}</h1>}
-        {heroImageCaption && <figcaption className={styles.heroImageCaption}>{heroImageCaption}</figcaption>}
+        {siteTitle && <h3 className={heroTitle}>{siteTitle}</h3>}
+        {siteSubtitle && <h1 className={title}>{siteSubtitle}</h1>}
+        {heroImageCaption && <figcaption className={heroImageCaption}>{heroImageCaption}</figcaption>}
       </div>
     </div>
   );

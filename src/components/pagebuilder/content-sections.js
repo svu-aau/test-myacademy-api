@@ -1,6 +1,5 @@
 import SectionCard from './section-card';
 import SectionDebug from './section-debug';
-import SectionGlobe from './section-globe';
 import SectionHero from './section-hero';
 import SectionText from './section-text';
 import SectionImageGrid from './section-image-grid';
@@ -16,7 +15,6 @@ import SectionLibraryHero from './section-library-hero';
 
 const sectionComponents = {
   SectionCard,
-  SectionGlobe,
   SectionHero,
   SectionText,
   SectionImageGrid,
@@ -40,27 +38,31 @@ const ContentSections = ({
   textOnly = false,
 }) =>
   content.map((section) => {
-    const component = section.__typename.replace('Sanity', '');
+    // console.log('section: ', section);
+    if (section && section.__typename) {
+      const component = section.__typename.replace('Sanity', '');
 
-    if (component === 'GlobalSection') {
-      return (sectionComponents[section.content[0].__typename.replace('Sanity', '')] || SectionDebug)({
-        section: section.content[0],
+      if (component === 'GlobalSection') {
+        return (sectionComponents[section.content[0]?.__typename.replace('Sanity', '')] || SectionDebug)({
+          section: section.content[0],
+          isPageContent,
+          slug,
+        });
+      }
+
+      // console.log('component', component);
+
+      return (sectionComponents[component] || SectionDebug)({
+        section,
         isPageContent,
         slug,
+        noPaddingTop,
+        noPadding: component === 'SectionColumn',
+        textOnly,
+        color,
       });
     }
-
-    console.log('component', component);
-
-    return (sectionComponents[component] || SectionDebug)({
-      section,
-      isPageContent,
-      slug,
-      noPaddingTop,
-      noPadding: component === 'SectionColumn',
-      textOnly,
-      color,
-    });
+    return null;
   });
 
 export default ContentSections;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CardGrid } from '@aauweb/design-library';
 import BlockContent from '../block-content';
-import styles from './section-library-card.module.css';
+import { root } from './section-library-card.module.css';
 
 const SectionLibraryCard = ({ section }) => {
   const { heroImage, _rawCaption, href, title, kalturaID } = section;
@@ -13,7 +13,7 @@ const SectionLibraryCard = ({ section }) => {
       buttonText: 'Learn More',
       children: <BlockContent blocks={_rawCaption} />,
       href,
-      image: heroImage.asset.fluid.src,
+      image: heroImage.asset.url,
       title,
       iframe:
         kalturaID &&
@@ -28,8 +28,8 @@ const SectionLibraryCard = ({ section }) => {
           width: '100%',
         },
         allowFullScreen: true,
-        webkitallowfullscreen: true,
-        mozAllowFullScreen: true,
+        webkitallowfullscreen: 'true',
+        mozallowfullscreen: 'true',
         frameBorder: '0',
         id: 'kaltura_player_1625520477',
         allow: 'autoplay *; fullscreen *; encrypted-media *',
@@ -38,7 +38,7 @@ const SectionLibraryCard = ({ section }) => {
   ];
 
   return (
-    <div className={styles.root} key={section._key} /*color={backgroundColor}*/ alignment="center">
+    <div className={root} key={section._key}>
       <CardGrid data={data} />
     </div>
   );

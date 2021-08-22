@@ -136,7 +136,7 @@ export default function ContactForm({ studentId, studentName }) {
           setIsLoading(false);
         })
         .catch((err) => {
-          console.log('Error in sending email = ', err);
+          // console.log('Error in sending email = ', err);
           setIsError(true);
           setIsLoading(false);
         });

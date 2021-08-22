@@ -5,8 +5,10 @@ export const queryHiringCompanies = graphql`
     name
     logo {
       asset {
-        fluid(maxWidth: 300) {
-          ...GatsbySanityImageFluid_noBase64
+        ... on SanityImageAsset {
+          _id
+          url
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
         }
       }
     }

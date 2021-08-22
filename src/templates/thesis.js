@@ -6,12 +6,12 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import ContentSections from '../components/pagebuilder/content-sections';
-import layoutStyles from '../components/layout/layout.module.css';
+import { breadcrumb, breadcrumbLinkSeperator } from '../components/layout/layout.module.css';
 import Section from '../components/sections/section';
 import Container from '../components/layout/container';
 
 import { cn } from '../lib/helpers';
-import styles from './thesis.module.css';
+import { headerMenuSchools, columnLink, divider, flexThree, column } from './thesis.module.css';
 
 export const query = graphql`
   query ThesisPageQuery {
@@ -45,12 +45,10 @@ export const query = graphql`
       title
       seoImage {
         asset {
-          _id
-          url
-          img: fixed(width: 1024) {
-            width
-            height
-            src
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FIXED, width: 1024)
           }
         }
       }
@@ -90,7 +88,7 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
-  console.log('students Nodes', students.nodes);
+  // console.log('students Nodes', students.nodes);
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
@@ -118,8 +116,8 @@ const ThesisProjectsPage = (props) => {
     }))
     .filter(({ data }) => data.length > 0);
 
-  console.log('data', data);
-  console.log('formattedProjects', formattedProjects);
+  // console.log('data', data);
+  // console.log('formattedProjects', formattedProjects);
 
   return (
     <Layout
@@ -129,7 +127,7 @@ const ThesisProjectsPage = (props) => {
         title={page.seo?.seo_title || site.title || config.title}
         description={page.seo?.meta_description}
         keywords={page.seoKeywords || site.keywords}
-        seoImage={page.seoImage?.asset?.img?.src}
+        seoImage={page.seoImage?.asset?.gatsbyImageData}
         path={props.location.pathname}
       />
 
@@ -137,9 +135,9 @@ const ThesisProjectsPage = (props) => {
 
       <Section alignReset noPadding>
         <Container>
-          <div className={layoutStyles.breadcrumb}>
+          <div className={breadcrumb}>
             <Link to={'/'}>HOME</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
             <span>THESIS PROJECTS</span>
           </div>
         </Container>
@@ -148,34 +146,28 @@ const ThesisProjectsPage = (props) => {
       <Section noPadding>
         <Container>
           <h3>Quicklinks</h3>
-          <div className={cn(styles.headerMenuSchools, styles.flexThree)}>
-            <ul className={styles.column}>
+          <div className={cn(headerMenuSchools, flexThree)}>
+            <ul className={column}>
               {displaySchools &&
                 displaySchools.slice(0, 7).map((school) => (
-                  <li className={styles.columnLink} key={school.id}>
-                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
-                      {school.title}
-                    </Link>
+                  <li className={columnLink} key={school.id}>
+                    <a href={`#${school.slug.current}`}>{school.title}</a>
                   </li>
                 ))}
             </ul>
-            <ul className={styles.column}>
+            <ul className={column}>
               {displaySchools &&
                 displaySchools.slice(7, 14).map((school) => (
-                  <li className={styles.columnLink} key={school.id}>
-                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
-                      {school.title}
-                    </Link>
+                  <li className={columnLink} key={school.id}>
+                    <a href={`#${school.slug.current}`}>{school.title}</a>
                   </li>
                 ))}
             </ul>
-            <ul className={styles.column}>
+            <ul className={column}>
               {displaySchools &&
                 displaySchools.slice(14).map((school) => (
-                  <li className={styles.columnLink} key={school.id}>
-                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
-                      {school.title}
-                    </Link>
+                  <li className={columnLink} key={school.id}>
+                    <a href={`#${school.slug.current}`}>{school.title}</a>
                   </li>
                 ))}
             </ul>
@@ -189,7 +181,7 @@ const ThesisProjectsPage = (props) => {
             <>
               <h1>{school.title}</h1>
               <ImageGrid data={data} />
-              {idx + 1 < formattedProjects.length && <div className={styles.divider} />}
+              {idx + 1 < formattedProjects.length && <div className={divider} />}
             </>
           ))}
         </Container>

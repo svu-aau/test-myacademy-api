@@ -1,4 +1,4 @@
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
 import { sortByTitle, sortByName } from '../../lib/helpers';
@@ -9,7 +9,7 @@ import Container from '../layout/container';
 import IndustryGrid from '../sections/industry-grid';
 import Section from '../sections/section';
 import StudentsGrid from '../students/students-grid';
-import styles from './school-profile.module.css';
+import { root, mainImage, hero, heroTitle, demosCTA } from './school-profile.module.css';
 import typographyStyles from '../../styles/typography.module.css';
 import serializerStyles from '../../components/serializers.module.css';
 import { Link } from 'gatsby';
@@ -75,13 +75,18 @@ function SchoolProfile(props) {
   });
 
   return (
-    <article className={styles.root}>
+    <article className={root}>
       {heroImage && heroImage.asset && (
-        <div className={styles.mainImage}>
-          <Img className={styles.hero} loading="eager" fluid={heroImage.asset.fluid} alt="Academy of Art University" />
-          <h3 className={styles.heroTitle}>The School of</h3>
-          <h1 className={styles.title}>{title}</h1>
-          {heroImageCaption && <figcaption className={styles.heroImageCaption}>{heroImageCaption}</figcaption>}
+        <div className={mainImage}>
+          <GatsbyImage
+            image={heroImage.childImageSharp.gatsbyImageData}
+            className={hero}
+            loading="eager"
+            alt="Academy of Art University"
+          />
+          <h3 className={heroTitle}>The School of</h3>
+          <h1 className={title}>{title}</h1>
+          {heroImageCaption && <figcaption className={heroImageCaption}>{heroImageCaption}</figcaption>}
         </div>
       )}
       <Section color="dark" alignment="center">
@@ -91,7 +96,7 @@ function SchoolProfile(props) {
           </h1>
           {_rawIntro && <BlockContent blocks={_rawIntro || []} />}
           {isGameDevelopment && (
-            <a className={styles.demosCTA} href="#demos" title="Play Game Demos">
+            <a className={demosCTA} href="#demos" title="Play Game Demos">
               Play Game Demos
             </a>
           )}

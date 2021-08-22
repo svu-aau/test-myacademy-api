@@ -28,12 +28,10 @@ export const query = graphql`
       title
       seoImage {
         asset {
-          _id
-          url
-          img: fixed(width: 1024) {
-            width
-            height
-            src
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FIXED, width: 1024)
           }
         }
       }
@@ -99,6 +97,8 @@ const IndexPage = (props) => {
     site,
     page,
   } = data;
+
+  // console.log('page: ', page);
 
   if (!site) {
     throw new Error(

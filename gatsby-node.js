@@ -7,6 +7,13 @@
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: { fs: 'empty' },
+    // fix pdf js ssr build issue with missing canvas
+    resolve: {
+      alias: {
+        canvas: false,
+        encoding: false,
+      },
+    },
   });
 };
 

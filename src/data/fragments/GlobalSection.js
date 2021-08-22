@@ -8,11 +8,13 @@ export const queryGlobalSection = graphql`
     subTitle
     content: contentArray {
       ... on SanitySectionText {
+        __typename
         _key
         _rawBody(resolveReferences: { maxDepth: 10 })
       }
 
       ... on SanitySectionCard {
+        __typename
         _key
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })
@@ -21,6 +23,7 @@ export const queryGlobalSection = graphql`
       }
 
       ... on SanitySectionMediaGrid {
+        __typename
         _key
         linkOverride
         backgroundColor
