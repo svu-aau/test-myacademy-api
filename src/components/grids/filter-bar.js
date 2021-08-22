@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-import styles from './filter-bar.module.css';
+import { root, filterText, filterTextDouble, wrapper, wrapperDouble } from './filter-bar.module.css';
 import { cn } from '../../lib/helpers';
 
 const FilterStyles = {
@@ -105,9 +105,9 @@ function FilterBar({
   const showBoth = showFilters && showSecondaryFilters;
 
   return (
-    <div className={styles.root}>
-      <div className={showBoth ? cn(styles.wrapper, styles.wrapperDouble) : styles.wrapper}>
-        <div className={showBoth ? cn(styles.filterText, styles.filterTextDouble) : styles.filterText}>Filter by:</div>
+    <div className={root}>
+      <div className={showBoth ? cn(wrapper, wrapperDouble) : wrapper}>
+        <div className={showBoth ? cn(filterText, filterTextDouble) : filterText}>Filter by:</div>
         {showPrimaryFilter && (
           <Select
             styles={FilterStyles}

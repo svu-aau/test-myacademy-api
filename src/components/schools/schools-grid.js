@@ -1,16 +1,15 @@
-import { Link } from 'gatsby';
 import React from 'react';
 import SchoolPreview from './school-preview';
 
-import styles from './schools-grid.module.css';
+import { root, grid } from './schools-grid.module.css';
 
 function SchoolsGrid({ schools }) {
   return (
-    <div className={styles.root}>
-      <ul className={styles.grid}>
+    <div className={root}>
+      <ul className={grid}>
         {schools &&
           schools.map((school) => (
-            <li className={styles.gridCell} key={school.id}>
+            <li key={school.id}>
               <SchoolPreview {...school} />
             </li>
           ))}

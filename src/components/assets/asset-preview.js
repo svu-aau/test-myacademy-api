@@ -1,10 +1,11 @@
 import React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { buildImageObj, cn } from '../../lib/helpers';
 import { responsiveTitle3 } from '../../styles/typography.module.css';
 import BlockText from '../block-text';
-import styles from '../projects/project-preview.module.css';
-import layoutStyles from '../layout/layout.module.css';
+import { leadMediaThumb, title, excerpt } from '../projects/project-preview.module.css';
+import { leadMediaThumbMasonry, leadMediaThumbFeatured } from '../students/student-preview.module.css';
+import { preloadHidden } from '../layout/layout.module.css';
 import { imageUrlFor } from '../../lib/image-url';
 
 function AssetPreview(props) {
@@ -18,40 +19,39 @@ function AssetPreview(props) {
   return (
     <div
       className={
-        masonry
-          ? cn(styles.leadMediaThumb, styles.leadMediaThumbMasonry)
-          : featured
-          ? styles.leadMediaThumbFeatured
-          : styles.leadMediaThumb
+        masonry ? cn(leadMediaThumb, leadMediaThumbMasonry) : featured ? leadMediaThumbFeatured : leadMediaThumb
       }
     >
       {displayFeaturedImage && displayFeaturedImage.image && displayFeaturedImage.image.asset.url.includes('.gif') ? (
         <>
           <img src={displayFeaturedImage.image.asset.url} alt={displayFeaturedImage.image.alt} />
           {hasLightbox && (
-            <div className={layoutStyles.preloadHidden}>
-              <img src={displayFeaturedImage.image.asset.url} width="1" height="1" alt="Hidden preload image" />
+            <div className={preloadHidden}>
+              <img src={displayFeaturedImage.image.asset.url} width="1" height="1" alt="Hidden preload" />
             </div>
           )}
         </>
       ) : (
         <>
-          <Img fluid={displayFeaturedImage.image.asset.fluid} alt={displayFeaturedImage.image.alt} />
+          <GatsbyImage
+            image={displayFeaturedImage.image.childImageSharp.gatsbyImageData}
+            alt={displayFeaturedImage.image.alt}
+          />
           {hasLightbox && (
-            <div className={layoutStyles.preloadHidden}>
+            <div className={preloadHidden}>
               <img
                 src={imageUrlFor(buildImageObj(displayFeaturedImage.image)).url()}
                 width="1"
                 height="1"
-                alt="Hidden preload image"
+                alt="Hidden preload"
               />
             </div>
           )}
         </>
       )}
-      {caption && <h3 className={cn(responsiveTitle3, styles.title)}>{caption}</h3>}
+      {caption && <h3 className={cn(responsiveTitle3, title)}>{caption}</h3>}
       {_rawExcerpt && (
-        <div className={styles.excerpt}>
+        <div className={excerpt}>
           <BlockText blocks={_rawExcerpt} />
         </div>
       )}

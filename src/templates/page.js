@@ -21,12 +21,10 @@ export const query = graphql`
       title
       seoImage {
         asset {
-          _id
-          url
-          img: fixed(width: 1024) {
-            width
-            height
-            src
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FIXED, width: 1024)
           }
         }
       }
@@ -66,7 +64,7 @@ const ProjectTemplate = (props) => {
       {page && (
         <SEO
           title={pageTitle}
-          seoImage={seoImage?.asset?.img?.src}
+          seoImage={seoImage?.asset?.gatsbyImageData}
           seoTitle={seoTitle}
           description={seoDescription}
           keywords={page.seoKeywords}

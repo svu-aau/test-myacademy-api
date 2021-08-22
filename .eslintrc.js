@@ -1,11 +1,11 @@
 module.exports = {
-  'parser': 'babel-eslint',
-  'extends': [
+  parser: 'babel-eslint',
+  extends: [
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:import/errors',
-    'plugin:import/warnings'
+    'plugin:import/warnings',
   ],
   rules: {
     'react/prop-types': 0,
@@ -13,12 +13,12 @@ module.exports = {
     'no-console': 0,
     'no-undef': 0,
     'no-unused-vars': 0,
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
   },
   settings: {
     react: {
       pragma: 'React',
-      version: '16.13.1'
-    }
-  }
+      version: '17.0.2',
+    },
+  },
 };

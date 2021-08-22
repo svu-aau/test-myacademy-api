@@ -7,9 +7,7 @@ export const queryImage = graphql`
       ... on SanityImageAsset {
         _id
         url
-        fluid(maxWidth: 500) {
-          ...GatsbySanityImageFluid_noBase64
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
     crop {

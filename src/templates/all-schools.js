@@ -7,7 +7,7 @@ import Section from '../components/sections/section';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
-import layoutStyles from '../components/layout/layout.module.css';
+import { breadcrumb, breadcrumbLinkSeperator } from '../components/layout/layout.module.css';
 
 export const query = graphql`
   query AllSchoolsPageQuery {
@@ -31,11 +31,11 @@ const ProjectTemplate = (props) => {
 
   let schoolDataArray = null;
 
-  console.log('schools', schools);
+  // console.log('schools', schools);
 
   if (schools) {
     schoolDataArray = schools.nodes.map(({ heroImage, title, slug }) => [
-      heroImage ? heroImage.asset?.fluid?.src : null,
+      heroImage ? heroImage.asset?.url : null,
       [title, `/schools/${slug.current}`],
     ]);
   }
@@ -56,9 +56,9 @@ const ProjectTemplate = (props) => {
 
       <Section alignReset noPaddingBottom>
         <Container>
-          <div className={layoutStyles.breadcrumb}>
+          <div className={breadcrumb}>
             <Link to={'/'}>HOME</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
             <span>Schools</span>
           </div>
         </Container>

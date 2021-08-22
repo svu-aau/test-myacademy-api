@@ -5,11 +5,10 @@ import SectionLibraryHero from '../components/pagebuilder/section-library-hero';
 import SectionCard from '../components/pagebuilder/section-card';
 import Container from '../components/layout/container';
 import GraphQLErrorList from '../components/graphql-error-list';
-import SchoolProfile from '../components/schools/school-profile';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import Section from '../components/sections/section';
-import layoutStyles from '../components/layout/layout.module.css';
+import { breadcrumbLinkSeperator, breadcrumb } from '../components/layout/layout.module.css';
 
 export const query = graphql`
   query SchoolTemplateQuery($id: String!) {
@@ -17,12 +16,10 @@ export const query = graphql`
       ...School
       seoImage {
         asset {
-          _id
-          url
-          img: fixed(width: 1024) {
-            width
-            height
-            src
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FIXED, width: 1024)
           }
         }
       }
@@ -57,7 +54,7 @@ const SchoolTemplate = (props) => {
           description={seoDescription}
           keywords={school.seoKeywords}
           path={props.location.pathname}
-          seoImage={seoImage?.asset?.img?.src}
+          seoImage={seoImage?.asset?.gatsbyImageData}
         />
       )}
 
@@ -71,11 +68,11 @@ const SchoolTemplate = (props) => {
 
       <Section alignReset noPadding={heroImage} noPaddingBottom={!heroImage}>
         <Container>
-          <div className={layoutStyles.breadcrumb}>
+          <div className={breadcrumb}>
             <Link to={'/'}>HOME</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
             <Link to={'/schools'}>Schools</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
             <span>{school.title}</span>
           </div>
         </Container>

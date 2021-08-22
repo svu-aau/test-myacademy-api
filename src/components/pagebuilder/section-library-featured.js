@@ -2,8 +2,7 @@ import React from 'react';
 
 import { Card } from '@aauweb/design-library';
 import BlockContent from '../block-content';
-import Section from '../sections/section';
-import styles from './section-library-featured.module.css';
+import { root } from './section-library-featured.module.css';
 
 /*
 image, title, type, alt, children, buttonText, onClick
@@ -11,9 +10,9 @@ image, title, type, alt, children, buttonText, onClick
 const SectionLibraryFeatured = ({ section }) => {
   console.log(section);
   return (
-    <div className={styles.root} key={section._key} /*color={backgroundColor}*/ alignment="center">
+    <div className={root} key={section._key}>
       <Card
-        image={section.image.asset.fluid.src}
+        image={section.image.asset.url}
         alt={'test'}
         title={section.title}
         onClick={() => {}}

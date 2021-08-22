@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './section.module.css';
+import * as styles from './section.module.css';
 import { cn } from '../../lib/helpers';
 
 // cms saves only the hex values so we gotta map back to our css var color names

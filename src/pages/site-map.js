@@ -5,8 +5,8 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import Section from '../components/sections/section';
-import styles from './site-map.module.css';
-import layoutStyles from '../components/layout/layout.module.css';
+import { link_container, link } from './site-map.module.css';
+import { breadcrumb, breadcrumbLinkSeperator } from '../components/layout/layout.module.css';
 
 export const query = graphql`
   query SiteMapQuery {
@@ -61,29 +61,29 @@ const SiteMap = (props) => {
 
       <Section>
         <Container>
-          <div className={layoutStyles.breadcrumb}>
+          <div className={breadcrumb}>
             <Link to={'/'}>HOME</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <span to="/site-maps">SITE MAP</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
+            <Link to="/site-maps">SITE MAP</Link>
           </div>
 
           <Link to={'/'}>
-            <h2 className={styles.link} style={{ paddingTop: '2rem' }}>
+            <h2 className={link} style={{ paddingTop: '2rem' }}>
               HOME
             </h2>
           </Link>
-          <div className={styles.link_container}>
+          <div className={link_container}>
             <Link to={'/schools'}>
-              <h3 className={styles.link}>Schools</h3>
+              <h3 className={link}>Schools</h3>
             </Link>
-            <div className={styles.link_container}>
+            <div className={link_container}>
               {schools?.edges?.length &&
                 schools.edges.map((school) => (
                   <div key={school._id}>
                     <Link to={`/schools/${school.node.slug.current}`} key={school.node._id}>
                       {school.node.title}
                     </Link>
-                    <div className={styles.link_container}>
+                    <div className={link_container}>
                       {students?.edges?.length &&
                         students.edges.map(
                           (student) =>
@@ -101,10 +101,10 @@ const SiteMap = (props) => {
                 ))}
             </div>
             <Link to={'/thesis-projects'}>
-              <h3 className={styles.link}>Thesis Projects</h3>
+              <h3 className={link}>Thesis Projects</h3>
             </Link>
             <Link to={'/resources'}>
-              <h3 className={styles.link}>Resources</h3>
+              <h3 className={link}>Resources</h3>
             </Link>
           </div>
         </Container>

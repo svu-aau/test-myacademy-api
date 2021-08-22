@@ -2,8 +2,8 @@
 import React from 'react';
 import Figure from './figure';
 import BlockContent from '@sanity/block-content-to-react';
-import typographyStyles from '../styles/typography.module.css';
-import serializerStyles from './serializers.module.css';
+import * as typographyStyles from '../styles/typography.module.css';
+import * as serializerStyles from './serializers.module.css';
 import { Link } from 'gatsby';
 import softSearch from '../utils/linkHelper';
 
@@ -22,7 +22,7 @@ const BlockRenderer = (props) => {
       );
 
     case 'blockquote':
-      return <blockquote className={typographyStyles.blockquote}>{props.children}</blockquote>;
+      return <blockquote className={typographyStyles.blockQuote}>{props.children}</blockquote>;
 
     case 'normal':
       return <p className={typographyStyles.paragraph}>{props.children}</p>;

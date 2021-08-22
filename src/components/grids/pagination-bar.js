@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
-import styles from './pagination-bar.module.css';
+import { root, wrapper } from './pagination-bar.module.css';
 
 const useStyles = makeStyles(() => ({
   // HACK ALERT: the build would fail if
@@ -124,8 +124,8 @@ function PaginationBar({ pages = 1, handleClick, isDark = false }) {
   }
 
   return (
-    <div className={styles.root}>
-      <div className={styles.wrapper}>
+    <div className={root}>
+      <div className={wrapper}>
         <Pagination
           count={pages}
           shape="rounded"

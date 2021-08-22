@@ -1,13 +1,16 @@
 import { graphql } from 'gatsby';
 export const queryImage = graphql`
   fragment LibraryHero on SanitySectionLibraryHero {
+    __typename
     _key
     _type
     heroTitle
     backgroundImage {
       asset {
-        fluid(maxWidth: 1920) {
-          ...GatsbySanityImageFluid_noBase64
+        ... on SanityImageAsset {
+          _id
+          url
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
         }
       }
     }

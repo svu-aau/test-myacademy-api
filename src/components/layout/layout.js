@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import '../../styles/layout.css';
-import styles from './layout.module.css';
+import { content, darkContent } from './layout.module.css';
 import { cn } from '../../lib/helpers';
 
 const Layout = ({
@@ -24,7 +24,7 @@ const Layout = ({
       siteSubtitle={siteSubtitle}
       heroImageCaption={heroImageCaption}
     />
-    <div className={cn(styles.content, dark ? styles.darkContent : '')}>{children}</div>
+    <div className={cn(content, dark ? darkContent : '')}>{children}</div>
     <Footer />
   </>
 );

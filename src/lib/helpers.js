@@ -1,5 +1,5 @@
 import { isFuture } from 'date-fns';
-import layoutStyles from '../components/layout/layout.module.css';
+import { lightboxVideoCaption, assetDescription } from '../components/layout/layout.module.css';
 import BlockContent from '../components/block-content';
 import React from 'react';
 
@@ -72,25 +72,23 @@ export const CaptionAndDescription = (props) => {
   return (
     <>
       {caption && caption.trim() !== '' && (
-        <figcaption className={cn(layoutStyles.caption, video ? layoutStyles.lightboxVideoCaption : '')}>
-          {caption}
-        </figcaption>
+        <figcaption className={cn(caption, video ? lightboxVideoCaption : '')}>{caption}</figcaption>
       )}
       {link && link.trim() !== '' && (
-        <figcaption className={cn(layoutStyles.caption, video ? layoutStyles.lightboxVideoCaption : '')}>
+        <figcaption className={cn(caption, video ? lightboxVideoCaption : '')}>
           <a href={link} target="_blank" rel="noopener" title={link}>
             {link}
           </a>
         </figcaption>
       )}
       {((credit && credit.trim() !== '') || (medium && medium.trim() !== '') || (height && height.trim() !== '')) && (
-        <figcaption className={cn(layoutStyles.caption, video ? layoutStyles.lightboxVideoCaption : '')}>
+        <figcaption className={cn(caption, video ? lightboxVideoCaption : '')}>
           {credit && `Photo by: ${credit} `} {medium && `Medium: ${medium} `}{' '}
           {height && width && depth && `${height}x${width}x${depth}`}
         </figcaption>
       )}
       {showDescription && _rawDescription && (
-        <div className={layoutStyles.assetDescription}> {<BlockContent blocks={_rawDescription} />}</div>
+        <div className={assetDescription}> {<BlockContent blocks={_rawDescription} />}</div>
       )}
     </>
   );

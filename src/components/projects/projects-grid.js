@@ -5,7 +5,7 @@ import { mapEdgesToNodes, sortByTitle, paginate } from '../../lib/helpers';
 import ColumnGrid from '../grids/column-grid';
 import FilterBar from '../grids/filter-bar';
 import PaginationBar from '../grids/pagination-bar';
-import styles from './projects-grid.module.css';
+import { root } from './projects-grid.module.css';
 
 function ProjectsGrid({ projects, linkOverride, showFilters = false, showPagination = false }) {
   const availableProjects = projects.filter(({ heroImage }) => heroImage[0] && heroImage[0].image !== null);
@@ -26,7 +26,7 @@ function ProjectsGrid({ projects, linkOverride, showFilters = false, showPaginat
     paginationData = paginate(num, projs.length);
     setPages(paginationData.pages.length);
     setPaginationLocation([paginationData.startIndex, paginationData.endIndex]);
-    scroll({
+    window.scroll({
       top: rootRef.current.offsetTop - 75,
       behavior: 'smooth',
     });
@@ -59,7 +59,7 @@ function ProjectsGrid({ projects, linkOverride, showFilters = false, showPaginat
         let availableSchools = sortByTitle(schools.filter(({ slug }) => availableSchoolsArray.includes(slug.current)));
 
         return (
-          <div className={styles.root} ref={rootRef}>
+          <div className={root} ref={rootRef}>
             {showFilters && allSchoolsFilter && schools.length && (
               <FilterBar handleClick={handleFilter} items={availableSchools} placeholder="Schools" showFilters />
             )}

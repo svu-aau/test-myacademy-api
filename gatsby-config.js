@@ -68,8 +68,8 @@ module.exports = {
         disableMinification: false,
       },
     },
-    `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -78,22 +78,12 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `datasets`,
-        path: `${__dirname}/src/data/datasets/`,
-      },
-      plugins: [`gatsby-transformer-json`],
-    },
-    {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        exclude: /(node_modules|.cache|.now|.vscode|static|public)/,
+        exclude: ["node_modules", "bower_components", ".cache", "public", ".vscode", "static", "public"],
         stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
+        emitWarning: true,
+        failOnError: false,
       },
     },
   ],

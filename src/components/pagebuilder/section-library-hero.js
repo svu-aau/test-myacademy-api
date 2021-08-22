@@ -3,7 +3,7 @@ import { Hero } from '@aauweb/design-library';
 
 const SectionLibraryHero = ({ section }) => (
   <div style={{ marginTop: '125px' }}>
-    <Hero backgroundImage={section.backgroundImage.asset.fluid.src} title={section.heroTitle} />
+    <Hero backgroundImage={section.backgroundImage.asset.url} title={section.heroTitle} />
   </div>
 );
 

@@ -1,6 +1,6 @@
 // Grid of project/portfolio items (figure, video, and fileUpload [including PDFs])
 import React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import FilePreview from '../projects/file-preview';
 import Section from '../sections/section';
 import styles from '../projects/project-profile.module.css';
@@ -46,9 +46,9 @@ export default function PortfolioGrid({ media, showDescription = false, onItemCl
         ) : (
           <div key={_key}>
             <button type="button" className={layoutStyles.mediaInteractWrapper} onClick={() => onItemClick(idx)}>
-              <Img
+              <GatsbyImage
+                image={media.image.childImageSharp.gatsbyImageData}
                 className={styles.mainImage}
-                fluid={media.image.asset.fluid}
                 alt={media.alt}
                 imgStyle={{ objectFit: 'contain' }}
               />

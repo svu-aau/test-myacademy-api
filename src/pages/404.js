@@ -4,7 +4,7 @@ import Layout from '../components/layout/layout';
 import SEO from '../components/layout/seo';
 import { graphql, Link } from 'gatsby';
 import Container from '../components/layout/container';
-import styles from '../components/layout/footer.module.css';
+import { footerSchools, footerColumns, columnLink } from '../components/layout/footer.module.css';
 import Section from '../components/sections/section';
 
 const NotFoundPage = ({ data }) => {
@@ -22,13 +22,13 @@ const NotFoundPage = ({ data }) => {
           </p>
           <br />
           <br />
-          <div className={styles.footerSchools}>
-            <div className={styles.footerColumns}>
+          <div className={footerSchools}>
+            <div className={footerColumns}>
               {schools.nodes &&
                 schools.nodes
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((node) => (
-                    <li className={styles.columnLink} key={node.id}>
+                    <li className={columnLink} key={node.id}>
                       <Link to={`/schools/${node.slug.current}`}>{node.title}</Link>
                     </li>
                   ))}

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { Carousel, Hero, Link as DLLink } from '@aauweb/design-library';
 
-import projectStyles from './project-profile.module.css';
-import layoutStyles from '../layout/layout.module.css';
+import { projectTitle, divider } from './project-profile.module.css';
+import { breadcrumbLinkSeperator, breadcrumb, columnSection } from '../layout/layout.module.css';
 import Section from '../sections/section';
 import Container from '../layout/container';
 
@@ -20,29 +20,27 @@ function ProjectProfile(props) {
 
   return (
     <>
-      {school.heroImage && (
-        <Hero backgroundImage={school.heroImage.asset.fluid.src} title={`School of ${school.title}`} />
-      )}
+      {school.heroImage && <Hero backgroundImage={school.heroImage.asset.url} title={`School of ${school.title}`} />}
 
       <Section alignReset noPaddingTop>
         <Container>
-          <div className={layoutStyles.breadcrumb}>
+          <div className={breadcrumb}>
             <Link to={'/'}>HOME</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
             <Link to={`/schools/${school.slug.current}`}>{school.title}</Link>
-            <span className={layoutStyles.breadcrumbLinkSeperator}>&gt;</span>
-            <div className={layoutStyles.breadcrumbLink}>{name}</div>
+            <span className={breadcrumbLinkSeperator}>&gt;</span>
+            <div>{name}</div>
           </div>
 
-          <h3 className={projectStyles.projectTitle}>{title}</h3>
-          <h2 className={layoutStyles.title}>{name}</h2>
+          <h3 className={projectTitle}>{title}</h3>
+          <h2 className={title}>{name}</h2>
 
           {downloadLink && (
             <>
-              <div className={layoutStyles.columnSection}>
+              <div className={columnSection}>
                 <DLLink target="_blank" href={downloadLink} variant="cta" label="Download Thesis" onClick={() => {}} />
               </div>
-              <div className={projectStyles.divider} />
+              <div className={divider} />
             </>
           )}
 
@@ -52,7 +50,7 @@ function ProjectProfile(props) {
               style={{ width: 640, height: 360, marginTop: '2em' }}
               allowFullScreen
               webkitallowfullscreen
-              mozAllowFullScreen
+              mozallowfullscreen
               frameBorder="0"
               id="kaltura_player_1625520477"
               allow="autoplay *; fullscreen *; encrypted-media *"

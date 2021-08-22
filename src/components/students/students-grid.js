@@ -2,7 +2,7 @@ import Masonry from 'react-masonry-css';
 import React, { useState } from 'react';
 
 import StudentPreview from './student-preview';
-import styles from './students-grid.module.css';
+import { root, myMasonryGridColumn, myMasonryGrid, grid } from './students-grid.module.css';
 import FilterBar from '../grids/filter-bar';
 
 function StudentsGrid({ filters, students, masonry, school }) {
@@ -35,9 +35,7 @@ function StudentsGrid({ filters, students, masonry, school }) {
         preFilterStudents = students;
       } else {
         // - pre filter students by selected Major first if there are two filters
-        const filtered = students.filter(({ major }) => major.title === programFilter);
-
-        preFilterStudents = filtered;
+        preFilterStudents = students.filter(({ major }) => major.title === programFilter);
       }
 
       if (filter === categoryPlaceholder) {
@@ -118,8 +116,8 @@ function StudentsGrid({ filters, students, masonry, school }) {
           900: 2,
           675: 1,
         }}
-        className={styles.myMasonryGrid}
-        columnClassName={styles.myMasonryGridColumn}
+        className={myMasonryGrid}
+        columnClassName={myMasonryGridColumn}
       >
         {students.map((student) => (
           <StudentPreview key={student.id} masonry {...student} />
@@ -139,12 +137,12 @@ function StudentsGrid({ filters, students, masonry, school }) {
   }
 
   assetCategories = findPopulatedFilters('categories');
-  showAssetCategories = assetCategories.length > 1 ? true : false;
-  showFilters = populatedFilters.length > 1 ? true : false;
+  showAssetCategories = assetCategories.length > 1;
+  showFilters = populatedFilters.length > 1;
   showFilterBar = showFilters || showAssetCategories;
 
   return (
-    <div className={styles.root}>
+    <div className={root}>
       {showFilterBar && (
         <FilterBar
           secondaryItems={showAssetCategories ? assetCategories : null}
@@ -158,18 +156,18 @@ function StudentsGrid({ filters, students, masonry, school }) {
         />
       )}
 
-      <ul className={styles.grid}>
+      <ul className={grid}>
         {(filterSelected === programPlaceholder || !filterSelected) &&
           filteredStudents &&
           filteredStudents.map((student) => (
-            <li className={styles.gridCell} key={student.id}>
+            <li key={student.id}>
               <StudentPreview {...student} />
             </li>
           ))}
         {filterSelected === categoryPlaceholder &&
           allFilteredStudents &&
           allFilteredStudents.map((student) => (
-            <li className={styles.gridCell} key={student.id}>
+            <li key={student.id}>
               <StudentPreview {...student} />
             </li>
           ))}

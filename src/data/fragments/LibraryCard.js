@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 export const queryImage = graphql`
   fragment LibraryCard on SanitySectionLibraryCard {
+    __typename
     _key
     _type
     _rawCaption(resolveReferences: { maxDepth: 10 })
@@ -8,8 +9,10 @@ export const queryImage = graphql`
     href
     heroImage {
       asset {
-        fluid(maxWidth: 800) {
-          ...GatsbySanityImageFluid_noBase64
+        ... on SanityImageAsset {
+          _id
+          url
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
         }
       }
       alt

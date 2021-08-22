@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'gatsby';
 import styles from './game-demo-grid.module.css';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import BlockContent from '../block-content';
 import Lightbox from '../lightbox';
 import useWindowSize from '../../lib/useWindowSize';
@@ -32,7 +32,11 @@ function GameDemoGrid({ gameDemos }) {
         return (
           <div key={idx} className={styles.demoItem}>
             <div className={styles.demoItemContent}>
-              <Img className={styles.demoImg} fluid={demo.heroImage.asset.fluid} alt={`game demo ${idx}`} />
+              <GatsbyImage
+                image={demo.heroImage.childImageSharp.gatsbyImageData}
+                className={styles.demoImg}
+                alt={`game demo ${idx}`}
+              />
 
               <div className={styles.demoContent}>
                 <p className={styles.textCenter}>

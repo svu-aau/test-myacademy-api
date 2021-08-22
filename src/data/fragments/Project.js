@@ -11,8 +11,8 @@ export const queryProject = graphql`
       ...File
     }
     gallery {
-      ... on SanityImage {
-        ...Image
+      asset {
+        url
       }
     }
     publishedAt

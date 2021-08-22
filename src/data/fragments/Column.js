@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 export const queryFigure = graphql`
   fragment Column on SanitySectionColumn {
+    __typename
     _key
     _type
     _id

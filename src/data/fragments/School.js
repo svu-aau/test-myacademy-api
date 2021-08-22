@@ -5,8 +5,10 @@ export const querySchool = graphql`
     title
     heroImage {
       asset {
-        fluid(maxWidth: 1440) {
-          ...GatsbySanityImageFluid_noBase64
+        ... on SanityImageAsset {
+          _id
+          url
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
         }
       }
     }

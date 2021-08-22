@@ -4,7 +4,7 @@ import { cn } from '../../lib/helpers';
 import AssetPreview from '../assets/asset-preview';
 import Lightbox from '../lightbox';
 import ProjectPreview from './project-preview';
-import styles from './featured-projects-grid.module.css';
+import { root, grid, gridCell, clickable } from './featured-projects-grid.module.css';
 import StudentPreview from '../students/student-preview';
 
 function FeaturedProjectsGrid({ projects, type }) {
@@ -13,8 +13,8 @@ function FeaturedProjectsGrid({ projects, type }) {
 
   return (
     <>
-      <div className={styles.root}>
-        <ul className={styles.grid}>
+      <div className={root}>
+        <ul className={grid}>
           {projects &&
             projects.slice(0, 23).map((project, idx) => {
               let gridCellFirstLarge = false;
@@ -42,15 +42,15 @@ function FeaturedProjectsGrid({ projects, type }) {
               return (
                 <li
                   className={cn(
-                    styles.gridCell,
-                    gridCellSecondLarge && styles.gridCellSecondLarge,
-                    gridCellFirstLarge && styles.gridCellFirstLarge,
-                    gridCellBottomLarge && styles.gridCellBottomLarge
+                    gridCell,
+                    gridCellSecondLarge && gridCellSecondLarge,
+                    gridCellFirstLarge && gridCellFirstLarge,
+                    gridCellBottomLarge && gridCellBottomLarge
                   )}
                   key={idx}
                 >
                   {type === 'assets' ? (
-                    <div className={styles.clickable} onClick={() => lightbox.current.openItem(idx)}>
+                    <div className={clickable} onClick={() => lightbox.current.openItem(idx)}>
                       <AssetPreview hasLightbox {...project} featured image={project} />
                     </div>
                   ) : __typename === 'SanityStudent' ? (
