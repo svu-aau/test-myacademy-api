@@ -8,6 +8,7 @@ export const queryFigure = graphql`
     backgroundColor
     sectionLeft {
       ... on SanitySectionText {
+        __typename
         _key
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })
@@ -23,6 +24,7 @@ export const queryFigure = graphql`
     }
     sectionRight {
       ... on SanitySectionText {
+        __typename
         _key
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })

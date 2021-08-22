@@ -38,8 +38,8 @@ const ContentSections = ({
   textOnly = false,
 }) =>
   content.map((section) => {
+    // console.log('section: ', section);
     if (section && section.__typename) {
-      // console.log('section: ', section);
       const component = section.__typename.replace('Sanity', '');
 
       if (component === 'GlobalSection') {
