@@ -1,98 +1,18 @@
 {
     "redirects": [
         {
-            "source": "/schools/game-development/students/zane-testing",
-            "destination": "/",
+            "source": "/schools.html",
+            "destination": "/schools",
             "statusCode": 301
         },
         {
-            "source": "/schools/writing-for-film-television-digital-media/students/brenton-dorsey",
-            "destination": "/",
+            "source": "/thesis-projects.html",
+            "destination": "/thesis",
             "statusCode": 301
         },
         {
-            "source": "/schools/motion-pictures-television/students/edwin-caminho",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/hongyuan-bong",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/deianara-ladicicco",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/architecture/students/architecture-student",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/jillian-westberry",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/game-development/students/aaron-test",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/marcelle-padilla",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/zomayra-vega-arroyo",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/robert-gruman",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/katie-murphy",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/web-design-new-media/students/wilson-barrios",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/fangchen-zhang",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/sarah-phuntshok",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/visual-development/students/po-hung-chen",
-            "destination": "/",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/jewelry-metal-arts/projects/Visions",
-            "destination": "/schools/jewelry-metal-arts/projects/visions",
-            "statusCode": 301
-        },
-        {
-            "source": "/schools/jewelry-metal-arts/projects/visions/Visions",
-            "destination": "/schools/jewelry-metal-arts/projects/visions",
-            "statusCode": 301
-        },
-        {
-            "source": "/student-profile-form",
-            "destination": "/",
+            "source": "/resources.html",
+            "destination": "/resources",
             "statusCode": 301
         }
     ]

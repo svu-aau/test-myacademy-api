@@ -49,6 +49,10 @@ const BlockRenderer = (props) => {
   }
 };
 
+const isExternalHrefPattern = (href) => {
+  return href.indexOf('http:') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0;
+};
+
 const serializers = {
   types: {
     // Text styles
@@ -59,7 +63,24 @@ const serializers = {
 
     // custom HTML
     embedHTML(props) {
+      // hack for vids that where added using embed html option before embedvideo existed
+      if (props.node.html.includes('youtube') || props.node.html.includes('vimeo')) {
+        return (
+          <div className={serializerStyles.videoContainer}>
+            <div dangerouslySetInnerHTML={{ __html: props.node.html }} />
+          </div>
+        );
+      }
       return <div dangerouslySetInnerHTML={{ __html: props.node.html }} />;
+    },
+
+    // custom Video Embed use responsive wrapper
+    embedVideo(props) {
+      return (
+        <div className={serializerStyles.videoContainer}>
+          <div dangerouslySetInnerHTML={{ __html: props.node.html }} />
+        </div>
+      );
     },
   },
   marks: {
@@ -70,12 +91,26 @@ const serializers = {
       let hrefSplit = href.split('/');
       const result = softSearch('gradshowcase.academyart.edu', hrefSplit);
 
+      // console.log('result: ', result);
+
+      let isInternalLink = false;
       if (result) {
+        isInternalLink = true;
         hrefSplit.splice(0, result[1] + 1);
         href = `/${hrefSplit.join('/')}`;
       }
 
-      if (href && href.indexOf('http') === 0) {
+      // console.log('href: ', href);
+
+      if (href && isInternalLink && !isExternalHrefPattern(href)) {
+        // todo: hack to replace underscores in content links that should be dashes until cms has dashes
+        href = href.replace(/_/g, '-');
+        return (
+          <Link to={href} className={linkStyle}>
+            {children}
+          </Link>
+        );
+      } else if (href && isExternalHrefPattern(href)) {
         return (
           <a href={href} className={linkStyle} target="_blank" rel="noopener">
             {children}
@@ -88,6 +123,11 @@ const serializers = {
           </a>
         );
       }
+    },
+
+    // centered text content
+    textCenter: ({ children }) => {
+      return <div style={{ textAlign: 'center' }}>{children}</div>;
     },
 
     // internal links
@@ -125,10 +165,6 @@ const serializers = {
         );
       else return <span className={linkStyle}>{children}</span>;
     },
-  },
-
-  textCenter: ({ children }) => {
-    return <span style={{ display: 'block', textAlign: 'center' }}>{children}</span>;
   },
 
   // block: BlockRenderer

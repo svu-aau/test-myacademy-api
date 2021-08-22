@@ -11,7 +11,7 @@ import Section from '../components/sections/section';
 import Container from '../components/layout/container';
 
 import { cn } from '../lib/helpers';
-import { headerMenuSchools, columnLink, divider, flexThree, column } from './thesis.module.css';
+import { headerMenuSchools, columnLink, divider, flexThree, column, schoolAnchor } from './thesis.module.css';
 
 export const query = graphql`
   query ThesisPageQuery {
@@ -88,7 +88,7 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
-  // console.log('students Nodes', students.nodes);
+  console.log('students Nodes', students.nodes);
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
@@ -176,15 +176,16 @@ const ThesisProjectsPage = (props) => {
       </Section>
 
       <Section noPaddingTop>
-        <Container>
-          {formattedProjects.map(({ school, data }, idx) => (
-            <>
+        {formattedProjects.map(({ school, data }, idx) => (
+          <div key={`${school.slug.current}-${idx}`}>
+            <div id={school.slug.current} className={schoolAnchor} />
+            <Container>
               <h1>{school.title}</h1>
               <ImageGrid data={data} />
               {idx + 1 < formattedProjects.length && <div className={divider} />}
-            </>
-          ))}
-        </Container>
+            </Container>
+          </div>
+        ))}
       </Section>
     </Layout>
   );

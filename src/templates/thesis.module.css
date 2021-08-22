@@ -12,6 +12,15 @@
   }
 }
 
+/* hidden anchor to scroll to but still show title */
+.schoolAnchor {
+  position: relative;
+  top: -150px;
+  @media (--media-max-medium) {
+    top: -50px;
+  }
+}
+
 .flexThree {
   flex: 3;
 }

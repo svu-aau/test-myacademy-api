@@ -78,18 +78,6 @@ const IndexPage = (props) => {
         <GraphQLErrorList errors={errors} />
       </Layout>
     );
-  } else if (isWindowExists() && window.location.search) {
-    // - handle redirects with query string since vercel redirect mechanism (vercel.json) can't handle query string
-    // - implemented in conjuction with /vercel.json: https://vercel.com/docs/configuration?query=redirects#project/redirects
-    // - vercel reidrects can't handle query string and thus query strings must be handled in code here
-    const department = getQueryVariable('department');
-    if (department) {
-      if (department.match(/Animation/)) {
-        window.location.replace('/schools/animation-and-visual-effects/');
-      } else if (department.match(/Industrial/)) {
-        window.location.replace('/schools/industrial-design');
-      }
-    }
   }
 
   const {

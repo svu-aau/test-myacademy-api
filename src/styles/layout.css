@@ -1,6 +1,7 @@
 @import './custom-properties.css';
 
 html {
+  scroll-behavior: smooth !important;
   font-family: var(--font-family-primary);
   font-size: var(--font-base-size);
   line-height: var(--font-base-line-height);
