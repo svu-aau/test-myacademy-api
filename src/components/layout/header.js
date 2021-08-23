@@ -84,6 +84,15 @@ const useStyles = makeStyles((theme) => ({
     '& > button': {
       marginLeft: '0.25em',
       minWidth: 120,
+      boxShadow: 'inset 0 0px 0 0px #ee3224',
+      transition: 'box-shadow .15s ease-in-out',
+      '&.light-hover:hover': {
+        backgroundColor: 'unset',
+        boxShadow: 'inset 0 -40px 0 -1px #ee3224',
+      },
+      '&.dark-hover:hover': {
+        boxShadow: 'inset 0 -40px 0 -1px #ce1c0d',
+      },
     },
   },
   contactLink: {
@@ -217,8 +226,8 @@ const Header = ({
                       ))}
                     </div>
                     <div className={classes.right}>
-                      <Button variant="contained" color="primary" label="Request Info" />
-                      <Button variant="outlined" color="primary" label="Apply" />
+                      <Button className="dark-hover" variant="contained" color="primary" label="Request Info" />
+                      <Button className="light-hover" variant="outlined" color="primary" label="Apply" />
                     </div>
                   </Toolbar>
                 </AppBar>
