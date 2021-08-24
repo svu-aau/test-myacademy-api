@@ -17,5 +17,6 @@ export const queryImage = graphql`
       }
       alt
     }
+    kalturaID
   }
 `;
