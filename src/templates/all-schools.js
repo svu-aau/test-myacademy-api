@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql, Link, navigate } from 'gatsby';
 import { ImageGrid } from '@aauweb/design-library';
 
 import Container from '../components/layout/container';
@@ -68,7 +68,7 @@ const ProjectTemplate = (props) => {
         <Section noPaddingTop>
           <Container>
             <h1>Schools</h1>
-            <ImageGrid data={schoolDataArray} />
+            <ImageGrid data={schoolDataArray} onClick={(link) => navigate(link)} />
           </Container>
         </Section>
       )}
