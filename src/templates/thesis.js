@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql, Link, navigate } from 'gatsby';
 import { ImageGrid } from '@aauweb/design-library';
 
 import GraphQLErrorList from '../components/graphql-error-list';
@@ -181,7 +181,7 @@ const ThesisProjectsPage = (props) => {
             <div id={school.slug.current} className={schoolAnchor} />
             <Container>
               <h1>{school.title}</h1>
-              <ImageGrid data={data} />
+              <ImageGrid data={data} onClick={(link) => navigate(link)} />
               {idx + 1 < formattedProjects.length && <div className={divider} />}
             </Container>
           </div>
