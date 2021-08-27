@@ -16,7 +16,7 @@ export const query = graphql`
       description
       keywords
     }
-    schools: allSanitySchool {
+    schools: allSanitySchool(sort: { fields: title, order: ASC }) {
       nodes {
         ...SchoolPreview
       }

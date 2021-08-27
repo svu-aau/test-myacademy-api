@@ -11,7 +11,7 @@ import Section from '../components/sections/section';
 import Container from '../components/layout/container';
 
 import { cn } from '../lib/helpers';
-import { headerMenuSchools, columnLink, divider, flexThree, column, schoolAnchor } from './thesis.module.css';
+import { headerMenuSchools, columnLink, divider, flexThree, column, schoolAnchor, notLink } from './thesis.module.css';
 
 export const query = graphql`
   query ThesisPageQuery {
@@ -88,7 +88,6 @@ const ThesisProjectsPage = (props) => {
     );
   }
 
-  console.log('students Nodes', students.nodes);
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
@@ -116,8 +115,10 @@ const ThesisProjectsPage = (props) => {
     }))
     .filter(({ data }) => data.length > 0);
 
-  // console.log('data', data);
-  // console.log('formattedProjects', formattedProjects);
+  const filterAvailableSchools = (school) => {
+    const isAvailable = formattedProjects.filter((project) => project.school.title == school);
+    return isAvailable?.length ? true : false;
+  };
 
   return (
     <Layout
@@ -151,7 +152,12 @@ const ThesisProjectsPage = (props) => {
               {displaySchools &&
                 displaySchools.slice(0, 7).map((school) => (
                   <li className={columnLink} key={school.id}>
-                    <a href={`#${school.slug.current}`}>{school.title}</a>
+                    <a
+                      className={!filterAvailableSchools(school.title) ? notLink : ''}
+                      href={filterAvailableSchools(school.title) ? `#${school.slug.current}` : '#'}
+                    >
+                      {school.title}
+                    </a>
                   </li>
                 ))}
             </ul>
@@ -159,7 +165,12 @@ const ThesisProjectsPage = (props) => {
               {displaySchools &&
                 displaySchools.slice(7, 14).map((school) => (
                   <li className={columnLink} key={school.id}>
-                    <a href={`#${school.slug.current}`}>{school.title}</a>
+                    <a
+                      className={!filterAvailableSchools(school.title) ? notLink : ''}
+                      href={filterAvailableSchools(school.title) ? `#${school.slug.current}` : '#'}
+                    >
+                      {school.title}
+                    </a>
                   </li>
                 ))}
             </ul>
@@ -167,7 +178,12 @@ const ThesisProjectsPage = (props) => {
               {displaySchools &&
                 displaySchools.slice(14).map((school) => (
                   <li className={columnLink} key={school.id}>
-                    <a href={`#${school.slug.current}`}>{school.title}</a>
+                    <a
+                      className={!filterAvailableSchools(school.title) ? notLink : ''}
+                      href={filterAvailableSchools(school.title) ? `#${school.slug.current}` : '#'}
+                    >
+                      {school.title}
+                    </a>
                   </li>
                 ))}
             </ul>

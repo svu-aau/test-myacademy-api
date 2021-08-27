@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import AppBar from '@material-ui/core/AppBar';
@@ -121,19 +121,23 @@ const Header = ({
   heroImageCaption,
   backgroundImage,
 }) => {
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [searchBarVisible, setSearchBarVisible] = React.useState(false);
-  const [isEditing, setEditing] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [isEditing, setEditing] = useState(false);
+  const [curPath, setCurPath] = useState();
   const toggleEditing = () => {
     setEditing(!isEditing);
     setSearchBarVisible(!isEditing);
   };
-  React.useEffect(() => {
+  useEffect(() => {
     if (isEditing) {
       inputRef.current.focus();
     }
   }, [isEditing]);
-  const inputRef = React.useRef(null);
+  useEffect(() => {
+    setCurPath(window.location.pathname);
+  });
+  const inputRef = useRef(null);
   const classes = useStyles();
   const escFunction = (event) => {
     if (isEditing && event.keyCode === 27) {
@@ -219,11 +223,15 @@ const Header = ({
                   </Toolbar>
                   <Toolbar className={bottomBar} disableGutters>
                     <div className={classes.left}>
-                      {linksArray.map(({ _key, title, href, hidden }) => (
-                        <Link activeClassName="active" to={href} key={_key}>
-                          <span>{title}</span>
-                        </Link>
-                      ))}
+                      {linksArray.map(({ _key, title, href, hidden }) => {
+                        const updatedHref = href?.slice(-1) === '/' ? href.slice(0, -1) : href;
+                        const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
+                        return (
+                          <Link className={updatedHref === updatedCurPath ? 'active' : ''} to={href} key={_key}>
+                            <span>{title}</span>
+                          </Link>
+                        );
+                      })}
                     </div>
                     <div className={classes.right}>
                       <Button className="dark-hover" variant="contained" color="primary" label="Request Info" />
