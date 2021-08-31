@@ -115,10 +115,10 @@ const ThesisProjectsPage = (props) => {
     }))
     .filter(({ data }) => data.length > 0);
 
-  const filterAvailableSchools = (school) => {
-    const isAvailable = formattedProjects.filter((project) => project.school.title == school);
+  const filterAvailableSchools = displaySchools.filter((school) => {
+    const isAvailable = formattedProjects.filter((project) => project.school.title == school.title);
     return isAvailable?.length ? true : false;
-  };
+  });
 
   return (
     <Layout
@@ -149,43 +149,25 @@ const ThesisProjectsPage = (props) => {
           <h3>Quicklinks</h3>
           <div className={cn(headerMenuSchools, flexThree)}>
             <ul className={column}>
-              {displaySchools &&
-                displaySchools.slice(0, 10).map((school) => (
-                  <li className={columnLink} key={school.id}>
-                    <a
-                      className={!filterAvailableSchools(school.title) ? notLink : ''}
-                      href={filterAvailableSchools(school.title) ? `#${school.slug.current}` : '#'}
-                    >
-                      {school.title}
-                    </a>
-                  </li>
-                ))}
+              {filterAvailableSchools?.slice(0, 9).map((school) => (
+                <li className={columnLink} key={school.id}>
+                  <a href={`#${school.slug.current}`}>{school.title}</a>
+                </li>
+              ))}
             </ul>
             <ul className={column}>
-              {displaySchools &&
-                displaySchools.slice(10, 20).map((school) => (
-                  <li className={columnLink} key={school.id}>
-                    <a
-                      className={!filterAvailableSchools(school.title) ? notLink : ''}
-                      href={filterAvailableSchools(school.title) ? `#${school.slug.current}` : '#'}
-                    >
-                      {school.title}
-                    </a>
-                  </li>
-                ))}
+              {filterAvailableSchools?.slice(9, 18).map((school) => (
+                <li className={columnLink} key={school.id}>
+                  <a href={`#${school.slug.current}`}>{school.title}</a>
+                </li>
+              ))}
             </ul>
             <ul className={column}>
-              {displaySchools &&
-                displaySchools.slice(20).map((school) => (
-                  <li className={columnLink} key={school.id}>
-                    <a
-                      className={!filterAvailableSchools(school.title) ? notLink : ''}
-                      href={filterAvailableSchools(school.title) ? `#${school.slug.current}` : '#'}
-                    >
-                      {school.title}
-                    </a>
-                  </li>
-                ))}
+              {filterAvailableSchools?.slice(18).map((school) => (
+                <li className={columnLink} key={school.id}>
+                  <a href={`#${school.slug.current}`}>{school.title}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </Container>
