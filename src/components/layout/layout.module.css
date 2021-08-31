@@ -168,6 +168,13 @@
   margin-top: 1rem;
 }
 
+.columnSection {
+  @nest & a {
+    color: var(--color-red-primary-bg) !important;
+    border-color: var(--color-red-primary-bg) !important;
+  }
+}
+
 .columnSectionBottom {
   margin-top: 2rem;
 }
