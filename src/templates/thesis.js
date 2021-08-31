@@ -150,7 +150,7 @@ const ThesisProjectsPage = (props) => {
           <div className={cn(headerMenuSchools, flexThree)}>
             <ul className={column}>
               {displaySchools &&
-                displaySchools.slice(0, 7).map((school) => (
+                displaySchools.slice(0, 10).map((school) => (
                   <li className={columnLink} key={school.id}>
                     <a
                       className={!filterAvailableSchools(school.title) ? notLink : ''}
@@ -163,7 +163,7 @@ const ThesisProjectsPage = (props) => {
             </ul>
             <ul className={column}>
               {displaySchools &&
-                displaySchools.slice(7, 14).map((school) => (
+                displaySchools.slice(10, 20).map((school) => (
                   <li className={columnLink} key={school.id}>
                     <a
                       className={!filterAvailableSchools(school.title) ? notLink : ''}
@@ -176,7 +176,7 @@ const ThesisProjectsPage = (props) => {
             </ul>
             <ul className={column}>
               {displaySchools &&
-                displaySchools.slice(14).map((school) => (
+                displaySchools.slice(20).map((school) => (
                   <li className={columnLink} key={school.id}>
                     <a
                       className={!filterAvailableSchools(school.title) ? notLink : ''}
