@@ -45,7 +45,7 @@ const ProjectTemplate = (props) => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      {projects?.length && projects.map((project) => <ProjectProfile key={project._id} {...data.student} />)}
+      {projects?.length && <ProjectProfile {...data.student} />}
     </Layout>
   );
 };
