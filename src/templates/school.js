@@ -33,7 +33,7 @@ export const query = graphql`
     }
     students: allSanityStudent(
       filter: { school: { id: { eq: $id } } }
-      sort: { fields: projects___title, order: ASC }
+      sort: { fields: [projects___title, name], order: ASC }
     ) {
       nodes {
         ...Student
