@@ -233,7 +233,7 @@ const Header = ({
                             key={_key}
                             className={updatedHref === updatedCurPath ? 'active' : ''}
                             to={href}
-                            onMouseEnter={() => title === 'Schools' && setIsHoverSchools(true)}
+                            onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
                           >
                             <span>{title}</span>
                           </Link>
