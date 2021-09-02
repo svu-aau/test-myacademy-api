@@ -84,6 +84,7 @@ async function createProjectPages(graphql, actions, reporter) {
       students: allSanityStudent(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
+            _id
             slug {
               current
             }
@@ -110,9 +111,8 @@ async function createProjectPages(graphql, actions, reporter) {
   studentEdges.forEach((edge) => {
     const project = edge.node.projects[0];
     const slug = edge.node.slug.current;
+    const id = edge.node._id;
     if (project) {
-      const id = project._id;
-
       if (edge.node.school && edge.node.school.slug) {
         const schoolSlug = edge.node.school.slug.current;
         const path = `/schools/${schoolSlug}/${slug}/`;

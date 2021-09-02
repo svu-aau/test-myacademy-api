@@ -8,8 +8,8 @@ import Layout from '../containers/layout';
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
-    project: sanityProject(_id: { eq: $id }) {
-      ...Project
+    student: sanityStudent(_id: { eq: $id }) {
+      ...Student
     }
     page: sanityPage(slug: { current: { eq: "home" } }) {
       seoImage {
@@ -27,14 +27,14 @@ export const query = graphql`
 
 const ProjectTemplate = (props) => {
   const { data, errors } = props;
-  const project = data && data.project;
+  const projects = data?.student?.projects;
   const { page } = data;
   return (
     <Layout fixedNav>
       {errors && <SEO title="GraphQL Error" />}
-      {project && (
+      {data?.student && (
         <SEO
-          title={project.title || 'Untitled'}
+          title={data?.student?.name || 'Untitled'}
           seoImage={page?.seoImage?.asset?.gatsbyImageData}
           path={props.location.pathname}
         />
@@ -45,7 +45,7 @@ const ProjectTemplate = (props) => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      {project && <ProjectProfile {...project} />}
+      {projects?.length && projects.map((project) => <ProjectProfile key={project._id} {...data.student} />)}
     </Layout>
   );
 };
