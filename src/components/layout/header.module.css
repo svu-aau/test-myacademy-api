@@ -333,7 +333,7 @@
   display: flex;
   flex: 1;
   justify-content: space-between;
-  max-width: 1600px;
+  background-color: white;
 
   @media (--media-max-medium) {
     flex-direction: column;
@@ -344,6 +344,9 @@
 }
 .flexThree {
   flex: 3;
+}
+.flexFour {
+  flex: 4;
 }
 .flexCenter {
   justify-content: center;
@@ -361,6 +364,10 @@
 .headerMenuColumns {
   display: flex;
   flex-wrap: wrap;
+
+  @nest & ul {
+    padding-right: 3rem;
+  }
 }
 
 .headerMenuShows {

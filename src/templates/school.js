@@ -2,13 +2,14 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 
 import SectionLibraryHero from '../components/pagebuilder/section-library-hero';
-import SectionCard from '../components/pagebuilder/section-card';
 import Container from '../components/layout/container';
+import BlockContent from '../components/block-content';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import Section from '../components/sections/section';
 import { breadcrumbLinkSeperator, breadcrumb } from '../components/layout/layout.module.css';
+import * as serializerStyles from '../components/serializers.module.css';
 
 export const query = graphql`
   query SchoolTemplateQuery($id: String!) {
@@ -30,12 +31,20 @@ export const query = graphql`
         seo_title
       }
     }
+    students: allSanityStudent(
+      filter: { school: { id: { eq: $id } } }
+      sort: { fields: [projects___title, name], order: ASC }
+    ) {
+      nodes {
+        ...Student
+      }
+    }
   }
 `;
 
 const SchoolTemplate = (props) => {
   const { data, errors } = props;
-  const school = data && data.school;
+  const { school, students } = data;
 
   const { title, heroImage, heroTitle, columnData, slug, seo, seoImage } = school;
   const seoDescription = (seo && seo.meta_description) || '';
@@ -78,7 +87,30 @@ const SchoolTemplate = (props) => {
         </Container>
       </Section>
 
-      {columnData && <SectionCard section={columnData} noPadding />}
+      {/* {columnData && <SectionCard section={columnData} noPadding />} */}
+      {columnData && (
+        <Section key={columnData._key} color={columnData.backgroundColor}>
+          <Container narrow={columnData.narrowWidth} split={true}>
+            {columnData._rawBody && (
+              <div>
+                <BlockContent blocks={columnData._rawBody} />
+                {students?.nodes?.map((student) => (
+                  <div key={student._id}>
+                    <Link
+                      to={`/schools/${school?.slug?.current}/${student?.slug?.current}`}
+                      className={serializerStyles.link}
+                    >
+                      {student.name}
+                    </Link>
+                    {student?.projects?.length && student.projects.map((proj) => <p key={proj._id}>{proj.title}</p>)}
+                  </div>
+                ))}
+              </div>
+            )}
+            {columnData._rawBodyRight && <BlockContent blocks={columnData._rawBodyRight} />}
+          </Container>
+        </Section>
+      )}
     </Layout>
   );
 };

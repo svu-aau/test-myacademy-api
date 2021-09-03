@@ -26,6 +26,7 @@ import {
   headerMenuTitle,
   headerMenuSchools,
   flexThree,
+  flexFour,
   headerMenuColumns,
   headerMenuColumnNoTitle,
   mainImage,
@@ -125,6 +126,7 @@ const Header = ({
   const [searchBarVisible, setSearchBarVisible] = useState(false);
   const [isEditing, setEditing] = useState(false);
   const [curPath, setCurPath] = useState();
+  const [isHoverSchools, setIsHoverSchools] = useState(false);
   const toggleEditing = () => {
     setEditing(!isEditing);
     setSearchBarVisible(!isEditing);
@@ -227,7 +229,12 @@ const Header = ({
                         const updatedHref = href?.slice(-1) === '/' ? href.slice(0, -1) : href;
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (
-                          <Link className={updatedHref === updatedCurPath ? 'active' : ''} to={href} key={_key}>
+                          <Link
+                            key={_key}
+                            className={updatedHref === updatedCurPath ? 'active' : ''}
+                            to={href}
+                            onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
+                          >
                             <span>{title}</span>
                           </Link>
                         );
@@ -238,6 +245,59 @@ const Header = ({
                       <Button className="light-hover" variant="outlined" color="primary" label="Apply" />
                     </div>
                   </Toolbar>
+
+                  {isHoverSchools && (
+                    <div className={cn(headerMenuSchools, flexFour)} onMouseLeave={() => setIsHoverSchools(false)}>
+                      <div className={headerMenuColumns}>
+                        <ul>
+                          {displaySchools &&
+                            displaySchools.slice(0, 7).map((school) => (
+                              <li key={school.id}>
+                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
+                                  {school.title}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div className={cn(headerMenuColumns)}>
+                        <ul>
+                          {displaySchools &&
+                            displaySchools.slice(7, 14).map((school) => (
+                              <li key={school.id}>
+                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
+                                  {school.title}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div className={cn(headerMenuColumns)}>
+                        <ul>
+                          {displaySchools &&
+                            displaySchools.slice(14, 21).map((school) => (
+                              <li key={school.id}>
+                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
+                                  {school.title}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div className={cn(headerMenuColumns)}>
+                        <ul>
+                          {displaySchools &&
+                            displaySchools.slice(21).map((school) => (
+                              <li key={school.id}>
+                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
+                                  {school.title}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                 </AppBar>
                 {/* leave this SHIM to push down content when fixedNav at top */}
                 {fixedNav && <Toolbar />}
@@ -255,8 +315,8 @@ const Header = ({
                         ))}
 
                         <div className={cn(headerMenuSchools, flexThree)}>
+                          <div className={headerMenuTitle}>Schools</div>
                           <div className={headerMenuColumns}>
-                            <div className={headerMenuTitle}>Schools</div>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(0, 7).map((school) => (
