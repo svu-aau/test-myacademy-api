@@ -332,7 +332,6 @@
 .headerMenuSchools {
   display: flex;
   flex: 1;
-  justify-content: space-between;
   background-color: white;
 
   @media (--media-max-medium) {
@@ -366,7 +365,12 @@
   flex-wrap: wrap;
 
   @nest & ul {
-    padding-right: 3rem;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-right: 5em;
+    margin: unset;
+    line-height: 2;
+    font-size: 14px;
   }
 }
 
