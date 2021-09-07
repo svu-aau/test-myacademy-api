@@ -102,7 +102,15 @@ const SchoolTemplate = (props) => {
                     >
                       {student.name}
                     </Link>
-                    {student?.projects?.length && student.projects.map((proj) => <p key={proj._id}>{proj.title}</p>)}
+                    <p>
+                      {student?.projects?.length &&
+                        student.projects.map((proj, idx) => (
+                          <span key={proj._id}>
+                            {proj.title}
+                            {idx + 1 !== student.projects.length ? ', ' : ''}
+                          </span>
+                        ))}
+                    </p>
                   </div>
                 ))}
               </div>
