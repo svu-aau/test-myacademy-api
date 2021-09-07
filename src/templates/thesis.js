@@ -92,7 +92,7 @@ const ThesisProjectsPage = (props) => {
     .map((school) => ({
       school,
       data: students.nodes
-        .filter((student) => student.school.slug.current === school.slug.current)
+        .filter((student) => student?.school?.slug?.current === school.slug.current)
         .map(({ heroImage, name, slug, projects }) => [
           heroImage && heroImage.asset?.url,
           [name, `/schools/${school.slug.current}/${slug.current}`],
