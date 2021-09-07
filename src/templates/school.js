@@ -53,6 +53,8 @@ const SchoolTemplate = (props) => {
 
   // console.log('school', school);
 
+  const availableStudents = students.nodes.filter((student) => student.projects && student.projects.length);
+
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
@@ -94,7 +96,7 @@ const SchoolTemplate = (props) => {
             {columnData._rawBody && (
               <div>
                 <BlockContent blocks={columnData._rawBody} />
-                {students?.nodes?.map((student) => (
+                {availableStudents?.map((student) => (
                   <div key={student._id}>
                     <Link
                       to={`/schools/${school?.slug?.current}/${student?.slug?.current}`}
