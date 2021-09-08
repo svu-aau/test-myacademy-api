@@ -8,7 +8,7 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import Section from '../components/sections/section';
-import { breadcrumbLinkSeperator, breadcrumb } from '../components/layout/layout.module.css';
+import { breadcrumbLinkSeperator, breadcrumb, schoolStudent } from '../components/layout/layout.module.css';
 import * as serializerStyles from '../components/serializers.module.css';
 
 export const query = graphql`
@@ -97,14 +97,14 @@ const SchoolTemplate = (props) => {
               <div>
                 <BlockContent blocks={columnData._rawBody} />
                 {availableStudents?.map((student) => (
-                  <div key={student._id}>
+                  <div key={student._id} className={schoolStudent}>
                     <Link
                       to={`/schools/${school?.slug?.current}/${student?.slug?.current}`}
                       className={serializerStyles.link}
                     >
                       {student.name}
                     </Link>
-                    <p>
+                    <div>
                       {student?.projects?.length &&
                         student.projects.map((proj, idx) => (
                           <span key={proj._id}>
@@ -112,7 +112,7 @@ const SchoolTemplate = (props) => {
                             {idx + 1 !== student.projects.length ? ', ' : ''}
                           </span>
                         ))}
-                    </p>
+                    </div>
                   </div>
                 ))}
               </div>
