@@ -50,7 +50,12 @@ const BlockRenderer = (props) => {
 };
 
 const isExternalHrefPattern = (href) => {
-  return href.indexOf('http:') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0;
+  return (
+    href.indexOf('http:') === 0 ||
+    href.indexOf('https:') === 0 ||
+    href.indexOf('mailto:') === 0 ||
+    href.indexOf('tel:') === 0
+  );
 };
 
 const serializers = {
@@ -102,7 +107,7 @@ const serializers = {
 
       // console.log('href: ', href);
 
-      if (href && isInternalLink && !isExternalHrefPattern(href)) {
+      if (href && (isInternalLink || !isExternalHrefPattern(href))) {
         // todo: hack to replace underscores in content links that should be dashes until cms has dashes
         href = href.replace(/_/g, '-');
         return (
