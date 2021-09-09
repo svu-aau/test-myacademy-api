@@ -32,7 +32,7 @@ const StudentTemplate = (props) => {
   const project = student.projects[0] || null;
 
   return (
-    <Layout fixedNav>
+    <Layout>
       {errors && <SEO title="GraphQL Error" />}
       {student && (
         <SEO

@@ -264,6 +264,10 @@
   }
 }
 
+.headerMenuTitleSmall {
+  margin: 1em 0 0;
+}
+
 .headerMenuTitleBottom {
   margin: 2em 0;
 

@@ -30,7 +30,7 @@ const ProjectTemplate = (props) => {
   const projects = data?.student?.projects;
   const { page } = data;
   return (
-    <Layout fixedNav>
+    <Layout>
       {errors && <SEO title="GraphQL Error" />}
       {data?.student && (
         <SEO
