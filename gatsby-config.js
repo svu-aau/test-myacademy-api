@@ -80,7 +80,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        exclude: ["node_modules", "bower_components", ".cache", "public", ".vscode", "static", "public"],
+        exclude: ['node_modules', 'bower_components', '.cache', 'public', '.vscode', 'static', 'public'],
         stages: ['develop'],
         emitWarning: true,
         failOnError: false,
