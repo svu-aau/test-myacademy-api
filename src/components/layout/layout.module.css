@@ -6,6 +6,10 @@
   min-height: calc(100% - 73px - 120px);
   color: var(--color-black);
 
+  @media (--media-max-large) {
+    padding-top: 2em;
+  }
+
   @media (--media-min-small) {
     min-height: calc(100% - 88px - 150px);
   }
