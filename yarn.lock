@@ -3,9 +3,9 @@
 
 
 "@aauweb/design-library@^0.1.20":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.30.tgz#f0b0f4831b72bea2bfe1a20a9feb4821c559e175"
-  integrity sha512-QeUO3BC2APFaTy1vykO2IMbjssaZkBfYmB2D5fAymkI6K4Y17a5CZj+viBi7hMwk5K0EDldwYkHFLXfQbEVxKw==
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.31.tgz#b8fac3be97d9d501616458c076a576ab27f5d81f"
+  integrity sha512-D1C8jY5LAMSyaS+HdwsqkT5IgQRAP5mSSPgHqkd1XNq+6FvpWclrbZqN8ERabVWNshxGXSbuDj6HhGyTYb0Hfg==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.36"
     "@fortawesome/free-brands-svg-icons" "^5.15.4"
@@ -24,7 +24,6 @@
     react-aspect-ratio "^1.0.49"
     react-datetime "^3.0.4"
     react-image-gallery "^1.2.7"
-    react-lazyload "^3.2.0"
     react-router-dom "^5.2.0"
     react-slick "^0.28.1"
     react-swipeable-views "^0.14.0"
@@ -11412,11 +11411,6 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
-
-react-lazyload@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.2.0.tgz#497bd06a6dbd7015e3376e1137a67dc47d2dd021"
-  integrity sha512-zJlrG8QyVZz4+xkYZH5v1w3YaP5wEFaYSUWC4CT9UXfK75IfRAIEdnyIUF+dXr3kX2MOtL1lUaZmaQZqrETwgw==
 
 react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
