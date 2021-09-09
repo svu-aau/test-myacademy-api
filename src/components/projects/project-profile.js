@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { Carousel, Hero, Link as DLLink } from '@aauweb/design-library';
 
-import { projectTitle, divider } from './project-profile.module.css';
+import { projectTitle, divider, videoContainer } from './project-profile.module.css';
 import { breadcrumbLinkSeperator, breadcrumb, columnSection } from '../layout/layout.module.css';
 import Section from '../sections/section';
 import Container from '../layout/container';
-import { uniqBy } from 'lodash';
 
 function ProjectProfile(props) {
   const { school, name, projects } = props;
@@ -29,11 +28,14 @@ function ProjectProfile(props) {
             projects.map((project) => {
               const { download, title, gallery, videoSpotlight } = project;
               const downloadLink = download?.asset?.url;
-              const ENTRY_ID = videoSpotlight;
+              // kaltura vids won't embed / play locally so lets show a youtube video in development instead
+              let videoUrl = `https://cdnapisec.kaltura.com/p/${process.env.GATSBY_KALTURA_PARTNER_ID}/sp/${process.env.GATSBY_KALTURA_PARTNER_ID}00/embedIframeJs/uiconf_id/${process.env.GATSBY_KALTURA_UICONF_ID}/partner_id/${process.env.GATSBY_KALTURA_PARTNER_ID}?iframeembed=true&playerId=kaltura_player_1625520477&entry_id=${videoSpotlight}`;
+              if (process.env.NODE_ENV === 'development') {
+                videoUrl = 'https://www.youtube.com/embed/hY7m5jjJ9mM';
+              }
 
               // console.log('gallery data: ', gallery);
-              // TODO: hack to remove duplicate first carousel image for now until data is fixed in cms
-              const carouselData = uniqBy(gallery, 'asset.url').map((item) => ({
+              const carouselData = gallery.map((item) => ({
                 id: item._key,
                 image: item.asset?.url,
               }));
@@ -58,16 +60,18 @@ function ProjectProfile(props) {
                   )}
 
                   {videoSpotlight && (
-                    <iframe
-                      src={`https://cdnapisec.kaltura.com/p/${process.env.GATSBY_KALTURA_PARTNER_ID}/sp/${process.env.GATSBY_KALTURA_PARTNER_ID}00/embedIframeJs/uiconf_id/${process.env.GATSBY_KALTURA_UICONF_ID}/partner_id/${process.env.GATSBY_KALTURA_PARTNER_ID}?iframeembed=true&playerId=kaltura_player_1625520477&entry_id=${ENTRY_ID}`}
-                      style={{ width: 640, height: 360, marginTop: '2em' }}
-                      allowFullScreen
-                      webkitallowfullscreen
-                      mozallowfullscreen
-                      frameBorder="0"
-                      id="kaltura_player_1625520477"
-                      allow="autoplay *; fullscreen *; encrypted-media *"
-                    />
+                    <div className={videoContainer}>
+                      <iframe
+                        src={videoUrl}
+                        style={{ width: 640, height: 360, marginTop: '2em' }}
+                        allowFullScreen
+                        webkitallowfullscreen
+                        mozallowfullscreen
+                        frameBorder="0"
+                        id="kaltura_player_1625520477"
+                        allow="autoplay *; fullscreen *; encrypted-media *"
+                      />
+                    </div>
                   )}
                   {carouselData && <Carousel data={carouselData} />}
                 </>
