@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { Carousel, Hero, Link as DLLink } from '@aauweb/design-library';
 
-import { projectTitle, divider, videoContainer } from './project-profile.module.css';
+import { projectTitle, divider, videoContainer, media } from './project-profile.module.css';
 import { breadcrumbLinkSeperator, breadcrumb, columnSection } from '../layout/layout.module.css';
 import Section from '../sections/section';
 import Container from '../layout/container';
@@ -43,37 +43,38 @@ function ProjectProfile(props) {
                 <>
                   <h3 className={projectTitle}>{title}</h3>
                   <h2 className={title}>{name}</h2>
+                  <div className={media}>
+                    {downloadLink && (
+                      <>
+                        <div className={columnSection}>
+                          <DLLink
+                            target="_blank"
+                            href={downloadLink}
+                            variant="cta"
+                            label="Download Thesis"
+                            onClick={() => {}}
+                          />
+                        </div>
+                        <div className={divider} />
+                      </>
+                    )}
 
-                  {downloadLink && (
-                    <>
-                      <div className={columnSection}>
-                        <DLLink
-                          target="_blank"
-                          href={downloadLink}
-                          variant="cta"
-                          label="Download Thesis"
-                          onClick={() => {}}
+                    {videoSpotlight && (
+                      <div className={videoContainer}>
+                        <iframe
+                          src={videoUrl}
+                          style={{ width: '100%', height: '100%' }}
+                          allowFullScreen
+                          webkitallowfullscreen
+                          mozallowfullscreen
+                          frameBorder="0"
+                          id="kaltura_player_1625520477"
+                          allow="autoplay *; fullscreen *; encrypted-media *"
                         />
                       </div>
-                      <div className={divider} />
-                    </>
-                  )}
-
-                  {videoSpotlight && (
-                    <div className={videoContainer}>
-                      <iframe
-                        src={videoUrl}
-                        style={{ width: 640, height: 360, marginTop: '2em' }}
-                        allowFullScreen
-                        webkitallowfullscreen
-                        mozallowfullscreen
-                        frameBorder="0"
-                        id="kaltura_player_1625520477"
-                        allow="autoplay *; fullscreen *; encrypted-media *"
-                      />
-                    </div>
-                  )}
-                  {carouselData && <Carousel data={carouselData} />}
+                    )}
+                    {carouselData && <Carousel data={carouselData} />}
+                  </div>
                 </>
               );
             })}
