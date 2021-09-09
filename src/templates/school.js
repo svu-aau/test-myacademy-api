@@ -116,7 +116,7 @@ const SchoolTemplate = (props) => {
   let availableStudents = students.nodes.filter((student) => student.projects && student.projects.length);
   // if specific students use them instead
   if (school.students?.length > 0) {
-    availableStudents = school.students.nodes.filter((student) => student.projects && student.projects.length);
+    availableStudents = school.students.filter((student) => student.projects && student.projects.length);
   }
 
   return (
