@@ -7,7 +7,6 @@ import { cn } from '../../lib/helpers';
 
 const Layout = ({
   children,
-  fixedNav,
   siteTitle,
   siteSubtitle,
   heroImageCaption,
@@ -18,7 +17,6 @@ const Layout = ({
   <>
     <Header
       smallHeader={smallHeader}
-      fixedNav={fixedNav}
       backgroundImage={headerBackgroundImage}
       siteTitle={siteTitle}
       siteSubtitle={siteSubtitle}

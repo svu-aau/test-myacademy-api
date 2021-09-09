@@ -4,7 +4,6 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -21,10 +20,10 @@ import {
   navBurgerIconOpen,
   bottomBar,
   headerMenu,
-  searchBarMobile,
   headerMenuContent,
   headerMenuTitle,
   headerMenuSchools,
+  headerMenuTitleSmall,
   flexThree,
   flexFour,
   headerMenuColumns,
@@ -112,45 +111,20 @@ const useStyles = makeStyles((theme) => ({
       color: 'var(--color-dark-black-bg)',
     },
   },
+  hamburgerButton: {
+    paddingRight: 0,
+  },
 }));
 
-const Header = ({
-  fixedNav = false,
-  smallHeader = false,
-  siteTitle,
-  siteSubtitle,
-  heroImageCaption,
-  backgroundImage,
-}) => {
+const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption, backgroundImage }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchBarVisible, setSearchBarVisible] = useState(false);
-  const [isEditing, setEditing] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
-  const toggleEditing = () => {
-    setEditing(!isEditing);
-    setSearchBarVisible(!isEditing);
-  };
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current.focus();
-    }
-  }, [isEditing]);
   useEffect(() => {
     setCurPath(window.location.pathname);
   });
-  const inputRef = useRef(null);
   const classes = useStyles();
-  const escFunction = (event) => {
-    if (isEditing && event.keyCode === 27) {
-      toggleEditing();
-    }
-  };
 
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 300,
-  });
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <StaticQuery
@@ -182,7 +156,6 @@ const Header = ({
 
         return (
           <div className={root}>
-            <div className="st-search-container" />
             <ClickAwayListener onClickAway={() => (drawerOpen ? setDrawerOpen(!drawerOpen) : null)}>
               <div>
                 <AppBar className={classes.appBar}>
@@ -210,7 +183,7 @@ const Header = ({
                       </p>
                     </div>
                     <IconButton
-                      className={hamburger}
+                      className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"
                       aria-label="menu"
                       onClick={() => setDrawerOpen(!drawerOpen)}
@@ -241,8 +214,20 @@ const Header = ({
                       })}
                     </div>
                     <div className={classes.right}>
-                      <Button className="dark-hover" variant="contained" color="primary" label="Request Info" />
-                      <Button className="light-hover" variant="outlined" color="primary" label="Apply" />
+                      <Button
+                        onClick={() => window.open('https://www.academyart.edu/form-request-information/', '_blank')}
+                        className="dark-hover"
+                        variant="contained"
+                        color="primary"
+                        label="Request Info"
+                      />
+                      <Button
+                        onClick={() => window.open('https://www.academyart.edu/apply-for-admission/', '_blank')}
+                        className="light-hover"
+                        variant="outlined"
+                        color="primary"
+                        label="Apply"
+                      />
                     </div>
                   </Toolbar>
 
@@ -299,14 +284,9 @@ const Header = ({
                     </div>
                   )}
                 </AppBar>
-                {/* leave this SHIM to push down content when fixedNav at top */}
-                {fixedNav && <Toolbar />}
                 <Drawer classes={{ root: classes.drawer }} variant={'persistent'} anchor="top" open={drawerOpen}>
                   <div className={classes.drawerInner}>
                     <nav className={headerMenu}>
-                      <div className={cn(searchBarMobile)}>
-                        <input type="text" onKeyDown={escFunction} ref={inputRef} className="st-default-search-input" />
-                      </div>
                       <div className={headerMenuContent}>
                         {linksArray.map(({ _key, title, href, hidden }) => (
                           <a href={href} key={_key}>
@@ -314,8 +294,8 @@ const Header = ({
                           </a>
                         ))}
 
+                        <div className={cn(headerMenuTitle, headerMenuTitleSmall)}>Schools</div>
                         <div className={cn(headerMenuSchools, flexThree)}>
-                          <div className={headerMenuTitle}>Schools</div>
                           <div className={headerMenuColumns}>
                             <ul>
                               {displaySchools &&
@@ -328,7 +308,7 @@ const Header = ({
                                 ))}
                             </ul>
                           </div>
-                          <div className={cn(headerMenuColumns, headerMenuColumnNoTitle)}>
+                          <div className={cn(headerMenuColumns)}>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(7, 14).map((school) => (
@@ -340,7 +320,7 @@ const Header = ({
                                 ))}
                             </ul>
                           </div>
-                          <div className={cn(headerMenuColumns, headerMenuColumnNoTitle)}>
+                          <div className={cn(headerMenuColumns)}>
                             <ul>
                               {displaySchools &&
                                 displaySchools.slice(14).map((school) => (
