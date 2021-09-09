@@ -111,6 +111,9 @@ const useStyles = makeStyles((theme) => ({
       color: 'var(--color-dark-black-bg)',
     },
   },
+  hamburgerButton: {
+    paddingRight: 0,
+  },
 }));
 
 const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption, backgroundImage }) => {
@@ -180,7 +183,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                       </p>
                     </div>
                     <IconButton
-                      className={hamburger}
+                      className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"
                       aria-label="menu"
                       onClick={() => setDrawerOpen(!drawerOpen)}
