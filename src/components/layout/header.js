@@ -21,7 +21,6 @@ import {
   navBurgerIconOpen,
   bottomBar,
   headerMenu,
-  searchBarMobile,
   headerMenuContent,
   headerMenuTitle,
   headerMenuSchools,
@@ -123,34 +122,13 @@ const Header = ({
   backgroundImage,
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchBarVisible, setSearchBarVisible] = useState(false);
-  const [isEditing, setEditing] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
-  const toggleEditing = () => {
-    setEditing(!isEditing);
-    setSearchBarVisible(!isEditing);
-  };
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current.focus();
-    }
-  }, [isEditing]);
   useEffect(() => {
     setCurPath(window.location.pathname);
   });
-  const inputRef = useRef(null);
   const classes = useStyles();
-  const escFunction = (event) => {
-    if (isEditing && event.keyCode === 27) {
-      toggleEditing();
-    }
-  };
 
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 300,
-  });
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <StaticQuery
@@ -182,7 +160,6 @@ const Header = ({
 
         return (
           <div className={root}>
-            <div className="st-search-container" />
             <ClickAwayListener onClickAway={() => (drawerOpen ? setDrawerOpen(!drawerOpen) : null)}>
               <div>
                 <AppBar className={classes.appBar}>
@@ -316,9 +293,6 @@ const Header = ({
                 <Drawer classes={{ root: classes.drawer }} variant={'persistent'} anchor="top" open={drawerOpen}>
                   <div className={classes.drawerInner}>
                     <nav className={headerMenu}>
-                      <div className={cn(searchBarMobile)}>
-                        <input type="text" onKeyDown={escFunction} ref={inputRef} className="st-default-search-input" />
-                      </div>
                       <div className={headerMenuContent}>
                         {linksArray.map(({ _key, title, href, hidden }) => (
                           <a href={href} key={_key}>

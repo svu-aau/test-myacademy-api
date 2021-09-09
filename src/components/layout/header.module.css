@@ -105,41 +105,6 @@
   left: 50%;
 }
 
-.searchBar {
-  display: none;
-}
-
-.searchBarMobile {
-  display: block;
-  margin-top: 1em;
-  text-align: center;
-  @media (--media-min-small) {
-    display: none;
-  }
-}
-
-.searchWrapper {
-  display: flex;
-  align-items: center;
-
-  @media (--media-max-small) {
-    display: none;
-  }
-}
-
-.searchWrapperMobile {
-  display: flex;
-  align-items: center;
-
-  @media (--media-min-medium) {
-    display: none;
-  }
-}
-
-.searchBarVisible {
-  display: block;
-}
-
 .navBurgerIconOpen span:nth-child(2) {
   transform: rotate(45deg);
 }
