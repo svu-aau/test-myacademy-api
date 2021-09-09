@@ -241,8 +241,20 @@ const Header = ({
                       })}
                     </div>
                     <div className={classes.right}>
-                      <Button className="dark-hover" variant="contained" color="primary" label="Request Info" />
-                      <Button className="light-hover" variant="outlined" color="primary" label="Apply" />
+                      <Button
+                        onClick={() => window.open('https://www.academyart.edu/form-request-information/', '_blank')}
+                        className="dark-hover"
+                        variant="contained"
+                        color="primary"
+                        label="Request Info"
+                      />
+                      <Button
+                        onClick={() => window.open('https://www.academyart.edu/apply-for-admission/', '_blank')}
+                        className="light-hover"
+                        variant="outlined"
+                        color="primary"
+                        label="Apply"
+                      />
                     </div>
                   </Toolbar>
 
