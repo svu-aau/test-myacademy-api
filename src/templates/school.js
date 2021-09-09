@@ -11,10 +11,69 @@ import Section from '../components/sections/section';
 import { breadcrumbLinkSeperator, breadcrumb, schoolStudent } from '../components/layout/layout.module.css';
 import * as serializerStyles from '../components/serializers.module.css';
 
+// this school query is a bit unique it pulls students only for display on this page
+// for optional custom specification of students to show instead of all
 export const query = graphql`
   query SchoolTemplateQuery($id: String!) {
     school: sanitySchool(id: { eq: $id }) {
-      ...School
+      _id
+      title
+      heroImage {
+        asset {
+          ... on SanityImageAsset {
+            _id
+            url
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
+          }
+        }
+      }
+      students {
+        _id
+        name
+        slug {
+          current
+        }
+        projects {
+          ... on SanityProject {
+            id
+            title
+            student {
+              _id
+              name
+              slug {
+                current
+              }
+              heroImage {
+                ...Image
+              }
+            }
+            videoSpotlight
+            download {
+              ...File
+            }
+            gallery {
+              asset {
+                url
+              }
+            }
+            publishedAt
+          }
+        }
+        heroImage {
+          ...Image
+        }
+      }
+      heroTitle
+      columnData {
+        _key
+        narrowWidth
+        _rawBody(resolveReferences: { maxDepth: 10 })
+        _rawBodyRight(resolveReferences: { maxDepth: 10 })
+        backgroundColor
+      }
+      slug {
+        current
+      }
       seoImage {
         asset {
           ... on SanityImageAsset {
@@ -51,9 +110,14 @@ const SchoolTemplate = (props) => {
   const pageTitle = school.title || 'Untitled';
   const seoTitle = (seo && seo.seo_title) || pageTitle;
 
-  // console.log('school', school);
+  // console.log('school: ', school);
+  // console.log('students: ', students);
 
-  const availableStudents = students.nodes.filter((student) => student.projects && student.projects.length);
+  let availableStudents = students.nodes.filter((student) => student.projects && student.projects.length);
+  // if specific students use them instead
+  if (school.students?.length > 0) {
+    availableStudents = school.students.nodes.filter((student) => student.projects && student.projects.length);
+  }
 
   return (
     <Layout>
