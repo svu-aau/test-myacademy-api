@@ -9,6 +9,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { Button } from '@aauweb/design-library';
 
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
 import { cn } from '../../lib/helpers';
 import {
   root,
@@ -22,9 +30,10 @@ import {
   headerMenu,
   headerMenuContent,
   headerMenuTitle,
+  headerMenuNavItem,
+  headerMenuIntro,
+  headerMenuIntroActionWrapper,
   headerMenuSchools,
-  headerMenuTitleSmall,
-  flexThree,
   flexFour,
   headerMenuColumns,
   headerMenuColumnNoTitle,
@@ -114,6 +123,10 @@ const useStyles = makeStyles((theme) => ({
   hamburgerButton: {
     paddingRight: 0,
   },
+  headerMenuList: {
+    margin: 0,
+    padding: 0,
+  },
 }));
 
 const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption, backgroundImage }) => {
@@ -123,6 +136,10 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   useEffect(() => {
     setCurPath(window.location.pathname);
   });
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
   const classes = useStyles();
 
   return (
@@ -152,6 +169,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
         }
       `}
       render={({ mainMenu: { links: linksArray }, logo, schools }) => {
+        console.log('linksArray: ', linksArray);
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
 
         return (
@@ -287,52 +305,72 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                 <Drawer classes={{ root: classes.drawer }} variant={'persistent'} anchor="top" open={drawerOpen}>
                   <div className={classes.drawerInner}>
                     <nav className={headerMenu}>
-                      <div className={headerMenuContent}>
-                        {linksArray.map(({ _key, title, href, hidden }) => (
-                          <a href={href} key={_key}>
-                            <div className={headerMenuTitle}>{title}</div>
-                          </a>
-                        ))}
-
-                        <div className={cn(headerMenuTitle, headerMenuTitleSmall)}>Schools</div>
-                        <div className={cn(headerMenuSchools, flexThree)}>
-                          <div className={headerMenuColumns}>
-                            <ul>
-                              {displaySchools &&
-                                displaySchools.slice(0, 7).map((school) => (
-                                  <li key={school.id}>
-                                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
-                                      {school.title}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                          <div className={cn(headerMenuColumns)}>
-                            <ul>
-                              {displaySchools &&
-                                displaySchools.slice(7, 14).map((school) => (
-                                  <li key={school.id}>
-                                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
-                                      {school.title}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                          <div className={cn(headerMenuColumns)}>
-                            <ul>
-                              {displaySchools &&
-                                displaySchools.slice(14).map((school) => (
-                                  <li key={school.id}>
-                                    <Link to={`/schools/${school.slug.current}`} onClick={() => setDrawerOpen(false)}>
-                                      {school.title}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
+                      <div className={headerMenuIntro}>
+                        <a href="tel:415-274-2222">Call 415-274-2222</a>
+                        <div className={headerMenuIntroActionWrapper}>
+                          <Button
+                            onClick={() =>
+                              window.open('https://www.academyart.edu/form-request-information/', '_blank')
+                            }
+                            className="dark-hover"
+                            variant="contained"
+                            color="primary"
+                            label="Request Info"
+                          />
+                          <Button
+                            onClick={() => window.open('https://www.academyart.edu/apply-for-admission/', '_blank')}
+                            className="light-hover"
+                            variant="outlined"
+                            color="primary"
+                            label="Apply"
+                          />
                         </div>
+                      </div>
+                      <div className={headerMenuContent}>
+                        <List
+                          component="nav"
+                          aria-labelledby="nested-list-subheader"
+                          className={classes.headerMenuList}
+                          disablePadding
+                        >
+                          {linksArray.map(({ _key, title, href, hidden }) => (
+                            <>
+                              <ListItem button key={_key} className={headerMenuNavItem}>
+                                {!href?.includes('/schools') && (
+                                  <Link to={href} className={headerMenuTitle}>
+                                    {title}
+                                  </Link>
+                                )}
+                                {displaySchools && href?.includes('/schools') && (
+                                  <div className={headerMenuTitle}>
+                                    <Link to={href}>{title}</Link>
+                                    <ListItemSecondaryAction onClick={handleClick}>
+                                      <IconButton edge="end" aria-label="expand schools submenu">
+                                        {open ? <ExpandLess /> : <ExpandMore />}
+                                      </IconButton>
+                                    </ListItemSecondaryAction>
+                                  </div>
+                                )}
+                              </ListItem>
+                              {displaySchools && href?.includes('/schools') && (
+                                <Collapse in={open} timeout="auto" unmountOnExit>
+                                  <List disablePadding>
+                                    {displaySchools.map((school) => (
+                                      <ListItem key={school.id} button className={classes.nested}>
+                                        <Link
+                                          to={`/schools/${school.slug.current}`}
+                                          onClick={() => setDrawerOpen(false)}
+                                        >
+                                          <ListItemText primary={school.title} />
+                                        </Link>
+                                      </ListItem>
+                                    ))}
+                                  </List>
+                                </Collapse>
+                              )}
+                            </>
+                          ))}
+                        </List>
                       </div>
                     </nav>
                   </div>

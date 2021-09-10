@@ -249,18 +249,45 @@
   }
 }
 
+.headerMenuNavItem {
+  border-top: 1px solid #dddddd;
+  @nest &:last-of-type {
+    border-bottom: 1px solid #dddddd;
+  }
+}
+
 .headerMenuTitle {
   color: var(--color-dark-gray-bg);
   font-size: 16px;
   font-weight: bold;
+  padding: 1em 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  @nest &:hover {
+    text-decoration: none;
+  }
+}
+
+.headerMenuIntro {
+  text-align: center;
   margin: 1em 0;
 
   @nest & a {
-    color: var(--color-white);
+    color: var(--color-back);
+    font-size: 16px;
   }
+}
 
-  @nest & a:hover {
-    text-decoration: none;
+.headerMenuIntroActionWrapper {
+  margin: 1em 0 .5em 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  @nest & button {
+    flex: 1;
   }
 }
 
@@ -286,6 +313,7 @@
   flex: 1;
   justify-content: space-between;
   flex-direction: column;
+  color: var(--color-dark-gray-bg);
 
   @nest & ul {
     padding: 0;
@@ -296,12 +324,6 @@
   @nest & li {
     list-style: none;
     margin-bottom: 0.25em;
-  }
-
-  @nest & a {
-    text-decoration: none;
-    color: #f2f5f9;
-    font-size: var(--font-small-size);
   }
 }
 .headerMenuSchools {
