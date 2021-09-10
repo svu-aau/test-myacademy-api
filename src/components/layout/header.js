@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -162,11 +162,6 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
               hidden
             }
           }
-          logo: file(relativePath: { eq: "icon-logo.png" }) {
-            childImageSharp {
-              gatsbyImageData(width: 400, quality: 100, placeholder: NONE, layout: CONSTRAINED)
-            }
-          }
           schools: allSanitySchool {
             nodes {
               ...School
@@ -174,8 +169,8 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
           }
         }
       `}
-      render={({ mainMenu: { links: linksArray }, logo, schools }) => {
-        console.log('linksArray: ', linksArray);
+      render={({ mainMenu: { links: linksArray }, schools }) => {
+        // console.log('linksArray: ', linksArray);
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
 
         return (
@@ -185,11 +180,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                 <AppBar className={classes.appBar}>
                   <Toolbar className={toolbarCss} disableGutters>
                     <div className={branding}>
-                      <GatsbyImage
-                        image={logo.childImageSharp.gatsbyImageData}
-                        className={brandingImage}
+                      <StaticImage
+                        src="../../images/icon-logo.png"
                         loading="eager"
                         alt="Academy of Art University"
+                        placeholder="none"
+                        style={{ maxWidth: '400px' }}
                       />
                       <Link to="/">
                         <span className={srOnly}>Go to home page</span>
