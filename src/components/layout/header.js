@@ -30,7 +30,6 @@ import {
   headerMenu,
   headerMenuContent,
   headerMenuTitle,
-  headerMenuNavItem,
   headerMenuIntro,
   headerMenuIntroActionWrapper,
   headerMenuSchools,
@@ -118,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'var(--color-dark-black-bg)',
     '& a': {
       color: 'var(--color-dark-black-bg)',
+      fontWeight: 'bold',
     },
   },
   hamburgerButton: {
@@ -126,6 +126,12 @@ const useStyles = makeStyles((theme) => ({
   headerMenuList: {
     margin: 0,
     padding: 0,
+  },
+  headerMenuNavItem: {
+    borderTop: '1px solid #dddddd',
+    '&:last-of-type': {
+      borderBottom: '1px solid #dddddd',
+    },
   },
 }));
 
@@ -335,7 +341,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         >
                           {linksArray.map(({ _key, title, href, hidden }) => (
                             <>
-                              <ListItem button key={_key} className={headerMenuNavItem}>
+                              <ListItem button key={_key} className={classes.headerMenuNavItem}>
                                 {!href?.includes('/schools') && (
                                   <Link to={href} className={headerMenuTitle}>
                                     {title}

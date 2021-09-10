@@ -249,13 +249,6 @@
   }
 }
 
-.headerMenuNavItem {
-  border-top: 1px solid #dddddd;
-  @nest &:last-of-type {
-    border-bottom: 1px solid #dddddd;
-  }
-}
-
 .headerMenuTitle {
   color: var(--color-dark-gray-bg);
   font-size: 16px;
@@ -264,6 +257,11 @@
   display: block;
   height: 100%;
   width: 100%;
+
+  @nest & {
+    color: var(--color-dark-gray-bg);
+    font-weight: bold;
+  }
 
   @nest &:hover {
     text-decoration: none;
