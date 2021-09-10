@@ -241,11 +241,11 @@
 }
 
 .headerMenu {
-  /* padding: 120px 45px 45px 45px; */
   padding: 120px 1.5em 45px;
 
   @media (--media-max-medium) {
     padding-top: 4em;
+    padding-bottom: 0;
   }
 }
 
@@ -265,27 +265,6 @@
 
   @nest &:hover {
     text-decoration: none;
-  }
-}
-
-.headerMenuIntro {
-  text-align: center;
-  margin: 1em 0;
-
-  @nest & a {
-    color: var(--color-back);
-    font-size: 16px;
-  }
-}
-
-.headerMenuIntroActionWrapper {
-  margin: 1em 0 .5em 0;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-
-  @nest & button {
-    flex: 1;
   }
 }
 

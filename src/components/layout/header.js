@@ -30,12 +30,9 @@ import {
   headerMenu,
   headerMenuContent,
   headerMenuTitle,
-  headerMenuIntro,
-  headerMenuIntroActionWrapper,
   headerMenuSchools,
   flexFour,
   headerMenuColumns,
-  headerMenuColumnNoTitle,
   mainImage,
   smallMainImage,
   hero,
@@ -118,6 +115,10 @@ const useStyles = makeStyles((theme) => ({
     '& a': {
       color: 'var(--color-dark-black-bg)',
       fontWeight: 'bold',
+      display: 'block',
+    },
+    '& a:hover': {
+      textDecoration: 'none',
     },
   },
   hamburgerButton: {
@@ -128,9 +129,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   headerMenuNavItem: {
-    borderTop: '1px solid #dddddd',
+    borderBottom: '1px solid #dddddd',
     '&:last-of-type': {
-      borderBottom: '1px solid #dddddd',
+      borderBottom: 'none',
     },
   },
 }));
@@ -307,27 +308,6 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                 <Drawer classes={{ root: classes.drawer }} variant={'persistent'} anchor="top" open={drawerOpen}>
                   <div className={classes.drawerInner}>
                     <nav className={headerMenu}>
-                      <div className={headerMenuIntro}>
-                        <a href="tel:415-274-2222">Call 415-274-2222</a>
-                        <div className={headerMenuIntroActionWrapper}>
-                          <Button
-                            onClick={() =>
-                              window.open('https://www.academyart.edu/form-request-information/', '_blank')
-                            }
-                            className="dark-hover"
-                            variant="contained"
-                            color="primary"
-                            label="Request Info"
-                          />
-                          <Button
-                            onClick={() => window.open('https://www.academyart.edu/apply-for-admission/', '_blank')}
-                            className="light-hover"
-                            variant="outlined"
-                            color="primary"
-                            label="Apply"
-                          />
-                        </div>
-                      </div>
                       <div className={headerMenuContent}>
                         <List
                           component="nav"
@@ -339,13 +319,15 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                             <>
                               <ListItem button key={_key} className={classes.headerMenuNavItem}>
                                 {!href?.includes('/schools') && (
-                                  <Link to={href} className={headerMenuTitle}>
+                                  <Link to={href} onClick={() => setDrawerOpen(false)} className={headerMenuTitle}>
                                     {title}
                                   </Link>
                                 )}
                                 {displaySchools && href?.includes('/schools') && (
                                   <div className={headerMenuTitle}>
-                                    <Link to={href}>{title}</Link>
+                                    <Link onClick={() => setDrawerOpen(false)} to={href}>
+                                      {title}
+                                    </Link>
                                     <ListItemSecondaryAction onClick={handleClick}>
                                       <IconButton edge="end" aria-label="expand schools submenu">
                                         {open ? <ExpandLess /> : <ExpandMore />}
