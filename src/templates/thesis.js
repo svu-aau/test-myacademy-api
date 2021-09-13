@@ -9,9 +9,17 @@ import ContentSections from '../components/pagebuilder/content-sections';
 import { breadcrumb, breadcrumbLinkSeperator } from '../components/layout/layout.module.css';
 import Section from '../components/sections/section';
 import Container from '../components/layout/container';
+import myConfiguredSanityClient from '../../client-config';
+import imageUrlBuilder from '@sanity/image-url';
 
 import { cn } from '../lib/helpers';
 import { headerMenuSchools, columnLink, divider, flexThree, column, schoolAnchor, notLink } from './thesis.module.css';
+
+const builder = imageUrlBuilder(myConfiguredSanityClient.sanity);
+
+function urlFor(source) {
+  return builder.image(source);
+}
 
 export const query = graphql`
   query ThesisPageQuery {
@@ -87,14 +95,14 @@ const ThesisProjectsPage = (props) => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
-
+  // console.log('students.nodes: ', students.nodes);
   const formattedProjects = schools.nodes
     .map((school) => ({
       school,
       data: students.nodes
         .filter((student) => student?.school?.slug?.current === school.slug.current)
         .map(({ heroImage, name, slug, projects }) => [
-          heroImage && heroImage.asset?.url,
+          heroImage && urlFor(heroImage.asset?.url).maxWidth(300).maxHeight(250).auto('format').url(),
           [name, `/schools/${school.slug.current}/${slug.current}`],
           projects.map(({ title }) => title).join(', '),
         ])
