@@ -36,7 +36,7 @@ const ProjectTemplate = (props) => {
 
   if (schools) {
     schoolDataArray = schools.nodes.map(({ heroImage, title, slug }) => [
-      heroImage ? urlFor(heroImage.asset?.url).maxWidth(300).maxHeight(250).auto('format').fit('max').url() : null,
+      heroImage ? urlFor(heroImage.asset?.url).maxWidth(300).auto('format').fit('max').url() : null,
       [title, `/schools/${slug.current}`],
     ]);
   }
