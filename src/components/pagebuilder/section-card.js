@@ -6,6 +6,7 @@ import BlockContent from '../block-content';
 
 // see data/fragments/PageContent
 const SectionCard = ({ section }) => {
+  // console.log('SectionCard section: ', section);
   const split = section._rawBody && section._rawBodyRight;
 
   return (
