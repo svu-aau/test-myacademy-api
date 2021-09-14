@@ -9,17 +9,10 @@ import ContentSections from '../components/pagebuilder/content-sections';
 import { breadcrumb, breadcrumbLinkSeperator } from '../components/layout/layout.module.css';
 import Section from '../components/sections/section';
 import Container from '../components/layout/container';
-import myConfiguredSanityClient from '../../client-config';
-import imageUrlBuilder from '@sanity/image-url';
+import { urlFor } from '../utils/tools';
 
 import { cn } from '../lib/helpers';
 import { headerMenuSchools, columnLink, divider, flexThree, column, schoolAnchor, notLink } from './thesis.module.css';
-
-const builder = imageUrlBuilder(myConfiguredSanityClient.sanity);
-
-function urlFor(source) {
-  return builder.image(source);
-}
 
 export const query = graphql`
   query ThesisPageQuery {

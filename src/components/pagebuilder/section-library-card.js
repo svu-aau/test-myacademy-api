@@ -3,6 +3,7 @@ import React from 'react';
 import { CardGrid } from '@aauweb/design-library';
 import BlockContent from '../block-content';
 import { root } from './section-library-card.module.css';
+import { urlFor } from "../../utils/tools";
 
 const SectionLibraryCard = ({ section }) => {
   const { heroImage, _rawCaption, href, title, kalturaID } = section;
@@ -13,7 +14,7 @@ const SectionLibraryCard = ({ section }) => {
       buttonText: 'Learn More',
       children: <BlockContent blocks={_rawCaption} />,
       href,
-      image: heroImage.asset.url,
+      image: urlFor(heroImage.asset.url).maxWidth(300).maxHeight(250).auto('format').url(),
       title,
       iframe:
         kalturaID &&

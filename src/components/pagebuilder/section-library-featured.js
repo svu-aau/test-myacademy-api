@@ -3,6 +3,7 @@ import React from 'react';
 import { Card } from '@aauweb/design-library';
 import BlockContent from '../block-content';
 import { root } from './section-library-featured.module.css';
+import { urlFor } from "../../utils/tools";
 
 /*
 image, title, type, alt, children, buttonText, onClick
@@ -12,7 +13,7 @@ const SectionLibraryFeatured = ({ section }) => {
   return (
     <div className={root} key={section._key}>
       <Card
-        image={section.image.asset.url}
+        image={urlFor(section.image.asset.url).maxWidth(300).maxHeight(250).auto('format').url()}
         alt={'test'}
         title={section.title}
         onClick={() => {}}

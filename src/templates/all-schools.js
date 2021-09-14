@@ -8,8 +8,7 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/layout/seo';
 import Layout from '../containers/layout';
 import { breadcrumb, breadcrumbLinkSeperator } from '../components/layout/layout.module.css';
-import myConfiguredSanityClient from '../../client-config';
-import imageUrlBuilder from '@sanity/image-url';
+import { urlFor } from '../utils/tools';
 
 export const query = graphql`
   query AllSchoolsPageQuery {
@@ -25,12 +24,6 @@ export const query = graphql`
     }
   }
 `;
-
-const builder = imageUrlBuilder(myConfiguredSanityClient.sanity);
-
-function urlFor(source) {
-  return builder.image(source);
-}
 
 const ProjectTemplate = (props) => {
   const { data, errors } = props;

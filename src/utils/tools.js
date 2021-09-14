@@ -3,6 +3,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
+import myConfiguredSanityClient from '../../client-config';
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(myConfiguredSanityClient.sanity);
+
+export function urlFor(source) {
+  return builder.image(source);
+}
+
 export function generateColor() {
   return Math.floor(Math.random() * 16777215).toString(16);
 }
