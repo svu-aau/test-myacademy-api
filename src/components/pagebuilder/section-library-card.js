@@ -14,7 +14,7 @@ const SectionLibraryCard = ({ section }) => {
       buttonText: 'Learn More',
       children: <BlockContent blocks={_rawCaption} />,
       href,
-      image: urlFor(heroImage.asset.url).maxWidth(300).maxHeight(250).auto('format').url(),
+      image: urlFor(heroImage.asset.url).width(300).auto('format').fit('max').url(),
       title,
       iframe:
         kalturaID &&

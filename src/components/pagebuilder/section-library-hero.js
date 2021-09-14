@@ -6,7 +6,7 @@ import { urlFor } from '../../utils/tools';
 const SectionLibraryHero = ({ section }) => (
   <div className={root}>
     <Hero
-      backgroundImage={urlFor(section.backgroundImage.asset.url).maxWidth(2200).maxHeight(600).auto('format').url()}
+      backgroundImage={urlFor(section.backgroundImage.asset.url).width(2200).auto('format').fit('max').url()}
       title={section.heroTitle}
     />
   </div>

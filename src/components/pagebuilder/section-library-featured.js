@@ -13,7 +13,7 @@ const SectionLibraryFeatured = ({ section }) => {
   return (
     <div className={root} key={section._key}>
       <Card
-        image={urlFor(section.image.asset.url).maxWidth(300).maxHeight(250).auto('format').url()}
+        image={urlFor(section.image.asset.url).width(300).auto('format').fit('max').url()}
         alt={'test'}
         title={section.title}
         onClick={() => {}}
