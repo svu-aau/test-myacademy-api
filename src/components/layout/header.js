@@ -234,22 +234,6 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         );
                       })}
                     </div>
-                    <div className={classes.right}>
-                      <Button
-                        onClick={() => window.open('https://www.academyart.edu/form-request-information/', '_blank')}
-                        className="dark-hover"
-                        variant="contained"
-                        color="primary"
-                        label="Request Info"
-                      />
-                      <Button
-                        onClick={() => window.open('https://www.academyart.edu/apply-for-admission/', '_blank')}
-                        className="light-hover"
-                        variant="outlined"
-                        color="primary"
-                        label="Apply"
-                      />
-                    </div>
                   </Toolbar>
 
                   {isHoverSchools && (
