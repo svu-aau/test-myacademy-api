@@ -3,7 +3,7 @@ import React from 'react';
 import { Card } from '@aauweb/design-library';
 import BlockContent from '../block-content';
 import { root } from './section-library-featured.module.css';
-import { urlFor } from "../../utils/tools";
+import { urlFor } from '../../utils/tools';
 
 /*
 image, title, type, alt, children, buttonText, onClick

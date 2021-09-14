@@ -24,19 +24,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-zeit-now',
     {
-      resolve: `gatsby-plugin-polyfill-io`,
-      options: {
-        features: [
-          `Array.prototype.map`,
-          `Array.prototype.flat`,
-          `Array.prototype.find`,
-          `Array.prototype.findIndex`,
-          `Element.prototype.scroll`,
-          `Element.prototype.scrollIntoView`,
-        ],
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-57744904-1',
@@ -55,10 +42,13 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts-with-attributes`,
       options: {
         fonts: ['Vollkorn:400i', 'Raleway:400,500,700'],
         display: 'swap',
+        attributes: {
+          rel: 'stylesheet preload prefetch',
+        },
       },
     },
     {

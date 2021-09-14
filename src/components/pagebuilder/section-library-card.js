@@ -3,7 +3,7 @@ import React from 'react';
 import { CardGrid } from '@aauweb/design-library';
 import BlockContent from '../block-content';
 import { root } from './section-library-card.module.css';
-import { urlFor } from "../../utils/tools";
+import { urlFor } from '../../utils/tools';
 
 const SectionLibraryCard = ({ section }) => {
   const { heroImage, _rawCaption, href, title, kalturaID } = section;
