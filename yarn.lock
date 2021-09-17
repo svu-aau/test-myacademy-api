@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aauweb/design-library@^0.1.20":
-  version "0.1.31"
-  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.31.tgz#b8fac3be97d9d501616458c076a576ab27f5d81f"
-  integrity sha512-D1C8jY5LAMSyaS+HdwsqkT5IgQRAP5mSSPgHqkd1XNq+6FvpWclrbZqN8ERabVWNshxGXSbuDj6HhGyTYb0Hfg==
+"@aauweb/design-library@^0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.33.tgz#80a7cf6fa554ebeab3fa506a2179c84dab6c7314"
+  integrity sha512-Q2aKSBaKFdo3cSaHApnSS3NOxeFvM2bLqkrldzr2ZOwN0Gvk9/Hzvd048nNNZERaBT9QX1i1dLGDg9wHuuRuug==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.36"
     "@fortawesome/free-brands-svg-icons" "^5.15.4"
