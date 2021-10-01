@@ -19,1472 +19,1472 @@
     {
       "source": "/schools/architecture/mehul_patel",
       "destination": "/schools/architecture/mehul-patel",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/yih_ren",
       "destination": "/schools/acting/yih-ren",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-history/lorien_yonker",
       "destination": "/schools/art-history/lorien-yonker",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art_history/lorien_yonker",
       "destination": "/schools/art-history/lorien-yonker",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-printmaking/pei_sze_ng",
       "destination": "/schools/fine-art-printmaking/pei-sze-ng",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_printmaking/pei_sze_ng",
       "destination": "/schools/fine-art-printmaking/pei-sze-ng",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/kuan_ting_miles_lin",
       "destination": "/schools/fashion-merchandising/kuan-ting-miles-lin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/kuan_ting_miles_lin",
       "destination": "/schools/fashion-merchandising/kuan-ting-miles-lin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/dima_almobarak",
       "destination": "/schools/architecture/dima-almobarak",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/albert_ramos_cort_s",
       "destination": "/schools/fine-art-painting/albert-ramos-cort-s",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_painting/albert_ramos_cort_s",
       "destination": "/schools/fine-art-painting/albert-ramos-cort-s",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/louyang_zhang",
       "destination": "/schools/illustration/louyang-zhang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/tara_abedinitafreshi",
       "destination": "/schools/architecture/tara-abedinitafreshi",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/longwen_li",
       "destination": "/schools/fashion-design/longwen-li",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_design/longwen_li",
       "destination": "/schools/fashion-design/longwen-li",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/gary_weiss",
       "destination": "/schools/fine-art-painting/gary-weiss",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_painting/gary_weiss",
       "destination": "/schools/fine-art-painting/gary-weiss",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/ann_marcellino",
       "destination": "/schools/visual-development/ann-marcellino",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual_development/ann_marcellino",
       "destination": "/schools/visual-development/ann-marcellino",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/zibo_wang",
       "destination": "/schools/fashion-design/zibo-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_design/zibo_wang",
       "destination": "/schools/fashion-design/zibo-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/kai_ti_hsu",
       "destination": "/schools/illustration/kai-ti-hsu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-printmaking/shannon_bourne",
       "destination": "/schools/fine-art-printmaking/shannon-bourne",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_printmaking/shannon_bourne",
       "destination": "/schools/fine-art-printmaking/shannon-bourne",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/christine_grove",
       "destination": "/schools/illustration/christine-grove",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/erin_lehmkuhl",
       "destination": "/schools/animation-3d-vfx/erin-lehmkuhl",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation_3d_vfx/erin_lehmkuhl",
       "destination": "/schools/animation-3d-vfx/erin-lehmkuhl",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/jane_wan",
       "destination": "/schools/architecture/jane-wan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/xinyi_iris_jian",
       "destination": "/schools/fashion-merchandising/xinyi-iris-jian",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/xinyi_iris_jian",
       "destination": "/schools/fashion-merchandising/xinyi-iris-jian",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/elena_zhukova",
       "destination": "/schools/photography/elena-zhukova",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/raffaela_lan_pellegrini",
       "destination": "/schools/fine-art-painting/raffaela-lan-pellegrini",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_painting/raffaela_lan_pellegrini",
       "destination": "/schools/fine-art-painting/raffaela-lan-pellegrini",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/yuting_sun",
       "destination": "/schools/fashion-merchandising/yuting-sun",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/yuting_sun",
       "destination": "/schools/fashion-merchandising/yuting-sun",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/yuan_gao",
       "destination": "/schools/architecture/yuan-gao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/jenna_mcdonald",
       "destination": "/schools/fashion-product-development/jenna-mcdonald",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_product_development/jenna_mcdonald",
       "destination": "/schools/fashion-product-development/jenna-mcdonald",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/lei_qi_min",
       "destination": "/schools/fine-art-painting/lei-qi-min",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_painting/lei_qi_min",
       "destination": "/schools/fine-art-painting/lei-qi-min",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/chloe_meynier",
       "destination": "/schools/photography/chloe-meynier",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/tamika_watson",
       "destination": "/schools/fashion-product-development/tamika-watson",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_product_development/tamika_watson",
       "destination": "/schools/fashion-product-development/tamika-watson",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/jiyea_yoon",
       "destination": "/schools/web-design-new-media/jiyea-yoon",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web_design_new_media/jiyea_yoon",
       "destination": "/schools/web-design-new-media/jiyea-yoon",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/zhonghui_li",
       "destination": "/schools/fashion-merchandising/zhonghui-li",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/zhonghui_li",
       "destination": "/schools/fashion-merchandising/zhonghui-li",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/matthew_harrison",
       "destination": "/schools/animation-traditional/matthew-harrison",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation_traditional/matthew_harrison",
       "destination": "/schools/animation-traditional/matthew-harrison",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/summer_wang",
       "destination": "/schools/web-design-new-media/summer-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web_design_new_media/summer_wang",
       "destination": "/schools/web-design-new-media/summer-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/hadas_tal",
       "destination": "/schools/fine-art-painting/hadas-tal",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_painting/hadas_tal",
       "destination": "/schools/fine-art-painting/hadas-tal",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/hang_yan",
       "destination": "/schools/industrial-design/hang-yan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial_design/hang_yan",
       "destination": "/schools/industrial-design/hang-yan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/lara_holleran",
       "destination": "/schools/advertising/lara-holleran",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/corey_swenson_scott",
       "destination": "/schools/fine-art-painting/corey-swenson-scott",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_painting/corey_swenson_scott",
       "destination": "/schools/fine-art-painting/corey-swenson-scott",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/charles_king",
       "destination": "/schools/photography/charles-king",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/joanna_mills",
       "destination": "/schools/acting/joanna-mills",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/sheldon_doney",
       "destination": "/schools/architecture/sheldon-doney",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/jian_gao",
       "destination": "/schools/photography/jian-gao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/puttinun_mahasarinun",
       "destination": "/schools/fashion-merchandising/puttinun-mahasarinun",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/puttinun_mahasarinun",
       "destination": "/schools/fashion-merchandising/puttinun-mahasarinun",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/nojan_adami",
       "destination": "/schools/architecture/nojan-adami",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/brian_johnson",
       "destination": "/schools/industrial-design/brian-johnson",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial_design/brian_johnson",
       "destination": "/schools/industrial-design/brian-johnson",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/jonathan_varner",
       "destination": "/schools/animation-3d-vfx/jonathan-varner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation_3d_vfx/jonathan_varner",
       "destination": "/schools/animation-3d-vfx/jonathan-varner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-printmaking/lara_owen",
       "destination": "/schools/fine-art-printmaking/lara-owen",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine_art_printmaking/lara_owen",
       "destination": "/schools/fine-art-printmaking/lara-owen",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/interior-architecture-design/hyeyoung_yoon",
       "destination": "/schools/interior-architecture-design/hyeyoung-yoon",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/interior_architecture_design/hyeyoung_yoon",
       "destination": "/schools/interior-architecture-design/hyeyoung-yoon",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/lenny_kovner",
       "destination": "/schools/jewelry-metal-arts/lenny-kovner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry_metal_arts/lenny_kovner",
       "destination": "/schools/jewelry-metal-arts/lenny-kovner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/victor_wagner",
       "destination": "/schools/animation-3d-vfx/victor-wagner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation_3d_vfx/victor_wagner",
       "destination": "/schools/animation-3d-vfx/victor-wagner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/xiaojia_zhao",
       "destination": "/schools/fashion-merchandising/xiaojia-zhao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/xiaojia_zhao",
       "destination": "/schools/fashion-merchandising/xiaojia-zhao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/ei_kakiuchi",
       "destination": "/schools/advertising/ei-kakiuchi",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/yiran_iris_xue",
       "destination": "/schools/fashion-merchandising/yiran-iris-xue",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion_merchandising/yiran_iris_xue",
       "destination": "/schools/fashion-merchandising/yiran-iris-xue",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/ashley_ng",
       "destination": "/schools/graphic-design/ashley-ng",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/sherly_liu",
       "destination": "/schools/web-design-new-media/sherly-liu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/an_nguyen",
       "destination": "/schools/web-design-new-media/an-nguyen",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/amanda_mercurio",
       "destination": "/schools/motion-pictures-television/amanda-mercurio",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/interior-architecture-design/gili_milo",
       "destination": "/schools/interior-architecture-design/gili-milo",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/tiffany_bui",
       "destination": "/schools/fashion-product-development/tiffany-bui",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/logan_pearsall",
       "destination": "/schools/visual-development/logan-pearsall",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/sha_yao",
       "destination": "/schools/industrial-design/sha-yao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/erling_berg",
       "destination": "/schools/architecture/erling-berg",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/hsiao_chi_chang",
       "destination": "/schools/illustration/hsiao-chi-chang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/lemon_yue_wang",
       "destination": "/schools/fashion-merchandising/lemon-yue-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/maria_gonzalez_villanueva",
       "destination": "/schools/industrial-design/maria-gonzalez-villanueva",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/xu_han_shi",
       "destination": "/schools/architecture/xu-han-shi",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/jason_halley",
       "destination": "/schools/photography/jason-halley",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/kanokporn_iao",
       "destination": "/schools/advertising/kanokporn-iao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/diego_velasquez",
       "destination": "/schools/animation-traditional/diego-velasquez",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/matthew_holman",
       "destination": "/schools/industrial-design/matthew-holman",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/jerrold_castro",
       "destination": "/schools/fine-art-painting/jerrold-castro",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/zhihan_liu",
       "destination": "/schools/fashion-design/zhihan-liu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/melissa_koch",
       "destination": "/schools/animation-traditional/melissa-koch",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/mark_sterling",
       "destination": "/schools/photography/mark-sterling",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-history/gabrielle_van_horn",
       "destination": "/schools/art-history/gabrielle-van-horn",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/tomomi_tsukioka",
       "destination": "/schools/photography/tomomi-tsukioka",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/riangploy_polly_thiluang",
       "destination": "/schools/fashion-merchandising/riangploy-polly-thiluang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/nestor_ou",
       "destination": "/schools/architecture/nestor-ou",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/alexia_brunet",
       "destination": "/schools/motion-pictures-television/alexia-brunet",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/rati_kapoor",
       "destination": "/schools/fashion-merchandising/rati-kapoor",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/yuanye__kris__jin",
       "destination": "/schools/industrial-design/yuanye--kris--jin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/theresia_jennifer",
       "destination": "/schools/fashion-merchandising/theresia-jennifer",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/jay_fulmer",
       "destination": "/schools/illustration/jay-fulmer",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/andrea_gerlach",
       "destination": "/schools/acting/andrea-gerlach",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-sculpture/hsun_yuan_hsu",
       "destination": "/schools/fine-art-sculpture/hsun-yuan-hsu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/jess_velarde",
       "destination": "/schools/fine-art-painting/jess-velarde",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/flavia_silva",
       "destination": "/schools/fashion-merchandising/flavia-silva",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/mitchell_martinez",
       "destination": "/schools/fashion-product-development/mitchell-martinez",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/wen_fei_hsu_keim",
       "destination": "/schools/jewelry-metal-arts/wen-fei-hsu-keim",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-sculpture/hui_ye",
       "destination": "/schools/fine-art-sculpture/hui-ye",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/bethany_mullinix",
       "destination": "/schools/fashion-journalism/bethany-mullinix",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-sculpture/ji_hoon_choi",
       "destination": "/schools/fine-art-sculpture/ji-hoon-choi",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/shih_cheng_yang",
       "destination": "/schools/motion-pictures-television/shih-cheng-yang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/chivia_kuo",
       "destination": "/schools/fashion-design/chivia-kuo",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-education/malisa_suchanya",
       "destination": "/schools/art-education/malisa-suchanya",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/morgan_owens",
       "destination": "/schools/animation-traditional/morgan-owens",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/sarah_reul",
       "destination": "/schools/animation-traditional/sarah-reul",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/arut_tantasirin",
       "destination": "/schools/animation-3d-vfx/arut-tantasirin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/ni_zhu",
       "destination": "/schools/fine-art-painting/ni-zhu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/paula_lima",
       "destination": "/schools/motion-pictures-television/paula-lima",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/eshita_trivedi",
       "destination": "/schools/fine-art-painting/eshita-trivedi",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/ryan_long",
       "destination": "/schools/animation-3d-vfx/ryan-long",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/hannah_arthur",
       "destination": "/schools/architecture/hannah-arthur",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/hendra_jacobs",
       "destination": "/schools/fashion-journalism/hendra-jacobs",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/interior-architecture-design/bianka_filipowicz",
       "destination": "/schools/interior-architecture-design/bianka-filipowicz",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/christine_herrin",
       "destination": "/schools/graphic-design/christine-herrin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/interior-architecture-design/ledevina_de_lara",
       "destination": "/schools/interior-architecture-design/ledevina-de-lara",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/jehoshua_brown",
       "destination": "/schools/fashion-journalism/jehoshua-brown",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/yu_han_huang",
       "destination": "/schools/fashion-journalism/yu-han-huang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/alea_brummel_riley",
       "destination": "/schools/fashion-merchandising/alea-brummel-riley",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/yu_chun_cheng",
       "destination": "/schools/jewelry-metal-arts/yu-chun-cheng",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/nermin_habib",
       "destination": "/schools/advertising/nermin-habib",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/derek_jiang",
       "destination": "/schools/architecture/derek-jiang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/andrew_vanlierop_degoede",
       "destination": "/schools/fine-art-painting/andrew-vanlierop-degoede",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/game-development/felipe_sanin_riano",
       "destination": "/schools/game-development/felipe-sanin-riano",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-history/karen_clardy_final",
       "destination": "/schools/art-history/karen-clardy-final",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/bella_huang",
       "destination": "/schools/graphic-design/bella-huang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/lingling_zhang",
       "destination": "/schools/fashion-merchandising/lingling-zhang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/stephen_schaf",
       "destination": "/schools/web-design-new-media/stephen-schaf",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/yanting_shao",
       "destination": "/schools/fashion-merchandising/yanting-shao",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/gerhart_hinse",
       "destination": "/schools/fashion-design/gerhart-hinse",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/yolanda_chiu",
       "destination": "/schools/jewelry-metal-arts/yolanda-chiu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/ximena_rendon_luna",
       "destination": "/schools/fine-art-painting/ximena-rendon-luna",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/amy_zhu",
       "destination": "/schools/fashion-merchandising/amy-zhu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/mengxuan_liu",
       "destination": "/schools/jewelry-metal-arts/mengxuan-liu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/justin_anderson",
       "destination": "/schools/fine-art-painting/justin-anderson",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/carrie_childs",
       "destination": "/schools/fashion-design/carrie-childs",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-history/maria_lynn_matthies",
       "destination": "/schools/art-history/maria-lynn-matthies",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/game-development/jordan_mccracken_foster",
       "destination": "/schools/game-development/jordan-mccracken-foster",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/maurice_carter",
       "destination": "/schools/animation-traditional/maurice-carter",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/stephen_teater",
       "destination": "/schools/illustration/stephen-teater",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/donna_davy",
       "destination": "/schools/fine-art-painting/donna-davy",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/theresa_marie_fleming",
       "destination": "/schools/illustration/theresa-marie-fleming",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/kai_shan_hsu",
       "destination": "/schools/web-design-new-media/kai-shan-hsu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/michael_e__feeney",
       "destination": "/schools/jewelry-metal-arts/michael-e--feeney",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/sarah_lam",
       "destination": "/schools/fine-art-painting/sarah-lam",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/barby_tolentino",
       "destination": "/schools/photography/barby-tolentino",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/alinne_netto",
       "destination": "/schools/fashion-merchandising/alinne-netto",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/siravich_chatchaiganan",
       "destination": "/schools/advertising/siravich-chatchaiganan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/alyssa_peck",
       "destination": "/schools/web-design-new-media/alyssa-peck",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/crystal_lyon",
       "destination": "/schools/motion-pictures-television/crystal-lyon",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/michael_casab",
       "destination": "/schools/acting/michael-casab",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/crystal_tsz_wai_leung",
       "destination": "/schools/architecture/crystal-tsz-wai-leung",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/jutaporn_mokkhasmita",
       "destination": "/schools/fashion-merchandising/jutaporn-mokkhasmita",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/hyunmin_danny_lee",
       "destination": "/schools/motion-pictures-television/hyunmin-danny-lee",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/chad_hardin",
       "destination": "/schools/illustration/chad-hardin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/adam_oestergaard",
       "destination": "/schools/animation-3d-vfx/adam-oestergaard",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/damon_hurbon",
       "destination": "/schools/fine-art-painting/damon-hurbon",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/david_dorerr",
       "destination": "/schools/fashion-design/david-dorerr",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/kenia_duarte",
       "destination": "/schools/architecture/kenia-duarte",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/favie_chiu",
       "destination": "/schools/graphic-design/favie-chiu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/aaron_guaghui_yuan",
       "destination": "/schools/graphic-design/aaron-guaghui-yuan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/guy_weitzman",
       "destination": "/schools/animation-3d-vfx/guy-weitzman",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/myisha_haynes",
       "destination": "/schools/visual-development/myisha-haynes",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/erik_sohner",
       "destination": "/schools/photography/erik-sohner",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/dong_hun_kang",
       "destination": "/schools/animation-3d-vfx/dong-hun-kang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/jen_mau_liau",
       "destination": "/schools/fashion-merchandising/jen-mau-liau",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/adrian_canoso",
       "destination": "/schools/industrial-design/adrian-canoso",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/amber_strach",
       "destination": "/schools/fashion-product-development/amber-strach",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/kristina_varaksina",
       "destination": "/schools/photography/kristina-varaksina",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-design/meredith_acton",
       "destination": "/schools/fashion-design/meredith-acton",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/candy_hsin_yu_chu",
       "destination": "/schools/jewelry-metal-arts/candy-hsin-yu-chu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/francis_tady",
       "destination": "/schools/photography/francis-tady",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/kaixin_yu",
       "destination": "/schools/jewelry-metal-arts/kaixin-yu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/katie_meehan",
       "destination": "/schools/acting/katie-meehan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/lindsey_k__eisentraut",
       "destination": "/schools/jewelry-metal-arts/lindsey-k--eisentraut",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/gigi_jizhi",
       "destination": "/schools/jewelry-metal-arts/gigi-jizhi",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/philip_washington",
       "destination": "/schools/fashion-journalism/philip-washington",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/percy_pei_hsi_lee",
       "destination": "/schools/motion-pictures-television/percy-pei-hsi-lee",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/hang_yan_mpr",
       "destination": "/schools/industrial-design/hang-yan-mpr",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/emilie_garnier",
       "destination": "/schools/graphic-design/emilie-garnier",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/brady_wilks",
       "destination": "/schools/photography/brady-wilks",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/nicole_lamothe",
       "destination": "/schools/fine-art-painting/nicole-lamothe",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/dilshad_aldoskani",
       "destination": "/schools/fine-art-painting/dilshad-aldoskani",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/chenxiao_wang",
       "destination": "/schools/fashion-merchandising/chenxiao-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/jonah_calinawan",
       "destination": "/schools/photography/jonah-calinawan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/_se_maj_h_konsbakken",
       "destination": "/schools/fine-art-painting/-se-maj-h-konsbakken",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/killean_evans",
       "destination": "/schools/jewelry-metal-arts/killean-evans",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/nutruda_satjawatcharaphong",
       "destination": "/schools/visual-development/nutruda-satjawatcharaphong",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/leah_aronhime",
       "destination": "/schools/fashion-product-development/leah-aronhime",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-printmaking/rajit_phiosuwan",
       "destination": "/schools/fine-art-printmaking/rajit-phiosuwan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/christopher_brock",
       "destination": "/schools/photography/christopher-brock",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/esmeralda_ruiz",
       "destination": "/schools/graphic-design/esmeralda-ruiz",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/pablo_jimenez",
       "destination": "/schools/photography/pablo-jimenez",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/nicholas_comney",
       "destination": "/schools/advertising/nicholas-comney",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/se_heui_oh",
       "destination": "/schools/animation-traditional/se-heui-oh",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-product-development/keri_yourick",
       "destination": "/schools/fashion-product-development/keri-yourick",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/john_hill",
       "destination": "/schools/animation-traditional/john-hill",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/xuchen_wang",
       "destination": "/schools/architecture/xuchen-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/sarah_reid",
       "destination": "/schools/acting/sarah-reid",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/ibrahim_alkhayyat",
       "destination": "/schools/industrial-design/ibrahim-alkhayyat",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/thomas_weil",
       "destination": "/schools/fine-art-painting/thomas-weil",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/wei_ting__mallory__hsu",
       "destination": "/schools/fashion-merchandising/wei-ting--mallory--hsu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/jj_jaehee_song",
       "destination": "/schools/visual-development/jj-jaehee-song",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/gitarani_sagolsem",
       "destination": "/schools/fashion-merchandising/gitarani-sagolsem",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/laura_acosta",
       "destination": "/schools/fashion-journalism/laura-acosta",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/harold_escotet_uberti",
       "destination": "/schools/motion-pictures-television/harold-escotet-uberti",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/brian_reda",
       "destination": "/schools/photography/brian-reda",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/nathan_bettisworth",
       "destination": "/schools/motion-pictures-television/nathan-bettisworth",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/krittachai__yudai__srijugawan",
       "destination": "/schools/visual-development/krittachai--yudai--srijugawan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/visual-development/krittachai_srijugawan",
       "destination": "/schools/visual-development/krittachai-srijugawan",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-education/michelle_san_agustin",
       "destination": "/schools/art-education/michelle-san-agustin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/khai_pham",
       "destination": "/schools/web-design-new-media/khai-pham",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/junzhu_wei",
       "destination": "/schools/fashion-merchandising/junzhu-wei",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/jennifer_hall",
       "destination": "/schools/motion-pictures-television/jennifer-hall",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-sculpture/calvin_ma",
       "destination": "/schools/fine-art-sculpture/calvin-ma",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/carrie_martin",
       "destination": "/schools/motion-pictures-television/carrie-martin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/yoko_numata",
       "destination": "/schools/motion-pictures-television/yoko-numata",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/alex_chen",
       "destination": "/schools/graphic-design/alex-chen",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/francesca_mackie",
       "destination": "/schools/jewelry-metal-arts/francesca-mackie",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/ziwei_wang",
       "destination": "/schools/fashion-merchandising/ziwei-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/justin_lee",
       "destination": "/schools/graphic-design/justin-lee",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/sung_eun_kim",
       "destination": "/schools/fine-art-painting/sung-eun-kim",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/kyle_filomeo",
       "destination": "/schools/architecture/kyle-filomeo",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/motion-pictures-television/tzu_hsiang",
       "destination": "/schools/motion-pictures-television/tzu-hsiang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/radwan_alorman",
       "destination": "/schools/architecture/radwan-alorman",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/patrick_healy",
       "destination": "/schools/industrial-design/patrick-healy",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/aaron_draper",
       "destination": "/schools/photography/aaron-draper",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/juan_manuel_corredor",
       "destination": "/schools/graphic-design/juan-manuel-corredor",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/jessica_ye_eun_kang",
       "destination": "/schools/fashion-merchandising/jessica-ye-eun-kang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/lisa_dale",
       "destination": "/schools/jewelry-metal-arts/lisa-dale",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/irene",
       "destination": "/schools/web-design-new-media/irene",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-printmaking/joseph_tipay",
       "destination": "/schools/fine-art-printmaking/joseph-tipay",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/nathan_conrad",
       "destination": "/schools/architecture/nathan-conrad",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/anwar_sleiman_haidar",
       "destination": "/schools/photography/anwar-sleiman-haidar",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/illustration/taren_morse",
       "destination": "/schools/illustration/taren-morse",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-education/jo_hyemin",
       "destination": "/schools/art-education/jo-hyemin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-education/riley_steidlmayer",
       "destination": "/schools/art-education/riley-steidlmayer",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-education/yuan_huang",
       "destination": "/schools/art-education/yuan-huang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/manny_cruz",
       "destination": "/schools/acting/manny-cruz",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/luna_deng",
       "destination": "/schools/architecture/luna-deng",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/kristin_riger",
       "destination": "/schools/graphic-design/kristin-riger",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/brandan_podesta",
       "destination": "/schools/architecture/brandan-podesta",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/kaan_birol",
       "destination": "/schools/web-design-new-media/kaan-birol",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/patcha_rerkasem",
       "destination": "/schools/fashion-merchandising/patcha-rerkasem",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/carol_mcpeek",
       "destination": "/schools/fine-art-painting/carol-mcpeek",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/emily_chou",
       "destination": "/schools/fashion-merchandising/emily-chou",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/acting/amanda_casarella",
       "destination": "/schools/acting/amanda-casarella",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/graphic-design/krishnapriya_dutta_gupta",
       "destination": "/schools/graphic-design/krishnapriya-dutta-gupta",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-printmaking/yishu_wang",
       "destination": "/schools/fine-art-printmaking/yishu-wang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/interior-architecture-design/otilia_brill",
       "destination": "/schools/interior-architecture-design/otilia-brill",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/amy_tran",
       "destination": "/schools/fashion-merchandising/amy-tran",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/camilo_ruiz",
       "destination": "/schools/animation-traditional/camilo-ruiz",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/adelaide_bell",
       "destination": "/schools/web-design-new-media/adelaide-bell",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/tom_durkin",
       "destination": "/schools/web-design-new-media/tom-durkin",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/carla_ortiz",
       "destination": "/schools/fashion-journalism/carla-ortiz",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/qian_ji",
       "destination": "/schools/web-design-new-media/qian-ji",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/game-development/shu_yi_chu",
       "destination": "/schools/game-development/shu-yi-chu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/talia_doud",
       "destination": "/schools/fine-art-painting/talia-doud",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-journalism/angela_han",
       "destination": "/schools/fashion-journalism/angela-han",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-traditional/casey_lowe",
       "destination": "/schools/animation-traditional/casey-lowe",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fashion-merchandising/kay_dunton",
       "destination": "/schools/fashion-merchandising/kay-dunton",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/lan_tang",
       "destination": "/schools/animation-3d-vfx/lan-tang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/mourya_dandu",
       "destination": "/schools/photography/mourya-dandu",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/art-education/yousun_chung_",
       "destination": "/schools/art-education/yousun-chung-",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/animation-3d-vfx/robert_arnold",
       "destination": "/schools/animation-3d-vfx/robert-arnold",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/web-design-new-media/sampson_tsai",
       "destination": "/schools/web-design-new-media/sampson-tsai",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/rochelle_stephens",
       "destination": "/schools/advertising/rochelle-stephens",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/architecture/ricardo_moreno",
       "destination": "/schools/architecture/ricardo-moreno",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/yale_shaw",
       "destination": "/schools/industrial-design/yale-shaw",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/industrial-design/nicola_mondini",
       "destination": "/schools/industrial-design/nicola-mondini",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/jewelry-metal-arts/david_sekoll",
       "destination": "/schools/jewelry-metal-arts/david-sekoll",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/advertising/juwon_kang",
       "destination": "/schools/advertising/juwon-kang",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/fine-art-painting/brian_astle",
       "destination": "/schools/fine-art-painting/brian-astle",
-      "statusCode": "301"
+      "statusCode": 301
     },
     {
       "source": "/schools/photography/amanda_boctor",
       "destination": "/schools/photography/amanda-boctor",
-      "statusCode": "301"
+      "statusCode": 301
     }
   ]
 }
