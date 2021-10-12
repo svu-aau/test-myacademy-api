@@ -1,0 +1,18 @@
+@import './custom-media.css';
+@import './custom-properties.css';
+
+.linkButton {
+  composes: button from './buttons.css';
+  margin: 0;
+  display: inline-block;
+}
+
+.gridWrapper {
+  background-color: var(--color-neon-green);
+  padding-bottom: 6em;
+  text-align: center;
+}
+
+.grid {
+  margin-bottom: 2.5em;
+}

@@ -1,0 +1,272 @@
+@import '../../styles/custom-media.css';
+@import '../../styles/custom-properties.css';
+@import '../../styles/typography.module.css';
+
+.root {
+  background-color: var(--color-dark-black-bg);
+  color: var(--color-white);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1170px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.branding {
+  width: 18.75rem;
+}
+
+.brandingImage {
+  width: 18.75em;
+}
+
+@media screen and (min-width: 50em) {
+  .brandingImage {
+    width: 25em;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+
+  @nest & a {
+    margin-left: 12px;
+  }
+
+  @nest & a:first-child {
+    margin-left: 0;
+  }
+}
+
+.footerContact {
+  margin: 0 1em 2em 0;
+  font-size: 12px;
+  min-width: 200px;
+  max-width: 375px;
+
+  @media (--media-min-medium) {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  @nest & a {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+}
+
+.footerCta {
+  background: var(--color-red-secondary-bg);
+  padding: 1px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+}
+
+.footerCopyright .socialIcons {
+  margin-top: 1.5rem;
+}
+
+.footerSchools {
+  flex: 3;
+
+  @nest & a {
+    font-size: var(--font-small-size);
+  }
+}
+
+.addressInfo {
+  display: flex;
+  flex-direction: column;
+
+  @nest & div {
+    margin-bottom: 0.5em;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.75em;
+
+  @nest & div {
+    margin-bottom: 1em;
+  }
+}
+
+.footerColumns {
+  align-content: space-between;
+  display: flex;
+  flex-flow: column wrap;
+  flex: 3;
+  font-size: 12px;
+  margin: 0 0 2rem 0;
+  max-height: 250px;
+  padding: 0;
+}
+
+.columnLink {
+  list-style: none;
+  margin-bottom: 1em;
+  margin-right: 1rem;
+
+  @nest & a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.footerBottom {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2.5em;
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+}
+
+.footerCopyright {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2em;
+  padding-bottom: 1em;
+
+  @nest & a {
+    color: #cccccc;
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+}
+
+.footerCopyright > * {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.footerHeading {
+  color: #cccccc;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 1.5em;
+  text-transform: uppercase;
+
+  @media (--media-max-small) {
+    flex: unset;
+  }
+}
+
+address div {
+  font-style: normal;
+}
+
+.footerCopyrightLinks {
+  padding: 0;
+  margin: 0 0 0 0.5em;
+  list-style: none;
+  text-align: left;
+
+  @media (--media-max-medium) {
+    margin: 0.5em 0 0;
+    text-align: center;
+  }
+}
+
+.footerCopyrightLinks li {
+  display: inline-block;
+}
+
+.footerCopyrightLinks li::after {
+  content: '/';
+  display: inline-block;
+  margin: 0 0.25em;
+}
+
+.footerCopyrightLinks li:last-of-type::after {
+  content: none;
+}
+
+.footerCopyrightLinks li a {
+  color: white;
+}
+
+/*
+div {
+  font-size: 14px;
+}
+*/
+
+a {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 50em) {
+  .root {
+    padding: 2.5rem 2rem;
+  }
+  .branding {
+    width: 25rem;
+  }
+  .footerContact {
+    padding: 0;
+    font-size: 14px;
+  }
+  .footerColumns {
+    padding: 0;
+    font-size: 14px;
+  }
+  .footerCopyright .socialIcons {
+    display: none;
+  }
+  .footerBottom {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 49.99em) {
+  .wrapper {
+    padding: 2rem 1.5rem 0;
+  }
+  .wrapper .socialIcons {
+    display: none;
+  }
+  .footerCopyright {
+    justify-content: center;
+    padding: 2rem;
+    margin: 0;
+    background-color: #2e2f38;
+  }
+  .socialIcons {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .footerColumns {
+    max-height: 350px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .footerSchools {
+    flex: 2;
+  }
+  .footerColumns {
+    max-height: unset;
+  }
+}

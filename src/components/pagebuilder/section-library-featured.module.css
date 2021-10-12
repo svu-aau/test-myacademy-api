@@ -1,0 +1,6 @@
+@import '../../styles/custom-media.css';
+
+.root {
+  background-color: var(--color-white);
+  padding: 0;
+}
