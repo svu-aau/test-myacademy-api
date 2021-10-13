@@ -1,0 +1,13 @@
+@import '../../styles/custom-media.css';
+
+.root {
+  background-color: var(--color-white);
+  padding: 0;
+
+  @nest & h6 {
+    text-align: left;
+  }
+  @nest & a {
+    border-color: rgba(238, 50, 36, 0.5);
+  }
+}

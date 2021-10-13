@@ -1,0 +1,31 @@
+@import '../styles/custom-media.css';
+@import '../styles/custom-properties.css';
+
+.link {
+  color: var(--color-red-primary-bg) !important;
+  /* text-decoration: underline; */
+}
+
+.button {
+  composes: button from '../styles/buttons.css';
+}
+
+.darkButton {
+  composes: button from '../styles/buttons.css';
+  composes: darkButton from '../styles/buttons.css';
+}
+
+.video-container {
+  position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;
+  @nest & iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  }
+  @nest & object {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  }
+  @nest & embed {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  }
+}
+
+.video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }

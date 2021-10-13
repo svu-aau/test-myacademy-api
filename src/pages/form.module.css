@@ -1,0 +1,36 @@
+@import "../styles/custom-media.css";
+@import "../styles/custom-properties.css";
+
+form > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 800px;
+}
+
+form > div + div {
+  margin-top: 2rem;
+}
+
+.customFieldsForm > div + div {
+  margin-top: none;
+}
+
+input,
+textarea,
+select {
+  width: 600px;
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
+}
+
+label {
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
+}
+
+button {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+}

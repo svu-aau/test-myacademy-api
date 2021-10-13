@@ -1,0 +1,35 @@
+@import '../../styles/custom-media.css';
+
+.root {
+  box-sizing: border-box;
+  max-width: 1170px;
+  padding: 0.5em;
+  margin: 0 auto;
+
+  @media (--media-min-small) {
+    padding: 1em;
+  }
+}
+
+.dark {
+  background-color: var(--color-dark-black-bg);
+  color: var(--color-white);
+}
+
+.narrow {
+  max-width: 900px;
+}
+
+.narrower {
+  max-width: 640px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2em;
+
+  @media (max-width: 750px) {
+    grid-template-columns: 100%;
+  }
+}
