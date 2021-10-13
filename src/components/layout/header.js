@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
       borderColor: '#ee3224',
     },
     '& > a:hover+.mega-content': {
-      display: 'block'
+      display: 'block',
     },
     '& > a.active span': {
       borderColor: '#ee3224',
@@ -160,8 +160,8 @@ const useStyles = makeStyles((theme) => ({
     '& ul': {
       listStyleType: 'none',
       margin: 0,
-      padding: 0
-    }
+      padding: 0,
+    },
   },
   subMenuTitle: {
     fontWeight: 700,
@@ -174,15 +174,13 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '2rem',
     '& li a': {
       paddingBottom: 0,
-      fontWeight: 400
+      fontWeight: 400,
     },
     '& span': {
       paddingBottom: '.5rem',
-    }
+    },
   },
-  menuTitle: {
-
-  }
+  menuTitle: {},
 }));
 
 /*
@@ -286,7 +284,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                   </Toolbar>
                   <Toolbar className={bottomBar} disableGutters>
                     <div className={classes.left}>
-                      {linksArray.map(({ _key, title, href, hidden, ...rest }) => {
+                      {linksArray.map(({ _key, title, href, hidden, embeddedMenu, ...rest }) => {
                         const updatedHref = href?.slice(-1) === '/' ? href.slice(0, -1) : href;
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (
@@ -299,21 +297,26 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                             >
                               <span>{title}</span>
                             </Link>
-                            <div className={`${classes.megaMenuContent} mega-content`}>
-                              <div>
-                                <ul>
-                                  <a className={classes.subMenuTitle}>Admissions</a>
-                                  <ul className={classes.subMenu}>
-                                    <li className={classes.menuItem}>
-                                      <Link><span>Visit Us</span></Link>
-                                    </li>
-                                    <li className={classes.menuItem}>
-                                      <Link><span>Visit Us</span></Link>
-                                    </li>
-                                  </ul>
-                                </ul>
+                            {embeddedMenu.length > 0 && (
+                              <div className={`${classes.megaMenuContent} mega-content`}>
+                                <div>
+                                  {embeddedMenu.map((menuContent) => (
+                                    <ul key={menuContent.title}>
+                                      <a className={classes.subMenuTitle}>{menuContent.title}</a>
+                                      <ul className={classes.subMenu}>
+                                        {menuContent.links.map((menuLink) => (
+                                          <li key={menuLink._key} className={classes.menuItem}>
+                                            <Link to={menuLink.href}>
+                                              <span>{menuLink.title}</span>
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </ul>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
+                            )}
                           </>
                         );
                       })}
