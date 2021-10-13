@@ -161,6 +161,9 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
               title
               href
               hidden
+              embeddedMenu {
+                ...EmbeddedMenu
+              }
             }
           }
           schools: allSanitySchool {
@@ -171,7 +174,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
         }
       `}
       render={({ mainMenu: { links: linksArray }, schools }) => {
-        // console.log('linksArray: ', linksArray);
+        console.log('linksArray: ', linksArray);
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
 
         return (
@@ -219,7 +222,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                   </Toolbar>
                   <Toolbar className={bottomBar} disableGutters>
                     <div className={classes.left}>
-                      {linksArray.map(({ _key, title, href, hidden }) => {
+                      {linksArray.map(({ _key, title, href, hidden, ...rest }) => {
                         const updatedHref = href?.slice(-1) === '/' ? href.slice(0, -1) : href;
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (

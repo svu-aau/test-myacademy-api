@@ -1,10 +1,10 @@
 {
   "private": true,
-  "name": "academy-art-grad-showcase-web",
+  "name": "aa-myacademy-web",
   "version": "1.0.0",
   "author": "HireDevs <hello@hiredevs.com>",
   "scripts": {
-    "build": "GATSBY_SANITY_DATASET=2021-gradshowcase gatsby build",
+    "build": "GATSBY_SANITY_DATASET=my-academy gatsby build",
     "clean-cache": "gatsby clean",
     "dev": "npm run clean-cache && gatsby develop --host=0.0.0.0",
     "deploy": "npm run now-deploy",
