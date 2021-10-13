@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
       color: '#292931',
       height: '100%',
-      textDecoration: 'none',
+      textDecoration: 'none !important',
     },
     '& span': {
       borderBottom: '3px solid transparent',
@@ -80,6 +80,9 @@ const useStyles = makeStyles((theme) => ({
     },
     '& > a:hover span': {
       borderColor: '#ee3224',
+    },
+    '& > a:hover+.mega-content': {
+      display: 'block'
     },
     '& > a.active span': {
       borderColor: '#ee3224',
@@ -134,7 +137,68 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: 'none',
     },
   },
+  megaMenuContent: {
+    color: '#292931',
+    padding: '2rem 2rem 1rem',
+    position: 'absolute',
+    backgroundColor: '#fff',
+    width: '100%',
+    left: 0,
+    top: '3.25rem',
+    borderBottom: '1px solid #f8f8f8',
+    display: 'none',
+    '&:hover': {
+      display: 'block',
+    },
+    '& ul a': {
+      color: '#292931',
+      fontSize: '14px',
+      lineHeight: '1rem',
+      display: 'block',
+      paddingBottom: '.5rem',
+    },
+    '& ul': {
+      listStyleType: 'none',
+      margin: 0,
+      padding: 0
+    }
+  },
+  subMenuTitle: {
+    fontWeight: 700,
+    pointerEvents: 'none',
+    paddingBottom: '.5rem',
+    textTransform: 'uppercase',
+  },
+  subMenu: {
+    textTransform: 'initial',
+    paddingRight: '2rem',
+    '& li a': {
+      paddingBottom: 0,
+      fontWeight: 400
+    },
+    '& span': {
+      paddingBottom: '.5rem',
+    }
+  },
+  menuTitle: {
+
+  }
 }));
+
+/*
+  <div className={classes.megaMenuContent}>
+    <div>
+      <ul>
+        <a className={classes.subMenuTitle}>Admissions</a>
+        <ul className={classes.subMenu}>
+          <li className={classes.menuItem}>
+            <Link><span>Visit Us</span></Link>
+          </li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+*/
 
 const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption, backgroundImage }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -226,14 +290,31 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         const updatedHref = href?.slice(-1) === '/' ? href.slice(0, -1) : href;
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (
-                          <Link
-                            key={_key}
-                            className={updatedHref === updatedCurPath ? 'active' : ''}
-                            to={href}
-                            onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
-                          >
-                            <span>{title}</span>
-                          </Link>
+                          <>
+                            <Link
+                              key={_key}
+                              className={updatedHref === updatedCurPath ? 'active' : ''}
+                              to={href}
+                              onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
+                            >
+                              <span>{title}</span>
+                            </Link>
+                            <div className={`${classes.megaMenuContent} mega-content`}>
+                              <div>
+                                <ul>
+                                  <a className={classes.subMenuTitle}>Admissions</a>
+                                  <ul className={classes.subMenu}>
+                                    <li className={classes.menuItem}>
+                                      <Link><span>Visit Us</span></Link>
+                                    </li>
+                                    <li className={classes.menuItem}>
+                                      <Link><span>Visit Us</span></Link>
+                                    </li>
+                                  </ul>
+                                </ul>
+                              </div>
+                            </div>
+                          </>
                         );
                       })}
                     </div>

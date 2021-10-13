@@ -139,12 +139,7 @@ const Footer = () => {
                       <a type="tel" href="tel:1-800-544-2787">
                         1-800-544-2787
                       </a>
-                      <span> or </span>
-                      <a type="tel" href="tel:1-415-274-8617">
-                        415-274-8617
-                      </a>
                     </div>
-                    <br />
                     <address>
                       <div>79 New Montgomery St.</div>
                       <div>San Francisco, CA 94105</div>
