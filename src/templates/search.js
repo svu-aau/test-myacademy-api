@@ -1,6 +1,6 @@
 import React from 'react';
-import { navigate } from '@gatsbyjs/reach-router';
-
+import { navigate } from 'gatsby';
+import Layout from '../containers/layout';
 import SEO from '../components/layout/seo';
 import Container from '../components/layout/container';
 import Section from '../components/sections/section';
@@ -21,7 +21,7 @@ const SearchTemplate = (props) => {
   !query && navigateBack();
 
   return (
-    <>
+    <Layout>
       <SEO title="Search Results" />
       <div style={{ height: '98px' }} />
       <Section>
@@ -29,7 +29,7 @@ const SearchTemplate = (props) => {
           <PageSearch pages={allPages} searchTerm={query} origin={origin} />
         </Container>
       </Section>
-    </>
+    </Layout>
   );
 };
 

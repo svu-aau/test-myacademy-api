@@ -123,6 +123,13 @@ async function createSearchPage(graphql, actions, reporter) {
                 }
               }
             }
+            ... on SanitySectionCard {
+              body {
+                children {
+                  text
+                }
+              }
+            }
           }
           id
           slug {

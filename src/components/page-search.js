@@ -132,15 +132,16 @@ class PageSearch extends Component {
                     <Link to={slug}>{result.title}</Link>
                   </h3>
                   <p>
-                    {result.body[0] && (
+                    {result.body[0] ? (
                       <>
                         {highlightedMarkup(result.body[0], searchQuery)}
                         <br />
                       </>
+                    ) : (
+                      highlightedExtendedMarkup(result.body, searchQuery)
                     )}
-                    {highlightedExtendedMarkup(result.body, searchQuery)}
                     <br />
-                    <Link to={slug}>{highlightedMarkup(slug, searchQuery, origin)}</Link>
+                    <Link to={slug}>{origin + slug}</Link>
                   </p>
                 </div>
               );

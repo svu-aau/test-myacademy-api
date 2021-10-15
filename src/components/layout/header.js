@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { graphql, Link, StaticQuery } from 'gatsby';
+import { graphql, Link, StaticQuery, navigate } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import SearchForm from '../search-form';
 import AppBar from '@material-ui/core/AppBar';
@@ -44,6 +44,9 @@ import {
   title,
   hamburger,
   toolbar as toolbarCss,
+  topSearch,
+  show,
+  searchBtn,
 } from './header.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -320,12 +323,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         <Link to="/contact-us" className={classes.contactLink}>
                           Contact
                         </Link>
-                        <a href="#" onClick={() => setSearching(!isSearching)} className="search-btn">
+                        <a href="#" onClick={() => setSearching(!isSearching)} className={searchBtn}>
                           <FontAwesomeIcon icon={faSearch} title="Search" />
                         </a>
                       </p>
                     </div>
-                    <div className={`top-search${isSearching ? ' show' : ''}`}>
+                    <div className={cn(topSearch, isSearching ? show : '')}>
                       <SearchForm isHeader isSearching={isSearching} onSubmit={navigateToSearch} title="Search" />
                     </div>
                     <IconButton
