@@ -78,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
       height: 'calc( 100% + 1px)',
     },
+    '& > a:hover': {
+      color: '#ee3224',
+    },
     '& > a:hover span': {
       borderColor: '#ee3224',
     },
@@ -133,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerMenuNavItem: {
     borderBottom: '1px solid #dddddd',
+    padding: '1em 1.25em',
     '&:last-of-type': {
       borderBottom: 'none',
     },
@@ -180,7 +184,26 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '.5rem',
     },
   },
+  subMenuWrap: {
+    backgroundColor: '#f2f5f9',
+  },
   menuTitle: {},
+  hamburgerMenuButton: {
+    '&:before': {
+      top: '32%',
+      //right: '2.0625rem',
+      width: '2px',
+      height: '20px',
+      marginLeft: '-1px',
+    },
+    '&:after': {
+      top: '50%',
+      //right: '1.5rem',
+      height: '2px',
+      width: '20px',
+      marginTop: '-1px',
+    },
+  },
 }));
 
 /*
@@ -205,9 +228,14 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   useEffect(() => {
     setCurPath(window.location.pathname);
   });
-  const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(!open);
+  const [open, setOpen] = React.useState([]);
+  const handleClick = (idx, idx2) => {
+    if (!idx) {
+      setOpen(null);
+      console.log('Opening:', null)
+    }
+    setOpen([idx, idx2]);
+    console.log('Opening:', [idx, idx2])
   };
   const classes = useStyles();
 
@@ -386,45 +414,68 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                           className={classes.headerMenuList}
                           disablePadding
                         >
-                          {linksArray.map(({ _key, title, href, hidden }) => (
+                          {linksArray.map(({ _key, title, href, embeddedMenu }, idx) => {
+                            console.log('idx', idx);
+                            console.log('open', open)
+
+                            return (
                             <>
-                              <ListItem button key={_key} className={classes.headerMenuNavItem}>
-                                {!href?.includes('/schools') && (
+                              <ListItem
+                                button
+                                key={_key}
+                                className={classes.headerMenuNavItem}
+                                onClick={() => handleClick(idx)}
+                              >
+                                <div className={headerMenuTitle}>
                                   <Link to={href} onClick={() => setDrawerOpen(false)} className={headerMenuTitle}>
                                     {title}
                                   </Link>
-                                )}
-                                {displaySchools && href?.includes('/schools') && (
-                                  <div className={headerMenuTitle}>
-                                    <Link onClick={() => setDrawerOpen(false)} to={href}>
-                                      {title}
-                                    </Link>
-                                    <ListItemSecondaryAction onClick={handleClick}>
-                                      <IconButton edge="end" aria-label="expand schools submenu">
-                                        {open ? <ExpandLess /> : <ExpandMore />}
-                                      </IconButton>
-                                    </ListItemSecondaryAction>
-                                  </div>
-                                )}
+                                  <ListItemSecondaryAction>
+                                    <div className={classes.hamburgerMenuButton} />
+                                  </ListItemSecondaryAction>
+                                </div>
                               </ListItem>
-                              {displaySchools && href?.includes('/schools') && (
-                                <Collapse in={open} timeout="auto" unmountOnExit>
-                                  <List disablePadding>
-                                    {displaySchools.map((school) => (
-                                      <ListItem key={school.id} button className={classes.nested}>
+                              {open &&
+                                open[idx] &&
+                                embeddedMenu.map((embeddedLink, idx2) => (
+                                  <>
+                                    <ListItem
+                                      button
+                                      key={embeddedLink._key}
+                                      className={`${classes.headerMenuNavItem} ${classes.subMenuWrap}`}
+                                      onClick={() => handleClick(idx, idx2)}
+                                    >
+                                      <div className={headerMenuTitle}>
                                         <Link
-                                          to={`/schools/${school.slug.current}`}
+                                          to={embeddedLink.href}
                                           onClick={() => setDrawerOpen(false)}
+                                          className={headerMenuTitle}
                                         >
-                                          <ListItemText primary={school.title} />
+                                          {embeddedLink.title}
                                         </Link>
-                                      </ListItem>
-                                    ))}
-                                  </List>
-                                </Collapse>
-                              )}
+                                        <ListItemSecondaryAction>
+                                          <div className={classes.hamburgerMenuButton} />
+                                        </ListItemSecondaryAction>
+                                      </div>
+                                    </ListItem>
+                                    {open[(idx, idx2)] &&
+                                      embeddedLink.links.map((embeddedLinkLink) => (
+                                        <ListItem
+                                          button
+                                          key={embeddedLinkLink._key}
+                                          className={classes.headerMenuNavItem}
+                                        >
+                                          <div className={headerMenuTitle}>
+                                            <Link to={embeddedLinkLink.href} className={headerMenuTitle}>
+                                              {embeddedLinkLink.title}
+                                            </Link>
+                                          </div>
+                                        </ListItem>
+                                      ))}
+                                  </>
+                                ))}
                             </>
-                          ))}
+                          )})}
                         </List>
                       </div>
                     </nav>
