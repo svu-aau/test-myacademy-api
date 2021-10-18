@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import SearchForm from '../search-form';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,6 +17,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { cn } from '../../lib/helpers';
 import {
@@ -207,9 +211,9 @@ const useStyles = makeStyles((theme) => ({
   headerMenuActive: {
     background: '#32323c',
     '& a': {
-      color: '#FFFFFF'
-    }
-  }
+      color: '#FFFFFF',
+    },
+  },
 }));
 
 /*
@@ -235,28 +239,28 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   const handleClick = (idx, idx2) => {
     if (idx2 > 0) {
       if (open[1] === idx2) {
-        setOpen([idx, 0])
+        setOpen([idx, 0]);
       } else {
-        setOpen([idx, idx2])
+        setOpen([idx, idx2]);
       }
     } else {
       if (open[0] === idx) {
-        setOpen([0, 0])
+        setOpen([0, 0]);
       } else {
-        setOpen([idx, 0])
+        setOpen([idx, 0]);
       }
-    }    
+    }
   };
   const classes = useStyles();
 
   const toggleDrawer = () => {
     if (drawerOpen) {
-      setOpen([0, 0])
-      setDrawerOpen(false)
+      setOpen([0, 0]);
+      setDrawerOpen(false);
     } else {
-      setDrawerOpen(true)
+      setDrawerOpen(true);
     }
-  }
+  };
 
   useEffect(() => {
     setCurPath(window.location.pathname);
@@ -316,7 +320,13 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         <Link to="/contact-us" className={classes.contactLink}>
                           Contact
                         </Link>
+                        <a href="#" onClick={() => setSearching(!isSearching)} className="search-btn">
+                          <FontAwesomeIcon icon={faSearch} title="Search" />
+                        </a>
                       </p>
+                    </div>
+                    <div className={`top-search${isSearching ? ' show' : ''}`}>
+                      <SearchForm isHeader isSearching={isSearching} onSubmit={navigateToSearch} title="Search" />
                     </div>
                     <IconButton
                       className={cn(classes.hamburgerButton, hamburger)}
