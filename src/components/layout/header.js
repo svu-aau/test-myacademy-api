@@ -204,6 +204,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '-1px',
     },
   },
+  headerMenuActive: {
+    background: '#32323c',
+    '& a': {
+      color: '#FFFFFF'
+    }
+  }
 }));
 
 /*
@@ -225,19 +231,36 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
+  const [open, setOpen] = React.useState([]);
+  const handleClick = (idx, idx2) => {
+    if (idx2 > 0) {
+      if (open[1] === idx2) {
+        setOpen([idx, 0])
+      } else {
+        setOpen([idx, idx2])
+      }
+    } else {
+      if (open[0] === idx) {
+        setOpen([0, 0])
+      } else {
+        setOpen([idx, 0])
+      }
+    }    
+  };
+  const classes = useStyles();
+
+  const toggleDrawer = () => {
+    if (drawerOpen) {
+      setOpen([0, 0])
+      setDrawerOpen(false)
+    } else {
+      setDrawerOpen(true)
+    }
+  }
+
   useEffect(() => {
     setCurPath(window.location.pathname);
   });
-  const [open, setOpen] = React.useState([]);
-  const handleClick = (idx, idx2) => {
-    if (!idx) {
-      setOpen(null);
-      console.log('Opening:', null)
-    }
-    setOpen([idx, idx2]);
-    console.log('Opening:', [idx, idx2])
-  };
-  const classes = useStyles();
 
   return (
     // eslint-disable-next-line react/jsx-no-undef
@@ -264,12 +287,11 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
         }
       `}
       render={({ mainMenu: { links: linksArray }, schools }) => {
-        console.log('linksArray: ', linksArray);
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
 
         return (
           <div className={root}>
-            <ClickAwayListener onClickAway={() => (drawerOpen ? setDrawerOpen(!drawerOpen) : null)}>
+            <ClickAwayListener onClickAway={() => (drawerOpen ? toggleDrawer() : null)}>
               <div>
                 <AppBar className={classes.appBar}>
                   <Toolbar className={toolbarCss} disableGutters>
@@ -300,7 +322,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                       className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"
                       aria-label="menu"
-                      onClick={() => setDrawerOpen(!drawerOpen)}
+                      onClick={toggleDrawer}
                     >
                       <div className={cn(navBurgerIcon, drawerOpen && navBurgerIconOpen)}>
                         <span></span>
@@ -415,67 +437,71 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                           disablePadding
                         >
                           {linksArray.map(({ _key, title, href, embeddedMenu }, idx) => {
-                            console.log('idx', idx);
-                            console.log('open', open)
-
+                            const categoryIdx = idx + 1;
+                            const categoryOpen = open[0] === categoryIdx;
                             return (
-                            <>
-                              <ListItem
-                                button
-                                key={_key}
-                                className={classes.headerMenuNavItem}
-                                onClick={() => handleClick(idx)}
-                              >
-                                <div className={headerMenuTitle}>
-                                  <Link to={href} onClick={() => setDrawerOpen(false)} className={headerMenuTitle}>
-                                    {title}
-                                  </Link>
-                                  <ListItemSecondaryAction>
-                                    <div className={classes.hamburgerMenuButton} />
-                                  </ListItemSecondaryAction>
-                                </div>
-                              </ListItem>
-                              {open &&
-                                open[idx] &&
-                                embeddedMenu.map((embeddedLink, idx2) => (
-                                  <>
-                                    <ListItem
-                                      button
-                                      key={embeddedLink._key}
-                                      className={`${classes.headerMenuNavItem} ${classes.subMenuWrap}`}
-                                      onClick={() => handleClick(idx, idx2)}
-                                    >
-                                      <div className={headerMenuTitle}>
-                                        <Link
-                                          to={embeddedLink.href}
-                                          onClick={() => setDrawerOpen(false)}
-                                          className={headerMenuTitle}
-                                        >
-                                          {embeddedLink.title}
-                                        </Link>
-                                        <ListItemSecondaryAction>
-                                          <div className={classes.hamburgerMenuButton} />
-                                        </ListItemSecondaryAction>
-                                      </div>
-                                    </ListItem>
-                                    {open[(idx, idx2)] &&
-                                      embeddedLink.links.map((embeddedLinkLink) => (
+                              <>
+                                <ListItem
+                                  button
+                                  key={_key}
+                                  className={`${classes.headerMenuNavItem} ${categoryOpen && classes.headerMenuActive}`}
+                                  onClick={() => handleClick(categoryIdx, 0)}
+                                >
+                                  <div className={headerMenuTitle}>
+                                    <Link to={href} onClick={toggleDrawer} className={headerMenuTitle}>
+                                      {title}
+                                    </Link>
+                                    <ListItemSecondaryAction>
+                                      <div className={classes.hamburgerMenuButton} />
+                                    </ListItemSecondaryAction>
+                                  </div>
+                                </ListItem>
+                                {categoryOpen &&
+                                  embeddedMenu.map((embeddedLink, idx2) => {
+                                    const itemIdx = idx2 + 1;
+                                    const itemOpen = open[1] === itemIdx;
+
+                                    return (
+                                      <>
                                         <ListItem
                                           button
-                                          key={embeddedLinkLink._key}
-                                          className={classes.headerMenuNavItem}
+                                          key={embeddedLink._key}
+                                          className={`${classes.headerMenuNavItem} ${classes.subMenuWrap}`}
+                                          onClick={() => handleClick(categoryIdx, itemIdx)}
                                         >
                                           <div className={headerMenuTitle}>
-                                            <Link to={embeddedLinkLink.href} className={headerMenuTitle}>
-                                              {embeddedLinkLink.title}
+                                            <Link
+                                              to={embeddedLink.href}
+                                              onClick={toggleDrawer}
+                                              className={headerMenuTitle}
+                                            >
+                                              {embeddedLink.title}
                                             </Link>
+                                            <ListItemSecondaryAction>
+                                              <div className={classes.hamburgerMenuButton} />
+                                            </ListItemSecondaryAction>
                                           </div>
                                         </ListItem>
-                                      ))}
-                                  </>
-                                ))}
-                            </>
-                          )})}
+                                        {itemOpen &&
+                                          embeddedLink.links.map((embeddedLinkLink) => (
+                                            <ListItem
+                                              button
+                                              key={embeddedLinkLink._key}
+                                              className={classes.headerMenuNavItem}
+                                            >
+                                              <div className={headerMenuTitle}>
+                                                <Link to={embeddedLinkLink.href} className={headerMenuTitle}>
+                                                  {embeddedLinkLink.title}
+                                                </Link>
+                                              </div>
+                                            </ListItem>
+                                          ))}
+                                      </>
+                                    );
+                                  })}
+                              </>
+                            );
+                          })}
                         </List>
                       </div>
                     </nav>
