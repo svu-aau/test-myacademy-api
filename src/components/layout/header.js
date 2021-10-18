@@ -16,9 +16,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 
 import { cn } from '../../lib/helpers';
 import { handlePageMap } from '../../utils/tools';
@@ -363,10 +362,10 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         <Link to="/contact-us" className={classes.contactLink}>
                           Contact
                         </Link>
-                        <a href="#" onClick={() => setSearching(!isSearching)} className={searchBtn}>
-                          <FontAwesomeIcon icon={faSearch} title="Search" />
-                        </a>
                       </p>
+                      <a href="#" onClick={() => setSearching(!isSearching)} className={searchBtn}>
+                        {isSearching ? <CloseIcon /> : <SearchIcon />}
+                      </a>
                     </div>
                     {isSearching && <SearchForm allPages={[...formattedPageEdges]} />}
                     <IconButton

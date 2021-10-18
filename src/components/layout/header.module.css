@@ -27,7 +27,7 @@
 
 .contactContent {
   color: white;
-  display: block;
+  display: flex;
 
   @media (--media-max-large) {
     display: none;
