@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { graphql, Link, StaticQuery, navigate } from 'gatsby';
+import React, { useState, useEffect } from 'react';
+import { graphql, Link, StaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import SearchForm from '../search-form';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,7 +8,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { Button } from '@aauweb/design-library';
 
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
@@ -22,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { cn } from '../../lib/helpers';
+import { handlePageMap } from '../../utils/tools';
 import {
   root,
   brandingImage,
@@ -291,10 +291,50 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
               ...School
             }
           }
+          pages: allSanityPage(filter: { slug: { current: { ne: null } } }) {
+            edges {
+              node {
+                content: contentArray {
+                  ... on SanitySectionText {
+                    body {
+                      children {
+                        text
+                      }
+                    }
+                  }
+                  ... on SanityGlobalSection {
+                    subTitle
+                    content: contentArray {
+                      ... on SanitySectionText {
+                        body {
+                          children {
+                            text
+                          }
+                        }
+                      }
+                    }
+                  }
+                  ... on SanitySectionCard {
+                    body {
+                      children {
+                        text
+                      }
+                    }
+                  }
+                }
+                id
+                slug {
+                  current
+                }
+                title
+              }
+            }
+          }
         }
       `}
       render={({ mainMenu: { links: linksArray }, schools }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
+        const formattedPageEdges = pages.edges.map((page) => page?.node && handlePageMap(page.node));
 
         return (
           <div className={root}>
@@ -328,9 +368,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                         </a>
                       </p>
                     </div>
-                    <div className={cn(topSearch, isSearching ? show : '')}>
-                      <SearchForm isHeader isSearching={isSearching} onSubmit={navigateToSearch} title="Search" />
-                    </div>
+                    {isSearching && <SearchForm allPages={[...formattedPageEdges]} />}
                     <IconButton
                       className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"

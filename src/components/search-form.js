@@ -1,46 +1,109 @@
-import * as React from 'react';
-import { searchForm, searchFormHeader } from './search-form.module.css';
-import { useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, navigate } from 'gatsby';
+import * as JsSearch from 'js-search';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
 import { cn } from '../lib/helpers';
+import { searchSection, searchResult } from './search-form.module.css';
 
-const useFocus = () => {
-  const htmlElRef = useRef(null);
-  const setFocus = () => {
-    htmlElRef.current && htmlElRef.current.focus();
-  };
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: `${theme.spacing(1)}px auto 24px auto`,
+      width: '60rem',
+      position: 'relative',
+    },
+    '& .MuiInputBase-root': {
+      color: 'white',
+      fontSize: '24px',
+      height: '3.125rem',
+      padding: '1rem .5rem',
+    },
+    '& .MuiInput-underline': {
+      '&:before, &:after': {
+        borderBottom: '2px solid white',
+      },
+    },
+    '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+      borderBottom: '2px solid white',
+    },
+    '& .MuiInputAdornment-root': {
+      cursor: 'pointer',
+    },
+  },
+}));
 
-  return [htmlElRef, setFocus];
-};
+const SearchForm = ({ allPages }) => {
+  const classes = useStyles();
+  const [search, setSearch] = useState();
+  const [searchQuery, setSearchQuery] = useState();
+  const [searchResults, setSearchResults] = useState([]);
 
-const SearchForm = ({ isSearching = false, isHeader, onSubmit, defaultSearchTerm = '', title = 'Search' }) => {
-  const [searchTerm, setSearchTerm] = React.useState(defaultSearchTerm);
-  const [inputRef, setInputFocus] = useFocus();
   useEffect(() => {
-    if (isSearching) {
-      setTimeout(() => {
-        setInputFocus();
-      }, 200);
-    }
-  });
+    rebuildIndex();
+  }, [searchQuery]);
 
-  const searchAction = (event) => {
-    event.preventDefault();
-    if (searchTerm === '') {
-      return false;
-    }
-    onSubmit(searchTerm);
-    return true;
+  const rebuildIndex = () => {
+    const dataToSearch = new JsSearch.Search('id');
+    dataToSearch.tokenizer = new JsSearch.StopWordsTokenizer(new JsSearch.SimpleTokenizer());
+    dataToSearch.indexStrategy = new JsSearch.AllSubstringsIndexStrategy();
+    dataToSearch.sanitizer = new JsSearch.LowerCaseSanitizer();
+    dataToSearch.searchIndex = new JsSearch.TfIdfSearchIndex('id');
+
+    dataToSearch.addIndex('title');
+    dataToSearch.addIndex('body');
+    dataToSearch.addIndex('tags');
+    dataToSearch.addDocuments(allPages); // adds the data to be searched
+
+    // this.setState({ search: dataToSearch, isLoading: false }, () => this.searchData());
+    setSearch(dataToSearch, () => this.searchData());
   };
 
-  const handleChange = (event) => setSearchTerm(event.target.value);
+  const searchData = (val) => {
+    const searchVal = decodeURIComponent(val);
+    const queryResult = search.search(searchVal);
+    setSearchResults(queryResult);
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    if (value.length > 2) {
+      setSearchQuery(value);
+      searchData(value);
+    }
+  };
+
+  const results = searchResults.slice(0, 10);
 
   return (
-    <form onSubmit={searchAction} className={cn(searchForm, isHeader && searchFormHeader)}>
-      <input ref={inputRef} type="text" name="search_term" value={searchTerm} onChange={handleChange} />
-      <button type="submit" name="search">
-        {title}
-      </button>
-    </form>
+    <div className={cn(searchSection, classes.root)}>
+      <TextField
+        placeholder="Type to search"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start" onClick={() => navigate(`/search_results?query=${searchQuery}`)}>
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+        onChange={handleSearch}
+      />
+      {results.length
+        ? results.map((result, idx) => {
+            let { slug } = result;
+            if (slug && !slug.startsWith('/')) {
+              slug = `/${slug}`;
+            }
+            return (
+              <h3 key={idx} className={searchResult}>
+                <Link to={slug}>{result.title}</Link>
+              </h3>
+            );
+          })
+        : ''}
+    </div>
   );
 };
 

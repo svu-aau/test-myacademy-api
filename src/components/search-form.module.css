@@ -1,55 +1,25 @@
-@import '../styles/custom-media.css';
+.searchSection {
+  display: none;
+  background-color: #ee3224;
+  position: absolute;
+  z-index: 950;
+  width: 100%;
+  left: 0;
+  top: 72px;
+  padding: 1rem;
+  padding-top: .5rem;
 
-.searchForm {
-  display: flex;
-  flex-wrap: wrap;
-
-  @media (--media-max-medium) {
-    justify-content: center;
+  @media screen and (min-width: 51.875em) {
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
   }
+}
 
-  @nest & button {
-    color: #fff;
-    background-color: #c52228;
-    height: 40px;
-    padding: 0 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    border: none;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: var(--font-family-primary);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    text-transform: uppercase;
-    border-radius: 0;
-    transition: all 0.3s ease 0s;
-    @nest &:hover {
-      cursor: pointer;
-    }
+.searchResult {
+  padding-left: 14rem;
 
-    @media (--media-max-medium) {
-      margin-top: 1em;
-    }
-  }
-
-  &.searchFormHeader {
-    @nest & button {
-      margin-top: 0 !important;
-    }
-  }
-
-  @nest & input {
-    background: #fff;
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    height: 40px;
-    width: 281px;
-    max-width: 100%;
-    padding: 5px 10px;
-    font-size: 1em;
-    box-sizing: border-box;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
-    transition: all 0.3s ease-in-out;
+  @nest & a {
+    color: white;
   }
 }
