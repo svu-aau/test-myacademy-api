@@ -1,0 +1,30 @@
+.searchSection {
+  display: none;
+  background-color: #ee3224;
+  position: absolute;
+  z-index: 950;
+  width: 100%;
+  left: 0;
+  top: 72px;
+  padding: 1rem;
+  padding-top: .5rem;
+
+  @media screen and (min-width: 51.875em) {
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.searchResult {
+  width: 60rem;
+  margin: auto;
+
+  @nest & a {
+    color: white;
+  }
+
+  @nest & h3 {
+    padding: 0 0.75rem;
+  }
+}

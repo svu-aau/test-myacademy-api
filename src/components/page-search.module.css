@@ -1,0 +1,17 @@
+.missingResults {
+  margin-top: 32px;
+}
+
+.searchResultStyle h3 {
+  text-align: left;
+  margin-bottom: unset;
+  padding-top: 2.5rem;
+}
+
+.searchResultStyle a {
+  color: #428bca;
+  @nest &:hover {
+    color: #859c33;
+    text-decoration: none;
+  }
+}
