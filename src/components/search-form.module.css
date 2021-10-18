@@ -17,9 +17,14 @@
 }
 
 .searchResult {
-  padding-left: 14rem;
+  width: 60rem;
+  margin: auto;
 
   @nest & a {
     color: white;
+  }
+
+  @nest & h3 {
+    padding: 0 0.75rem;
   }
 }

@@ -237,7 +237,8 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
-  const [open, setOpen] = React.useState([]);
+  const [open, setOpen] = useState([]);
+  const [isSearching, setSearching] = useState(false);
   const handleClick = (idx, idx2) => {
     if (idx2 > 0) {
       if (open[1] === idx2) {
@@ -331,7 +332,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
           }
         }
       `}
-      render={({ mainMenu: { links: linksArray }, schools }) => {
+      render={({ mainMenu: { links: linksArray }, schools, pages }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
         const formattedPageEdges = pages.edges.map((page) => page?.node && handlePageMap(page.node));
 

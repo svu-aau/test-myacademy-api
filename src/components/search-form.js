@@ -90,19 +90,21 @@ const SearchForm = ({ allPages }) => {
         }}
         onChange={handleSearch}
       />
-      {results.length
-        ? results.map((result, idx) => {
-            let { slug } = result;
-            if (slug && !slug.startsWith('/')) {
-              slug = `/${slug}`;
-            }
-            return (
-              <h3 key={idx} className={searchResult}>
-                <Link to={slug}>{result.title}</Link>
-              </h3>
-            );
-          })
-        : ''}
+      <div className={searchResult}>
+        {results.length
+          ? results.map((result, idx) => {
+              let { slug } = result;
+              if (slug && !slug.startsWith('/')) {
+                slug = `/${slug}`;
+              }
+              return (
+                <h3 key={idx}>
+                  <Link to={slug}>{result.title}</Link>
+                </h3>
+              );
+            })
+          : ''}
+      </div>
     </div>
   );
 };
