@@ -1,10 +1,10 @@
 # Basic dependabot.yml file with
-# minimum configuration for yarn package managers
+# minimum configuration for npm package managers
 
 version: 1
 updates:
-  # Enable version updates for yarn
-  - package-ecosystem: 'yarn'
+  # Enable version updates for npm
+  - package-ecosystem: 'npm'
     # Look for `yarn.lock` files in the `root` directory
     directory: '/'
     # Check the npm registry for updates every day (weekdays)
