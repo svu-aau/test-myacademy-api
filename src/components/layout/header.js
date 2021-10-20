@@ -7,20 +7,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { Button } from '@aauweb/design-library';
+import clsx from 'clsx';
 
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { cn } from '../../lib/helpers';
 import {
   root,
-  brandingImage,
   branding,
   srOnly,
   contactContent,
@@ -118,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
   drawerInner: {
     backgroundColor: 'var(--color-white)',
     color: 'var(--color-dark-black-bg)',
+    marginTop: 64,
     '& a': {
       color: 'var(--color-dark-black-bg)',
       fontWeight: 'bold',
@@ -139,6 +135,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '1em 1.25em',
     '&:last-of-type': {
       borderBottom: 'none',
+    },
+    '&:hover': {
+      backgroundColor: '#f2f5f9',
     },
   },
   megaMenuContent: {
@@ -184,48 +183,80 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '.5rem',
     },
   },
-  subMenuWrap: {
-    backgroundColor: '#f2f5f9',
-  },
   menuTitle: {},
+  // 2 and 20
   hamburgerMenuButton: {
-    '&:before': {
-      top: '32%',
-      //right: '2.0625rem',
-      width: '2px',
-      height: '20px',
-      marginLeft: '-1px',
+    position: 'relative',
+    width: 20,
+    height: 20,
+
+    '&:before, &:after': {
+      content: '""',
+      position: 'absolute',
+      backgroundColor: '#000000',
+      transition: 'transform 0.25s ease-out',
     },
+
+    /* Vertical line */
+    '&:before': {
+      top: 0,
+      left: '50%',
+      width: 2,
+      height: '100%',
+      marginLeft: -1,
+    },
+
+    /* horizontal line */
     '&:after': {
       top: '50%',
-      //right: '1.5rem',
-      height: '2px',
-      width: '20px',
-      marginTop: '-1px',
+      left: 0,
+      width: '100%',
+      height: 2,
+      marginTop: -1,
+    },
+
+    '&:hover': {
+      cursor: 'pointer',
+
+      '&:before': {
+        transform: 'rotate(90deg)',
+      },
+      '&:after': {
+        transform: 'rotate(180deg)',
+      },
     },
   },
   headerMenuActive: {
     background: '#32323c',
     '& a': {
-      color: '#FFFFFF'
-    }
-  }
-}));
+      color: '#FFFFFF',
+    },
+    '& .hamburgerButton:before, & .hamburgerButton:after': {
+      backgroundColor: '#FFFFFF',
+    },
+    '& .hamburgerButton:before': {
+      transform: 'rotate(90deg)',
+    },
+    '& .hamburgerButton:after': {
+      transform: 'rotate(180deg)',
+    },
 
-/*
-  <div className={classes.megaMenuContent}>
-    <div>
-      <ul>
-        <a className={classes.subMenuTitle}>Admissions</a>
-        <ul className={classes.subMenu}>
-          <li className={classes.menuItem}>
-            <Link><span>Visit Us</span></Link>
-          </li>
-        </ul>
-      </ul>
-    </div>
-  </div>
-*/
+    '&:hover': {
+      background: '#292931',
+    },
+  },
+  subMenuWrap: {
+    backgroundColor: '#f2f5f9',
+  },
+  subMenuWrapActive: {
+    '& .hamburgerButton:before': {
+      transform: 'rotate(90deg)',
+    },
+    '& .hamburgerButton:after': {
+      transform: 'rotate(180deg)',
+    },
+  },
+}));
 
 const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption, backgroundImage }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -235,28 +266,28 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   const handleClick = (idx, idx2) => {
     if (idx2 > 0) {
       if (open[1] === idx2) {
-        setOpen([idx, 0])
+        setOpen([idx, 0]);
       } else {
-        setOpen([idx, idx2])
+        setOpen([idx, idx2]);
       }
     } else {
       if (open[0] === idx) {
-        setOpen([0, 0])
+        setOpen([0, 0]);
       } else {
-        setOpen([idx, 0])
+        setOpen([idx, 0]);
       }
-    }    
+    }
   };
   const classes = useStyles();
 
   const toggleDrawer = () => {
     if (drawerOpen) {
-      setOpen([0, 0])
-      setDrawerOpen(false)
+      setOpen([0, 0]);
+      setDrawerOpen(false);
     } else {
-      setDrawerOpen(true)
+      setDrawerOpen(true);
     }
-  }
+  };
 
   useEffect(() => {
     setCurPath(window.location.pathname);
@@ -451,9 +482,11 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                                     <Link to={href} onClick={toggleDrawer} className={headerMenuTitle}>
                                       {title}
                                     </Link>
-                                    <ListItemSecondaryAction>
-                                      <div className={classes.hamburgerMenuButton} />
-                                    </ListItemSecondaryAction>
+                                    {embeddedMenu.length > 0 && (
+                                      <ListItemSecondaryAction>
+                                        <div className={clsx(classes.hamburgerMenuButton, 'hamburgerButton')} />
+                                      </ListItemSecondaryAction>
+                                    )}
                                   </div>
                                 </ListItem>
                                 {categoryOpen &&
@@ -466,7 +499,11 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                                         <ListItem
                                           button
                                           key={embeddedLink._key}
-                                          className={`${classes.headerMenuNavItem} ${classes.subMenuWrap}`}
+                                          className={clsx(
+                                            classes.headerMenuNavItem,
+                                            classes.subMenuWrap,
+                                            itemOpen && classes.subMenuWrapActive
+                                          )}
                                           onClick={() => handleClick(categoryIdx, itemIdx)}
                                         >
                                           <div className={headerMenuTitle}>
@@ -478,7 +515,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                                               {embeddedLink.title}
                                             </Link>
                                             <ListItemSecondaryAction>
-                                              <div className={classes.hamburgerMenuButton} />
+                                              <div className={clsx(classes.hamburgerMenuButton, 'hamburgerButton')} />
                                             </ListItemSecondaryAction>
                                           </div>
                                         </ListItem>
