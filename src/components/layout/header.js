@@ -13,6 +13,8 @@ import clsx from 'clsx';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 
 import { cn } from '../../lib/helpers';
 import { handlePageMap } from '../../utils/tools';
