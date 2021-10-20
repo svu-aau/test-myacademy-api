@@ -4,13 +4,13 @@
 version: 1
 updates:
   # Enable version updates for yarn
-  - package-ecosystem: "yarn"
+  - package-ecosystem: 'yarn'
     # Look for `yarn.lock` files in the `root` directory
-    directory: "/"
+    directory: '/'
     # Check the npm registry for updates every day (weekdays)
     schedule:
-      interval: "daily"
+      interval: 'daily'
     ignore:
-      - dependency-name: "swiper"
+      - dependency-name: 'swiper'
         # For Swiper, ignore all updates for version 5 and 6
-        versions: ["5.x", "6.x"]
+        versions: ['5.x', '6.x']
