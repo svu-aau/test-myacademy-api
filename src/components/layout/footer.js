@@ -75,6 +75,9 @@ const Footer = () => {
               title
               href
               hidden
+              embeddedMenu {
+                ...EmbeddedMenu
+              }
             }
           }
           contactInfoSection: sanityGlobalSection(slug: { current: { eq: "footer-contact-info" } }) {
@@ -129,30 +132,13 @@ const Footer = () => {
               </div>
               <div className={footerBottom}>
                 <div className={footerContact}>
-                  <div className={footerHeading}>About</div>
-                  {contactInfoSection && (
-                    <div className={contactInfo}>
-                      <ContentSections
-                        textOnly
-                        content={contactInfoSection.content}
-                        slug={contactInfoSection.slug.current}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className={footerContact}>
                   <div className={footerHeading}>Get in touch</div>
                   <div className={addressInfo}>
                     <div>
                       <a type="tel" href="tel:1-800-544-2787">
                         1-800-544-2787
                       </a>
-                      <span> or </span>
-                      <a type="tel" href="tel:1-415-274-8617">
-                        415-274-8617
-                      </a>
                     </div>
-                    <br />
                     <address>
                       <div>79 New Montgomery St.</div>
                       <div>San Francisco, CA 94105</div>
@@ -169,29 +155,18 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className={footerContact}>
-                  <div className={footerHeading}>Links & Resources</div>
-                  <div className={contactInfo}>
-                    {footerLinksArray.map(({ _key, title, href, hidden }) => (
-                      <a href={href} key={_key}>
-                        {title}
-                      </a>
-                    ))}
+                {footerLinksArray.map(({ _key, title, embeddedMenu }) => (
+                  <div className={footerContact} key={_key}>
+                    <div className={footerHeading}>{title}</div>
+                    <div className={contactInfo}>
+                      {embeddedMenu[0].links.map((item) => (
+                        <a href={item.href} key={item._key}>
+                          {item.title}
+                        </a>
+                      ))}
+                    </div>
                   </div>
-
-                  {/*
-                  <ul className={footerColumns}>
-                    {schools.nodes &&
-                      schools.nodes
-                        .sort((a, b) => a.title.localeCompare(b.title))
-                        .map((node) => (
-                          <li className={columnLink} key={node.id}>
-                            <Link to={`/schools/${node.slug.current}`}>{node.title}</Link>
-                          </li>
-                        ))}
-                  </ul>
-                  */}
-                </div>
+                ))}
               </div>
               <div className={footerCopyright}>
                 <div>© {new Date().getFullYear()} Academy of Art University&nbsp;</div>

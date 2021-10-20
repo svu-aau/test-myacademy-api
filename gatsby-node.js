@@ -17,126 +17,49 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-async function createAllSchoolsPage(actions, reporter) {
-  const { createPage } = actions;
-  const path = `/schools/`;
-
-  reporter.info(`Creating schools page: ${path}`);
-
-  createPage({
-    path,
-    component: require.resolve('./src/templates/all-schools.js'),
-  });
-}
-
-async function createThesisProjectsPage(actions, reporter) {
-  const { createPage } = actions;
-  const path = `/thesis-projects`;
-
-  reporter.info(`Creating thesis page: ${path}`);
-
-  createPage({
-    path,
-    component: require.resolve('./src/templates/thesis.js'),
-  });
-}
-
-async function createSchoolPages(graphql, actions, reporter) {
-  const { createPage } = actions;
-  const result = await graphql(`
-    {
-      schools: allSanitySchool(filter: { slug: { current: { ne: null } } }) {
-        edges {
-          node {
-            id
-            slug {
-              current
-            }
+const formatText = (content) => {
+  let textArray = [];
+  if (content?.body) {
+    content.body.forEach(({ children }) => {
+      if (children) {
+        children.forEach(({ text }) => {
+          if (text) {
+            textArray.push(text);
           }
-        }
+        });
       }
-    }
-  `);
-
-  if (result.errors) throw result.errors;
-
-  const schoolEdges = (result.data.schools || {}).edges || [];
-
-  schoolEdges.forEach((edge) => {
-    const id = edge.node.id;
-    const slug = edge.node.slug.current;
-    const path = `/schools/${slug}/`;
-
-    reporter.info(`Creating school page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/school.js'),
-      context: { id },
     });
-  });
-}
-
-async function createProjectPages(graphql, actions, reporter) {
-  const { createPage } = actions;
-  const result = await graphql(`
-    {
-      students: allSanityStudent(filter: { slug: { current: { ne: null } } }) {
-        edges {
-          node {
-            _id
-            slug {
-              current
+  } else if (Array.isArray(content)) {
+    if (content.length > 0) {
+      content.forEach((inner) => {
+        if (inner.body) {
+          inner.body.forEach(({ children }) => {
+            if (children) {
+              children.forEach(({ text }) => {
+                if (text) {
+                  textArray.push(text);
+                }
+              });
             }
-            projects {
-              ... on SanityProject {
-                _id
-              }
-            }
-            school {
-              slug {
-                current
-              }
-            }
-          }
+          });
         }
-      }
+      });
     }
-  `);
+  }
 
-  if (result.errors) throw result.errors;
+  return textArray;
+};
 
-  const studentEdges = (result.data.students || {}).edges || [];
-
-  studentEdges.forEach((edge) => {
-    const project = edge.node.projects[0];
-    const slug = edge.node.slug.current;
-    const id = edge.node._id;
-    if (project) {
-      if (edge.node.school && edge.node.school.slug) {
-        const schoolSlug = edge.node.school.slug.current;
-        const path = `/schools/${schoolSlug}/${slug}/`;
-        reporter.info(`Creating project page: ${path}`);
-
-        createPage({
-          path,
-          component: require.resolve('./src/templates/project.js'),
-          context: { id },
-        });
-      }
-      if (process.env.NODE_ENV === 'development') {
-        // Create page at short url for previews
-        const path = `/projects/${id}/`;
-        reporter.info(`Creating project page: ${path}`);
-        createPage({
-          path,
-          component: require.resolve('./src/templates/project.js'),
-          context: { id },
-        });
-      }
-    }
-  });
-}
+const pageMap = (props) => {
+  const { content, slug } = props;
+  const tempProps = props;
+  delete tempProps.content;
+  return {
+    ...tempProps,
+    body: formatText(content),
+    slug: slug.current,
+  };
+};
 
 async function createPageBuilderPages(graphql, actions, reporter) {
   const { createPage } = actions;
@@ -174,10 +97,77 @@ async function createPageBuilderPages(graphql, actions, reporter) {
   });
 }
 
+async function createSearchPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      pages: allSanityPage(filter: { slug: { current: { ne: null } } }) {
+        nodes {
+          content: contentArray {
+            ... on SanitySectionText {
+              body {
+                children {
+                  text
+                }
+              }
+            }
+            ... on SanityGlobalSection {
+              subTitle
+              content: contentArray {
+                ... on SanitySectionText {
+                  body {
+                    children {
+                      text
+                    }
+                  }
+                }
+              }
+            }
+            ... on SanitySectionCard {
+              body {
+                children {
+                  text
+                }
+              }
+            }
+          }
+          id
+          slug {
+            current
+          }
+          title
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+  const pageNodes = (result.data.pages || {}).nodes || [];
+
+  const formattedPageEdges = pageNodes.map((page) => {
+    if (page) {
+      return pageMap(page);
+    }
+  });
+
+  const edges = [...formattedPageEdges];
+
+  const path = `/search_results/`;
+
+  reporter.info(`Creating search page: ${path}`);
+
+  createPage({
+    path,
+    component: require.resolve('./src/templates/search.js'),
+    context: {
+      pageData: {
+        allPages: edges,
+      },
+    },
+  });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  await createAllSchoolsPage(actions, reporter);
-  await createThesisProjectsPage(actions, reporter);
-  await createSchoolPages(graphql, actions, reporter);
-  await createProjectPages(graphql, actions, reporter);
   await createPageBuilderPages(graphql, actions, reporter);
+  await createSearchPage(graphql, actions, reporter);
 };

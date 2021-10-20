@@ -1,26 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import SearchForm from '../search-form';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { Button } from '@aauweb/design-library';
+import clsx from 'clsx';
 
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 
 import { cn } from '../../lib/helpers';
+import { handlePageMap } from '../../utils/tools';
 import {
   root,
-  brandingImage,
   branding,
   srOnly,
   contactContent,
@@ -40,6 +39,9 @@ import {
   title,
   hamburger,
   toolbar as toolbarCss,
+  topSearch,
+  show,
+  searchBtn,
 } from './header.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
       color: '#292931',
       height: '100%',
-      textDecoration: 'none',
+      textDecoration: 'none !important',
     },
     '& span': {
       borderBottom: '3px solid transparent',
@@ -78,8 +80,14 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
       height: 'calc( 100% + 1px)',
     },
+    '& > a:hover': {
+      color: '#ee3224',
+    },
     '& > a:hover span': {
       borderColor: '#ee3224',
+    },
+    '& > a:hover+.mega-content': {
+      display: 'block',
     },
     '& > a.active span': {
       borderColor: '#ee3224',
@@ -112,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   drawerInner: {
     backgroundColor: 'var(--color-white)',
     color: 'var(--color-dark-black-bg)',
+    marginTop: 64,
     '& a': {
       color: 'var(--color-dark-black-bg)',
       fontWeight: 'bold',
@@ -130,8 +139,128 @@ const useStyles = makeStyles((theme) => ({
   },
   headerMenuNavItem: {
     borderBottom: '1px solid #dddddd',
+    padding: '1em 1.25em',
     '&:last-of-type': {
       borderBottom: 'none',
+    },
+    '&:hover': {
+      backgroundColor: '#f2f5f9',
+    },
+  },
+  megaMenuContent: {
+    color: '#292931',
+    padding: '2rem 2rem 1rem',
+    position: 'absolute',
+    backgroundColor: '#fff',
+    width: '100%',
+    left: 0,
+    top: '3.25rem',
+    borderBottom: '1px solid #f8f8f8',
+    display: 'none',
+    '&:hover': {
+      display: 'block',
+    },
+    '& ul a': {
+      color: '#292931',
+      fontSize: '14px',
+      lineHeight: '1rem',
+      display: 'block',
+      paddingBottom: '.5rem',
+    },
+    '& ul': {
+      listStyleType: 'none',
+      margin: 0,
+      padding: 0,
+    },
+  },
+  subMenuTitle: {
+    fontWeight: 700,
+    pointerEvents: 'none',
+    paddingBottom: '.5rem',
+    textTransform: 'uppercase',
+  },
+  subMenu: {
+    textTransform: 'initial',
+    paddingRight: '2rem',
+    '& li a': {
+      paddingBottom: 0,
+      fontWeight: 400,
+    },
+    '& span': {
+      paddingBottom: '.5rem',
+    },
+  },
+  menuTitle: {},
+  // 2 and 20
+  hamburgerMenuButton: {
+    position: 'relative',
+    width: 20,
+    height: 20,
+
+    '&:before, &:after': {
+      content: '""',
+      position: 'absolute',
+      backgroundColor: '#000000',
+      transition: 'transform 0.25s ease-out',
+    },
+
+    /* Vertical line */
+    '&:before': {
+      top: 0,
+      left: '50%',
+      width: 2,
+      height: '100%',
+      marginLeft: -1,
+    },
+
+    /* horizontal line */
+    '&:after': {
+      top: '50%',
+      left: 0,
+      width: '100%',
+      height: 2,
+      marginTop: -1,
+    },
+
+    '&:hover': {
+      cursor: 'pointer',
+
+      '&:before': {
+        transform: 'rotate(90deg)',
+      },
+      '&:after': {
+        transform: 'rotate(180deg)',
+      },
+    },
+  },
+  headerMenuActive: {
+    background: '#32323c',
+    '& a': {
+      color: '#FFFFFF',
+    },
+    '& .hamburgerButton:before, & .hamburgerButton:after': {
+      backgroundColor: '#FFFFFF',
+    },
+    '& .hamburgerButton:before': {
+      transform: 'rotate(90deg)',
+    },
+    '& .hamburgerButton:after': {
+      transform: 'rotate(180deg)',
+    },
+
+    '&:hover': {
+      background: '#292931',
+    },
+  },
+  subMenuWrap: {
+    backgroundColor: '#f2f5f9',
+  },
+  subMenuWrapActive: {
+    '& .hamburgerButton:before': {
+      transform: 'rotate(90deg)',
+    },
+    '& .hamburgerButton:after': {
+      transform: 'rotate(180deg)',
     },
   },
 }));
@@ -140,14 +269,37 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
+  const [open, setOpen] = useState([]);
+  const [isSearching, setSearching] = useState(false);
+  const handleClick = (idx, idx2) => {
+    if (idx2 > 0) {
+      if (open[1] === idx2) {
+        setOpen([idx, 0]);
+      } else {
+        setOpen([idx, idx2]);
+      }
+    } else {
+      if (open[0] === idx) {
+        setOpen([0, 0]);
+      } else {
+        setOpen([idx, 0]);
+      }
+    }
+  };
+  const classes = useStyles();
+
+  const toggleDrawer = () => {
+    if (drawerOpen) {
+      setOpen([0, 0]);
+      setDrawerOpen(false);
+    } else {
+      setDrawerOpen(true);
+    }
+  };
+
   useEffect(() => {
     setCurPath(window.location.pathname);
   });
-  const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(!open);
-  };
-  const classes = useStyles();
 
   return (
     // eslint-disable-next-line react/jsx-no-undef
@@ -161,6 +313,9 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
               title
               href
               hidden
+              embeddedMenu {
+                ...EmbeddedMenu
+              }
             }
           }
           schools: allSanitySchool {
@@ -168,15 +323,54 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
               ...School
             }
           }
+          pages: allSanityPage(filter: { slug: { current: { ne: null } } }) {
+            edges {
+              node {
+                content: contentArray {
+                  ... on SanitySectionText {
+                    body {
+                      children {
+                        text
+                      }
+                    }
+                  }
+                  ... on SanityGlobalSection {
+                    subTitle
+                    content: contentArray {
+                      ... on SanitySectionText {
+                        body {
+                          children {
+                            text
+                          }
+                        }
+                      }
+                    }
+                  }
+                  ... on SanitySectionCard {
+                    body {
+                      children {
+                        text
+                      }
+                    }
+                  }
+                }
+                id
+                slug {
+                  current
+                }
+                title
+              }
+            }
+          }
         }
       `}
-      render={({ mainMenu: { links: linksArray }, schools }) => {
-        // console.log('linksArray: ', linksArray);
+      render={({ mainMenu: { links: linksArray }, schools, pages }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
+        const formattedPageEdges = pages.edges.map((page) => page?.node && handlePageMap(page.node));
 
         return (
           <div className={root}>
-            <ClickAwayListener onClickAway={() => (drawerOpen ? setDrawerOpen(!drawerOpen) : null)}>
+            <ClickAwayListener onClickAway={() => (drawerOpen ? toggleDrawer() : null)}>
               <div>
                 <AppBar className={classes.appBar}>
                   <Toolbar className={toolbarCss} disableGutters>
@@ -202,12 +396,16 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                           Contact
                         </Link>
                       </p>
+                      <a href="#" onClick={() => setSearching(!isSearching)} className={searchBtn}>
+                        {isSearching ? <CloseIcon /> : <SearchIcon />}
+                      </a>
                     </div>
+                    {isSearching && <SearchForm allPages={[...formattedPageEdges]} />}
                     <IconButton
                       className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"
                       aria-label="menu"
-                      onClick={() => setDrawerOpen(!drawerOpen)}
+                      onClick={toggleDrawer}
                     >
                       <div className={cn(navBurgerIcon, drawerOpen && navBurgerIconOpen)}>
                         <span></span>
@@ -219,18 +417,40 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                   </Toolbar>
                   <Toolbar className={bottomBar} disableGutters>
                     <div className={classes.left}>
-                      {linksArray.map(({ _key, title, href, hidden }) => {
+                      {linksArray.map(({ _key, title, href, hidden, embeddedMenu, ...rest }) => {
                         const updatedHref = href?.slice(-1) === '/' ? href.slice(0, -1) : href;
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (
-                          <Link
-                            key={_key}
-                            className={updatedHref === updatedCurPath ? 'active' : ''}
-                            to={href}
-                            onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
-                          >
-                            <span>{title}</span>
-                          </Link>
+                          <>
+                            <Link
+                              key={_key}
+                              className={updatedHref === updatedCurPath ? 'active' : ''}
+                              to={href}
+                              onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
+                            >
+                              <span>{title}</span>
+                            </Link>
+                            {embeddedMenu.length > 0 && (
+                              <div className={`${classes.megaMenuContent} mega-content`}>
+                                <div>
+                                  {embeddedMenu.map((menuContent) => (
+                                    <ul key={menuContent.title}>
+                                      <a className={classes.subMenuTitle}>{menuContent.title}</a>
+                                      <ul className={classes.subMenu}>
+                                        {menuContent.links.map((menuLink) => (
+                                          <li key={menuLink._key} className={classes.menuItem}>
+                                            <Link to={menuLink.href}>
+                                              <span>{menuLink.title}</span>
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </ul>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </>
                         );
                       })}
                     </div>
@@ -299,45 +519,78 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                           className={classes.headerMenuList}
                           disablePadding
                         >
-                          {linksArray.map(({ _key, title, href, hidden }) => (
-                            <>
-                              <ListItem button key={_key} className={classes.headerMenuNavItem}>
-                                {!href?.includes('/schools') && (
-                                  <Link to={href} onClick={() => setDrawerOpen(false)} className={headerMenuTitle}>
-                                    {title}
-                                  </Link>
-                                )}
-                                {displaySchools && href?.includes('/schools') && (
+                          {linksArray.map(({ _key, title, href, embeddedMenu }, idx) => {
+                            const categoryIdx = idx + 1;
+                            const categoryOpen = open[0] === categoryIdx;
+                            return (
+                              <>
+                                <ListItem
+                                  button
+                                  key={_key}
+                                  className={`${classes.headerMenuNavItem} ${categoryOpen && classes.headerMenuActive}`}
+                                  onClick={() => handleClick(categoryIdx, 0)}
+                                >
                                   <div className={headerMenuTitle}>
-                                    <Link onClick={() => setDrawerOpen(false)} to={href}>
+                                    <Link to={href} onClick={toggleDrawer} className={headerMenuTitle}>
                                       {title}
                                     </Link>
-                                    <ListItemSecondaryAction onClick={handleClick}>
-                                      <IconButton edge="end" aria-label="expand schools submenu">
-                                        {open ? <ExpandLess /> : <ExpandMore />}
-                                      </IconButton>
-                                    </ListItemSecondaryAction>
+                                    {embeddedMenu.length > 0 && (
+                                      <ListItemSecondaryAction>
+                                        <div className={clsx(classes.hamburgerMenuButton, 'hamburgerButton')} />
+                                      </ListItemSecondaryAction>
+                                    )}
                                   </div>
-                                )}
-                              </ListItem>
-                              {displaySchools && href?.includes('/schools') && (
-                                <Collapse in={open} timeout="auto" unmountOnExit>
-                                  <List disablePadding>
-                                    {displaySchools.map((school) => (
-                                      <ListItem key={school.id} button className={classes.nested}>
-                                        <Link
-                                          to={`/schools/${school.slug.current}`}
-                                          onClick={() => setDrawerOpen(false)}
+                                </ListItem>
+                                {categoryOpen &&
+                                  embeddedMenu.map((embeddedLink, idx2) => {
+                                    const itemIdx = idx2 + 1;
+                                    const itemOpen = open[1] === itemIdx;
+
+                                    return (
+                                      <>
+                                        <ListItem
+                                          button
+                                          key={embeddedLink._key}
+                                          className={clsx(
+                                            classes.headerMenuNavItem,
+                                            classes.subMenuWrap,
+                                            itemOpen && classes.subMenuWrapActive
+                                          )}
+                                          onClick={() => handleClick(categoryIdx, itemIdx)}
                                         >
-                                          <ListItemText primary={school.title} />
-                                        </Link>
-                                      </ListItem>
-                                    ))}
-                                  </List>
-                                </Collapse>
-                              )}
-                            </>
-                          ))}
+                                          <div className={headerMenuTitle}>
+                                            <Link
+                                              to={embeddedLink.href}
+                                              onClick={toggleDrawer}
+                                              className={headerMenuTitle}
+                                            >
+                                              {embeddedLink.title}
+                                            </Link>
+                                            <ListItemSecondaryAction>
+                                              <div className={clsx(classes.hamburgerMenuButton, 'hamburgerButton')} />
+                                            </ListItemSecondaryAction>
+                                          </div>
+                                        </ListItem>
+                                        {itemOpen &&
+                                          embeddedLink.links.map((embeddedLinkLink) => (
+                                            <ListItem
+                                              button
+                                              key={embeddedLinkLink._key}
+                                              className={classes.headerMenuNavItem}
+                                            >
+                                              <div className={headerMenuTitle}>
+                                                <Link to={embeddedLinkLink.href} className={headerMenuTitle}>
+                                                  {embeddedLinkLink.title}
+                                                </Link>
+                                              </div>
+                                            </ListItem>
+                                          ))}
+                                      </>
+                                    );
+                                  })}
+                              </>
+                            );
+                          })}
                         </List>
                       </div>
                     </nav>
