@@ -79,7 +79,6 @@ const Footer = () => {
                 ...EmbeddedMenu
               }
             }
-            
           }
           contactInfoSection: sanityGlobalSection(slug: { current: { eq: "footer-contact-info" } }) {
             ...GlobalSection

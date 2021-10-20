@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import SearchForm from '../search-form';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,6 +15,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
 import { cn } from '../../lib/helpers';
+import { handlePageMap } from '../../utils/tools';
 import {
   root,
   branding,
@@ -35,6 +37,9 @@ import {
   title,
   hamburger,
   toolbar as toolbarCss,
+  topSearch,
+  show,
+  searchBtn,
 } from './header.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -262,7 +267,8 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
-  const [open, setOpen] = React.useState([]);
+  const [open, setOpen] = useState([]);
+  const [isSearching, setSearching] = useState(false);
   const handleClick = (idx, idx2) => {
     if (idx2 > 0) {
       if (open[1] === idx2) {
@@ -315,10 +321,50 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
               ...School
             }
           }
+          pages: allSanityPage(filter: { slug: { current: { ne: null } } }) {
+            edges {
+              node {
+                content: contentArray {
+                  ... on SanitySectionText {
+                    body {
+                      children {
+                        text
+                      }
+                    }
+                  }
+                  ... on SanityGlobalSection {
+                    subTitle
+                    content: contentArray {
+                      ... on SanitySectionText {
+                        body {
+                          children {
+                            text
+                          }
+                        }
+                      }
+                    }
+                  }
+                  ... on SanitySectionCard {
+                    body {
+                      children {
+                        text
+                      }
+                    }
+                  }
+                }
+                id
+                slug {
+                  current
+                }
+                title
+              }
+            }
+          }
         }
       `}
-      render={({ mainMenu: { links: linksArray }, schools }) => {
+      render={({ mainMenu: { links: linksArray }, schools, pages }) => {
         const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
+        const formattedPageEdges = pages.edges.map((page) => page?.node && handlePageMap(page.node));
 
         return (
           <div className={root}>
@@ -348,7 +394,11 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
                           Contact
                         </Link>
                       </p>
+                      <a href="#" onClick={() => setSearching(!isSearching)} className={searchBtn}>
+                        {isSearching ? <CloseIcon /> : <SearchIcon />}
+                      </a>
                     </div>
+                    {isSearching && <SearchForm allPages={[...formattedPageEdges]} />}
                     <IconButton
                       className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"

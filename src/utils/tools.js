@@ -211,3 +211,47 @@ const handleUrlParse = (urls) => {
 const isValidUrl = (url) => {
   return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
 };
+
+const formatText = (content) => {
+  let textArray = [];
+  if (content?.body) {
+    content.body.forEach(({ children }) => {
+      if (children) {
+        children.forEach(({ text }) => {
+          if (text) {
+            textArray.push(text);
+          }
+        });
+      }
+    });
+  } else if (Array.isArray(content)) {
+    if (content.length > 0) {
+      content.forEach((inner) => {
+        if (inner.body) {
+          inner.body.forEach(({ children }) => {
+            if (children) {
+              children.forEach(({ text }) => {
+                if (text) {
+                  textArray.push(text);
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  }
+
+  return textArray;
+};
+
+export const handlePageMap = (props) => {
+  const { content, slug } = props;
+  const tempReturn = {
+    ...props,
+    body: formatText(content),
+    slug: slug.current,
+  };
+  delete tempReturn.content;
+  return tempReturn;
+};
