@@ -203,6 +203,10 @@ export const queryFigure = graphql`
       ...LibraryHero
     }
 
+    ... on SanitySectionLibraryProfile {
+      ...LibraryProfile
+    }
+
     ... on SanitySectionColumn {
       ...Column
     }
