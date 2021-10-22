@@ -376,12 +376,14 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
             <ClickAwayListener onClickAway={() => (drawerOpen ? toggleDrawer() : null)}>
               <div>
                 <AppBar className={classes.appBar}>
-                  <Toolbar className={topBanner}>
-                    <div>
-                      <BlockContent blocks={siteSetting._rawBannerText} />
-                      <Button variant="outlined" color="secondary" label={siteSetting.bannerBtnText} />
-                    </div>
-                  </Toolbar>
+                  {siteSetting?.displayBanner && siteSetting?._rawBannerText && (
+                    <Toolbar className={topBanner}>
+                      <div>
+                        <BlockContent blocks={siteSetting._rawBannerText} />
+                        <Button variant="outlined" color="secondary" label={siteSetting.bannerBtnText} />
+                      </div>
+                    </Toolbar>
+                  )}
                   <Toolbar className={toolbarCss} disableGutters>
                     <div className={branding}>
                       <StaticImage
