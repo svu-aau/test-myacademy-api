@@ -37,7 +37,12 @@ export const queryFigure = graphql`
       narrowWidth
       _rawBody(resolveReferences: { maxDepth: 10 })
       _rawBodyRight(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
     }
 
     ... on SanitySectionSchoolsGrid {
@@ -46,7 +51,12 @@ export const queryFigure = graphql`
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
       _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
       schools {
         ...SchoolPreview
       }
@@ -58,7 +68,12 @@ export const queryFigure = graphql`
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
       _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
       showPagination
       linkOverride
       limitResults
@@ -76,7 +91,12 @@ export const queryFigure = graphql`
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
       _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
       showPagination
       linkOverride
       limitResults
@@ -97,7 +117,12 @@ export const queryFigure = graphql`
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
       _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
       showFilters
       showPagination
       linkOverride
@@ -122,7 +147,12 @@ export const queryFigure = graphql`
       narrowWidth
       _rawIntro(resolveReferences: { maxDepth: 10 })
       _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
       showFilters
       showPagination
       linkOverride
@@ -148,7 +178,12 @@ export const queryFigure = graphql`
       companies {
         ...HiringCompanies
       }
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
       limitResults
     }
 

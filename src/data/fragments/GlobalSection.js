@@ -19,14 +19,24 @@ export const queryGlobalSection = graphql`
         narrowWidth
         _rawBody(resolveReferences: { maxDepth: 10 })
         _rawBodyRight(resolveReferences: { maxDepth: 10 })
-        backgroundColor
+        backgroundColor {
+          _key
+          _type
+          title
+          value
+        }
       }
 
       ... on SanitySectionMediaGrid {
         __typename
         _key
         linkOverride
-        backgroundColor
+        backgroundColor {
+          _key
+          _type
+          title
+          value
+        }
         showPagination
         media {
           ... on SanityVideo {

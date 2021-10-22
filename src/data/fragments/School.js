@@ -18,7 +18,12 @@ export const querySchool = graphql`
       narrowWidth
       _rawBody(resolveReferences: { maxDepth: 10 })
       _rawBodyRight(resolveReferences: { maxDepth: 10 })
-      backgroundColor
+      backgroundColor {
+        _key
+        _type
+        title
+        value
+      }
     }
     slug {
       current
