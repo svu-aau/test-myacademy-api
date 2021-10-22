@@ -11,6 +11,28 @@
   padding: 0.25em 1.5em;
 }
 
+.topBanner {
+  height: 40px !important;
+  min-height: 40px !important;
+  background-color: var(--color-red-primary-bg);
+  color: white;
+
+  @nest & div {
+    margin: auto;
+    display: flex;
+  }
+
+  @nest & p {
+    margin: 0.5rem 0;
+  }
+
+  @nest & button {
+    margin-left: 15px;
+    background-color: white;
+    border: unset;
+  }
+}
+
 .bottomBar {
   background-color: white;
   padding: 0 1.5em;

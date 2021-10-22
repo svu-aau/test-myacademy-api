@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { Button } from '@aauweb/design-library';
 import SearchForm from '../search-form';
+import BlockContent from '../block-text';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -39,6 +41,7 @@ import {
   title,
   hamburger,
   toolbar as toolbarCss,
+  topBanner,
   topSearch,
   show,
   searchBtn,
@@ -265,7 +268,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption, backgroundImage }) => {
+const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, heroImageCaption, backgroundImage }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [curPath, setCurPath] = useState();
   const [isHoverSchools, setIsHoverSchools] = useState(false);
@@ -373,6 +376,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, heroImageCaption
             <ClickAwayListener onClickAway={() => (drawerOpen ? toggleDrawer() : null)}>
               <div>
                 <AppBar className={classes.appBar}>
+                  <Toolbar className={topBanner}>
+                    <div>
+                      <BlockContent blocks={siteSetting._rawBannerText} />
+                      <Button variant="outlined" color="secondary" label={siteSetting.bannerBtnText} />
+                    </div>
+                  </Toolbar>
                   <Toolbar className={toolbarCss} disableGutters>
                     <div className={branding}>
                       <StaticImage
