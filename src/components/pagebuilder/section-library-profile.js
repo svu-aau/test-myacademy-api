@@ -1,15 +1,23 @@
 import React from 'react';
-import { Hero } from '@aauweb/design-library';
-import { root } from './section-library-hero.module.css';
+import { Profile } from '@aauweb/design-library';
+import { root } from './section-library-profile.module.css';
 import { urlFor } from '../../utils/tools';
 
-const SectionLibraryProfile = ({ section }) => (
-  <div className={root}>
-    <Hero
-      backgroundImage={urlFor(section.profileImage.asset.url).width(2200).auto('format').fit('max').url()}
-      title={section.profileTitle}
-    />
-  </div>
-);
+const SectionLibraryProfile = ({ section }) => {
+  const { profileImage, profileTitle, backgroundColor, profileDesc, profileJob, profileName, profileLink } = section;
+  return (
+    <div className={root}>
+      <Profile
+        profileImage={urlFor(profileImage.asset.url).auto('format').fit('max').url()}
+        title={profileTitle}
+        backgroundColor={backgroundColor?.value}
+        desc={profileDesc}
+        job={profileJob}
+        name={profileName}
+        link={profileLink}
+      />
+    </div>
+  );
+};
 
 export default SectionLibraryProfile;
