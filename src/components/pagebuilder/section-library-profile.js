@@ -4,7 +4,8 @@ import { root } from './section-library-profile.module.css';
 import { urlFor } from '../../utils/tools';
 
 const SectionLibraryProfile = ({ section }) => {
-  const { profileImage, profileTitle, backgroundColor, profileDesc, profileJob, profileName, profileLink } = section;
+  const { profileImage, profileTitle, backgroundColor, profileDesc, profileJob, profileName, route, link } = section;
+  const profileLink = link || (route?.slug?.current && `/${route.slug.current}`);
   return (
     <div className={root}>
       <Profile

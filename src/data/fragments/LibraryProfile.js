@@ -25,6 +25,14 @@ export const queryImage = graphql`
     profileName
     profileJob
     profileDesc
-    profileLink
+    link
+    route {
+      ... on SanityPage {
+        slug {
+          current
+        }
+        title
+      }
+    }
   }
 `;
