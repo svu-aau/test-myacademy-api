@@ -5,7 +5,12 @@ export const queryFigure = graphql`
     _key
     _type
     _id
-    backgroundColor
+    backgroundColor {
+      _key
+      _type
+      title
+      value
+    }
     sectionLeft {
       ... on SanitySectionText {
         __typename

@@ -9,6 +9,7 @@ const Layout = ({
   children,
   siteTitle,
   siteSubtitle,
+  siteSetting,
   heroImageCaption,
   headerBackgroundImage,
   smallHeader = false,
@@ -21,6 +22,7 @@ const Layout = ({
       siteTitle={siteTitle}
       siteSubtitle={siteSubtitle}
       heroImageCaption={heroImageCaption}
+      siteSetting={siteSetting}
     />
     <div className={cn(content, dark ? darkContent : '')}>{children}</div>
     <Footer />

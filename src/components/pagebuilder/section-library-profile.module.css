@@ -1,0 +1,7 @@
+@import '../../styles/custom-media.css';
+
+.root {
+  @media (--media-max-large) {
+    margin-top: 0;
+  }
+}
