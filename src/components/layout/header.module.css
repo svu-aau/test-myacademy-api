@@ -29,7 +29,7 @@
   @nest & button {
     margin-left: 15px;
     background-color: white;
-    border: unset;
+    border: unset !important;
   }
 }
 
