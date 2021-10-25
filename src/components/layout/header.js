@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { graphql, Link, StaticQuery } from 'gatsby';
+import { graphql, Link, StaticQuery, navigate } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import { Button } from '@aauweb/design-library';
 import SearchForm from '../search-form';
@@ -380,7 +380,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                     <Toolbar className={topBanner}>
                       <div>
                         <BlockContent blocks={siteSetting._rawBannerText} />
-                        <Button variant="outlined" color="secondary" label={siteSetting.bannerBtnText} />
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          label={siteSetting.bannerBtnText}
+                          onClick={() => navigate(siteSetting.bannerBtnLink)}
+                        />
                       </div>
                     </Toolbar>
                   )}
