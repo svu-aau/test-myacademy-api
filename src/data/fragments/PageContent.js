@@ -45,23 +45,6 @@ export const queryFigure = graphql`
       }
     }
 
-    ... on SanitySectionSchoolsGrid {
-      __typename
-      _key
-      narrowWidth
-      _rawIntro(resolveReferences: { maxDepth: 10 })
-      _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor {
-        _key
-        _type
-        title
-        value
-      }
-      schools {
-        ...SchoolPreview
-      }
-    }
-
     ... on SanitySectionImageGrid {
       __typename
       _key
@@ -109,66 +92,6 @@ export const queryFigure = graphql`
         }
       }
       gridStyle
-    }
-
-    ... on SanitySectionProjectsGrid {
-      __typename
-      _key
-      narrowWidth
-      _rawIntro(resolveReferences: { maxDepth: 10 })
-      _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor {
-        _key
-        _type
-        title
-        value
-      }
-      showFilters
-      showPagination
-      linkOverride
-      limitResults
-      gridStyle
-      projects {
-        ...Project
-      }
-      school {
-        __typename
-        id
-        title
-        slug {
-          current
-        }
-      }
-    }
-
-    ... on SanitySectionProjectGrid {
-      __typename
-      _key
-      narrowWidth
-      _rawIntro(resolveReferences: { maxDepth: 10 })
-      _rawOutro(resolveReferences: { maxDepth: 10 })
-      backgroundColor {
-        _key
-        _type
-        title
-        value
-      }
-      showFilters
-      showPagination
-      linkOverride
-      limitResults
-      gridStyle
-      projects {
-        ...Project
-      }
-      school {
-        __typename
-        id
-        title
-        slug {
-          current
-        }
-      }
     }
 
     ... on SanitySectionIndustryGrid {

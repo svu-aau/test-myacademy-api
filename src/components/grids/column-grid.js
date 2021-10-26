@@ -5,7 +5,6 @@ import React, { useRef } from 'react';
 import AssetPreview from '../assets/asset-preview';
 import { mediaInteractWrapper } from '../layout/layout.module.css';
 import Lightbox from '../lightbox';
-import ProjectPreview from '../projects/project-preview';
 import {
   clickable,
   srOnly,
@@ -63,10 +62,6 @@ function ColumnGrid({ media, items, linkOverride, type = 'projects', isMasonry =
       }
       return null;
     });
-  } else if (type === 'projects') {
-    children = items.map(
-      (props) => props && <ProjectPreview linkOverride={linkOverride} key={props.id} masonry={isMasonry} {...props} />
-    );
   } else {
     children = mediaItems.map((item, idx) =>
       linkOverride && linkOverride !== '' ? (

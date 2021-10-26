@@ -31,9 +31,6 @@ import {
   headerMenu,
   headerMenuContent,
   headerMenuTitle,
-  headerMenuSchools,
-  flexFour,
-  headerMenuColumns,
   mainImage,
   smallMainImage,
   hero,
@@ -42,8 +39,6 @@ import {
   hamburger,
   toolbar as toolbarCss,
   topBanner,
-  topSearch,
-  show,
   searchBtn,
 } from './header.module.css';
 
@@ -271,7 +266,6 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, heroImageCaption, backgroundImage }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [curPath, setCurPath] = useState();
-  const [isHoverSchools, setIsHoverSchools] = useState(false);
   const [open, setOpen] = useState([]);
   const [isSearching, setSearching] = useState(false);
   const handleClick = (idx, idx2) => {
@@ -321,11 +315,6 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
               }
             }
           }
-          schools: allSanitySchool {
-            nodes {
-              ...School
-            }
-          }
           pages: allSanityPage(filter: { slug: { current: { ne: null } } }) {
             edges {
               node {
@@ -367,8 +356,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
           }
         }
       `}
-      render={({ mainMenu: { links: linksArray }, schools, pages }) => {
-        const displaySchools = schools.nodes.sort((a, b) => a.title.localeCompare(b.title));
+      render={({ mainMenu: { links: linksArray }, pages }) => {
         const formattedPageEdges = pages.edges.map((page) => page?.node && handlePageMap(page.node));
 
         return (
@@ -438,12 +426,7 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (
                           <>
-                            <Link
-                              key={_key}
-                              className={updatedHref === updatedCurPath ? 'active' : ''}
-                              to={href}
-                              onMouseEnter={() => setIsHoverSchools(title === 'Schools')}
-                            >
+                            <Link key={_key} className={updatedHref === updatedCurPath ? 'active' : ''} to={href}>
                               <span>{title}</span>
                             </Link>
                             {embeddedMenu.length > 0 && (
@@ -471,59 +454,6 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                       })}
                     </div>
                   </Toolbar>
-
-                  {isHoverSchools && (
-                    <div className={cn(headerMenuSchools, flexFour)} onMouseLeave={() => setIsHoverSchools(false)}>
-                      <div className={headerMenuColumns}>
-                        <ul>
-                          {displaySchools &&
-                            displaySchools.slice(0, 7).map((school) => (
-                              <li key={school.id}>
-                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
-                                  {school.title}
-                                </Link>
-                              </li>
-                            ))}
-                        </ul>
-                      </div>
-                      <div className={cn(headerMenuColumns)}>
-                        <ul>
-                          {displaySchools &&
-                            displaySchools.slice(7, 14).map((school) => (
-                              <li key={school.id}>
-                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
-                                  {school.title}
-                                </Link>
-                              </li>
-                            ))}
-                        </ul>
-                      </div>
-                      <div className={cn(headerMenuColumns)}>
-                        <ul>
-                          {displaySchools &&
-                            displaySchools.slice(14, 21).map((school) => (
-                              <li key={school.id}>
-                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
-                                  {school.title}
-                                </Link>
-                              </li>
-                            ))}
-                        </ul>
-                      </div>
-                      <div className={cn(headerMenuColumns)}>
-                        <ul>
-                          {displaySchools &&
-                            displaySchools.slice(21).map((school) => (
-                              <li key={school.id}>
-                                <Link to={`/schools/${school.slug.current}`} onClick={() => setIsHoverSchools(false)}>
-                                  {school.title}
-                                </Link>
-                              </li>
-                            ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
                 </AppBar>
                 <Drawer classes={{ root: classes.drawer }} variant={'persistent'} anchor="top" open={drawerOpen}>
                   <div className={classes.drawerInner}>
