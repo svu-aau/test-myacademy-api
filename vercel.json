@@ -2,24 +2,9 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/schools.html",
-      "destination": "/schools",
-      "statusCode": 301
-    },
-    {
-      "source": "/thesis-projects.html",
-      "destination": "/thesis",
-      "statusCode": 301
-    },
-    {
       "source": "/resources.html",
       "destination": "/resources",
       "statusCode": 301
-    },
-    {
-      "source": "/schools/:slug/:one\\_:two",
-      "destination": "/schools/:slug/:one-:two",
-      "permanent": true
     }
   ]
 }

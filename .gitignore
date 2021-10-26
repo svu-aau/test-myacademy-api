@@ -75,3 +75,5 @@ yarn-error.log
 .now
 .vscode
 .idea
+
+src/components/designLibrary

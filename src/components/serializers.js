@@ -142,11 +142,6 @@ const serializers = {
       const linkStyle = serializerStyles[style] || serializerStyles.link;
       if (ref)
         switch (ref._type) {
-          case 'project':
-            href = '/schools/' + ref.school.slug.current + '/projects/' + ref.slug.current;
-            title = ref.title;
-            break;
-
           case 'student':
             href = '/schools/' + ref.school.slug.current + '/student/' + ref.slug.current;
             title = ref.name;

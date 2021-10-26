@@ -5,9 +5,6 @@ import SectionText from './section-text';
 import SectionImageGrid from './section-image-grid';
 import SectionIndustryGrid from './section-industry-grid';
 import SectionMediaGrid from './section-media-grid';
-import SectionProjectGrid from './section-project-grid';
-import SectionProjectsGrid from './section-projects-grid';
-import SectionSchoolsGrid from './section-schools-grid';
 import SectionLibraryCard from './section-library-card';
 import SectionLibraryFeatured from './section-library-featured';
 import SectionColumn from './section-column';
@@ -21,9 +18,6 @@ const sectionComponents = {
   SectionImageGrid,
   SectionIndustryGrid,
   SectionMediaGrid,
-  SectionProjectGrid,
-  SectionProjectsGrid,
-  SectionSchoolsGrid,
   SectionLibraryCard,
   SectionLibraryFeatured,
   SectionColumn,

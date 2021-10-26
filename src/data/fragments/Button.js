@@ -15,18 +15,6 @@ export const queryFigure = graphql`
         }
         title
       }
-      ... on SanityProject {
-        slug {
-          current
-        }
-        title
-      }
-      ... on SanitySchool {
-        slug {
-          current
-        }
-        title
-      }
     }
   }
 `;
