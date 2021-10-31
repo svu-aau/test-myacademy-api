@@ -4,7 +4,7 @@ export const queryImage = graphql`
     __typename
     _key
     _type
-    profileTitle
+    alt
     backgroundColor {
       _key
       _type
@@ -12,6 +12,7 @@ export const queryImage = graphql`
       value
     }
     profileImage {
+      alt
       asset {
         ... on SanityImageAsset {
           _id
@@ -20,11 +21,10 @@ export const queryImage = graphql`
         }
       }
     }
-    alt
-    profileTitle
     profileName
     profileJob
     profileDesc
+    contactBtnText
     link
     route {
       ... on SanityPage {
