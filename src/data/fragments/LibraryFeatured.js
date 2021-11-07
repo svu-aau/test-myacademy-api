@@ -18,5 +18,6 @@ export const queryImage = graphql`
         }
       }
     }
+    rightAligned
   }
 `;

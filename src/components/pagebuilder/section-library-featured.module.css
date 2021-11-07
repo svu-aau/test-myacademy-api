@@ -1,6 +1,25 @@
 @import '../../styles/custom-media.css';
 
 .root {
+  position: relative;
   background-color: var(--color-white);
   padding: 0;
+}
+
+.bgRightLayouut {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background-color: #f2f5f9;
+}
+
+.bgLeftLayouut {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100%;
+  background-color: #f2f5f9;
 }
