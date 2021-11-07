@@ -3,9 +3,9 @@
 
 
 "@aauweb/design-library@^0.1.35":
-  version "0.1.38"
-  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.38.tgz#8b8f3579a81178e87180e190bf451e6d59adacce"
-  integrity sha512-85YgrdGLwsQ+QGUGOX8qd0lfSvM+zkwdSvnFS5OOLsEXhlsl4i/uxoAFNoKvleOjAnttCcU6Xc2kVPAQdCRhIw==
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.39.tgz#236b9ae2c3534efc7eef6b5aa4bf6130f5177b5b"
+  integrity sha512-uVT+804XDCDWM4/Iyu0GwDnjWzpdFzDQz72KJeO8HEUfOrf8tR3FcFOzguquJ/HTgeAHDXt68WMSZSd1TF7Jgg==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.36"
     "@fortawesome/free-brands-svg-icons" "^5.15.4"
@@ -1346,11 +1346,11 @@
     tslib "~2.1.0"
 
 "@graphql-tools/import@^6.2.6":
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/import/-/import-6.6.0.tgz#4779d08ce2b62ddaa95dbe4877e26cdabc1f746f"
-  integrity sha512-qRuvLQQoeF3XEnz1uaH+7Xhs6TA7dUvyJi2VTzD6zLRPoqMXRxtSwoW67jlvskau31mI+7Q8yqG0P3QpdYg1Dw==
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/import/-/import-6.6.1.tgz#2a7e1ceda10103ffeb8652a48ddc47150b035485"
+  integrity sha512-i9WA6k+erJMci822o9w9DoX+uncVBK60LGGYW8mdbhX0l7wEubUpA000thJ1aarCusYh0u+ZT9qX0HyVPXu25Q==
   dependencies:
-    "@graphql-tools/utils" "8.5.2"
+    "@graphql-tools/utils" "8.5.3"
     resolve-from "5.0.0"
     tslib "~2.3.0"
 
@@ -1454,10 +1454,10 @@
   dependencies:
     tslib "~2.3.0"
 
-"@graphql-tools/utils@8.5.2", "@graphql-tools/utils@^8.5.1":
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.5.2.tgz#fa775d92c19237f648105f7d4aeeeb63ba3d257f"
-  integrity sha512-wxA51td/759nQziPYh+HxE0WbURRufrp1lwfOYMgfK4e8Aa6gCa1P1p6ERogUIm423NrIfOVau19Q/BBpHdolw==
+"@graphql-tools/utils@8.5.3", "@graphql-tools/utils@^8.5.1":
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.5.3.tgz#404062e62cae9453501197039687749c4885356e"
+  integrity sha512-HDNGWFVa8QQkoQB0H1lftvaO1X5xUaUDk1zr1qDe0xN1NL0E/CrQdJ5UKLqOvH4hkqVUPxQsyOoAZFkaH6rLHg==
   dependencies:
     tslib "~2.3.0"
 
@@ -12690,9 +12690,9 @@ slice-ansi@^4.0.0:
     is-fullwidth-code-point "^3.0.0"
 
 slugify@^1.4.4, slugify@^1.6.0:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.1.tgz#a5fcaef29f4e57c6e932ce7044b6ffd9cf81b641"
-  integrity sha512-5ofqMTbetNhxlzjYYLBaZFQd6oiTuSkQlyfPEFIMwgUABlZQ0hbk5xIV9Ydd5jghWeRoO7GkiJliUvTpLOjNRA==
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.2.tgz#4cb97220a2278e1b86fb017c6da668e6a865354c"
+  integrity sha512-XMtI8qD84LwCpthLMBHlIhcrj10cgA+U/Ot8G6FD6uFuWZtMfKK75JO7l81nzpFJsPlsW6LT+VKqWQJW3+6New==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
