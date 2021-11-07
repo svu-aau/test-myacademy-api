@@ -3,7 +3,7 @@ import { navigate } from 'gatsby';
 
 import { Card } from '@aauweb/design-library';
 import BlockContent from '../block-content';
-import { root, bgRightLayouut, bgLeftLayout } from './section-library-featured.module.css';
+import { root } from './section-library-featured.module.css';
 import { urlFor } from '../../utils/tools';
 
 /*
@@ -24,7 +24,6 @@ const SectionLibraryFeatured = ({ section }) => {
       >
         {section._rawBody && <BlockContent blocks={section._rawBody} />}
       </Card>
-      <div className={section.rightAligned ? bgRightLayouut : bgLeftLayout} />
     </div>
   );
 };
