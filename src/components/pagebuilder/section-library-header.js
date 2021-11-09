@@ -14,7 +14,6 @@ const SectionLibraryHeader = ({ section }) => {
         title={alt}
         file={download}
         linkTxt={downloadLinkText}
-        dataset="my-academy"
       >
         {_rawSectionHeaderDesc && <BlockContent blocks={_rawSectionHeaderDesc} />}
       </SectionHeader>
