@@ -1,15 +1,12 @@
 import { graphql } from 'gatsby';
 export const queryImage = graphql`
-  fragment LibraryFeatured on SanitySectionLibraryFeatured {
+  fragment LibrarySectionHeader on SanitySectionLibraryHeader {
     __typename
     _key
     _type
-    _rawBody(resolveReferences: { maxDepth: 10 })
-    buttonLink
-    buttonText
-    buttonType
-    title
-    image {
+    alt
+    sectionHeaderImage {
+      alt
       asset {
         ... on SanityImageAsset {
           _id
@@ -18,6 +15,10 @@ export const queryImage = graphql`
         }
       }
     }
-    rightAligned
+    _rawSectionHeaderDesc(resolveReferences: { maxDepth: 10 })
+    download {
+      ...File
+    }
+    downloadLinkText
   }
 `;

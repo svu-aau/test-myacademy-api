@@ -1,6 +1,7 @@
 @import '../../styles/custom-media.css';
 
 .root {
+  position: relative;
   background-color: var(--color-white);
   padding: 0;
 }

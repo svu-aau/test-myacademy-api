@@ -10,6 +10,7 @@ import SectionLibraryFeatured from './section-library-featured';
 import SectionColumn from './section-column';
 import SectionLibraryHero from './section-library-hero';
 import SectionLibraryProfile from './section-library-profile';
+import SectionLibraryHeader from './section-library-header';
 
 const sectionComponents = {
   SectionCard,
@@ -23,6 +24,7 @@ const sectionComponents = {
   SectionColumn,
   SectionLibraryHero,
   SectionLibraryProfile,
+  SectionLibraryHeader,
 };
 
 const ContentSections = ({
