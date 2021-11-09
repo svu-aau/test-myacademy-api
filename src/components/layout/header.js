@@ -366,15 +366,13 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                 <AppBar className={classes.appBar}>
                   {siteSetting?.displayBanner && siteSetting?._rawBannerText && (
                     <Toolbar className={topBanner}>
-                      <div>
-                        <BlockContent blocks={siteSetting._rawBannerText} />
-                        <Button
-                          variant="outlined"
-                          color="secondary"
-                          label={siteSetting.bannerBtnText}
-                          onClick={() => navigate(siteSetting.bannerBtnLink)}
-                        />
-                      </div>
+                      <BlockContent blocks={siteSetting._rawBannerText} />
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        label={siteSetting.bannerBtnText}
+                        onClick={() => navigate(siteSetting.bannerBtnLink)}
+                      />
                     </Toolbar>
                   )}
                   <Toolbar className={toolbarCss} disableGutters>
