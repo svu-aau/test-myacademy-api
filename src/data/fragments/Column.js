@@ -5,6 +5,7 @@ export const queryFigure = graphql`
     _key
     _type
     _id
+    title
     backgroundColor {
       _key
       _type
@@ -41,6 +42,32 @@ export const queryFigure = graphql`
 
       ... on SanitySectionLibraryFeatured {
         ...LibraryFeatured
+      }
+    }
+    sectionThird {
+      ... on SanitySectionText {
+        __typename
+        _key
+        narrowWidth
+        _rawBody(resolveReferences: { maxDepth: 10 })
+      }
+
+      ... on SanitySectionLibraryCard {
+        ...LibraryCard
+      }
+
+      ... on SanitySectionLibraryFeatured {
+        ...LibraryFeatured
+      }
+    }
+    buttonText
+    link
+    route {
+      ... on SanityPage {
+        slug {
+          current
+        }
+        title
       }
     }
   }
