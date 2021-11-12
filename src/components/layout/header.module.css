@@ -12,14 +12,16 @@
 }
 
 .topBanner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px !important;
   min-height: 40px !important;
   background-color: var(--color-red-primary-bg);
   color: white;
 
-  @nest & div {
-    margin: auto;
-    display: flex;
+  @media (--media-max-small) {
+   font-size: 12px;
   }
 
   @nest & p {
@@ -30,6 +32,9 @@
     margin-left: 15px;
     background-color: white;
     border: unset !important;
+    @media (max-width: 350px) {
+      padding: 2px;
+    }
   }
 }
 
