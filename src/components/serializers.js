@@ -1,10 +1,11 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import { Link, navigate } from 'gatsby';
+import { Button } from '@aauweb/design-library';
 import Figure from './figure';
 import BlockContent from '@sanity/block-content-to-react';
 import * as typographyStyles from '../styles/typography.module.css';
 import * as serializerStyles from './serializers.module.css';
-import { Link } from 'gatsby';
 import softSearch from '../utils/linkHelper';
 
 const BlockRenderer = (props) => {
@@ -92,6 +93,7 @@ const serializers = {
     // normal links
     link: ({ mark: { href, style }, children }) => {
       const linkStyle = serializerStyles[style] || serializerStyles.link;
+      const isButton = style === 'darkButton' || style === 'button';
 
       let hrefSplit = href.split('/');
       const result = softSearch('gradshowcase.academyart.edu', hrefSplit);
@@ -106,27 +108,33 @@ const serializers = {
       }
 
       // console.log('href: ', href);
-
-      if (href && (isInternalLink || !isExternalHrefPattern(href))) {
-        // todo: hack to replace underscores in content links that should be dashes until cms has dashes
-        href = href.replace(/_/g, '-');
+      if (isButton) {
         return (
-          <Link to={href} className={linkStyle}>
+          <Button variant="contained" color="primary" label={children} onClick={() => navigate(href)}>
             {children}
-          </Link>
-        );
-      } else if (href && isExternalHrefPattern(href)) {
-        return (
-          <a href={href} className={linkStyle} target="_blank" rel="noopener">
-            {children}
-          </a>
+          </Button>
         );
       } else {
-        return (
-          <a href={href} className={linkStyle}>
-            {children}
-          </a>
-        );
+        if (href && (isInternalLink || !isExternalHrefPattern(href))) {
+          // todo: hack to replace underscores in content links that should be dashes until cms has dashes
+          href = href.replace(/_/g, '-');
+          return (
+            <Link to={href} className={linkStyle}>
+              {children}
+            </Link>
+          );
+        } else {
+          return (
+            <a
+              href={href}
+              className={linkStyle}
+              target={href && isExternalHrefPattern(href) ? '_blank' : ''}
+              rel={href && isExternalHrefPattern(href) ? 'noopener' : ''}
+            >
+              {children}
+            </a>
+          );
+        }
       }
     },
 
