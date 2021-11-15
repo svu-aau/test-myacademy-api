@@ -7,7 +7,7 @@ const SectionLibraryImageGrid = ({ section }) => {
   console.log(section);
   const { title, imageItem } = section;
 
-  const data = imageItem.map(({ alt, caption, image, title }) => [
+  const data = imageItem.map(({ alt, caption, image, title, link }) => [
     image.asset.url,
     link ? [title, link] : title,
     caption,
