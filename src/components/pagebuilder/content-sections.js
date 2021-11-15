@@ -11,6 +11,7 @@ import SectionColumn from './section-column';
 import SectionLibraryHero from './section-library-hero';
 import SectionLibraryProfile from './section-library-profile';
 import SectionLibraryHeader from './section-library-header';
+import SectionLibraryImageGrid from './section-library-image-grid';
 
 const sectionComponents = {
   SectionCard,
@@ -22,6 +23,7 @@ const sectionComponents = {
   SectionLibraryCard,
   SectionLibraryFeatured,
   SectionColumn,
+  SectionLibraryImageGrid,
   SectionLibraryHero,
   SectionLibraryProfile,
   SectionLibraryHeader,

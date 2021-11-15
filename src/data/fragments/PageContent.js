@@ -122,6 +122,10 @@ export const queryFigure = graphql`
       ...LibraryFeatured
     }
 
+    ... on SanitySectionLibraryImageGrid {
+      ...LibraryImageGrid
+    }
+
     ... on SanitySectionLibraryHero {
       ...LibraryHero
     }
