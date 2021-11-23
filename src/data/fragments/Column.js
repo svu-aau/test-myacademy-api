@@ -12,54 +12,9 @@ export const queryFigure = graphql`
       title
       value
     }
-    sectionLeft {
-      ... on SanitySectionText {
-        __typename
-        _key
-        narrowWidth
-        _rawBody(resolveReferences: { maxDepth: 10 })
-      }
-
-      ... on SanitySectionLibraryCard {
-        ...LibraryCard
-      }
-
-      ... on SanitySectionLibraryFeatured {
-        ...LibraryFeatured
-      }
-    }
-    sectionRight {
-      ... on SanitySectionText {
-        __typename
-        _key
-        narrowWidth
-        _rawBody(resolveReferences: { maxDepth: 10 })
-      }
-
-      ... on SanitySectionLibraryCard {
-        ...LibraryCard
-      }
-
-      ... on SanitySectionLibraryFeatured {
-        ...LibraryFeatured
-      }
-    }
-    sectionThird {
-      ... on SanitySectionText {
-        __typename
-        _key
-        narrowWidth
-        _rawBody(resolveReferences: { maxDepth: 10 })
-      }
-
-      ... on SanitySectionLibraryCard {
-        ...LibraryCard
-      }
-
-      ... on SanitySectionLibraryFeatured {
-        ...LibraryFeatured
-      }
-    }
+    _rawSectionLeft(resolveReferences: { maxDepth: 10 })
+    _rawSectionRight(resolveReferences: { maxDepth: 10 })
+    _rawSectionThird(resolveReferences: { maxDepth: 10 })
     buttonText
     link
     route {
