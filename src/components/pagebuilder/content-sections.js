@@ -37,32 +37,34 @@ const ContentSections = ({
   color,
   textOnly = false,
 }) =>
-  content.map((section) => {
-    // console.log('section: ', section);
-    if (section && section.__typename) {
-      const component = section.__typename.replace('Sanity', '');
+  content?.length
+    ? content?.map((section) => {
+        // console.log('section: ', section);
+        if (section && section.__typename) {
+          const component = section.__typename.replace('Sanity', '');
 
-      if (component === 'GlobalSection') {
-        return (sectionComponents[section.content[0]?.__typename.replace('Sanity', '')] || SectionDebug)({
-          section: section.content[0],
-          isPageContent,
-          slug,
-        });
-      }
+          if (component === 'GlobalSection') {
+            return (sectionComponents[section.content[0]?.__typename.replace('Sanity', '')] || SectionDebug)({
+              section: section.content[0],
+              isPageContent,
+              slug,
+            });
+          }
 
-      // console.log('component', component);
+          // console.log('component', component);
 
-      return (sectionComponents[component] || SectionDebug)({
-        section,
-        isPageContent,
-        slug,
-        noPaddingTop,
-        noPadding: component === 'SectionColumn',
-        textOnly,
-        color,
-      });
-    }
-    return null;
-  });
+          return (sectionComponents[component] || SectionDebug)({
+            section,
+            isPageContent,
+            slug,
+            noPaddingTop,
+            noPadding: component === 'SectionColumn',
+            textOnly,
+            color,
+          });
+        }
+        return null;
+      })
+    : null;
 
 export default ContentSections;

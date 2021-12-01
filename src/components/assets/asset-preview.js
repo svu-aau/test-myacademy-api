@@ -33,10 +33,7 @@ function AssetPreview(props) {
         </>
       ) : (
         <>
-          <GatsbyImage
-            image={displayFeaturedImage.image.childImageSharp.gatsbyImageData}
-            alt={displayFeaturedImage.image.alt}
-          />
+          <GatsbyImage image={displayFeaturedImage.image.asset.gatsbyImageData} alt={displayFeaturedImage.alt} />
           {hasLightbox && (
             <div className={preloadHidden}>
               <img

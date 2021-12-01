@@ -1,10 +1,12 @@
 import React from 'react';
+import Container from '../layout/container';
+import Section from '../sections/section';
 import { ImageGrid } from '@aauweb/design-library';
-import { root } from './section-library-hero.module.css';
-import { urlFor } from '../../utils/tools';
+import { responsiveTitle2 } from '../../styles/typography.module.css';
+import { myAcademyImgGrid, titleText } from './section-library-image-grid.module.css';
+import { cn } from '../../lib/helpers.js';
 
 const SectionLibraryImageGrid = ({ section }) => {
-  console.log(section);
   const { title, imageItem } = section;
 
   const data = imageItem.map(({ alt, caption, image, title, link }) => [
@@ -14,9 +16,14 @@ const SectionLibraryImageGrid = ({ section }) => {
   ]);
 
   return (
-    <div className={root}>
-      <ImageGrid data={data} />
-    </div>
+    <Section key={section._key} noPadding>
+      <Container>
+        <div className={myAcademyImgGrid}>
+          {title ? <h2 className={cn(responsiveTitle2, titleText)}>{title}</h2> : ''}
+          <ImageGrid data={data} />
+        </div>
+      </Container>
+    </Section>
   );
 };
 
