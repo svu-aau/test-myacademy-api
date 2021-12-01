@@ -227,7 +227,7 @@ const formatText = (content) => {
   } else if (Array.isArray(content)) {
     if (content.length > 0) {
       content.forEach((inner) => {
-        if (inner.body) {
+        if (inner?.body) {
           inner.body.forEach(({ children }) => {
             if (children) {
               children.forEach(({ text }) => {

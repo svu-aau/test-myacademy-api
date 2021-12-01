@@ -1,0 +1,16 @@
+@import '../../styles/custom-media.css';
+
+.myAcademyImgGrid {
+  @nest & > div > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    @nest & > div {
+      max-width: unset;
+    }
+  }
+}
+
+.titleText {
+  padding: 4rem 0 2.5rem;
+  text-align: center !important;
+}
