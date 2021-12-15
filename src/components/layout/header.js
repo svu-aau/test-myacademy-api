@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
       borderColor: '#ee3224',
     },
     '& > a:hover+.mega-content': {
-      display: 'block',
+      display: 'flex',
     },
     '& > a.active span': {
       borderColor: '#ee3224',
@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: '1px solid #f8f8f8',
     display: 'none',
     '&:hover': {
-      display: 'block',
+      display: 'flex',
     },
     '& ul a': {
       color: '#292931',
@@ -165,10 +165,13 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
       paddingBottom: '.5rem',
     },
+    '& > ul': {
+      paddingRight: '15px !important',
+    },
     '& ul': {
       listStyleType: 'none',
       margin: 0,
-      padding: 0,
+      padding: '0',
     },
   },
   subMenuTitle: {
@@ -429,22 +432,20 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                             </Link>
                             {embeddedMenu.length > 0 && (
                               <div className={`${classes.megaMenuContent} mega-content`}>
-                                <div>
-                                  {embeddedMenu.map((menuContent) => (
-                                    <ul key={menuContent.title}>
-                                      <a className={classes.subMenuTitle}>{menuContent.title}</a>
-                                      <ul className={classes.subMenu}>
-                                        {menuContent.links.map((menuLink) => (
-                                          <li key={menuLink._key} className={classes.menuItem}>
-                                            <Link to={menuLink.href}>
-                                              <span>{menuLink.title}</span>
-                                            </Link>
-                                          </li>
-                                        ))}
-                                      </ul>
+                                {embeddedMenu.map((menuContent) => (
+                                  <ul key={menuContent.title}>
+                                    <a className={classes.subMenuTitle}>{menuContent.title}</a>
+                                    <ul className={classes.subMenu}>
+                                      {menuContent.links.map((menuLink) => (
+                                        <li key={menuLink._key} className={classes.menuItem}>
+                                          <Link to={menuLink.href}>
+                                            <span>{menuLink.title}</span>
+                                          </Link>
+                                        </li>
+                                      ))}
                                     </ul>
-                                  ))}
-                                </div>
+                                  </ul>
+                                ))}
                               </div>
                             )}
                           </>
