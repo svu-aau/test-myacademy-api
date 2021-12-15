@@ -7,6 +7,12 @@
     @nest & > div {
       max-width: unset;
     }
+    @media (--media-max-medium) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (--media-max-small) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
