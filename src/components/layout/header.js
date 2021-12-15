@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#fff',
     width: '100%',
     left: 0,
-    top: '3.25rem',
+    top: '3.3rem',
     borderBottom: '1px solid #f8f8f8',
     display: 'none',
     '&:hover': {
