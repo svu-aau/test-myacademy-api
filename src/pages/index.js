@@ -45,30 +45,6 @@ export const query = graphql`
   }
 `;
 
-// check if window object exists (to avoid vercel deploy error)
-// https://dev.to/vvo/how-to-solve-window-is-not-defined-errors-in-react-and-next-js-5f97
-const isWindowExists = () => {
-  return typeof window !== 'undefined';
-};
-
-// get query string param if it exists
-// https://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
-const getQueryVariable = (variable) => {
-  if (isWindowExists()) {
-    const query = window.location.search.substring(1);
-    const vars = query.split('&');
-    for (let i = 0; i < vars.length; i++) {
-      let pair = vars[i].split('=');
-      if (decodeURIComponent(pair[0]) == variable) {
-        return decodeURIComponent(pair[1]);
-      }
-    }
-    return false;
-  } else {
-    return false;
-  }
-};
-
 const IndexPage = (props) => {
   const { data, errors } = props;
 
@@ -99,10 +75,10 @@ const IndexPage = (props) => {
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
     >
       <SEO
-        title={page.seo.seo_title || site.title || config.title}
-        description={page.seo.meta_description}
-        keywords={page.seoKeywords || site.keywords}
-        seoImage={page.seoImage?.asset?.img?.src}
+        title={page?.seo?.seo_title || site.title || config.title}
+        description={page?.seo?.meta_description}
+        keywords={page?.seoKeywords || site.keywords}
+        seoImage={page?.seoImage?.asset?.img?.src}
         path={props.location.pathname}
       />
       {page && <ContentSections content={page.content} slug={'home'} />}
