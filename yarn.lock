@@ -3,9 +3,9 @@
 
 
 "@aauweb/design-library@^0.1.35":
-  version "0.1.44"
-  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.44.tgz#59eef3dc26bf06b1495cb567b4dbc078eff7b396"
-  integrity sha512-RyKGlSUkcyKY89UFZ4IbBQqlh90XVrP9cWiG5JsYQHARuMu0nfcog/UHYzyC6GziTH1OLytSy4AectbtoYjQZA==
+  version "0.1.45"
+  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.45.tgz#b67b36405917d1d912580474d73e2c1cc113d884"
+  integrity sha512-NMIv/IZUgI/cWHPr2AAqzBjVAUdOIvzcBgnQOA/uVtOO4gsJbMxPgLWWp/vHHPTuVs3M19autUOMTS6NxM9qQw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.36"
     "@fortawesome/free-brands-svg-icons" "^5.15.4"
