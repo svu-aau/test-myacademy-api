@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from 'gatsby';
 import Container from '../layout/container';
 import Section from '../sections/section';
 import { ImageGrid } from '@aauweb/design-library';
@@ -20,7 +21,7 @@ const SectionLibraryImageGrid = ({ section }) => {
       <Container>
         <div className={myAcademyImgGrid}>
           {title ? <h2 className={cn(responsiveTitle2, titleText)}>{title}</h2> : ''}
-          <ImageGrid data={data} />
+          <ImageGrid data={data} onClick={(href) => navigate(href)} />
         </div>
       </Container>
     </Section>
