@@ -9,7 +9,8 @@ const figure = ({ node }) => {
   if (!node.image) {
     return null;
   }
-  const gatsbyImageData = getGatsbyImageData(node, { maxWidth: 675 }, clientConfig.sanity);
+
+  const gatsbyImageData = getGatsbyImageData(node?.image, { maxWidth: 675 }, clientConfig.sanity);
 
   return (
     <figure className={root}>
