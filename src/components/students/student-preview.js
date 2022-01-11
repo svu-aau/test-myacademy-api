@@ -16,11 +16,7 @@ function StudentPreview(props) {
 
   let displayFeaturedMedia = {};
   if (heroImage && heroImage.length > 0) {
-    heroImage.map((img) => {
-      if (!img.isHeadShot) {
-        displayFeaturedMedia = img;
-      }
-    });
+    displayFeaturedMedia = heroImage[0];
   } else if (portfolio) {
     displayFeaturedMedia = portfolio[0];
   }

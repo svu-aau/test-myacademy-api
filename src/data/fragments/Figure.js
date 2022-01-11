@@ -5,16 +5,9 @@ export const queryFigure = graphql`
     _type
     alt
     caption
-    credit
-    medium
     link
-    height
-    width
-    depth
-    isHeadShot
     image {
       ...Image
     }
-    _rawDescription
   }
 `;
