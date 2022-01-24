@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '.5rem',
     },
     '& > ul': {
-      paddingRight: '5rem !important',
+      paddingRight: '30px !important',
     },
     '& ul': {
       listStyleType: 'none',

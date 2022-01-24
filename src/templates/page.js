@@ -57,7 +57,6 @@ const ProjectTemplate = (props) => {
   const pageTitle = title || 'Untitled';
   const seoTitle = (seo && seo.seo_title) || pageTitle;
   const pageUrl = siteUrl + '/' + slug?.current;
-
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}

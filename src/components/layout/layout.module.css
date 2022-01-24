@@ -1,13 +1,25 @@
 @import '../../styles/custom-media.css';
 @import '../../styles/custom-properties.css';
 
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  @media (--media-max-large) {
+    flex-direction: column;
+  }
+}
+
 .content {
   background-color: var(--color-light-gray-bg);
   min-height: calc(100% - 73px - 120px);
   color: var(--color-black);
+  isolation: isolate;
+  flex-grow: 1;
 
   @media (--media-max-large) {
-    padding-top: 2em;
+    /* padding-top: 2em; */
   }
 
   @media (--media-min-small) {
