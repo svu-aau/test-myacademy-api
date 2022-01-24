@@ -4,6 +4,10 @@ import { sidebar, mobileParentMenu, desktopParentMenu, parentSubMenus, active } 
 import { cn } from '../../lib/helpers';
 
 const Sidebar = ({ menus }) => {
+  const isBrowser = typeof window !== 'undefined';
+
+  if (!isBrowser) return <></>;
+
   const [pageMenu, setPageMenu] = React.useState(null);
   const [menuOpen, toggleMenu] = React.useState(false);
 

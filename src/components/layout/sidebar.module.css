@@ -95,6 +95,10 @@
   @nest & a {
     color: var(--color-white);
   }
+
+  @nest & a:hover {
+    color: var(--color-accent);
+  }
 }
 
 .active {

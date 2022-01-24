@@ -28,7 +28,7 @@ const Layout = ({
       siteSetting={siteSetting}
     />
     <div className={wrapper}>
-      {menus.length && <Sidebar menus={menus} />}
+      {menus?.length && <Sidebar menus={menus} />}
       <div className={cn(content, dark ? darkContent : '')}>{children}</div>
     </div>
     <Footer />
