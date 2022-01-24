@@ -109,6 +109,10 @@ const useStyles = makeStyles((theme) => ({
   contactLink: {
     color: 'white',
   },
+  loginLink: {
+    color: 'var(--color-white)',
+    padding: '0 0.25rem',
+  },
   drawer: {
     '& > div': {
       border: 'none',
@@ -166,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '.5rem',
     },
     '& > ul': {
-      paddingRight: '5rem !important',
+      paddingRight: '30px !important',
     },
     '& ul': {
       listStyleType: 'none',
@@ -392,6 +396,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                       </Link>
                     </div>
                     <div className={contactContent}>
+                      <p>
+                        <Link to="/login" className={classes.loginLink}>
+                          Login
+                        </Link>
+                        <span> / </span>
+                      </p>
                       <p>
                         <a href="tel:+18005442787" target="_blank" className={classes.contactLink}>
                           1-800-544-2787
