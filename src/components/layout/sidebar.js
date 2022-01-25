@@ -7,6 +7,11 @@ const Sidebar = ({ menus, location }) => {
   const [pageMenu, setPageMenu] = React.useState(null);
   const [menuOpen, toggleMenu] = React.useState(false);
 
+  // Handle 404 & Error page
+  if (!location) {
+    return <></>;
+  }
+
   React.useEffect(() => {
     const pathArray = location.pathname.split('/');
     const parentPath = pathArray[1];
@@ -21,7 +26,7 @@ const Sidebar = ({ menus, location }) => {
         }
       });
     setPageMenu(menu);
-  }, [location.pathname]);
+  }, []);
 
   const handleToggleMenu = () => {
     toggleMenu(!menuOpen);

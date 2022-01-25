@@ -68,7 +68,7 @@ const ProjectTemplate = (props) => {
           seoTitle={seoTitle}
           description={seoDescription}
           keywords={page.seoKeywords}
-          path={props.location.pathname}
+          path={location.pathname}
         />
       )}
 
