@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { sidebar, mobileParentMenu, desktopParentMenu, parentSubMenus, active } from './sidebar.module.css';
-import { cn } from '../../lib/helpers';
 
 const Sidebar = ({ menus, location }) => {
   const [pageMenu, setPageMenu] = React.useState(null);
@@ -37,13 +36,12 @@ const Sidebar = ({ menus, location }) => {
   }
 
   return (
-    <div className={cn(sidebar)} data-menu={menuOpen ? 'expanded' : 'collapsed'}>
+    <aside className={sidebar} data-menu={menuOpen ? 'expanded' : 'collapsed'}>
       <span role="button" onClick={handleToggleMenu} className={mobileParentMenu} aria-expanded={menuOpen}>
         {pageMenu.title}
       </span>
       <span className={desktopParentMenu}>{pageMenu.title}</span>
       <ul className={parentSubMenus} aria-hidden={!menuOpen}>
-        <li></li>
         {pageMenu.links.map((link) => (
           <li key={link.title}>
             <Link to={link.href} activeClassName={active}>
@@ -52,7 +50,7 @@ const Sidebar = ({ menus, location }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </aside>
   );
 };
 

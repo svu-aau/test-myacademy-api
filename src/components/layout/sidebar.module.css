@@ -84,7 +84,7 @@
   flex-direction: column;
 
   @nest & li:first-child {
-    padding: 0;
+    padding-top: 0;
   }
 
   @nest & li {

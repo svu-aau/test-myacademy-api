@@ -29,7 +29,7 @@ const Layout = ({
       siteSetting={siteSetting}
     />
     <div className={wrapper}>
-      {menus?.length && <Sidebar menus={menus} location={location} />}
+      <Sidebar menus={menus} location={location} />
       <div className={cn(content, dark ? darkContent : '')}>{children}</div>
     </div>
     <Footer />
