@@ -3,11 +3,7 @@ import { Link } from 'gatsby';
 import { sidebar, mobileParentMenu, desktopParentMenu, parentSubMenus, active } from './sidebar.module.css';
 import { cn } from '../../lib/helpers';
 
-const Sidebar = ({ menus }) => {
-  const isBrowser = typeof window !== 'undefined';
-
-  if (!isBrowser) return <></>;
-
+const Sidebar = ({ menus, location }) => {
   const [pageMenu, setPageMenu] = React.useState(null);
   const [menuOpen, toggleMenu] = React.useState(false);
 
@@ -15,7 +11,15 @@ const Sidebar = ({ menus }) => {
     const pathArray = location.pathname.split('/');
     const parentPath = pathArray[1];
 
-    const menu = menus.find((menu) => menu.slug?.current === parentPath);
+    const menu =
+      parentPath &&
+      menus.find((menu) => {
+        const menuItem = menu.slug?.current.match(parentPath);
+
+        if (menuItem?.length) {
+          return menu;
+        }
+      });
     setPageMenu(menu);
   }, [location.pathname]);
 

@@ -15,6 +15,7 @@ const Layout = ({
   heroImageCaption,
   headerBackgroundImage,
   menus,
+  location,
   smallHeader = false,
   dark = false,
 }) => (
@@ -28,7 +29,7 @@ const Layout = ({
       siteSetting={siteSetting}
     />
     <div className={wrapper}>
-      {menus?.length && <Sidebar menus={menus} />}
+      {menus?.length && <Sidebar menus={menus} location={location} />}
       <div className={cn(content, dark ? darkContent : '')}>{children}</div>
     </div>
     <Footer />
