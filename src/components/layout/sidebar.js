@@ -8,7 +8,7 @@ const Sidebar = ({ menus, location }) => {
 
   // Handle 404 & Error page
   if (!location) {
-    return <></>;
+    return null;
   }
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ const Sidebar = ({ menus, location }) => {
   };
 
   if (!pageMenu) {
-    return <></>;
+    return null;
   }
 
   return (
