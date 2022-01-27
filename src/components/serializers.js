@@ -93,7 +93,7 @@ const serializers = {
     // normal links
     link: ({ mark: { href, style }, children }) => {
       const linkStyle = serializerStyles[style] || serializerStyles.link;
-      const isButton = style === 'darkButton' || style === 'button';
+      const isButton = ['darkButton', 'button', 'secondaryButton'].includes(style);
 
       let hrefSplit = href.split('/');
       const result = softSearch('gradshowcase.academyart.edu', hrefSplit);
@@ -107,10 +107,14 @@ const serializers = {
         href = `/${hrefSplit.join('/')}`;
       }
 
-      // console.log('href: ', href);
       if (isButton) {
         return (
-          <Button variant="contained" color="primary" label={children} onClick={() => navigate(href)}>
+          <Button
+            variant={style === 'secondaryButton' ? 'outlined' : 'contained'}
+            color='primary'
+            label={children}
+            onClick={() => navigate(href)}
+          >
             {children}
           </Button>
         );
