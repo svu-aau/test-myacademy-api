@@ -145,5 +145,9 @@ export const queryFigure = graphql`
     ... on SanitySectionLibraryAccordion {
       ...LibraryAccordion
     }
+
+    ... on SanitySectionLibraryImageCarousel {
+      ...LibraryCarousel
+    }
   }
 `;

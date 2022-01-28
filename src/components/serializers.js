@@ -111,7 +111,7 @@ const serializers = {
         return (
           <Button
             variant={style === 'secondaryButton' ? 'outlined' : 'contained'}
-            color='primary'
+            color="primary"
             label={children}
             onClick={() => navigate(href)}
           >

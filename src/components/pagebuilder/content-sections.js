@@ -13,6 +13,7 @@ import SectionLibraryProfile from './section-library-profile';
 import SectionLibraryHeader from './section-library-header';
 import SectionLibraryImageGrid from './section-library-image-grid';
 import SectionLibraryAccordion from './section-library-accordion';
+import SectionLibraryImageCarousel from './section-library-image-carousel';
 
 const sectionComponents = {
   SectionCard,
@@ -29,6 +30,7 @@ const sectionComponents = {
   SectionLibraryProfile,
   SectionLibraryHeader,
   SectionLibraryAccordion,
+  SectionLibraryImageCarousel,
 };
 
 const ContentSections = ({
