@@ -1,0 +1,16 @@
+.sectionTabs {
+  padding: 2rem 0;
+  background-color: var(--color-white);
+}
+
+.sectionTabTitle {
+  text-align: center !important;
+}
+
+.sectionTabsDecription {
+  text-align: center;
+}
+
+.sectionTabContent {
+  padding: 2rem 0;
+}

@@ -4,6 +4,7 @@
 .sidebar {
   display: block;
   position: sticky;
+  padding: 1em 2em;
   top: 102px;
   z-index: 2;
   background-color: var(--color-dark-black-bg);
@@ -12,9 +13,9 @@
   @media (--media-min-large) {
     position: -webkit-sticky;
     position: sticky;
-    top: 180px;
-    height: calc(100vh - 88px - 150px);
-    width: 20%;
+    top: 165px;
+    height: 100vh;
+    width: 200px;
   }
 }
 .sidebar[data-menu='collapsed'] {
@@ -31,9 +32,8 @@
 }
 
 .desktopParentMenu {
-  margin: 0 1rem;
+  padding: 0.5rem 0;
   font-weight: bold;
-  padding: 0.5rem 0.5rem;
   display: flex;
   border-bottom: 1px solid var(--color-white);
 
@@ -79,7 +79,7 @@
 .parentSubMenus {
   display: flex;
   list-style: none;
-  padding: 0 1.5rem;
+  padding: 0;
   justify-content: center;
   flex-direction: column;
 

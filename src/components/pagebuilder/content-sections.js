@@ -14,6 +14,7 @@ import SectionLibraryHeader from './section-library-header';
 import SectionLibraryImageGrid from './section-library-image-grid';
 import SectionLibraryAccordion from './section-library-accordion';
 import SectionLibraryImageCarousel from './section-library-image-carousel';
+import SectionTabs from './section-tabs';
 
 const sectionComponents = {
   SectionCard,
@@ -22,9 +23,10 @@ const sectionComponents = {
   SectionImageGrid,
   SectionIndustryGrid,
   SectionMediaGrid,
+  SectionColumn,
+  SectionTabs,
   SectionLibraryCard,
   SectionLibraryFeatured,
-  SectionColumn,
   SectionLibraryImageGrid,
   SectionLibraryHero,
   SectionLibraryProfile,
