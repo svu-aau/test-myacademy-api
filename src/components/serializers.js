@@ -106,7 +106,6 @@ const serializers = {
         hrefSplit.splice(0, result[1] + 1);
         href = `/${hrefSplit.join('/')}`;
       }
-
       if (isButton) {
         return (
           <Button
@@ -169,13 +168,24 @@ const serializers = {
             title = ref.title;
             break;
         }
-      if (href)
+      if (style === 'secondaryButton') {
+        return (
+          <Button
+            variant={style === 'secondaryButton' ? 'outlined' : 'contained'}
+            color="primary"
+            label={children}
+            onClick={() => navigate(href)}
+          >
+            {children}
+          </Button>
+        );
+      } else if (href) {
         return (
           <Link to={href} title={title} className={linkStyle}>
             {children}
           </Link>
         );
-      else return <span className={linkStyle}>{children}</span>;
+      } else return <span className={linkStyle}>{children}</span>;
     },
   },
 

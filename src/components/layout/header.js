@@ -63,8 +63,7 @@ const useStyles = makeStyles((theme) => ({
     '& > a': {
       display: 'inline-block',
       fontSize: '14px',
-      padding: '1rem',
-      paddingBottom: 0,
+      padding: '1.2rem 1rem 0',
       marginLeft: '-0.3125rem',
       fontWeight: 500,
       cursor: 'pointer',
@@ -74,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& span': {
       borderBottom: '3px solid transparent',
-      paddingBottom: '1rem',
+      paddingBottom: '0.9rem',
       display: 'block',
       height: 'calc( 100% + 1px)',
     },
