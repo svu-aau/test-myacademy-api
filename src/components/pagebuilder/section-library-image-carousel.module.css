@@ -1,8 +1,11 @@
 .carousel {
+  background-color: var(--color-white);
+  padding: 1.5rem 0;
 }
 
 .carousel-title {
-  text-align: center;
+  text-align: center !important;
+  padding: 2rem 0;
 }
 
 .carouselDescription {

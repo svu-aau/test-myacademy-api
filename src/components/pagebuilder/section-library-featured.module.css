@@ -3,5 +3,6 @@
 .root {
   position: relative;
   background-color: var(--color-white);
+  margin: 2rem auto;
   padding: 0;
 }
