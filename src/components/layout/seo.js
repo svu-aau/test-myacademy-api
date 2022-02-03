@@ -43,7 +43,8 @@ function SEO({
         const siteTitle = (site && site.title) || config.title || '';
         const twitterUsername = config.userTwitter;
         const url = config.siteUrl + path;
-        const shareImage = seoImage || config.siteUrl + defaultShareImage.childImageSharp.gatsbyImageData.src;
+        const shareImage =
+          seoImage?.images?.fallback?.src || config.siteUrl + defaultShareImage.childImageSharp.gatsbyImageData.src;
 
         return (
           <Helmet

@@ -24,7 +24,7 @@ export const query = graphql`
           ... on SanityImageAsset {
             _id
             url
-            gatsbyImageData(layout: FIXED, width: 1024)
+            gatsbyImageData(layout: FIXED, width: 1024, height: 630)
           }
         }
       }
