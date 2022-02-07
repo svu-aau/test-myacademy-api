@@ -69,7 +69,6 @@ const IndexPage = (props) => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
-
   return (
     <Layout
       headerBackgroundImage={data.headerBackgroundImage ? data.headerBackgroundImage : data.backgroundImageFallback}
@@ -78,7 +77,7 @@ const IndexPage = (props) => {
         title={page?.seo?.seo_title || site.title || config.title}
         description={page?.seo?.meta_description}
         keywords={page?.seoKeywords || site.keywords}
-        seoImage={page?.seoImage?.gatsbyImageData}
+        seoImage={page?.seoImage?.asset.gatsbyImageData}
         path={props.location.pathname}
       />
       {page && <ContentSections content={page.content} slug={'home'} />}
