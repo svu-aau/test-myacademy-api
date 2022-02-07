@@ -1,0 +1,9 @@
+.tableWrapper {
+  padding: 1.5rem 0;
+  background-color: var(--color-white);
+}
+
+.tableHeadline {
+  text-align: center !important;
+  padding: 2rem 0;
+}

@@ -153,5 +153,9 @@ export const queryFigure = graphql`
     ... on SanitySectionTabs {
       ...Tabs
     }
+
+    ... on SanitySectionTable {
+      ...Table
+    }
   }
 `;
