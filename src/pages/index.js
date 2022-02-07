@@ -31,7 +31,7 @@ export const query = graphql`
           ... on SanityImageAsset {
             _id
             url
-            gatsbyImageData(layout: FIXED, width: 1024)
+            gatsbyImageData(layout: FIXED, width: 1024, height: 630)
           }
         }
       }
@@ -78,7 +78,7 @@ const IndexPage = (props) => {
         title={page?.seo?.seo_title || site.title || config.title}
         description={page?.seo?.meta_description}
         keywords={page?.seoKeywords || site.keywords}
-        seoImage={page?.seoImage?.asset?.img?.src}
+        seoImage={page?.seoImage?.gatsbyImageData}
         path={props.location.pathname}
       />
       {page && <ContentSections content={page.content} slug={'home'} />}
