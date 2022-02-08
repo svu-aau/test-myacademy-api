@@ -96,7 +96,7 @@ const serializers = {
       const isButton = ['darkButton', 'button', 'secondaryButton'].includes(style);
 
       let hrefSplit = href.split('/');
-      const result = softSearch('gradshowcase.academyart.edu', hrefSplit);
+      const result = softSearch('aa-myacademy-web.vercel.app', hrefSplit);
 
       // console.log('result: ', result);
 
