@@ -7,18 +7,24 @@ import BlockContent from '../block-content';
 import { responsiveTitle2 } from '../../styles/typography.module.css';
 import { carousel, carouselDescription, carouselTitle } from './section-library-image-carousel.module.css';
 
-import { cn } from '../../lib/helpers.js';
+import { cn, buildImageObj } from '../../lib/helpers.js';
+
+import { imageUrlFor } from '../../lib/image-url';
 
 // see data/fragments/LibraryCarousel
 const SectionLibraryImageCarousel = ({ section }) => {
   const { title, description, carouselImages } = section;
 
-  const data = carouselImages.map(({ alt, caption, image, id }) => ({
-    id,
-    image: image.asset.url,
-    alt,
-    caption,
-  }));
+  const data = carouselImages.map(({ alt, caption, image, id }) => {
+    const generateImage = imageUrlFor(buildImageObj(image)).width(1080).height(640).fit('crop').auto('format').url();
+
+    return {
+      id,
+      image: generateImage,
+      alt,
+      caption,
+    };
+  });
 
   return (
     <div className={carousel} id={section._key}>
