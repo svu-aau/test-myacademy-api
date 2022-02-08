@@ -168,6 +168,7 @@ const serializers = {
             title = ref.title;
             break;
         }
+      console.log(ref, children);
       if (style === 'secondaryButton') {
         return (
           <Button

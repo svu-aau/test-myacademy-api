@@ -52,7 +52,7 @@ const SectionTable = ({ section }) => {
   const classes = useStyles();
 
   let tableBody = [];
-  let tableHeader = {};
+  let tableHeader = null;
 
   // if hasHeader is true, then the first row is the header row
   if (hasHeader) {

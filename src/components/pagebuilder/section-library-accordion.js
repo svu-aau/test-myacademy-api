@@ -15,6 +15,7 @@ const SectionAccordionGroup = ({ section }) => {
   const { title, accordions } = section;
 
   const data = accordions.map((accordion) => {
+    console.log(accordion.contentArray);
     const content = <ContentSections content={accordion.contentArray} />;
     return [accordion.title, content];
   });

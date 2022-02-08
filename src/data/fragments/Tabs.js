@@ -5,8 +5,8 @@ export const queryFigure = graphql`
     title
     tabs {
       title
-      tabContent: _rawTabContent
+      tabContent: _rawTabContent(resolveReferences: { maxDepth: 10 })
     }
-    description: _rawDescription
+    description: _rawDescription(resolveReferences: { maxDepth: 10 })
   }
 `;

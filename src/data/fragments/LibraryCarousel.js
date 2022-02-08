@@ -15,6 +15,6 @@ export const queryFigure = graphql`
         link
       }
     }
-    description: _rawDescription
+    description: _rawDescription(resolveReferences: { maxDepth: 10 })
   }
 `;

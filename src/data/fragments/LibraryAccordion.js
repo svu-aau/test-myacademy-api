@@ -136,6 +136,10 @@ export const queryFigure = graphql`
         ... on SanitySectionColumn {
           ...Column
         }
+
+        ... on SanitySectionTable {
+          ...Table
+        }
       }
     }
   }

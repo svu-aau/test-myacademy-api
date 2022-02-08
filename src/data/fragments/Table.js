@@ -1,10 +1,10 @@
 import { graphql } from 'gatsby';
 export const queryTable = graphql`
   fragment Table on SanitySectionTable {
+    __typename
     _key
-    _type
     title
     hasHeader
-    table: _rawTable
+    table: _rawTable(resolveReferences: { maxDepth: 10 })
   }
 `;
