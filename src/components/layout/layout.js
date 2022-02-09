@@ -6,6 +6,7 @@ import Sidebar from './sidebar';
 import '../../styles/layout.css';
 import { content, darkContent, wrapper } from './layout.module.css';
 import { cn } from '../../lib/helpers';
+import ContentSections from '../pagebuilder/content-sections';
 
 const Layout = ({
   children,
@@ -18,6 +19,7 @@ const Layout = ({
   location,
   smallHeader = false,
   dark = false,
+  firstSection,
 }) => (
   <>
     <Header
@@ -28,6 +30,7 @@ const Layout = ({
       heroImageCaption={heroImageCaption}
       siteSetting={siteSetting}
     />
+    <ContentSections content={[firstSection]} isSidebar={true} />
     <div className={wrapper}>
       <Sidebar menus={menus} location={location} />
       <div className={cn(content, dark ? darkContent : '')}>{children}</div>

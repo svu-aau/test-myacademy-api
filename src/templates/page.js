@@ -53,13 +53,19 @@ const ProjectTemplate = (props) => {
     errors,
   } = props;
 
-  const { title, content, seo, seoImage, slug } = page;
+  const { title, seo, seoImage, slug } = page;
+  let { content } = page;
   const seoDescription = (seo && seo.meta_description) || '';
   const pageTitle = title || 'Untitled';
   const seoTitle = (seo && seo.seo_title) || pageTitle;
   const pageUrl = siteUrl + '/' + slug?.current;
+
+  if (content[0].__typename === 'SanitySectionLibraryHero') {
+    content = content.slice(1);
+  }
+
   return (
-    <Layout location={location}>
+    <Layout location={location} firstSection={page.content[0]}>
       {errors && <SEO title="GraphQL Error" />}
       {page && (
         <SEO
