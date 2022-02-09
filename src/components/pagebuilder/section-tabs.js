@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Tabs } from '@aauweb/design-library';
 
 import Container from '../layout/container';
 import BlockContent from '../block-content';
@@ -14,11 +13,11 @@ import { cn } from '../../lib/helpers.js';
 // see data/fragments/Tabs
 const SectionTabs = ({ section }) => {
   const { title, description, tabs } = section;
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const data = tabs.map(({ tabContent, title }) => {
+    const tabRichContent = <BlockContent blocks={tabContent} />;
+    return [title, tabRichContent];
+  });
 
   return (
     <div className={sectionTabs} id={section._key}>
@@ -27,20 +26,7 @@ const SectionTabs = ({ section }) => {
         <div className={sectionTabsDecription}>
           <BlockContent blocks={description} />
         </div>
-        {tabs.length && (
-          <div>
-            <Tabs value={value} onChange={handleChange} aria-label={title}>
-              {tabs.map(({ title }) => (
-                <Tab label={title} key={title} />
-              ))}
-            </Tabs>
-            {tabs.map(({ tabContent }, idx) => (
-              <TabPanel value={value} index={idx} key={idx}>
-                <BlockContent blocks={tabContent} />
-              </TabPanel>
-            ))}
-          </div>
-        )}
+        {tabs.length && <Tabs data={data} />}
       </Container>
     </div>
   );

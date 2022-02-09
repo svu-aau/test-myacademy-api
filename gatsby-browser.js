@@ -2,8 +2,10 @@
 require('cookieconsent');
 require('cookieconsent/build/cookieconsent.min.css');
 
-function loadCalender() {
+function initCalender() {
   window.jQuery(document).ready(function ($) {
+    const eventon = $('#eventoncontent');
+
     $('#eventoncontent').evoCalendar({
       api: 'https://www.academyart.edu/wp-json/eventon/calendar',
       calendar_url: '',
@@ -18,14 +20,19 @@ exports.onRouteUpdate = ({ location }) => {
     if (window.jQuery === undefined) {
       const jQuery = document.createElement('script');
       jQuery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js';
-      jQuery.onload = loadCalender;
 
-      const eventon = document.createElement('script');
-      eventon.src = 'https://www.academyart.edu/wp-content/plugins/eventon-api/eventon.js?ver=1.0.2';
+      // Loading jQuery and then loading the calendar
+      jQuery.onload = function loadEventon() {
+        const eventon = document.createElement('script');
+        eventon.src = 'https://www.academyart.edu/wp-content/plugins/eventon-api/eventon.js?ver=1.0.2';
 
-      document.body.append(jQuery, eventon);
+        // Loading the calendar and then initializing it
+        eventon.onload = initCalender;
+        document.body.append(eventon);
+      };
+      document.body.append(jQuery);
     } else {
-      loadCalender();
+      initCalender();
     }
   }
 };
