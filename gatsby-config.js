@@ -6,6 +6,7 @@ require('dotenv').config({
 const clientConfig = require('./client-config');
 const token = process.env.SANITY_READ_TOKEN;
 const isProd = process.env.NODE_ENV === 'production';
+const previewEnabled = (process.env.GATSBY_IS_PREVIEW || 'false').toLowerCase() === 'true';
 // const isGatsbyCloud = process.env.GATSBY_CLOUD || false;
 
 console.info(`[sanity] project: \x1b[35m${clientConfig.sanity.projectId}\x1b[39m`);
@@ -44,7 +45,7 @@ module.exports = {
         ...clientConfig.sanity,
         token,
         watchMode: !isProd,
-        overlayDrafts: !isProd && token,
+        overlayDrafts: !isProd || previewEnabled, // drafts in dev & Gatsby Cloud Preview
       },
     },
     {
@@ -64,6 +65,7 @@ module.exports = {
         disableMinification: false,
       },
     },
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
