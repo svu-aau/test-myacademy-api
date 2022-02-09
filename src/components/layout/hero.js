@@ -1,6 +1,7 @@
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { mainImage, hero, heroTitle, title } from './header.module.css';
+import Container from './container';
 
 // backgroundImage should be a fluid image asset
 const Hero = ({
@@ -12,21 +13,7 @@ const Hero = ({
 }) => {
   return (
     <div className="hero">
-      <div className={mainImage}>
-        {/* --color-dark-black-bg: #292931; */}
-        {backgroundImage && (
-          <GatsbyImage
-            image={backgroundImage}
-            backgroundColor="#292931"
-            className={hero}
-            loading="eager"
-            alt={imageAlt ? imageAlt : 'hero image'}
-          />
-        )}
-        {siteTitle && <h3 className={heroTitle}>{siteTitle}</h3>}
-        {siteSubtitle && <h1 className={title}>{siteSubtitle}</h1>}
-        {heroImageCaption && <figcaption className={heroImageCaption}>{heroImageCaption}</figcaption>}
-      </div>
+      <img src={backgroundImage} alt={imageAlt} className={mainImage} />
     </div>
   );
 };

@@ -27,6 +27,12 @@
   }
 }
 
+.contentTop {
+  @media (--media-min-medium) {
+    margin-top: -3rem;
+  }
+}
+
 .darkContent {
   background-color: var(--color-dark-black-bg);
   color: var(--color-white);

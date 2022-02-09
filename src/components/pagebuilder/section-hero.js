@@ -4,7 +4,7 @@ import Hero from '../layout/hero';
 const SectionHero = ({ section }) => (
   <Hero
     key={section._key}
-    backgroundImage={section.backgroundImage && section.backgroundImage.asset && section.backgroundImage.asset.fluid}
+    backgroundImage={section.backgroundImage && section.backgroundImage.asset && section.backgroundImage.asset.url}
     siteSubtitle={section.heroTitle}
     siteTitle={section.heroHeading}
     heroImageCaption={section.heroImageCaption}

@@ -60,7 +60,7 @@ const ProjectTemplate = (props) => {
   const seoTitle = (seo && seo.seo_title) || pageTitle;
   const pageUrl = siteUrl + '/' + slug?.current;
 
-  if (content[0].__typename === 'SanitySectionLibraryHero') {
+  if (content[0].__typename === 'SanitySectionHero') {
     content = content.slice(1);
   }
 

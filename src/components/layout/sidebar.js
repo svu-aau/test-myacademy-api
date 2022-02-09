@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { sidebar, mobileParentMenu, desktopParentMenu, parentSubMenus, active } from './sidebar.module.css';
 
-const Sidebar = ({ menus, location }) => {
+const Sidebar = ({ menus, location, setPageSidebar }) => {
   const [pageMenu, setPageMenu] = React.useState(null);
   const [menuOpen, toggleMenu] = React.useState(false);
 
@@ -33,6 +33,8 @@ const Sidebar = ({ menus, location }) => {
 
   if (!pageMenu) {
     return null;
+  } else {
+    setPageSidebar(true);
   }
 
   return (
