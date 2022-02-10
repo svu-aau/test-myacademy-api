@@ -16,7 +16,7 @@ const SectionLibraryImageCarousel = ({ section }) => {
   const { title, description, carouselImages } = section;
 
   const data = carouselImages.map(({ alt, caption, image, id }) => {
-    const generateImage = imageUrlFor(buildImageObj(image)).width(1080).height(640).fit('crop').auto('format').url();
+    const generateImage = imageUrlFor(buildImageObj(image)).width(1080).auto('format').url();
 
     return {
       id,

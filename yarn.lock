@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aauweb/design-library@^0.1.63":
-  version "0.1.63"
-  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.63.tgz#6871953102a7bdceba0ce3f3bbcc8555f07a8ad9"
-  integrity sha512-bgaxd/ebOcR9Rf/Dlw9MtFxIV6cRVydQq0zcTwvFeEbyFAUhyxbV9IjraR2exAiklEwXc9uQWhegRDLweU9L9w==
+"@aauweb/design-library@^0.1.64":
+  version "0.1.64"
+  resolved "https://registry.yarnpkg.com/@aauweb/design-library/-/design-library-0.1.64.tgz#eb058a3262997d4c724a3f943c3939a558693026"
+  integrity sha512-buSIDMMuRXGGpLNAxVgCeZbOh+Q97OrBFsHwpV773vAdHrDBEbm5fnLSoUW8oITCcbTd0m+3ZjO3uw1qZNanEw==
   dependencies:
     "@ant-design/react-slick" "^0.28.4"
     "@fortawesome/fontawesome-svg-core" "^1.2.36"
