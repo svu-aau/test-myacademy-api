@@ -6,6 +6,7 @@
   "scripts": {
     "build": "GATSBY_SANITY_DATASET=my-academy gatsby build",
     "clean-cache": "gatsby clean",
+    "serve": "gatsby serve",
     "dev": "npm run clean-cache && gatsby develop --host=0.0.0.0",
     "deploy": "npm run now-deploy",
     "develop": "gatsby develop --host=0.0.0.0",
@@ -52,7 +53,7 @@
     "gatsby-plugin-sitemap": "^5.7.0",
     "gatsby-plugin-zeit-now": "^0.5.0",
     "gatsby-source-filesystem": "^4.7.0",
-    "gatsby-source-sanity": "7.3.1",
+    "gatsby-source-sanity": "^7.3.2",
     "gatsby-transformer-sharp": "^4.7.0",
     "js-search": "^2.0.0",
     "lodash": "^4.17.21",
