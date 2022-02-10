@@ -6,9 +6,13 @@ import { mainImage } from './header.module.css';
 const Hero = ({ backgroundImage, imageAlt = 'Academy of Art University' }) => {
   return (
     <div className="hero">
-      {backgroundImage && (
-        <img src={backgroundImage} className={mainImage} loading="eager" alt={imageAlt ? imageAlt : 'hero image'} />
-      )}
+      <GatsbyImage
+        image={backgroundImage}
+        backgroundColor="#292931"
+        className={mainImage}
+        loading="eager"
+        alt={imageAlt ? imageAlt : 'hero image'}
+      />
     </div>
   );
 };

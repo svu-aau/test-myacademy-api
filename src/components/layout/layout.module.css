@@ -3,6 +3,7 @@
 
 .main {
   margin-top: 105px;
+  isolation: isolate;
 
   @media (--media-min-medium) {
     margin-top: 165px;
@@ -24,6 +25,7 @@
   min-height: calc(100% - 73px - 120px);
   color: var(--color-black);
   isolation: isolate;
+  z-index: 1;
   flex-grow: 1;
 
   @media (--media-max-large) {
