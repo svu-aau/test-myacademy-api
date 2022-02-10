@@ -80,6 +80,7 @@ const SearchForm = ({ allPages }) => {
   return (
     <div className={cn(searchSection, classes.root)}>
       <TextField
+        autoFocus
         placeholder="Type to search"
         InputProps={{
           endAdornment: (
