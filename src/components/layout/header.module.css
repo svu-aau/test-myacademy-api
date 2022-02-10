@@ -172,11 +172,11 @@
   }
 
   @media (--media-min-small) {
-    height: 515px;
+    height: 350px;
   }
 
   @media (--media-min-medium) {
-    height: 615px;
+    height: 350px;
   }
 }
 

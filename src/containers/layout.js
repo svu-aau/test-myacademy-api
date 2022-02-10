@@ -11,19 +11,6 @@ const query = graphql`
       displayBanner
       _rawBannerText(resolveReferences: { maxDepth: 10 })
     }
-    menus: allSanityMenu {
-      nodes {
-        slug {
-          current
-        }
-        title
-        links {
-          hidden
-          href
-          title
-        }
-      }
-    }
   }
 `;
 
@@ -38,13 +25,7 @@ function LayoutContainer(props) {
           );
         }
         return (
-          <Layout
-            {...props}
-            siteTitle={props.siteTitle}
-            siteSubtitle={props.siteSubtitle}
-            menus={data.menus.nodes}
-            siteSetting={data.site}
-          />
+          <Layout {...props} siteTitle={props.siteTitle} siteSubtitle={props.siteSubtitle} siteSetting={data.site} />
         );
       }}
     />

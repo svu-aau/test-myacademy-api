@@ -4,7 +4,7 @@ import Header from './header';
 import Footer from './footer';
 import Sidebar from './sidebar';
 import '../../styles/layout.css';
-import { content, darkContent, wrapper, contentTop } from './layout.module.css';
+import { content, darkContent, wrapper, contentTop, main } from './layout.module.css';
 import { cn } from '../../lib/helpers';
 import ContentSections from '../pagebuilder/content-sections';
 
@@ -15,14 +15,11 @@ const Layout = ({
   siteSetting,
   heroImageCaption,
   headerBackgroundImage,
-  menus,
-  location,
+  sidebar,
   smallHeader = false,
   dark = false,
   firstSection,
 }) => {
-  const [pageHasSidebar, setPageSidebar] = React.useState(false);
-
   return (
     <>
       <Header
@@ -33,11 +30,13 @@ const Layout = ({
         heroImageCaption={heroImageCaption}
         siteSetting={siteSetting}
       />
-      <ContentSections content={[firstSection]} />
-      <div className={wrapper}>
-        <Sidebar menus={menus} location={location} setPageSidebar={setPageSidebar} />
-        <div className={cn(content, dark ? darkContent : '', pageHasSidebar ? contentTop : '')}>{children}</div>
-      </div>
+      <main className={sidebar && main}>
+        {sidebar && <ContentSections content={[firstSection]} />}
+        <div className={wrapper}>
+          {sidebar && <Sidebar sidebarMenu={sidebar} />}
+          <div className={cn(content, dark ? darkContent : '', sidebar ? contentTop : '')}>{children}</div>
+        </div>
+      </main>
       <Footer />
     </>
   );

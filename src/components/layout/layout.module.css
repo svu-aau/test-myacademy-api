@@ -1,6 +1,14 @@
 @import '../../styles/custom-media.css';
 @import '../../styles/custom-properties.css';
 
+.main {
+  margin-top: 105px;
+
+  @media (--media-min-medium) {
+    margin-top: 165px;
+  }
+}
+
 .wrapper {
   position: relative;
   display: flex;
