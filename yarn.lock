@@ -6307,10 +6307,10 @@ gatsby-plugin-utils@^3.1.0:
     "@babel/runtime" "^7.15.4"
     joi "^17.4.2"
 
-gatsby-plugin-zeit-now@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-zeit-now/-/gatsby-plugin-zeit-now-0.5.0.tgz#97429c357b1b9b110f798540c590f0a7956e09a2"
-  integrity sha512-fQsgsbLwpbCBoHTgRe94zlRE6YmiAWnLnuf8JIbPzTRklXIkDJBVA4zsoMRKqnX1WuUMaXWKWtOW8IZ4Q3F6Kw==
+gatsby-plugin-zeit-now@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-zeit-now/-/gatsby-plugin-zeit-now-0.4.0.tgz#787387df83cf60d284c842274725b911bdf1738d"
+  integrity sha512-d22KsEbQeajdl3GJOodchTeKoqh9+xbFt0O4zaKdNVLMZQDwNNTFArCZnJyVDf35Y5TVlR7kOicp6X5DwDr6SA==
 
 gatsby-react-router-scroll@^5.7.0:
   version "5.7.0"
