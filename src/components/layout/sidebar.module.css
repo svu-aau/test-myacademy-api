@@ -3,12 +3,10 @@
 
 .sidebar {
   display: block;
-  position: sticky;
   padding: 1em 2em;
   top: 102px;
   z-index: 2;
   background-color: var(--color-dark-black-bg);
-  margin-top: 105px;
 
   @media (--media-min-large) {
     position: -webkit-sticky;
@@ -35,6 +33,7 @@
   padding: 0.5rem 0;
   font-weight: bold;
   display: flex;
+  text-transform: uppercase;
   border-bottom: 1px solid var(--color-white);
 
   @media (--media-max-large) {
@@ -44,7 +43,9 @@
 
 .mobileParentMenu {
   display: flex;
+  font-weight: bold;
   justify-content: center;
+  text-transform: uppercase;
   padding: 4px 0;
   position: sticky;
 
@@ -79,6 +80,7 @@
 .parentSubMenus {
   display: flex;
   list-style: none;
+  font-size: 16px;
   padding: 0;
   justify-content: center;
   flex-direction: column;
@@ -89,7 +91,7 @@
 
   @nest & li {
     font-size: 14px;
-    padding: 0.5em 0;
+    padding: 10px 0;
   }
 
   @nest & a {

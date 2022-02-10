@@ -4,8 +4,9 @@ import Header from './header';
 import Footer from './footer';
 import Sidebar from './sidebar';
 import '../../styles/layout.css';
-import { content, darkContent, wrapper } from './layout.module.css';
+import { content, darkContent, wrapper, contentTop, main } from './layout.module.css';
 import { cn } from '../../lib/helpers';
+import ContentSections from '../pagebuilder/content-sections';
 
 const Layout = ({
   children,
@@ -14,26 +15,31 @@ const Layout = ({
   siteSetting,
   heroImageCaption,
   headerBackgroundImage,
-  menus,
-  location,
+  sidebar,
   smallHeader = false,
   dark = false,
-}) => (
-  <>
-    <Header
-      smallHeader={smallHeader}
-      backgroundImage={headerBackgroundImage}
-      siteTitle={siteTitle}
-      siteSubtitle={siteSubtitle}
-      heroImageCaption={heroImageCaption}
-      siteSetting={siteSetting}
-    />
-    <div className={wrapper}>
-      <Sidebar menus={menus} location={location} />
-      <div className={cn(content, dark ? darkContent : '')}>{children}</div>
-    </div>
-    <Footer />
-  </>
-);
+  firstSection,
+}) => {
+  return (
+    <>
+      <Header
+        smallHeader={smallHeader}
+        backgroundImage={headerBackgroundImage}
+        siteTitle={siteTitle}
+        siteSubtitle={siteSubtitle}
+        heroImageCaption={heroImageCaption}
+        siteSetting={siteSetting}
+      />
+      <main className={sidebar && main}>
+        {sidebar && <ContentSections content={[firstSection]} />}
+        <div className={wrapper}>
+          {sidebar && <Sidebar sidebarMenu={sidebar} />}
+          <div className={cn(content, dark ? darkContent : '', sidebar ? contentTop : '')}>{children}</div>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+};
 
 export default Layout;

@@ -41,6 +41,7 @@ const ContentSections = ({
   content,
   slug = null,
   isPageContent = false,
+  isSidebar = false,
   noPaddingTop = false,
   color,
   textOnly = false,

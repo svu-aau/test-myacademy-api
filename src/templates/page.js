@@ -19,6 +19,14 @@ export const query = graphql`
         current
       }
       title
+      sidebar {
+        title
+        links {
+          hidden
+          href
+          title
+        }
+      }
       seoImage {
         asset {
           ... on SanityImageAsset {
@@ -53,13 +61,21 @@ const ProjectTemplate = (props) => {
     errors,
   } = props;
 
-  const { title, content, seo, seoImage, slug } = page;
+  const { title, seo, seoImage, slug, sidebar } = page;
+  let { content } = page;
+  let firstSection = null;
   const seoDescription = (seo && seo.meta_description) || '';
   const pageTitle = title || 'Untitled';
   const seoTitle = (seo && seo.seo_title) || pageTitle;
   const pageUrl = siteUrl + '/' + slug?.current;
+
+  // If the first section is type SanitySectionHero & having sidebar then it's change the layout to 'full'
+  if (sidebar && content[0].__typename === 'SanitySectionHero') {
+    [firstSection, ...content] = content;
+  }
+
   return (
-    <Layout location={location}>
+    <Layout sidebar={sidebar} firstSection={firstSection}>
       {errors && <SEO title="GraphQL Error" />}
       {page && (
         <SEO
