@@ -193,6 +193,7 @@
 .hero {
   /* Override gatsby image styling so we can get our headlines on top */
   position: static !important;
+  padding-top: 165px;
 }
 
 .title {
