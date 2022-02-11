@@ -86,7 +86,13 @@ const serializers = {
             variant={style === 'secondaryButton' ? 'outlined' : 'contained'}
             color="primary"
             label={children}
-            onClick={() => navigate(href)}
+            onClick={() => {
+              if (!isInternalLink || isExternalHrefPattern(href)) {
+                window.open(href, '_blank');
+              } else {
+                navigate(href);
+              }
+            }}
           >
             {children}
           </Button>
