@@ -5,13 +5,14 @@ import Section from '../sections/section';
 import { ImageGrid } from '@aauweb/design-library';
 import { responsiveTitle2 } from '../../styles/typography.module.css';
 import { myAcademyImgGrid, titleText } from './section-library-image-grid.module.css';
-import { cn } from '../../lib/helpers.js';
+import { buildImageObj, cn } from '../../lib/helpers.js';
+import { imageUrlFor } from '../../lib/image-url';
 
 const SectionLibraryImageGrid = ({ section }) => {
   const { title, imageItem } = section;
 
   const data = imageItem.map(({ alt, caption, image, title, link }) => [
-    image.asset.url,
+    imageUrlFor(buildImageObj(image)).width(500).fit('max').auto('format').url(),
     link ? [title, link] : title,
     caption,
   ]);
