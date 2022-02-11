@@ -1,11 +1,11 @@
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { mainImage } from './header.module.css';
+import { mainImage, hero } from './header.module.css';
 
 // backgroundImage should be a fluid image asset
 const Hero = ({ backgroundImage, imageAlt = 'Academy of Art University' }) => {
   return (
-    <div className="hero">
+    <div className={hero}>
       <GatsbyImage
         image={backgroundImage}
         backgroundColor="#292931"

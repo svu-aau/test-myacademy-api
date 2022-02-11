@@ -30,7 +30,7 @@ const Layout = ({
         heroImageCaption={heroImageCaption}
         siteSetting={siteSetting}
       />
-      <main className={sidebar && main}>
+      <main className={main}>
         {sidebar && <ContentSections content={[firstSection]} />}
         <div className={wrapper}>
           {sidebar && <Sidebar sidebarMenu={sidebar} />}
