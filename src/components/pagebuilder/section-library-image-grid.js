@@ -18,7 +18,7 @@ const SectionLibraryImageGrid = ({ section }) => {
   ]);
 
   return (
-    <Section key={section._key} noPadding>
+    <Section id={section._key} key={section._key} noPadding>
       <Container>
         <div className={myAcademyImgGrid}>
           {title ? <h2 className={cn(responsiveTitle2, titleText)}>{title}</h2> : ''}

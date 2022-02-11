@@ -5,9 +5,9 @@ import { root } from './section-library-profile.module.css';
 import { urlFor } from '../../utils/tools';
 
 const SectionLibraryHeader = ({ section }) => {
-  const { sectionHeaderImage, alt, _rawSectionHeaderDesc, download, downloadLinkText } = section;
+  const { sectionHeaderImage, alt, _rawSectionHeaderDesc, download, downloadLinkText, _key } = section;
   return (
-    <div className={root}>
+    <div className={root} id={_key}>
       <SectionHeader
         headerImg={urlFor(sectionHeaderImage.asset.url).auto('format').fit('max').url()}
         imgAlt={sectionHeaderImage.alt}

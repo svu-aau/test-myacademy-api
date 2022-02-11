@@ -24,7 +24,7 @@ const SectionColumn = ({ section, noPadding }) => {
   const isThreeCol = sectionThird ? true : false;
 
   return (
-    <Section key={_key} color={backgroundColor?.value} noPadding={!noPadding}>
+    <Section id={section._key} key={_key} color={backgroundColor?.value} noPadding={!noPadding}>
       <h1>{title}</h1>
       <Container narrow={narrowWidth} threeColumn={isThreeCol} split={!isThreeCol}>
         <div>

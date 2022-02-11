@@ -4,11 +4,21 @@ import { root } from './section-library-profile.module.css';
 import { urlFor } from '../../utils/tools';
 
 const SectionLibraryProfile = ({ section }) => {
-  const { profileImage, alt, backgroundColor, profileDesc, profileJob, profileName, contactBtnText, route, link } =
-    section;
+  const {
+    profileImage,
+    alt,
+    backgroundColor,
+    profileDesc,
+    profileJob,
+    profileName,
+    contactBtnText,
+    route,
+    link,
+    _key,
+  } = section;
   const profileLink = link || (route?.slug?.current && `/${route.slug.current}`);
   return (
-    <div className={root}>
+    <div id={_key} className={root}>
       <Profile
         profileImage={urlFor(profileImage.asset.url).auto('format').fit('max').url()}
         imgAlt={profileImage.alt}

@@ -16,7 +16,7 @@ const SectionIndustryGrid = ({ section, slug }) => {
   const selected = companyList.length > 0;
 
   const render = ({ allCompanies }) => (
-    <Section key={_key} color={backgroundColor} alignment="center">
+    <Section id={_key} key={_key} color={backgroundColor} alignment="center">
       <IndustryGrid
         limit={limitResults}
         sortAlpha={!selected}

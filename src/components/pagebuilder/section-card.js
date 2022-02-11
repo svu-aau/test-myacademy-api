@@ -9,7 +9,13 @@ const SectionCard = ({ section }) => {
   const split = section._rawBody && section._rawBodyRight;
 
   return (
-    <Section key={section._key} color={section?.backgroundColor?.value} alignment={!split && 'left'} noPadding>
+    <Section
+      id={section._key}
+      key={section._key}
+      color={section?.backgroundColor?.value}
+      alignment={!split && 'left'}
+      noPadding
+    >
       <Container narrow={section.narrowWidth} split={split}>
         {/*
           The new react portable text library doesn't wrap the content anymore so we need to

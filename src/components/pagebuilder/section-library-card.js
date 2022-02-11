@@ -39,7 +39,7 @@ const SectionLibraryCard = ({ section }) => {
   ];
 
   return (
-    <div className={root} key={section._key}>
+    <div className={root} key={section._key} id={section._key}>
       <CardGrid data={data} />
     </div>
   );

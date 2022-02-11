@@ -26,7 +26,7 @@ const SectionImageGrid = ({ section }) => {
   const limit = limitResults && limitResults > 0 ? limitResults : MAX_RESULTS;
 
   return (
-    <div key={_key} style={{ backgroundColor }}>
+    <div id={_key} key={_key} style={{ backgroundColor }}>
       {_rawIntro && (
         <Section color={backgroundColor} alignment="center">
           <Container narrower={narrowWidth}>

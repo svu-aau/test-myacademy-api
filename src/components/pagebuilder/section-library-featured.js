@@ -11,7 +11,7 @@ image, title, type, alt, children, buttonText, onClick
 */
 const SectionLibraryFeatured = ({ section }) => {
   return (
-    <div className={root} key={section._key}>
+    <div className={root} key={section._key} id={section._key}>
       <Card
         image={urlFor(section.image.asset.url).width(300).auto('format').fit('max').url()}
         alt={'test'}

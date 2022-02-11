@@ -41,7 +41,7 @@ const SectionMediaGrid = ({ section }) => {
   };
 
   return (
-    <div key={_key} style={{ backgroundColor }} ref={rootRef}>
+    <div id={_key} key={_key} style={{ backgroundColor }} ref={rootRef}>
       {_rawIntro && (
         <Section color={backgroundColor} alignment="center">
           <Container narrower={narrowWidth}>
