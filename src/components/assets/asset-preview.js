@@ -2,7 +2,7 @@ import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { buildImageObj, cn } from '../../lib/helpers';
 import { responsiveTitle3 } from '../../styles/typography.module.css';
-import BlockText from '../block-text';
+import BlockContent from '../block-content';
 import { leadMediaThumb, title, excerpt } from '../projects/project-preview.module.css';
 import { leadMediaThumbMasonry, leadMediaThumbFeatured } from '../students/student-preview.module.css';
 import { preloadHidden } from '../layout/layout.module.css';
@@ -49,7 +49,7 @@ function AssetPreview(props) {
       {caption && <h3 className={cn(responsiveTitle3, title)}>{caption}</h3>}
       {_rawExcerpt && (
         <div className={excerpt}>
-          <BlockText blocks={_rawExcerpt} />
+          <BlockContent blocks={_rawExcerpt} />
         </div>
       )}
     </div>

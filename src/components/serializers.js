@@ -3,51 +3,25 @@ import React from 'react';
 import { Link, navigate } from 'gatsby';
 import { Button } from '@aauweb/design-library';
 import Figure from './figure';
-import BlockContent from '@sanity/block-content-to-react';
 import * as typographyStyles from '../styles/typography.module.css';
 import * as serializerStyles from './serializers.module.css';
 import softSearch from '../utils/linkHelper';
 
-const BlockRenderer = (props) => {
-  const { style = 'normal' } = props.node;
-
-  switch (style) {
-    case 'h1':
-    case 'h2':
-    case 'h3':
-    case 'h4':
-      return React.createElement(
-        style,
-        { className: typographyStyles['responsiveTitle' + style.replace(/[^\d]/g, '')] },
-        props.children
-      );
-
-    case 'blockquote':
-      return <blockquote className={typographyStyles.blockQuote}>{props.children}</blockquote>;
-
-    case 'normal':
-      return <p className={typographyStyles.paragraph}>{props.children}</p>;
-
-    case 'h5':
-    case 'macro':
-      return <h5 className={typographyStyles.macro}>{props.children}</h5>;
-
-    case 'h6':
-    case 'micro':
-      return <h6 className={typographyStyles.micro}>{props.children}</h6>;
-
-    case 'large':
-      return <h2 className={typographyStyles.large}>{props.children}</h2>;
-
-    case 'small':
-      return <p className={typographyStyles.small}>{props.children}</p>;
-
-    case 'huge':
-      return <h2 className={typographyStyles.responsiveTitleHuge}>{props.children}</h2>;
-
-    default:
-      return BlockContent.defaultSerializers.types.block(props);
-  }
+const BlockTypes = {
+  // Customize block types with ease
+  h1: ({ children }) => <h1 className={typographyStyles['responsiveTitle1']}>{children}</h1>,
+  h2: ({ children }) => <h2 className={typographyStyles['responsiveTitle2']}>{children}</h2>,
+  large: ({ children }) => <h2 className={typographyStyles['large']}>{children}</h2>,
+  huge: ({ children }) => <h2 className={typographyStyles['responsiveTitleHuge']}>{children}</h2>,
+  h3: ({ children }) => <h3 className={typographyStyles['responsiveTitle3']}>{children}</h3>,
+  h4: ({ children }) => <h4 className={typographyStyles['responsiveTitle4']}>{children}</h4>,
+  h5: ({ children }) => <h5 className={typographyStyles.macro}>{children}</h5>,
+  blockquote: ({ children }) => <blockquote className={typographyStyles.blockQuote}>{children}</blockquote>,
+  macro: ({ children }) => <h5 className={typographyStyles.macro}>{children}</h5>,
+  h6: ({ children }) => <h6 className={typographyStyles.micro}>{children}</h6>,
+  micro: ({ children }) => <h6 className={typographyStyles.micro}>{children}</h6>,
+  normal: ({ children }) => <p className={typographyStyles.paragraph}>{children}</p>,
+  small: ({ children }) => <p className={typographyStyles.small}>{children}</p>,
 };
 
 const isExternalHrefPattern = (href) => {
@@ -60,38 +34,38 @@ const isExternalHrefPattern = (href) => {
 };
 
 const serializers = {
+  // Text styles
+  block: BlockTypes,
   types: {
-    // Text styles
-    block: BlockRenderer,
-
     // Images
     figure: Figure,
 
     // custom HTML
     embedHTML(props) {
       // hack for vids that where added using embed html option before embedvideo existed
-      if (props.node.html.includes('youtube') || props.node.html.includes('vimeo')) {
+      if (props.value.html.includes('youtube') || props.value.html.includes('vimeo')) {
         return (
           <div className={serializerStyles.videoContainer}>
-            <div dangerouslySetInnerHTML={{ __html: props.node.html }} />
+            <div dangerouslySetInnerHTML={{ __html: props.value.html }} />
           </div>
         );
       }
-      return <div dangerouslySetInnerHTML={{ __html: props.node.html }} />;
+      return <div dangerouslySetInnerHTML={{ __html: props.value.html }} />;
     },
 
     // custom Video Embed use responsive wrapper
     embedVideo(props) {
       return (
         <div className={serializerStyles.videoContainer}>
-          <div dangerouslySetInnerHTML={{ __html: props.node.html }} />
+          <div dangerouslySetInnerHTML={{ __html: props.value.html }} />
         </div>
       );
     },
   },
   marks: {
     // normal links
-    link: ({ mark: { href, style }, children }) => {
+    link: ({ value: { href, style }, children }) => {
+      // console.log('external link: ', href, children);
       const linkStyle = serializerStyles[style] || serializerStyles.link;
       const isButton = ['darkButton', 'button', 'secondaryButton'].includes(style);
 
@@ -147,7 +121,7 @@ const serializers = {
     },
 
     // internal links
-    internalLink: ({ mark: { reference: ref, style }, children }) => {
+    internalLink: ({ value: { reference: ref, style }, children }) => {
       let href = null;
       let title = '';
       const linkStyle = serializerStyles[style] || serializerStyles.link;
@@ -189,8 +163,6 @@ const serializers = {
       } else return <span className={linkStyle}>{children}</span>;
     },
   },
-
-  // block: BlockRenderer
 };
 
 export default serializers;

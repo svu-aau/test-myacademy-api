@@ -31,9 +31,11 @@ const SectionLibraryImageCarousel = ({ section }) => {
       <Container>
         {title ? <h2 className={cn(responsiveTitle2, carouselTitle)}>{title}</h2> : ''}
         <Carousel data={data} />
-        <div className={carouselDescription}>
-          <BlockContent blocks={description} />
-        </div>
+        {description && (
+          <div className={carouselDescription}>
+            <BlockContent blocks={description} />
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -9,13 +9,14 @@ import { responsiveTitle2 } from '../../styles/typography.module.css';
 import { sectionTabs, sectionTabTitle, sectionTabsDecription, sectionTabContent } from './section-tabs.module.css';
 
 import { cn } from '../../lib/helpers.js';
+import { carouselDescription } from './section-library-image-carousel.module.css';
 
 // see data/fragments/Tabs
 const SectionTabs = ({ section }) => {
   const { title, description, tabs } = section;
 
   const data = tabs.map(({ tabContent, title }) => {
-    const tabRichContent = <BlockContent blocks={tabContent} />;
+    const tabRichContent = tabContent ? <BlockContent blocks={tabContent} /> : null;
     return [title, tabRichContent];
   });
 
@@ -23,9 +24,11 @@ const SectionTabs = ({ section }) => {
     <div className={sectionTabs} id={section._key}>
       <Container>
         {title ? <h2 className={cn(responsiveTitle2, sectionTabTitle)}>{title}</h2> : ''}
-        <div className={sectionTabsDecription}>
-          <BlockContent blocks={description} />
-        </div>
+        {description && (
+          <div className={sectionTabsDecription}>
+            <BlockContent blocks={description} />
+          </div>
+        )}
         {tabs.length && <Tabs data={data} />}
       </Container>
     </div>

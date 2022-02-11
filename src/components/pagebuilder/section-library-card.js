@@ -12,7 +12,7 @@ const SectionLibraryCard = ({ section }) => {
     {
       alt: heroImage.alt,
       buttonText: 'Learn More',
-      children: <BlockContent blocks={_rawCaption} />,
+      children: _rawCaption ? <BlockContent blocks={_rawCaption} /> : null,
       href,
       image: urlFor(heroImage.asset.url).width(300).auto('format').fit('max').url(),
       title,
