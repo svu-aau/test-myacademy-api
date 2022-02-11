@@ -123,7 +123,9 @@ const serializers = {
 
     // centered text content
     textCenter: ({ children }) => {
-      return <div style={{ textAlign: 'center' }}>{children}</div>;
+      // use an inline element to avoid invalid dom nesting, fixes
+      // https://github.com/sanity-io/block-content-to-react/issues/59
+      return <span style={{ textAlign: 'center', display: 'block' }}>{children}</span>;
     },
 
     // internal links
