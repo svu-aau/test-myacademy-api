@@ -44,8 +44,8 @@ module.exports = {
       options: {
         ...clientConfig.sanity,
         token,
-        watchMode: !isProd,
-        overlayDrafts: !isProd || previewEnabled, // drafts in dev & Gatsby Cloud Preview
+        watchMode: false, //!isProd,
+        overlayDrafts: false, // !isProd || previewEnabled, // drafts in dev & Gatsby Cloud Preview
       },
     },
     {

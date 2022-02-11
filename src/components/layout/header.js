@@ -3,7 +3,7 @@ import { graphql, Link, StaticQuery, navigate } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import { Button } from '@aauweb/design-library';
 import SearchForm from '../search-form';
-import BlockContent from '../block-text';
+import BlockContent from '../block-content';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';

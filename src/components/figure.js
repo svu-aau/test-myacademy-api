@@ -5,17 +5,17 @@ import { getGatsbyImageData } from 'gatsby-source-sanity';
 import { caption } from './layout/layout.module.css';
 import { root } from './figure.module.css';
 
-const figure = ({ node }) => {
-  if (!node.image) {
+const figure = ({ value }) => {
+  if (!value.image) {
     return null;
   }
 
-  const gatsbyImageData = getGatsbyImageData(node?.image, { maxWidth: 675 }, clientConfig.sanity);
+  const gatsbyImageData = getGatsbyImageData(value?.image, { width: 675 }, clientConfig.sanity);
 
   return (
     <figure className={root}>
-      <GatsbyImage image={gatsbyImageData} alt={node.alt} />
-      {node.caption && <figcaption className={caption}>{node.caption}</figcaption>}
+      <GatsbyImage image={gatsbyImageData} alt={value.alt} />
+      {value.caption && <figcaption className={caption}>{value.caption}</figcaption>}
     </figure>
   );
 };
