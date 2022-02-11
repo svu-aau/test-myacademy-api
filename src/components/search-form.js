@@ -7,6 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import { cn } from '../lib/helpers';
 import { searchSection, searchResult } from './search-form.module.css';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchForm = ({ allPages }) => {
+const SearchForm = ({ allPages, hideSearchDrawer }) => {
   const classes = useStyles();
   const [search, setSearch] = useState();
   const [searchQuery, setSearchQuery] = useState();
@@ -78,35 +79,37 @@ const SearchForm = ({ allPages }) => {
   const results = searchResults.slice(0, 10);
 
   return (
-    <div className={cn(searchSection, classes.root)}>
-      <TextField
-        autoFocus
-        placeholder="Type to search"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="start" onClick={() => navigate(`/search_results?query=${searchQuery}`)}>
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
-        onChange={handleSearch}
-      />
-      <div className={searchResult}>
-        {results.length
-          ? results.map((result, idx) => {
-              let { slug } = result;
-              if (slug && !slug.startsWith('/')) {
-                slug = `/${slug}`;
-              }
-              return (
-                <h3 key={idx}>
-                  <Link to={slug}>{result.title}</Link>
-                </h3>
-              );
-            })
-          : ''}
+    <ClickAwayListener onClickAway={hideSearchDrawer}>
+      <div className={cn(searchSection, classes.root)}>
+        <TextField
+          autoFocus
+          placeholder="Type to search"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start" onClick={() => navigate(`/search_results?query=${searchQuery}`)}>
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          onChange={handleSearch}
+        />
+        <div className={searchResult}>
+          {results.length
+            ? results.map((result, idx) => {
+                let { slug } = result;
+                if (slug && !slug.startsWith('/')) {
+                  slug = `/${slug}`;
+                }
+                return (
+                  <h3 key={idx}>
+                    <Link to={slug}>{result.title}</Link>
+                  </h3>
+                );
+              })
+            : ''}
+        </div>
       </div>
-    </div>
+    </ClickAwayListener>
   );
 };
 

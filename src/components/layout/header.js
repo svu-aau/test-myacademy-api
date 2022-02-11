@@ -414,7 +414,9 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                         {isSearching ? <CloseIcon /> : <SearchIcon />}
                       </a>
                     </div>
-                    {isSearching && <SearchForm allPages={[...formattedPageEdges]} />}
+                    {isSearching && (
+                      <SearchForm hideSearchDrawer={() => setSearching(false)} allPages={[...formattedPageEdges]} />
+                    )}
                     <IconButton
                       className={cn(classes.hamburgerButton, hamburger)}
                       color="inherit"

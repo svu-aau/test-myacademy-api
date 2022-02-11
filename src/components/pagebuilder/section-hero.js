@@ -4,7 +4,7 @@ import clientConfig from '../../../client-config';
 import { getGatsbyImageData } from 'gatsby-source-sanity';
 
 const SectionHero = ({ section }) => {
-  const gatsbyImageData = getGatsbyImageData(section.backgroundImage, { width: '100%' }, clientConfig.sanity);
+  const gatsbyImageData = getGatsbyImageData(section.backgroundImage, {}, clientConfig.sanity);
 
   return (
     <Hero
