@@ -5,7 +5,10 @@ export const queryFigure = graphql`
     title
     tabs {
       title
+      hasTableHeader
       tabContent: _rawTabContent(resolveReferences: { maxDepth: 10 })
+      tabTable: _rawTabTable(resolveReferences: { maxDepth: 10 })
+      tabBottomContent: _rawTabBottomContent(resolveReferences: { maxDepth: 10 })
     }
     description: _rawDescription(resolveReferences: { maxDepth: 10 })
   }
