@@ -10,9 +10,10 @@ export const queryImage = graphql`
         ... on SanityImageAsset {
           _id
           url
-          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
+          gatsbyImageData(layout: FULL_WIDTH, width: 2200, placeholder: NONE)
         }
       }
+      alt
     }
   }
 `;
