@@ -2,6 +2,7 @@ import React from 'react';
 import { navigate } from 'gatsby';
 import Container from '../layout/container';
 import Section from '../sections/section';
+import BlockContent from '../block-content';
 import { ImageGrid } from '@aauweb/design-library';
 import { responsiveTitle2 } from '../../styles/typography.module.css';
 import { myAcademyImgGrid, titleText } from './section-library-image-grid.module.css';
@@ -12,10 +13,11 @@ import { isExternalHrefPattern } from '../serializers';
 const SectionLibraryImageGrid = ({ section }) => {
   const { title, imageItem } = section;
 
-  const data = imageItem.map(({ alt, caption, image, title, link }) => [
+  const data = imageItem.map(({ alt, caption, image, title, link, _rawDescription }) => [
     imageUrlFor(buildImageObj(image)).width(500).fit('max').auto('format').url(),
     link ? [title, link] : title,
     caption,
+    _rawDescription && <BlockContent blocks={_rawDescription} />,
   ]);
 
   return (

@@ -7,6 +7,7 @@ export const queryImage = graphql`
     title
     imageItem {
       ... on SanityImageItem {
+        _rawDescription(resolveReferences: { maxDepth: 10 })
         title
         caption
         alt
