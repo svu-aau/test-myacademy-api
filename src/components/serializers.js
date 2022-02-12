@@ -24,7 +24,7 @@ const BlockTypes = {
   small: ({ children }) => <p className={typographyStyles.small}>{children}</p>,
 };
 
-const isExternalHrefPattern = (href) => {
+export const isExternalHrefPattern = (href) => {
   return (
     href.indexOf('http:') === 0 ||
     href.indexOf('https:') === 0 ||

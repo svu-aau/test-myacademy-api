@@ -7,6 +7,7 @@ import { responsiveTitle2 } from '../../styles/typography.module.css';
 import { myAcademyImgGrid, titleText } from './section-library-image-grid.module.css';
 import { buildImageObj, cn } from '../../lib/helpers.js';
 import { imageUrlFor } from '../../lib/image-url';
+import { isExternalHrefPattern } from '../serializers';
 
 const SectionLibraryImageGrid = ({ section }) => {
   const { title, imageItem } = section;
@@ -22,7 +23,16 @@ const SectionLibraryImageGrid = ({ section }) => {
       <Container>
         <div className={myAcademyImgGrid}>
           {title ? <h2 className={cn(responsiveTitle2, titleText)}>{title}</h2> : ''}
-          <ImageGrid data={data} onClick={(href) => navigate(href)} />
+          <ImageGrid
+            data={data}
+            onClick={(href) => {
+              if (isExternalHrefPattern(href)) {
+                window.open(href, '_blank');
+              } else {
+                navigate(href);
+              }
+            }}
+          />
         </div>
       </Container>
     </Section>

@@ -5,6 +5,7 @@ import { Card } from '@aauweb/design-library';
 import BlockContent from '../block-content';
 import { root } from './section-library-featured.module.css';
 import { urlFor } from '../../utils/tools';
+import { isExternalHrefPattern } from '../serializers';
 
 /*
 image, title, type, alt, children, buttonText, onClick
@@ -16,7 +17,13 @@ const SectionLibraryFeatured = ({ section }) => {
         image={urlFor(section.image.asset.url).width(300).auto('format').fit('max').url()}
         alt={'test'}
         title={section.title}
-        onClick={() => navigate(section.buttonLink)}
+        onClick={() => {
+          if (isExternalHrefPattern(section.buttonLink)) {
+            window.open(section.buttonLink, '_blank');
+          } else {
+            navigate(section.buttonLink);
+          }
+        }}
         type="alt"
         center
         buttonText={section.buttonText}
