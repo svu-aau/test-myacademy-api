@@ -1,0 +1,45 @@
+@import '../../styles/custom-properties.css';
+
+.functionalGridTitle {
+  text-align: center !important;
+  padding: 2rem 0;
+}
+
+.contentClose {
+  position: absolute !important;
+  right: 1.5rem !important;
+  top: 1.5rem !important;
+  background-color: var(--color-accent) !important;
+  color: var(--color-white) !important;
+  z-index: 1;
+  border-radius: 0 !important;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  @media (--media-min-medium) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+.root {
+  background-color: var(--color-white);
+  padding: 2rem 0;
+}
+
+.cardTitle {
+  text-align: center;
+  margin-bottom: 0.25rem;
+  color: var(--color-accent);
+}
+
+.cardSubtitle {
+  text-align: center;
+  margin-top: 0;
+  font-size: 14px;
+  color: var(--color-dark-gray);
+}
+
+.inActive {
+  opacity: 0.2;
+}

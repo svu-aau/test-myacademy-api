@@ -158,5 +158,9 @@ export const queryFigure = graphql`
     ... on SanitySectionTable {
       ...Table
     }
+
+    ... on SanitySectionImageModalGrid {
+      ...ModalGrid
+    }
   }
 `;
