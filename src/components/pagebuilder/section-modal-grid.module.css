@@ -11,10 +11,15 @@
   top: 1.5rem !important;
   background-color: var(--color-accent) !important;
   color: var(--color-white) !important;
-  width: 3.5rem;
   z-index: 1;
   border-radius: 0 !important;
-  height: 3.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  @media (--media-min-medium) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 }
 
 .root {
