@@ -16,6 +16,7 @@ import SectionLibraryAccordion from './section-library-accordion';
 import SectionLibraryImageCarousel from './section-library-image-carousel';
 import SectionLibraryTabs from './section-library-tabs';
 import SectionTable from './section-table';
+import SectionImageModalGrid from './section-modal-grid';
 
 const sectionComponents = {
   SectionCard,
@@ -35,6 +36,7 @@ const sectionComponents = {
   SectionLibraryAccordion,
   SectionLibraryImageCarousel,
   SectionTable,
+  SectionImageModalGrid,
 };
 
 const ContentSections = ({
