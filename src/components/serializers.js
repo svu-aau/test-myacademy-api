@@ -127,6 +127,12 @@ const serializers = {
       // https://github.com/sanity-io/block-content-to-react/issues/59
       return <span style={{ textAlign: 'center', display: 'block' }}>{children}</span>;
     },
+    textLeft: ({ children }) => {
+      return <span style={{ textAlign: 'left', display: 'block' }}>{children}</span>;
+    },
+    textRight: ({ children }) => {
+      return <span style={{ textAlign: 'right', display: 'block' }}>{children}</span>;
+    },
 
     // internal links
     internalLink: ({ value: { reference: ref, style }, children }) => {
