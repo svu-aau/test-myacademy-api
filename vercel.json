@@ -355,6 +355,21 @@
       "source": "/resources/academy-resource-center/accessibility-resources/accessibility-faqs-for-faculty",
       "destination": "/my-academy/academy-resource-center/accessibility/",
       "statusCode": 301
+    },
+    {
+      "source": "/resources/campus-shuttle-service-schedule",
+      "destination": "https://my2.academyart.edu/resources/campus-shuttle-service-schedule",
+      "statusCode": 301
+    },
+    {
+      "source": "/students/campus-shuttle-service-kiosk-schedule",
+      "destination": "https://my2.academyart.edu/students/campus-shuttle-service-kiosk-schedule",
+      "statusCode": 301
+    },
+    {
+      "source": "/students/campus-shuttle-service-orientation-schedule",
+      "destination": "https://my2.academyart.edu/students/campus-shuttle-service-orientation-schedule",
+      "statusCode": 301
     }
   ]
 }
