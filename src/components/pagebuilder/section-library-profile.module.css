@@ -1,6 +1,7 @@
 @import '../../styles/custom-media.css';
 
 .root {
+  background-color: var(--color-white);
   @media (--media-max-large) {
     margin-top: 0;
   }

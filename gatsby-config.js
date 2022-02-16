@@ -54,7 +54,8 @@ module.exports = {
         fonts: ['Vollkorn:400i', 'Raleway:400,500,700'],
         display: 'swap',
         attributes: {
-          rel: 'stylesheet preload prefetch',
+          as: 'stylesheet',
+          rel: 'preload prefetch',
         },
       },
     },

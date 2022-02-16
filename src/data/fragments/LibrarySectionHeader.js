@@ -19,6 +19,15 @@ export const queryImage = graphql`
     download {
       ...File
     }
+    internalLink {
+      ... on SanityPage {
+        slug {
+          current
+        }
+        title
+      }
+    }
+    externalLink
     downloadLinkText
   }
 `;

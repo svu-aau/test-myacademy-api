@@ -28,14 +28,14 @@ const SectionColumn = ({ section, noPadding }) => {
       <h1>{title}</h1>
       <Container narrow={narrowWidth} threeColumn={isThreeCol} split={!isThreeCol}>
         <div>
-          <ContentSections content={sectionLeft} isPageContent noPaddingTop />
+          <ContentSections content={sectionLeft} noPaddingTop />
         </div>
         <div>
-          <ContentSections content={sectionRight} isPageContent noPaddingTop />
+          <ContentSections content={sectionRight} noPaddingTop />
         </div>
         {sectionThird && (
           <div>
-            <ContentSections content={sectionThird} isPageContent noPaddingTop />
+            <ContentSections content={sectionThird} noPaddingTop />
           </div>
         )}
       </Container>
