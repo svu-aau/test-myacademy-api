@@ -300,6 +300,61 @@
       "source": "/resources/human-resources/active-shooter-how-to-respond",
       "destination": "/active-shooter-how-to-respond/",
       "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center",
+      "destination": "/my-academy/academy-resource-center/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/academic-support",
+      "destination": "/my-academy/academy-resource-center/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/support-for-online-classes",
+      "destination": "/my-academy/academy-resource-center/online-support/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language",
+      "destination": "/my-academy/academy-resource-center/eap/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language/esl-support",
+      "destination": "/my-academy/academy-resource-center/eap/eap-support/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language/esl-study-groups",
+      "destination": "/my-academy/academy-resource-center/eap/eap-study-groups/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language/eap-classes",
+      "destination": "/my-academy/academy-resource-center/eap/eap-classes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/language-support-lab",
+      "destination": "/my-academy/academy-resource-center/language-support-lab/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/writing-lab",
+      "destination": "/my-academy/academy-resource-center/writing-lab/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/accessibility-resources",
+      "destination": "/my-academy/academy-resource-center/accessibility/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/accessibility-resources/accessibility-faqs-for-faculty",
+      "destination": "/my-academy/academy-resource-center/accessibility/",
+      "statusCode": 301
     }
   ]
 }
