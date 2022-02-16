@@ -280,6 +280,26 @@
       "source": "/resources/links-resources",
       "destination": "/links-resources",
       "statusCode": 301
+    },
+    {
+      "source": "/resources/human-resources",
+      "destination": "https://aauemails.sharepoint.com/sites/HumanResourcesHub",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/intranet/human-resources",
+      "destination": "https://aauemails.sharepoint.com/sites/HumanResourcesHub",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/human-resources/active-shooter-video",
+      "destination": "/active-shooter-how-to-respond/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/human-resources/active-shooter-how-to-respond",
+      "destination": "/active-shooter-how-to-respond/",
+      "statusCode": 301
     }
   ]
 }
