@@ -17,21 +17,25 @@ const SectionLibraryProfile = ({ section }) => {
     _key,
   } = section;
   const profileLink = link || (route?.slug?.current && `/${route.slug.current}`);
-  return (
-    <div id={_key} className={root}>
-      <Profile
-        profileImage={urlFor(profileImage.asset.url).auto('format').fit('max').url()}
-        imgAlt={profileImage.alt}
-        title={alt}
-        backgroundColor={backgroundColor?.value}
-        desc={profileDesc}
-        job={profileJob}
-        name={profileName}
-        btnTxt={contactBtnText}
-        link={profileLink}
-      />
-    </div>
-  );
+  if (profileImage?.asset?.url) {
+    return (
+      <div id={_key} className={root}>
+        <Profile
+          profileImage={urlFor(profileImage.asset.url).auto('format').fit('max').url()}
+          imgAlt={profileImage.alt}
+          title={alt}
+          backgroundColor={backgroundColor?.value}
+          desc={profileDesc}
+          job={profileJob}
+          name={profileName}
+          btnTxt={contactBtnText}
+          link={profileLink}
+        />
+      </div>
+    );
+  } else {
+    return '';
+  }
 };
 
 export default SectionLibraryProfile;
