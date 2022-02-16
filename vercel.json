@@ -257,21 +257,6 @@
       "statusCode": 301
     },
     {
-      "source": "/resources/campus-shuttle-service-schedule",
-      "destination": "/campus-shuttle-service-schedule/",
-      "statusCode": 301
-    },
-    {
-      "source": "/students/campus-shuttle-service-kiosk-schedule",
-      "destination": "/campus-shuttle-service-schedule/",
-      "statusCode": 301
-    },
-    {
-      "source": "/students/campus-shuttle-service-orientation-schedule",
-      "destination": "/campus-shuttle-service-schedule/",
-      "statusCode": 301
-    },
-    {
       "source": "/content/dam/assets/pdf/myacademy/transportation/spring-2022/Spring-2022-Campus-Shuttle-Service-Schedule.pdf",
       "destination": "https://mediacenter.academyart.edu/link/163765-spring-2022-campus-shuttle-service-schedulepdf/play?player=0",
       "statusCode": 301
