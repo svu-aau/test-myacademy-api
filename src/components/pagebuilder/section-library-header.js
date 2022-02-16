@@ -5,7 +5,16 @@ import { root } from './section-library-profile.module.css';
 import { urlFor } from '../../utils/tools';
 
 const SectionLibraryHeader = ({ section }) => {
-  const { sectionHeaderImage, alt, _rawSectionHeaderDesc, download, downloadLinkText, _key } = section;
+  const {
+    sectionHeaderImage,
+    alt,
+    _rawSectionHeaderDesc,
+    download,
+    downloadLinkText,
+    internalLink,
+    externalLink,
+    _key,
+  } = section;
   return (
     <div className={root} id={_key}>
       <SectionHeader
@@ -13,6 +22,7 @@ const SectionLibraryHeader = ({ section }) => {
         imgAlt={sectionHeaderImage.alt}
         title={alt}
         file={download}
+        link={internalLink?.slug ? `/${internalLink.slug.current}` : externalLink}
         linkTxt={downloadLinkText}
       >
         {_rawSectionHeaderDesc && <BlockContent blocks={_rawSectionHeaderDesc} />}
