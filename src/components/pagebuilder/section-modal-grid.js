@@ -91,7 +91,8 @@ const SectionMediaGrid = ({ section }) => {
                     <AspectRatio ratio={ratio}>
                       <img
                         className={modalState.open && modalState.active !== idx ? inActive : ''}
-                        src={grid.media.image.asset.url}
+                        src={grid.media?.image?.asset.url}
+                        alt={grid.media?.image?.alt}
                       />
                     </AspectRatio>
                     <p className={cardTitle}>{grid.title}</p>
