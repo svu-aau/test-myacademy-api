@@ -415,7 +415,11 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                           1-800-544-2787
                         </a>
                         <span> / </span>
-                        <a href="https://www.academyart.edu/form-request-information/" target="_blank" className={classes.contactLink}>
+                        <a
+                          href="https://www.academyart.edu/form-request-information/"
+                          target="_blank"
+                          className={classes.contactLink}
+                        >
                           Request Info
                         </a>
                       </p>
