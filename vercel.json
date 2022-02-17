@@ -357,7 +357,12 @@
       "statusCode": 301
     },
     {
-      "source": "/students(\/?):slug*(\/?)",
+      "source": "/students(\/?)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/students/:slug*(\/?)",
       "destination": "/:slug",
       "permanent": true
     }
