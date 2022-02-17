@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { navigate } from 'gatsby';
+import { navigate, graphql } from 'gatsby';
 import Layout from '../containers/layout';
 import SEO from '../components/layout/seo';
 import Container from '../components/layout/container';
 import Section from '../components/sections/section';
 import PageSearch from '../components/page-search';
+import Hero from '../components/layout/hero';
+
+export const query = graphql`
+  query SearchQuery {
+    defaultHeroImage: file(relativePath: { eq: "search-hero.jpeg" }) {
+      childImageSharp {
+        gatsbyImageData(width: 1440, placeholder: BLURRED, layout: FIXED)
+      }
+    }
+  }
+`;
 
 const SearchTemplate = (props) => {
-  const { pageContext, location } = props;
+  const {
+    pageContext,
+    location,
+    data: { defaultHeroImage },
+  } = props;
   const { pageData } = pageContext;
   const { allPages } = pageData;
   const { search, origin } = location;
@@ -21,7 +36,11 @@ const SearchTemplate = (props) => {
   return (
     <Layout>
       <SEO title="Search Results" />
-      <div style={{ height: '98px' }} />
+      <Hero
+        imageAlt="search hero"
+        style={{ overflow: 'hidden' }}
+        backgroundImage={defaultHeroImage?.childImageSharp?.gatsbyImageData}
+      />
       <Section>
         <Container>
           <PageSearch pages={allPages} searchTerm={query} origin={origin} />

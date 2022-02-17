@@ -76,6 +76,12 @@ const SearchForm = ({ allPages, hideSearchDrawer }) => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      navigate(`/search_results?query=${searchQuery}`);
+    }
+  };
+
   const results = searchResults.slice(0, 10);
 
   return (
@@ -91,6 +97,7 @@ const SearchForm = ({ allPages, hideSearchDrawer }) => {
               </InputAdornment>
             ),
           }}
+          onKeyPress={handleKeyPress}
           onChange={handleSearch}
         />
         <div className={searchResult}>
