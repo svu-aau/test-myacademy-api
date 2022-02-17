@@ -370,6 +370,11 @@
       "source": "/content/dam/assets/pdf/log-in-sign-ea.pdf",
       "destination": "https://mediacenter.academyart.edu/link/163776-log-in-sign-ea.pdf/play?player=0",
       "statusCode": 301
+    },
+    {
+      "source": "/students/:slug/",
+      "destination": "/:slug",
+      "permanent": true
     }
   ]
 }
