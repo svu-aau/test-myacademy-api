@@ -343,17 +343,77 @@
     },
     {
       "source": "/resources/campus-shuttle-service-schedule",
-      "destination": "https://my2.academyart.edu/resources/campus-shuttle-service-schedule",
+      "destination": "/campus-shuttle-service-schedule/",
       "statusCode": 301
     },
     {
       "source": "/students/campus-shuttle-service-kiosk-schedule",
-      "destination": "https://my2.academyart.edu/students/campus-shuttle-service-kiosk-schedule",
+      "destination": "/campus-shuttle-service-schedule/",
       "statusCode": 301
     },
     {
       "source": "/students/campus-shuttle-service-orientation-schedule",
-      "destination": "https://my2.academyart.edu/students/campus-shuttle-service-orientation-schedule",
+      "destination": "/campus-shuttle-service-schedule/",
+      "statusCode": 301
+    },
+    {
+      "source": "/students",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/academic-support",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/academic-support",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/support-for-online-classes",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/support-for-online-classes",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/english-as-a-second-language",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language/esl-support",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/english-as-a-second-language/esl-support",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language/esl-study-groups",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/english-as-a-second-language/esl-study-groups",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/english-as-a-second-language/eap-classes",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/english-as-a-second-language/eap-classes",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/language-support-lab",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/language-support-lab",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/writing-lab",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/writing-lab",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/accessibility-resources",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/accessibility-resources",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-resource-center/accessibility-resources/accessibility-faqs-for-faculty",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center/accessibility-resources/accessibility-faqs-for-faculty",
       "statusCode": 301
     }
   ]
