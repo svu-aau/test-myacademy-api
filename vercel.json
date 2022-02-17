@@ -360,6 +360,11 @@
       "source": "/resources/academy-resource-center/accessibility-resources/accessibility-faqs-for-faculty",
       "destination": "https://my2.academyart.edu/resources/academy-resource-center/accessibility-resources/accessibility-faqs-for-faculty",
       "statusCode": 301
+    },
+    {
+      "source": "/resources/academy-email",
+      "destination": "https://my2.academyart.edu/resources/academy-email",
+      "statusCode": 301
     }
   ]
 }
