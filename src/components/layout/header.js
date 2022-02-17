@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
   drawerInner: {
     backgroundColor: 'var(--color-white)',
     color: 'var(--color-dark-black-bg)',
-    marginTop: 64,
+    marginTop: 104,
     '& a': {
       color: 'var(--color-dark-black-bg)',
       fontWeight: 'bold',
