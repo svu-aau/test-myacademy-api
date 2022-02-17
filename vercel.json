@@ -365,6 +365,11 @@
       "source": "/resources/academy-email",
       "destination": "https://my2.academyart.edu/resources/academy-email",
       "statusCode": 301
+    },
+    {
+      "source": "/content/dam/assets/pdf/log-in-sign-ea.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163776-log-in-sign-ea.pdf/play?player=0",
+      "statusCode": 301
     }
   ]
 }
