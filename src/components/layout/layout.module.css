@@ -21,7 +21,7 @@
 }
 
 .content {
-  background-color: var(--color-light-gray-bg);
+  background-color: var(--color-white);
   min-height: calc(100% - 73px - 120px);
   color: var(--color-black);
   isolation: isolate;
