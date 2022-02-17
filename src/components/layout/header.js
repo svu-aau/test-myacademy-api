@@ -406,8 +406,8 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                           1-800-544-2787
                         </a>
                         <span> / </span>
-                        <Link to="/contact-us" className={classes.contactLink}>
-                          Contact
+                        <Link to="https://www.academyart.edu/form-request-information/" className={classes.contactLink}>
+                          Request Info
                         </Link>
                       </p>
                       <a href="#" onClick={() => setSearching(!isSearching)} className={searchBtn}>
