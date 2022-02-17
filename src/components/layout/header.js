@@ -42,6 +42,7 @@ import {
   searchBtn,
 } from './header.module.css';
 import MenuLink from './menu-link';
+import { isExternalLink, linkUrlParser } from '../serializers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -378,7 +379,14 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                         variant="outlined"
                         color="secondary"
                         label={siteSetting.bannerBtnText}
-                        onClick={() => navigate(siteSetting.bannerBtnLink)}
+                        onClick={() => {
+                          const link = linkUrlParser(siteSetting.bannerBtnLink);
+                          if (isExternalLink(link)) {
+                            window.open(link, '_blank');
+                          } else {
+                            navigate(link);
+                          }
+                        }}
                       />
                     </Toolbar>
                   )}
