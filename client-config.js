@@ -6,7 +6,7 @@ module.exports = {
   gatsby: {
     siteTitle: 'AAU My Academy',
     siteDescription: 'Academy of Art University My Academy',
-    siteUrl: 'https://my.academy.edu', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
+    siteUrl: 'https://my.academyart.edu', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
     stagingUrl: 'https://aa-myacademy-web.vercel.app', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
     previewUrl: 'https://preview-aamyacademywebmain.gtsb.io', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
     userTwitter: '@academy_of_art', // Change for Twitter Cards
