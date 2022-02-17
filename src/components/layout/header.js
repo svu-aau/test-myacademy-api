@@ -41,6 +41,8 @@ import {
   topBanner,
   searchBtn,
 } from './header.module.css';
+import MenuLink from './menu-link';
+import { isExternalLink, linkUrlParser } from '../serializers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -377,7 +379,14 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                         variant="outlined"
                         color="secondary"
                         label={siteSetting.bannerBtnText}
-                        onClick={() => navigate(siteSetting.bannerBtnLink)}
+                        onClick={() => {
+                          const link = linkUrlParser(siteSetting.bannerBtnLink);
+                          if (isExternalLink(link)) {
+                            window.open(link, '_blank');
+                          } else {
+                            navigate(link);
+                          }
+                        }}
                       />
                     </Toolbar>
                   )}
@@ -406,7 +415,11 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                           1-800-544-2787
                         </a>
                         <span> / </span>
-                        <a href="https://www.academyart.edu/form-request-information/" target="_blank" className={classes.contactLink}>
+                        <a
+                          href="https://www.academyart.edu/form-request-information/"
+                          target="_blank"
+                          className={classes.contactLink}
+                        >
                           Request Info
                         </a>
                       </p>
@@ -438,20 +451,22 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                         const updatedCurPath = curPath?.slice(-1) === '/' ? curPath.slice(0, -1) : curPath;
                         return (
                           <>
-                            <Link key={_key} className={updatedHref === updatedCurPath ? 'active' : ''} to={href}>
-                              <span>{title}</span>
-                            </Link>
+                            <MenuLink
+                              className={updatedHref === updatedCurPath ? 'active' : ''}
+                              key={_key}
+                              title={title}
+                              href={href}
+                              hidden={hidden}
+                            />
                             {embeddedMenu.length > 0 && (
                               <div className={`${classes.megaMenuContent} mega-content`}>
                                 {embeddedMenu.map((menuContent) => (
                                   <ul key={menuContent.title}>
                                     <a className={classes.subMenuTitle}>{menuContent.title}</a>
                                     <ul className={classes.subMenu}>
-                                      {menuContent.links.map((menuLink) => (
-                                        <li key={menuLink._key} className={classes.menuItem}>
-                                          <Link to={menuLink.href}>
-                                            <span>{menuLink.title}</span>
-                                          </Link>
+                                      {menuContent.links.map(({ _key, title, href, hidden }) => (
+                                        <li key={_key} className={classes.menuItem}>
+                                          <MenuLink title={title} href={href} hidden={hidden} />
                                         </li>
                                       ))}
                                     </ul>
@@ -487,9 +502,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                                   onClick={() => handleClick(categoryIdx, 0)}
                                 >
                                   <div className={headerMenuTitle}>
-                                    <Link to={href} onClick={toggleDrawer} className={headerMenuTitle}>
-                                      {title}
-                                    </Link>
+                                    <MenuLink
+                                      onClick={toggleDrawer}
+                                      className={headerMenuTitle}
+                                      title={title}
+                                      href={href}
+                                    />
                                     {embeddedMenu.length > 0 && (
                                       <ListItemSecondaryAction>
                                         <div className={clsx(classes.hamburgerMenuButton, 'hamburgerButton')} />
@@ -515,13 +533,13 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                                           onClick={() => handleClick(categoryIdx, itemIdx)}
                                         >
                                           <div className={headerMenuTitle}>
-                                            <Link
-                                              to={embeddedLink.href}
+                                            <MenuLink
                                               onClick={toggleDrawer}
                                               className={headerMenuTitle}
-                                            >
-                                              {embeddedLink.title}
-                                            </Link>
+                                              title={embeddedLink.title}
+                                              href={embeddedLink.href}
+                                              hidden={embeddedLink.hidden}
+                                            />
                                             <ListItemSecondaryAction>
                                               <div className={clsx(classes.hamburgerMenuButton, 'hamburgerButton')} />
                                             </ListItemSecondaryAction>
@@ -535,9 +553,12 @@ const Header = ({ smallHeader = false, siteTitle, siteSubtitle, siteSetting, her
                                               className={classes.headerMenuNavItem}
                                             >
                                               <div className={headerMenuTitle}>
-                                                <Link to={embeddedLinkLink.href} className={headerMenuTitle}>
-                                                  {embeddedLinkLink.title}
-                                                </Link>
+                                                <MenuLink
+                                                  className={headerMenuTitle}
+                                                  title={embeddedLinkLink.title}
+                                                  href={embeddedLinkLink.href}
+                                                  hidden={embeddedLinkLink.hidden}
+                                                />
                                               </div>
                                             </ListItem>
                                           ))}

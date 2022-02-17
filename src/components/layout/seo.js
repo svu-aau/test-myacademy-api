@@ -42,9 +42,10 @@ function SEO({
         const metaDescription = description || (site && site.description) || config.description || '';
         const siteTitle = (site && site.title) || config.title || '';
         const twitterUsername = config.userTwitter;
-        const url = config.siteUrl + path;
+        const url = config.siteUrl + '/' + path;
         const shareImage =
-          seoImage?.images?.fallback?.src || config.siteUrl + defaultShareImage.childImageSharp.gatsbyImageData.src;
+          seoImage?.images?.fallback?.src ||
+          config.siteUrl + '/' + defaultShareImage.childImageSharp.gatsbyImageData.src;
 
         return (
           <Helmet
