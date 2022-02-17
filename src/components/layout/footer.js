@@ -159,10 +159,8 @@ const Footer = () => {
                   <div className={footerContact} key={_key}>
                     <div className={footerHeading}>{title}</div>
                     <div className={contactInfo}>
-                      {embeddedMenu[0].links.map((item) => (
-                        <a href={item.href} key={item._key}>
-                          {item.title}
-                        </a>
+                      {embeddedMenu[0].links.map(({ _key, title, href, hidden }) => (
+                        <MenuLink key={_key} title={title} href={href} hidden={hidden} />
                       ))}
                     </div>
                   </div>

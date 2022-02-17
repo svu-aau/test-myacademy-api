@@ -6,6 +6,7 @@ import Figure from './figure';
 import * as typographyStyles from '../styles/typography.module.css';
 import * as serializerStyles from './serializers.module.css';
 import softSearch from '../utils/linkHelper';
+import clientConfig from '../../client-config';
 
 const BlockTypes = {
   // Customize block types with ease
@@ -24,13 +25,30 @@ const BlockTypes = {
   small: ({ children }) => <p className={typographyStyles.small}>{children}</p>,
 };
 
-export const isExternalHrefPattern = (href) => {
+export const isExternalLink = (href) => {
   return (
-    href.indexOf('http:') === 0 ||
-    href.indexOf('https:') === 0 ||
-    href.indexOf('mailto:') === 0 ||
-    href.indexOf('tel:') === 0
+    href &&
+    (href.indexOf('http:') === 0 ||
+      href.indexOf('https:') === 0 ||
+      href.indexOf('mailto:') === 0 ||
+      href.indexOf('tel:') === 0)
   );
+};
+
+export const linkUrlParser = (href) => {
+  let hrefSplit = [];
+  if (href) {
+    hrefSplit = href.split('/');
+  }
+  const result =
+    softSearch(clientConfig.gatsby.siteUrl.replace('https://', ''), hrefSplit) ||
+    softSearch(clientConfig.gatsby.previewUrl.replace('https://', ''), hrefSplit) ||
+    softSearch(clientConfig.gatsby.stagingUrl.replace('https://', ''), hrefSplit);
+  if (result) {
+    hrefSplit.splice(0, result[1] + 1);
+    href = `/${hrefSplit.join('/')}`;
+  }
+  return href;
 };
 
 const serializers = {
@@ -69,17 +87,7 @@ const serializers = {
       const linkStyle = serializerStyles[style] || serializerStyles.link;
       const isButton = ['darkButton', 'button', 'secondaryButton'].includes(style);
 
-      let hrefSplit = href.split('/');
-      const result = softSearch('aa-myacademy-web.vercel.app', hrefSplit);
-
-      // console.log('result: ', result);
-
-      let isInternalLink = false;
-      if (result) {
-        isInternalLink = true;
-        hrefSplit.splice(0, result[1] + 1);
-        href = `/${hrefSplit.join('/')}`;
-      }
+      const link = linkUrlParser(href);
       if (isButton) {
         return (
           <Button
@@ -87,10 +95,10 @@ const serializers = {
             color="primary"
             label={children}
             onClick={() => {
-              if (!isInternalLink || isExternalHrefPattern(href)) {
-                window.open(href, '_blank');
+              if (isExternalLink(link)) {
+                window.open(link, '_blank');
               } else {
-                navigate(href);
+                navigate(link);
               }
             }}
           >
@@ -98,21 +106,19 @@ const serializers = {
           </Button>
         );
       } else {
-        if (href && (isInternalLink || !isExternalHrefPattern(href))) {
-          // todo: hack to replace underscores in content links that should be dashes until cms has dashes
-          href = href.replace(/_/g, '-');
+        if (link && !isExternalLink(link)) {
           return (
-            <Link to={href} className={linkStyle}>
+            <Link to={link} className={linkStyle}>
               {children}
             </Link>
           );
         } else {
           return (
             <a
-              href={href}
+              href={link}
               className={linkStyle}
-              target={href && isExternalHrefPattern(href) ? '_blank' : ''}
-              rel={href && isExternalHrefPattern(href) ? 'noopener' : ''}
+              target={link && isExternalLink(link) ? '_blank' : ''}
+              rel={link && isExternalLink(link) ? 'noopener' : ''}
             >
               {children}
             </a>
