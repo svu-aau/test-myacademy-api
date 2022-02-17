@@ -4,4 +4,8 @@
   position: relative;
   background-color: var(--color-white);
   padding: 2rem 0;
+
+  @media (min-width: 768px) and (max-width: 1368px) {
+    padding: 2rem 0 2rem 35px;
+  }
 }
