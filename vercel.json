@@ -302,11 +302,6 @@
       "statusCode": 301
     },
     {
-      "source": "/students",
-      "destination": "/",
-      "statusCode": 301
-    },
-    {
       "source": "/resources/academy-resource-center",
       "destination": "https://my2.academyart.edu/resources/academy-resource-center",
       "statusCode": 301
@@ -372,8 +367,8 @@
       "statusCode": 301
     },
     {
-      "source": "/students/:slug*/",
-      "destination": "/:slug*/",
+      "source": "/students/?:slug*",
+      "destination": "/:slug*",
       "permanent": true
     }
   ]
