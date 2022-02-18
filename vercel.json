@@ -367,6 +367,31 @@
       "statusCode": 301
     },
     {
+      "source": "/content/dam/assets/pdf/int-stud/opt-online-tutorial.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163494-Optional_Practical_Training_OPT_Online_Tutorial.pdf/play?player=0",
+      "statusCode": 301
+    },
+{
+      "source": "/content/dam/assets/pdf/int-stud/24-Month-STEM-Extension-Tutorial.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/116059-24-Month-STEM-Extension-Tutorial.pdf/play?player=0",
+      "statusCode": 301
+    },
+{
+      "source": "/content/dam/assets/pdf/int-stud/F1-visa-renewal-information-sheet-1-sheet.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/116051-F1-visa-renewal-information-sheet-1-sheet.pdf/play?player=0",
+      "statusCode": 301
+    },
+{
+      "source": "/content/dam/assets/pdf/int-stud/F2-dependent-information-sheet.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/116050-F2-dependent-information-sheet.pdf/play?player=0",
+      "statusCode": 301
+    },
+{
+      "source": "/content/dam/assets/pdf/int-stud/leave-of-absence-information-sheet.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/116060-leave-of-absence-information-sheet.pdf/play?player=0",
+      "statusCode": 301
+    },
+    {
       "source": "/students(\/?)",
       "destination": "/",
       "permanent": true
