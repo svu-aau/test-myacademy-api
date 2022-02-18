@@ -119,7 +119,6 @@ class PageSearch extends Component {
           </>
         ) : (
           <div className={searchResultStyle}>
-            <h1>{`Search Results for "${searchQuery}"`}</h1>
             {results.map((result, idx) => {
               let { slug } = result;
               // console.log('slug: ', slug);

@@ -5,7 +5,8 @@ import SEO from '../components/layout/seo';
 import Container from '../components/layout/container';
 import Section from '../components/sections/section';
 import PageSearch from '../components/page-search';
-import Hero from '../components/layout/hero';
+import { SectionHeader } from '@aauweb/design-library';
+import { root } from './search.module.css';
 
 export const query = graphql`
   query SearchQuery {
@@ -36,16 +37,18 @@ const SearchTemplate = (props) => {
   return (
     <Layout>
       <SEO title="Search Results" />
-      <Hero
-        imageAlt="search hero"
-        style={{ overflow: 'hidden' }}
-        backgroundImage={defaultHeroImage?.childImageSharp?.gatsbyImageData}
-      />
-      <Section>
-        <Container>
-          <PageSearch pages={allPages} searchTerm={query} origin={origin} />
-        </Container>
-      </Section>
+      <SectionHeader
+        headerImg={defaultHeroImage.childImageSharp.gatsbyImageData.images.fallback.src}
+        imgAlt="Search Hero Image"
+        title={`Search Results for "${query}"`}
+      ></SectionHeader>
+      <div className={root}>
+        <Section noPaddingTop>
+          <Container>
+            <PageSearch pages={allPages} searchTerm={query} origin={origin} />
+          </Container>
+        </Section>
+      </div>
     </Layout>
   );
 };
