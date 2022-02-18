@@ -39,7 +39,7 @@
 
 .contentTop {
   @media (--media-min-medium) {
-    margin-top: -3rem;
+    margin-top: 0rem;
   }
 }
 
