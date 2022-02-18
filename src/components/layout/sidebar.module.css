@@ -19,7 +19,7 @@
 .sidebar[data-menu='collapsed'] {
   @media (--media-max-large) {
     overflow: hidden;
-    max-height: 32px;
+    max-height: 30px;
   }
 }
 
