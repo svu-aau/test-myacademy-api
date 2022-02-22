@@ -397,6 +397,56 @@
       "statusCode": 301
     },
     {
+      "source": "/students/my-academy/student-resources/policies.html",
+      "destination": "https://www.academyart.edu/campus-athletics/student-resources/student-academic-policies/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/career-services",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/clubs-organizations",
+      "destination": "/clubs-and-organizations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/students/my-academy/student-resources/student-representatives.html",
+      "destination": "/my-academy/student-resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/graduate-students",
+      "destination": "https://gradshowcase.academyart.edu/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/blick-stores",
+      "destination": "http://howto.academyart.edu/manage/lms/buying-class-supplies",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/dam/assets/pdf/academy-of-art-university-strategic-plan-2016-2021.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163782-academy-of-art-university-strategic-plan-2016-2021pdf/play?player=0",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/dam/gated-assets/lms-portal/Key-Institutional-Committees.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163785-key-institutional-committeespdf/play?player=0",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/dam/gated-assets/lms-portal/ASC-Charter-and-SubCommittees.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163783-asc-charter-and-subcommitteespdf/play?player=0",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/dam/gated-assets/lms-portal/Faculty-Culture-and-Roles-Responsibilities-Chart.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163784-faculty-culture-and-roles-responsibilities-chartpdf/play?player=0",
+      "statusCode": 301
+    },
+    {
       "source": "/students(\/?)",
       "destination": "/",
       "permanent": true
