@@ -392,6 +392,11 @@
       "statusCode": 301
     },
     {
+      "source": "/about-us/news-events/calendar",
+      "destination": "/calendar",
+      "statusCode": 301
+    },
+    {
       "source": "/students(\/?)",
       "destination": "/",
       "permanent": true
