@@ -527,7 +527,7 @@
       "statusCode": 301
     },
 	{
-      "source": "/content/dam/Graduate Students/fai_grad.pdf",
+      "source": "/content/dam/Graduate%20Students/fai_grad.pdf",
       "destination": "https://mediacenter.academyart.edu/link/163424-fai-grad.pdf/play?player=0",
       "statusCode": 301
     },
@@ -552,7 +552,7 @@
       "statusCode": 301
     },
 	{
-      "source": "/content/dam/assets/pdf/int-stud/change-of-status- from-H4-to-F1-information-sheet.pdf",
+      "source": "/content/dam/assets/pdf/int-stud/change-of-status-%20from-H4-to-F1-information-sheet.pdf",
       "destination": "https://mediacenter.academyart.edu/link/163774-change-of-status-from-h4-to-f1-information-sheetpdf/play?player=0",
       "statusCode": 301
     },
@@ -657,7 +657,7 @@
       "statusCode": 301
     },
 	{
-      "source": "/content/dam/assets/pdf/registrar/Authorization for Translation.pdf",
+      "source": "/content/dam/assets/pdf/registrar/Authorization%20for%20Translation.pdf",
       "destination": "https://mediacenter.academyart.edu/link/116248-Authorization_for_Translation.pdf/play?player=0",
       "statusCode": 301
     },
@@ -747,12 +747,12 @@
       "statusCode": 301
     },
 	{
-      "source": "/content/dam/Graduate Students/Directed Study/internship_packet.pdf",
+      "source": "/content/dam/Graduate%20Students/Directed%20Study/internship_packet.pdf",
       "destination": "https://mediacenter.academyart.edu/link/116170-internship-packet.pdf/play?player=0",
       "statusCode": 301
     },
 	{
-      "source": "/content/dam/Graduate Students/Directed Study/directed_study_guidelines.pdf",
+      "source": "/content/dam/Graduate%20Students/Directed%20Study/directed_study_guidelines.pdf",
       "destination": "https://mediacenter.academyart.edu/link/116168-directed-study-guidelines.pdf/play?player=0",
       "statusCode": 301
     },
