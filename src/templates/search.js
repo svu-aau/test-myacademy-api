@@ -6,7 +6,7 @@ import Container from '../components/layout/container';
 import Section from '../components/sections/section';
 import PageSearch from '../components/page-search';
 import { SectionHeader } from '@aauweb/design-library';
-import { root } from './search.module.css';
+import { root, searchBox } from './search.module.css';
 
 export const query = graphql`
   query SearchQuery {
@@ -37,12 +37,14 @@ const SearchTemplate = (props) => {
   return (
     <Layout>
       <SEO title="Search Results" />
-      <SectionHeader
-        headerImg={defaultHeroImage.childImageSharp.gatsbyImageData.images.fallback.src}
-        imgAlt="Search Hero Image"
-        title={`Search Results for "${query}"`}
-      ></SectionHeader>
       <div className={root}>
+        <SectionHeader
+          headerImg={defaultHeroImage.childImageSharp.gatsbyImageData.images.fallback.src}
+          imgAlt="Search Hero Image"
+          title={`Search Results for "${query}"`}
+        ></SectionHeader>
+      </div>
+      <div className={searchBox}>
         <Section noPaddingTop>
           <Container>
             <PageSearch pages={allPages} searchTerm={query} origin={origin} />
