@@ -1,9 +1,16 @@
 import React from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { mainImage, hero } from './header.module.css';
+import { mainImage, title, hero, heroTitle, heroImageCaption } from './header.module.css';
 
 // backgroundImage should be a fluid image asset
-const Hero = ({ backgroundImage, imageAlt = 'Academy of Art University' }) => {
+const Hero = ({
+  backgroundImage,
+  title,
+  siteTitle,
+  siteSubtitle,
+  heroImageCaption,
+  imageAlt = 'Academy of Art University',
+}) => {
   return (
     <div className={hero}>
       <GatsbyImage
@@ -13,6 +20,8 @@ const Hero = ({ backgroundImage, imageAlt = 'Academy of Art University' }) => {
         loading="eager"
         alt={imageAlt ? imageAlt : 'hero image'}
       />
+      {siteTitle && <h3 className={title}>{siteTitle}</h3>}
+      {siteSubtitle && <h1 className={heroTitle}>{siteSubtitle}</h1>}
     </div>
   );
 };

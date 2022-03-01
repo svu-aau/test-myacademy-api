@@ -170,7 +170,7 @@
     width: 100%;
     height: 100%;
     background: var(--color-black-bg);
-    opacity: 0.3;
+    opacity: 0;
     z-index: 1;
   }
 
@@ -206,6 +206,14 @@
   text-align: center;
 }
 
+.siteSubtitle {
+  composes: responsiveTitleHuge from '../../styles/typography.module.css';
+  color: var(--color-white);
+  z-index: 1;
+  margin: 0 1em;
+  text-align: center;
+}
+
 .heroImageCaption {
   background-color: white;
   color: var(--color-black);
@@ -221,11 +229,16 @@
 }
 
 .heroTitle {
-  composes: macro from '../../styles/typography.module.css';
-  color: var(--color-white);
+  composes: title1 from '../../styles/typography.module.css';
+  color: var(--color-black);
   z-index: 1;
-  margin: 0 1em;
-  text-align: center;
+  text-align: left;
+  padding: .625rem 2.5rem 1rem;
+  background: white;
+  align-self: flex-end;
+  position: absolute;
+  margin-top: -6rem;
+  left: 17rem;
 }
 
 .branding {
