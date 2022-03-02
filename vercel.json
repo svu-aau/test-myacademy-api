@@ -302,6 +302,11 @@
       "statusCode": 301
     },
     {
+      "source": "/resources/academy-resource-center/",
+      "destination": "https://my2.academyart.edu/resources/academy-resource-center",
+      "statusCode": 301
+    },
+    {
       "source": "/resources/academy-resource-center",
       "destination": "https://my2.academyart.edu/resources/academy-resource-center",
       "statusCode": 301
@@ -457,6 +462,7 @@
       "statusCode": 301
     },
 	{
+
       "source": "/content/dam/assets/pdf/academy-of-art-university-strategic-plan-2016-2021-abbreviated.pdf",
       "destination": "https://www.academyart.edu/wp-content/uploads/academy-of-art-university-strategic-plan-2016-2021-part1.pdf",
       "statusCode": 301
@@ -627,6 +633,7 @@
       "statusCode": 301
     },
 	{
+
       "source": "/content/dam/assets/pdf/orientation/online/SP22-7x1_OnlineTipSheet.pdf",
       "destination": "https://mediacenter.academyart.edu/link/163755-sp22-7x1-onlinetipsheetpdf/play?player=0",
       "statusCode": 301
