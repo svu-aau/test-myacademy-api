@@ -34,8 +34,6 @@
   --font-title-huge-size: calc(100 / var(--base-unit) * 1rem);
 }
 
-
-
 /*
  * Statically sized elements
  */
@@ -117,7 +115,6 @@
   font-weight: 700;
   font-size: var(--font-title3-size);
   line-height: var(--font-title3-line-height);
-  margin: 1.5rem 0 1.5rem;
 
   @media (--media-min-small) {
     font-size: var(--font-title2-size);
@@ -125,6 +122,10 @@
   }
 
   @media (--media-min-medium) {
+    font-size: var(--font-title1-size);
+    line-height: var(--font-title0-line-height);
+  }
+  @media (--media-min-large) {
     font-size: var(--font-title1-size);
     line-height: var(--font-title0-line-height);
   }

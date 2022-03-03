@@ -229,16 +229,34 @@
 }
 
 .heroTitle {
-  composes: title1 from '../../styles/typography.module.css';
+  composes: responsiveTitle1 from '../../styles/typography.module.css';
   color: var(--color-black);
   z-index: 1;
   text-align: left;
-  padding: .625rem 2.5rem 1rem;
+  padding: 0.625rem 1.5rem 1rem;
   background: white;
   align-self: flex-end;
   position: absolute;
-  margin-top: -6rem;
-  left: 17rem;
+  margin-top: -4rem;
+  left: 0;
+
+  @media (--media-min-small) {
+    margin-top: -5rem;
+    left: 0;
+    padding: 0.625rem 2.5rem 1rem;
+  }
+
+  @media (--media-min-medium) {
+    margin-top: -7rem;
+    left: 0;
+    padding: 0.625rem 2.5rem 1rem;
+  }
+
+  @media (--media-min-large) {
+    margin-top: -7rem;
+    left: 17rem;
+    padding: 0.625rem 2.5rem 1rem;
+  }
 }
 
 .branding {
