@@ -763,6 +763,11 @@
       "destination": "https://mediacenter.academyart.edu/link/116168-directed-study-guidelines.pdf/play?player=0",
       "statusCode": 301
     },
+	{
+      "source": "/content/dam/assets/pdf/int-stud/return-to-aau-information-sheet.pdf",
+      "destination": "https://mediacenter.academyart.edu/link/163767-return-to-aau-information-sheetpdf/play?player=0",
+      "statusCode": 301
+    },
     {
       "source": "/students(\/?)",
       "destination": "/",
