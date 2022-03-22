@@ -778,6 +778,41 @@
       "destination": "https://mediacenter.academyart.edu/link/163825-form-w-9pdf/play?player=0",
       "statusCode": 301
     },
+	{
+      "source": "/campus-life/searchclubs.jsp",
+      "destination": "/clubs-organizations/clubs/",
+      "statusCode": 301
+    },
+	{
+      "source": "/campus-life/events.html",
+      "destination": "/clubs-organizations/events/",
+      "statusCode": 301
+    },
+	{
+      "source": "/studentresources/campusrec.html",
+      "destination": "/fitness-recreation/",
+      "statusCode": 301
+    },
+	{
+      "source": "/campusinfo/bus_schedule.jsp",
+      "destination": "/campus-shuttle-service-schedule/",
+      "statusCode": 301
+    },
+	{
+      "source": "/studentresources/code_of_conduct.html",
+      "destination": "https://www.academyart.edu/campus-athletics/student-resources/student-academic-policies/",
+      "statusCode": 301
+    },
+	{
+      "source": "/studentresources/academic_policies.html",
+      "destination": "https://www.academyart.edu/campus-athletics/student-resources/student-academic-policies/",
+      "statusCode": 301
+    },
+	{
+      "source": "/resources/human-resources/hiring",
+      "destination": "https://www.academyart.edu/job-opportunities/",
+      "statusCode": 301
+    },
     {
       "source": "/students(\/?)",
       "destination": "/",
