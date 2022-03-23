@@ -813,6 +813,26 @@
       "destination": "https://www.academyart.edu/job-opportunities/",
       "statusCode": 301
     },
+	{
+      "source": "/campus-life/events",
+      "destination": "/clubs-organizations/events/",
+      "statusCode": 301
+    },
+	{
+      "source": "/studentresources/campusrec",
+      "destination": "/fitness-recreation/",
+      "statusCode": 301
+    },
+	{
+      "source": "/studentresources/code_of_conduct",
+      "destination": "https://www.academyart.edu/campus-athletics/student-resources/student-academic-policies/",
+      "statusCode": 301
+    },
+	{
+      "source": "/studentresources/academic_policies",
+      "destination": "https://www.academyart.edu/campus-athletics/student-resources/student-academic-policies/",
+      "statusCode": 301
+    },
     {
       "source": "/students(\/?)",
       "destination": "/",
