@@ -833,6 +833,16 @@
       "destination": "https://www.academyart.edu/campus-athletics/student-resources/student-academic-policies/",
       "statusCode": 301
     },
+	{
+      "source": "/aau-forms/registrar/spring-undergraduate-commencement-rsvp",
+      "destination": "https://www.academyart.edu/forms/campus-life/spring-undergraduate-commencement-rsvp-form/",
+      "statusCode": 301
+    },
+	{
+      "source": "/aau-forms/registrar/spring-graduate-commencement-rsvp",
+      "destination": "https://www.academyart.edu/forms/campus-life/spring-graduate-commencement-rsvp-form/",
+      "statusCode": 301
+    },
     {
       "source": "/students(\/?)",
       "destination": "/",
