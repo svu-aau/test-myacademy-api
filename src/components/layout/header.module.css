@@ -156,6 +156,7 @@
   width: 100% !important;
   @nest img {
     object-fit: cover;
+    object-position: top;
   }
   justify-content: center;
   align-items: center;
