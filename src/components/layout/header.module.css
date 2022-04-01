@@ -146,9 +146,7 @@
   width: 0;
   left: 50%;
 }
-.gatsby-image-wrapper img {
-  object-position: top !important;
-}
+
 .mainImage {
   position: relative;
   display: flex;
