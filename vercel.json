@@ -843,6 +843,56 @@
       "destination": "https://www.academyart.edu/forms/campus-life/spring-graduate-commencement-rsvp-form/",
       "statusCode": 301
     },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2010.html",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2011.html",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2012.html",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2013.html",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2014.html",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2015.html",
+      "destination": "/my-academy/career-services/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2016.html",
+      "destination": "/my-academy/career-services/where-are-they-now-2016/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2017.html",
+      "destination": "/my-academy/career-services/where-are-they-now-2017/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2018.html",
+      "destination": "/my-academy/career-services/where-are-they-now-2018/",
+      "statusCode": 301
+    },
+	{
+      "source": "/students/my-academy/career-prep/where-are-they-now-2019.html",
+      "destination": "/my-academy/career-services/where-are-they-now-2019/",
+      "statusCode": 301
+    },
     {
       "source": "/students(\/?)",
       "destination": "/",
