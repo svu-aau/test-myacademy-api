@@ -43,7 +43,6 @@
     "delay": "^5.0.0",
     "gatsby": "^4.7.1",
     "gatsby-plugin-gatsby-cloud": "^4.7.0",
-    "gatsby-plugin-google-analytics": "^4.7.0",
     "gatsby-plugin-google-fonts-with-attributes": "^1.0.8",
     "gatsby-plugin-google-gtag": "^4.14.0",
     "gatsby-plugin-image": "^2.7.0",
