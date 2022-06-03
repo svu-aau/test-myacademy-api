@@ -767,6 +767,11 @@
       "statusCode": 301
     },
     {
+      "source": "/content/dam/resources/Intranet/Human%20Resources/faculty/Faculty-Manual.pdf ",
+      "destination": "https://mediacenter.academyart.edu/link/116100-Faculty-Manual.pdf/play?player=0",
+      "statusCode": 301
+    },
+    {
       "source": "/content/dam/assets/pdf/int-stud/Form%20W-8BEN.pdf",
       "destination": "https://mediacenter.academyart.edu/link/163824-form-w-8benpdf/play?player=0",
       "statusCode": 301
@@ -900,11 +905,6 @@
       "source": "/students/:slug*(/?)",
       "destination": "/:slug",
       "permanent": true
-    },
-    {
-      "source": "/content/dam/resources/Intranet/Human%20Resources/faculty/Faculty-Manual.pdf ",
-      "destination": "https://mediacenter.academyart.edu/link/116100-Faculty-Manual.pdf/play?player=0",
-      "statusCode": 301
     }
   ]
 }
