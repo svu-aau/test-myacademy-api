@@ -33,6 +33,8 @@ a {
   border-bottom: 1px solid black;
 }
 
-.login > .makeStyles-sectionHeaderContainer-48 {
+.login > .makeStyles-sectionHeaderContainer-48,
+.login > jss48,
+.login > div:first-child {
   height: unset!important;
 }

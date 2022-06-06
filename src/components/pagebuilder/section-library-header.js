@@ -16,8 +16,11 @@ const SectionLibraryHeader = ({ section }) => {
     _key,
   } = section;
 
+  /* checking page URI at build time fails 
   let isLoginPage = typeof window !== 'undefined' && window.location.pathname.match(/^\/login\/?$/) ? true
     : false;
+  */
+  let isLoginPage = alt.toLowerCase().trim() === 'login' ? true : false;
 
   return (
     <div className={root + (isLoginPage ? ' login' : '')} id={_key}>
