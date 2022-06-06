@@ -15,8 +15,12 @@ const SectionLibraryHeader = ({ section }) => {
     externalLink,
     _key,
   } = section;
+
+  let isLoginPage = typeof window !== 'undefined' && window.location.pathname.match(/^\/login\/?$/) ? true
+    : false;
+
   return (
-    <div className={root} id={_key}>
+    <div className={root + (isLoginPage ? ' login' : '')} id={_key}>
       <SectionHeader
         headerImg={urlFor(sectionHeaderImage.asset.url).auto('format').fit('max').url()}
         imgAlt={sectionHeaderImage.alt}
