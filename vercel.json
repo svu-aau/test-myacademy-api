@@ -907,7 +907,7 @@
       "permanent": true
     },
     {
-      "source": "/dam/misc/2022/strategic_plan.pdf",
+      "source": "resources.academyart.edu/dam/misc/2022/strategic_plan.pdf",
       "destination": "https://mediacenter.academyart.edu/link/166191-academy-of-art-university-strategic-plan-22-27-full-version-220418.pdf/play?player=0",
       "statusCode": 301
     }
