@@ -6,6 +6,21 @@
   /* text-decoration: underline; */
 }
 
+.left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .button {
   composes: button from '../styles/buttons.css';
 }

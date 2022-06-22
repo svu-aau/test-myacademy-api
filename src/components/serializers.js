@@ -82,28 +82,31 @@ const serializers = {
   },
   marks: {
     // normal links
-    link: ({ value: { href, style }, children }) => {
-      // console.log('external link: ', href, children);
+    link: ({ value: { href, style, alignment }, children }) => {
+      // console.log('external link: ', href, style, alignment);
       const linkStyle = serializerStyles[style] || serializerStyles.link;
+      const alignmentStyle = serializerStyles[alignment] || '';
       const isButton = ['darkButton', 'button', 'secondaryButton'].includes(style);
 
       const link = linkUrlParser(href);
       if (isButton) {
         return (
-          <Button
-            variant={style === 'secondaryButton' ? 'outlined' : 'contained'}
-            color="primary"
-            label={children}
-            onClick={() => {
-              if (isExternalLink(link)) {
-                window.open(link, '_blank');
-              } else {
-                navigate(link);
-              }
-            }}
-          >
-            {children}
-          </Button>
+          <span className={alignmentStyle}>
+            <Button
+              variant={style === 'secondaryButton' ? 'outlined' : 'contained'}
+              color="primary"
+              label={children}
+              onClick={() => {
+                if (isExternalLink(link)) {
+                  window.open(link, '_blank');
+                } else {
+                  navigate(link);
+                }
+              }}
+            >
+              {children}
+            </Button>
+          </span>
         );
       } else {
         if (link && !isExternalLink(link)) {
