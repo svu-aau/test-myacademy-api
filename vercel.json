@@ -910,6 +910,11 @@
       "source": "/my-academy/student-resources/new-students/online-students",
       "destination": "/",
       "statusCode": 301
+    },
+    {
+      "source": "/my-academy/student-resources/new-students/",
+      "destination": "/",
+      "statusCode": 301
     }
   ]
 }
