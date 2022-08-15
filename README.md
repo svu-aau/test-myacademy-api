@@ -1,2 +1,2 @@
 # aa-myacademy-web
-MyAcademy website
+My Academy website
