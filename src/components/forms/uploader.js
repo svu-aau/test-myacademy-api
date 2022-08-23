@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
 
 let fileChanged = null;
 
+// eslint-disable-next-line react/display-name
 export default React.memo(
   ({
     acceptedFileTypes,
