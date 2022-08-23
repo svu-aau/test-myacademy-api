@@ -1,5 +1,6 @@
 import SectionCard from './section-card';
 import SectionDebug from './section-debug';
+import SectionFormAssembly from './section-formassembly';
 import SectionHero from './section-hero';
 import SectionText from './section-text';
 import SectionImageGrid from './section-image-grid';
@@ -37,6 +38,7 @@ const sectionComponents = {
   SectionLibraryImageCarousel,
   SectionTable,
   SectionImageModalGrid,
+  SectionFormAssembly,
 };
 
 const ContentSections = ({

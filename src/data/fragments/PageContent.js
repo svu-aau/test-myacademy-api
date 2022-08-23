@@ -162,5 +162,10 @@ export const queryFigure = graphql`
     ... on SanitySectionImageModalGrid {
       ...ModalGrid
     }
+
+    ... on SanitySectionFormAssembly {
+      _key
+      formID
+    }
   }
 `;
