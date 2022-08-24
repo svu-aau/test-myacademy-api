@@ -1,5 +1,18 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    requireConfigFile: false,
+    sourceType: 'module',
+    allowImportExportEveryWhere: false,
+    ecmaFeatures: {
+      globalReturn: false,
+      jsx: true,
+    },
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
+    ecmaVersion: 2020,
+  },
   extends: [
     'eslint:recommended',
     'plugin:prettier/recommended',
@@ -17,8 +30,7 @@ module.exports = {
   },
   settings: {
     react: {
-      pragma: 'React',
-      version: '17.0.2',
+      version: 'detect',
     },
   },
 };
