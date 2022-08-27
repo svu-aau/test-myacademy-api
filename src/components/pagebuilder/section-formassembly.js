@@ -36,7 +36,6 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
       data: { formID: formID },
     })
       .then((response) => {
-
         //@TODO
         // - better regexp for inline js: look ahead for no 'src' attribute
         // [x] load JS is same order?
@@ -59,7 +58,7 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
         //console.log(`*** SVU: jsInline`, jsInline);
 
         /* get the main FA wforms.js */
-        jsAll.forEach((js,i) => {
+        jsAll.forEach((js, i) => {
           if (js.match(/<script.*?src=['"](.+?)['"].*?>(.*?)<\/script>/ims)) {
             // console.log(`*** SVU: ${i+1} found JS src`,js);
             const faScript = document.createElement('script');
@@ -81,10 +80,10 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
           const maxChecks = 20;
           if (wFORMS) {
             clearInterval(wformsInterval);
-            console.log(`*** SVU: wFORMs defined`, wFORMS)
+            console.log(`*** SVU: wFORMs defined`, wFORMS);
 
             /* load all other FA js */
-            jsAll.forEach((js,i) => {
+            jsAll.forEach((js, i) => {
               if (js.match(/<script.*?src=['"](.+?)['"].*?>(.*?)<\/script>/ims)) {
                 // console.log(`*** SVU: ${i+1} found JS src`,js);
                 const faScript = document.createElement('script');
@@ -94,33 +93,32 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
                 // console.log(`*** SVU: section-formassembly.js: src is `, js.match(/src=['"](.*?)['"]/i));
                 faScript.src = src;
                 if (!src.match(/wforms\.js/i)) {
-                  containerElement.append(faScript); 
+                  containerElement.append(faScript);
                 }
-              }
-              else {
+              } else {
                 // console.log(`*** SVU: ${i+1} found JS inline`,js);
                 const faScript = document.createElement('script');
                 faScript.setAttribute('type', 'text/javascript');
                 faScript.setAttribute('data-ot-ignore', 'true');
                 faScript.setAttribute('id', `steve-inlinejs-${i}`);
-                let inline = js.match(/<script.*?>(.*?)<\/script>/smi)[1]; // @TODO: better null checking
+                let inline = js.match(/<script.*?>(.*?)<\/script>/ims)[1]; // @TODO: better null checking
                 // console.log(`*** SVU: section-formassembly.js: inline is `, inline);
-                if (i == 3) { inline += `\console.log('*** SVU: appended inline javascript does run!!!');`}
+                if (i == 3) {
+                  inline += `console.log('*** SVU: appended inline javascript does run!!!')`;
+                }
                 faScript.innerHTML = inline;
-                containerElement.append(faScript); 
+                containerElement.append(faScript);
               }
             });
-    
             /* remove all JS in HTML */
-            jsAll.forEach((js,i) => {
-              html = html.replace(js,'');
-            })
+            jsAll.forEach((js, i) => {
+              html = html.replace(js, '');
+            });
             //setFormHTML(html);
             const faContainer = document.createElement('div');
             faContainer.innerHTML = html;
             containerElement.append(faContainer);
-          }
-          else {
+          } else {
             console.log(`*** SVU: wFORMs not yet defined; checking again # ${++numChecks}`);
             if (numChecks > 20) {
               clearInterval(wformsInterval);
@@ -128,9 +126,6 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
             }
           }
         }, 100);
-
-        
-
       })
       .catch((error) => {
         console.log(`ERROR: error thrown trying to get FormAssembly content`, error);
