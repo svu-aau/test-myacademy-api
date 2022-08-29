@@ -1,3 +1,9 @@
+/**
+ * Display FormAssembly form via API
+ *
+ * reference: https://help.formassembly.com/help/340359-publish-with-an-iframe
+ */
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Container from '../layout/container';
@@ -40,7 +46,19 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
         // - better regexp for inline js: look ahead for no 'src' attribute
         // [x] load JS is same order?
         // [x] remove JS from form HTML
-        // - inject JS in same place?
+        // [x] inject JS in same place? doesn't make a difference as long as core FA JS is loaded first
+
+        // *** NOTE: Google search "javascript inject into dom doesn't work" ***
+
+        // for inline JS, try:
+        // - jquery .html() which will evaluate the inline code?  (must inject jQuery src also)
+        // - eval()???
+        // - document.write()?
+        // - reference:
+        //      - HTML5 forbids injecting JS code into DOM to prevent XSS attacks:
+        //          - https://stackoverflow.com/questions/47625341/injected-script-doesnt-execute-even-with-script-tags-fixed-up
+        //      - try jQuery.html() or document.write()
+        //         https://security.stackexchange.com/questions/240353/how-is-it-possible-that-a-script-tag-was-injected-but-not-executed
 
         let html = response.data;
         const containerElement = document.querySelector('[class^="container-module--root"]');
@@ -78,7 +96,7 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
         const wformsInterval = setInterval(() => {
           let numChecks = 0;
           const maxChecks = 20;
-          if (wFORMS) {
+          if (typeof wFORMS !== 'undefined') {
             clearInterval(wformsInterval);
             console.log(`*** SVU: wFORMs defined`, wFORMS);
 
@@ -106,7 +124,8 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
                 if (i == 3) {
                   inline += `console.log('*** SVU: appended inline javascript does run!!!')`;
                 }
-                faScript.innerHTML = inline;
+                // faScript.innerHTML = inline;
+                faScript.append(document.createTextNode(inline));
                 containerElement.append(faScript);
               }
             });
@@ -114,10 +133,7 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
             jsAll.forEach((js, i) => {
               html = html.replace(js, '');
             });
-            //setFormHTML(html);
-            const faContainer = document.createElement('div');
-            faContainer.innerHTML = html;
-            containerElement.append(faContainer);
+            setFormHTML(html);
           } else {
             console.log(`*** SVU: wFORMs not yet defined; checking again # ${++numChecks}`);
             if (numChecks > 20) {
@@ -138,8 +154,7 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
 
   return (
     <Section isPageContent={isPageContent} key={_key} color="white" noPaddingTop={noPaddingTop}>
-      {/* <Container>{isLoading ? <p>Loading ...</p> : <div dangerouslySetInnerHTML={{ __html: formHTML }} />}</Container> */}
-      <Container>{isLoading ? <p>Loading ...</p> : ''}</Container>
+      <Container>{isLoading ? <p>Loading ...</p> : <div dangerouslySetInnerHTML={{ __html: formHTML }} />}</Container>
     </Section>
   );
 };
