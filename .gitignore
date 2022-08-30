@@ -77,3 +77,4 @@ yarn-error.log
 .idea
 
 src/components/designLibrary
+.vercel

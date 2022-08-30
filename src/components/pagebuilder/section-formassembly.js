@@ -13,6 +13,7 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
   const [formHTML, setFormHTML] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const formAssemblyContainerId = `formassembly-container-${formID}`;
 
   useEffect(() => {
     // const url = `http://localhost:3000/api/formassembly`;
@@ -42,14 +43,7 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
       data: { formID: formID },
     })
       .then((response) => {
-        //@TODO
-        // - better regexp for inline js: look ahead for no 'src' attribute
-        // [x] load JS is same order?
-        // [x] remove JS from form HTML
-        // [x] inject JS in same place? doesn't make a difference as long as core FA JS is loaded first
-
         // *** NOTE: Google search "javascript inject into dom doesn't work" ***
-
         // for inline JS, try:
         // - jquery .html() which will evaluate the inline code?  (must inject jQuery src also)
         // - eval()???
@@ -60,88 +54,60 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
         //      - try jQuery.html() or document.write()
         //         https://security.stackexchange.com/questions/240353/how-is-it-possible-that-a-script-tag-was-injected-but-not-executed
 
-        let html = response.data;
-        const containerElement = document.querySelector('[class^="container-module--root"]');
+        let faHTML = response.data;
+        const faElement = document.querySelector(`#${formAssemblyContainerId}`);
 
-        const jsAllRE = /<script.*?>(.*?)<\/script>/gims;
-        const jsSrcRE = /(<script.*?><\/script>)/gims;
-        const jsInlineRE = /<script((?:(?!src=).)*?)>(.*?)<\/script>/gims;
+        // find and load the core FA JS (wforms.js) first since it instatiates the wFORMS object used by other JS
+        const faCoreJSMatches = faHTML.match(/<script.*?src=['"](.*?wforms\.js.*?)['"]/i);
+        if (faCoreJSMatches && faCoreJSMatches[1]) {
+          const faCoreJSElement = document.createElement('script');
+          faCoreJSElement.src = faCoreJSMatches[1];
+          faCoreJSElement.setAttribute('data-ot-ignore', '');
+          faCoreJSElement.setAttribute('type', 'text/javascript');
+          document.body.prepend(faCoreJSElement);
+        }
 
-        const jsAll = html.match(jsAllRE);
-        const jsSrc = html.match(jsSrcRE);
-        const jsInline = html.match(jsInlineRE);
-
-        console.log(`*** SVU: jsAll`, jsAll);
-        //console.log(`*** SVU: jsSrc`, jsSrc);
-        //console.log(`*** SVU: jsInline`, jsInline);
-
-        /* get the main FA wforms.js */
-        jsAll.forEach((js, i) => {
-          if (js.match(/<script.*?src=['"](.+?)['"].*?>(.*?)<\/script>/ims)) {
-            // console.log(`*** SVU: ${i+1} found JS src`,js);
-            const faScript = document.createElement('script');
-            faScript.setAttribute('type', 'text/javascript');
-            faScript.setAttribute('data-ot-ignore', 'true');
-            const src = js.match(/src=['"](.*?)['"]/i)[1]; // @TODO: better null checking
-            // console.log(`*** SVU: section-formassembly.js: src is `, js.match(/src=['"](.*?)['"]/i));
-            faScript.src = src;
-            if (src.match(/wforms\.js/i)) {
-              document.body.prepend(faScript);
-              console.log(`*** SVU: appended main FA JS`);
-            }
-          }
-        });
-
-        /* don't load anything else until `wFORMS` object has been instantiated in wforms.js */
-        const wformsInterval = setInterval(() => {
+        // don't insert FA HTML and JS until wFORMS object has been defined in core FA JS above (or will get wFORMs undefined error)
+        const faInterval = setInterval(function () {
           let numChecks = 0;
           const maxChecks = 20;
           if (typeof wFORMS !== 'undefined') {
-            clearInterval(wformsInterval);
-            console.log(`*** SVU: wFORMs defined`, wFORMS);
-
-            /* load all other FA js */
-            jsAll.forEach((js, i) => {
-              if (js.match(/<script.*?src=['"](.+?)['"].*?>(.*?)<\/script>/ims)) {
-                // console.log(`*** SVU: ${i+1} found JS src`,js);
-                const faScript = document.createElement('script');
-                faScript.setAttribute('type', 'text/javascript');
-                faScript.setAttribute('data-ot-ignore', 'true');
-                const src = js.match(/src=['"](.*?)['"]/i)[1]; // @TODO: better null checking
-                // console.log(`*** SVU: section-formassembly.js: src is `, js.match(/src=['"](.*?)['"]/i));
-                faScript.src = src;
-                if (!src.match(/wforms\.js/i)) {
-                  containerElement.append(faScript);
-                }
-              } else {
-                // console.log(`*** SVU: ${i+1} found JS inline`,js);
-                const faScript = document.createElement('script');
-                faScript.setAttribute('type', 'text/javascript');
-                faScript.setAttribute('data-ot-ignore', 'true');
-                faScript.setAttribute('id', `steve-inlinejs-${i}`);
-                let inline = js.match(/<script.*?>(.*?)<\/script>/ims)[1]; // @TODO: better null checking
-                // console.log(`*** SVU: section-formassembly.js: inline is `, inline);
-                if (i == 3) {
-                  inline += `console.log('*** SVU: appended inline javascript does run!!!')`;
-                }
-                // faScript.innerHTML = inline;
-                faScript.append(document.createTextNode(inline));
-                containerElement.append(faScript);
-              }
-            });
-            /* remove all JS in HTML */
-            jsAll.forEach((js, i) => {
-              html = html.replace(js, '');
-            });
-            setFormHTML(html);
+            clearInterval(faInterval);
+            //console.log(`*** SVU: wFORMS defined after attempt ${++numChecks}: `, wFORMS);
+            processInnerHtml(faElement, faHTML);
           } else {
-            console.log(`*** SVU: wFORMs not yet defined; checking again # ${++numChecks}`);
-            if (numChecks > 20) {
-              clearInterval(wformsInterval);
-              console.log(`*** SVU: wFORMS still not defined after ${maxChecks} attempts; exiting ...`);
+            //console.log(`*** SVU: wFORMS not yet defined on attempt ${++numChecks}`);
+            if (numChecks > maxChecks) {
+              console.log(`*** SVU: wFORMS still not defined after ${maxChecks} checks`);
+              clearInterval(faInterval);
             }
           }
-        }, 100);
+        }, 500);
+
+        // function to insert html into DOM, find all <script>s and replace .innerHTML inserted JS with new DOM elements
+        // to get the JS to execute (ie, JS inserted via .innerHTML does not execute)
+        // https://stackoverflow.com/a/47614491
+        function processInnerHtml(elm, html) {
+          // insert HTML into DOM
+          elm.innerHTML = html;
+          // get all script elements
+          Array.from(elm.querySelectorAll('script')).forEach((oldScript) => {
+            if (oldScript.src.match(/wforms\.js/i)) {
+              oldScript.remove();
+            } else {
+              // create new script element to add to element
+              const newScript = document.createElement('script');
+              Array.from(oldScript.attributes).forEach((attr) => {
+                newScript.setAttribute(attr.name, attr.value);
+              });
+              newScript.setAttribute('data-ot-ignore', '');
+              // insert new script that, in theory, should execute because it was inserted as an element and not set thru innerHTML
+              newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+              // replace old script (inserted through innerHTL)
+              oldScript.parentNode.replaceChild(newScript, oldScript);
+            }
+          });
+        }
       })
       .catch((error) => {
         console.log(`ERROR: error thrown trying to get FormAssembly content`, error);
@@ -154,7 +120,9 @@ const SectionFormAssembly = ({ section: { _key, formID } }, isPageContent, noPad
 
   return (
     <Section isPageContent={isPageContent} key={_key} color="white" noPaddingTop={noPaddingTop}>
-      <Container>{isLoading ? <p>Loading ...</p> : <div dangerouslySetInnerHTML={{ __html: formHTML }} />}</Container>
+      <Container>
+        <div id={formAssemblyContainerId}></div>
+      </Container>
     </Section>
   );
 };
